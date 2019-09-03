@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="16dp"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".Activity.RegisterActivity"
+    android:background="@drawable/gradiante">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="45sp"
+        android:textStyle="bold"
+        android:textColor="@color/TextColor"
+        android:text="Register" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:hint="Name"
+        android:textColor="@color/TextColor"
+        android:textColorHint="@color/HintColor"
+        android:paddingLeft="20dp"
+        android:background="@drawable/input_field_style"
+        android:drawablePadding="20dp"
+        android:drawableLeft="@drawable/user_3"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/TextColor"
+        android:textColorHint="@color/HintColor"
+        android:paddingLeft="20dp"
+        android:background="@drawable/input_field_style"
+        android:drawablePadding="20dp"
+        android:drawableLeft="@drawable/envelope"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
+        android:hint="User"
+        android:textColor="@color/TextColor"
+        android:textColorHint="@color/HintColor"
+        android:paddingLeft="20dp"
+        android:background="@drawable/input_field_style"
+        android:drawablePadding="20dp"
+        android:drawableLeft="@drawable/user_1"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColor="@color/TextColor"
+        android:textColorHint="@color/HintColor"
+        android:paddingLeft="20dp"
+        android:background="@drawable/input_field_style"
+        android:drawablePadding="20dp"
+        android:drawableLeft="@drawable/key"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
+        android:hint="Confirm Password"
+        android:textColor="@color/TextColor"
+        android:textColorHint="@color/HintColor"
+        android:paddingLeft="20dp"
+        android:background="@drawable/input_field_style"
+        android:drawablePadding="20dp"
+        android:drawableLeft="@drawable/login"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
+        android:text="Confirm"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/ButtonColor"
+        android:background="@drawable/input_submit_style"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:text="Sign In"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/TextColor"
+            android:background="@drawable/input_submit_black_style"/>
+    </LinearLayout>
+</LinearLayout>
