@@ -11,7 +11,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     tools:context=".Activity.RegisterActivity"
-    android:background="@drawable/gradiante">
+    android:background="@drawable/gradiante_vertical">
 
     <TextView
         android:layout_width="wrap_content"
