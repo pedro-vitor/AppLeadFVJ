@@ -48,22 +48,42 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password Recovery"
+            android:textColor="@color/TextColor"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="70dp"
+            android:paddingRight="5dp"
+            android:shadowColor="#000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="3"/>
+
         <EditText
             android:id="@+id/Code"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="10dp"
             android:inputType="number"
             android:textColor="@color/TextColor"
+            android:textSize="18dp"
             android:textColorHint="@color/HintColor"
             android:background="@drawable/input_field_style"
             android:gravity="center"
             android:digits="0123456789"
-            android:maxLength="8" />
+            android:maxLength="9"
+            android:shadowColor="#000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="3"/>
 
 
 
         <Button
+            android:id="@+id/bt_confirm"
             android:layout_width="match_parent"
             android:layout_height="@dimen/DarkButton"
             android:layout_marginTop="60dp"
@@ -71,7 +91,7 @@
             android:textStyle="bold"
             android:textSize="18sp"
             android:textColor="@color/ButtonColor"
-            android:background="@drawable/input_submit_style" />
+            android:background="@drawable/input_submit_style"/>
 
     </LinearLayout>
 

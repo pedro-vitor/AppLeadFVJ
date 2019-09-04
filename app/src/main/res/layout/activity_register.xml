@@ -43,7 +43,7 @@
         android:hint="Name"
         android:textColor="@color/TextColor"
         android:textColorHint="@color/HintColor"
-        android:paddingLeft="20dp"
+        android:paddingLeft="15dp"
         android:background="@drawable/input_field_style"
         android:drawablePadding="20dp"
         android:drawableLeft="@drawable/user_3"/>
@@ -56,7 +56,7 @@
         android:inputType="textEmailAddress"
         android:textColor="@color/TextColor"
         android:textColorHint="@color/HintColor"
-        android:paddingLeft="20dp"
+        android:paddingLeft="15dp"
         android:background="@drawable/input_field_style"
         android:drawablePadding="20dp"
         android:drawableLeft="@drawable/envelope"/>
@@ -68,7 +68,7 @@
         android:hint="User"
         android:textColor="@color/TextColor"
         android:textColorHint="@color/HintColor"
-        android:paddingLeft="20dp"
+        android:paddingLeft="15dp"
         android:background="@drawable/input_field_style"
         android:drawablePadding="20dp"
         android:drawableLeft="@drawable/user_1"/>
@@ -81,7 +81,7 @@
         android:inputType="textPassword"
         android:textColor="@color/TextColor"
         android:textColorHint="@color/HintColor"
-        android:paddingLeft="20dp"
+        android:paddingLeft="15dp"
         android:background="@drawable/input_field_style"
         android:drawablePadding="20dp"
         android:drawableLeft="@drawable/key"/>
@@ -94,7 +94,7 @@
         android:inputType="textPassword"
         android:textColor="@color/TextColor"
         android:textColorHint="@color/HintColor"
-        android:paddingLeft="20dp"
+        android:paddingLeft="15dp"
         android:background="@drawable/input_field_style"
         android:drawablePadding="20dp"
         android:drawableLeft="@drawable/login"/>
