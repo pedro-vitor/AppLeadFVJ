@@ -32,12 +32,7 @@
         android:background="@drawable/input_field_style"
         android:gravity="center"
         android:digits="0123456789"
-        android:maxLength="9"
-<<<<<<< HEAD
-
-=======
->>>>>>> 5b2ec0ab0cfb31abe42fcb4fcc340497df49b03d
-        android:maxLines="1"/>
+        android:maxLength="9" />
 
     <Button
         android:layout_width="match_parent"
