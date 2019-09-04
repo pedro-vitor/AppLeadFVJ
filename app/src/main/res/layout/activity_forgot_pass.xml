@@ -7,9 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".Activity.ForgotPassActivity"
     android:background="@drawable/gradiante"
+    android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Enviamos um código de oito digitos para seu Email:"
+        android:textColor="@color/TextColor"
+        android:textStyle="bold"
+        android:background="@drawable/input_field_style"/>
+    
     <EditText
         android:id="@+id/Code"
         android:layout_width="match_parent"
@@ -23,6 +32,15 @@
         android:gravity="center"
         android:digits="0123456789"
         android:maxLength="9"
-        android:addTextChangedListener="@{binder.Activity.CodeMask}"
         android:maxLines="1"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="70dp"
+        android:text="Confirm"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/ButtonColor"
+        android:background="@drawable/input_submit_style" />
 </LinearLayout>
