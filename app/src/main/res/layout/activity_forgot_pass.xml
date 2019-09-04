@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ForgotPassActivity"
+    android:background="@drawable/gradiante"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <EditText
+        android:id="@+id/Code"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
+        android:inputType="number"
+        android:textColor="@color/TextColor"
+        android:textColorHint="@color/HintColor"
+        android:paddingLeft="20dp"
+        android:background="@drawable/input_field_style"
+        android:gravity="center"
+        android:digits="0123456789"
+        android:maxLength="9"
+        android:addTextChangedListener="@{binder.Activity.CodeMask}"
+        android:maxLines="1"/>
+</LinearLayout>

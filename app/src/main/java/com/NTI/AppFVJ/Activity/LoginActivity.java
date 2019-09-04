@@ -16,7 +16,12 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
     }
 
-    public void RegisterClick(View view) {
+    public void ForgotPasswordView(View view) {
+        Intent intent = new Intent(this, ForgotPassActivity.class);
+        startActivity(intent);
+    }
+
+    public void RegisterView(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }

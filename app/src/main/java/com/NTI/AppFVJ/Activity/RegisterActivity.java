@@ -3,6 +3,7 @@ package com.NTI.AppFVJ.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.NTI.AppFVJ.R;
 
@@ -12,5 +13,9 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+    }
+
+    public void RegisterClick(View view) {
+
     }
 }
