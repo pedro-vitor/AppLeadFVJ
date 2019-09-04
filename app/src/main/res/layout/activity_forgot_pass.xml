@@ -23,6 +23,6 @@
         android:gravity="center"
         android:digits="0123456789"
         android:maxLength="9"
-        android:addTextChangedListener="@{binder.Activity.CodeMask}"
+
         android:maxLines="1"/>
 </LinearLayout>
