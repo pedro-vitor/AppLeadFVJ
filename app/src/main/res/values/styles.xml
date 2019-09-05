@@ -2,13 +2,25 @@
     <style
         name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item
-            name="android:textColor">@color/TextColor</item>
+            name="android:actionBarSize">120dp</item>
         <item
-            name="colorPrimary">@color/colorPrimary</item>
+            name="actionBarSize">120dp</item>
         <item
+<<<<<<< HEAD
             name="colorPrimaryDark">#000</item>
+=======
+<<<<<<< HEAD
+            name="android:textColor">@color/TextColor</item>
+=======
+            name="colorPrimaryDark">#A300E344</item>
+>>>>>>> 051c55d0f7ba51c4ffb15839b2c20bf66c31a095
+>>>>>>> d84581193b606baefd66617117d8936c8ab94d0a
         <item
-            name="colorAccent">@color/colorAccent</item>
+            name="actionBarStyle">@style/AppThemeStyle</item>
+    </style>
+
+    <style name="AppThemeStyle" parent="Widget.AppCompat.ActionBar.Solid">
+        <item name="background">@drawable/gradiente_horizontal</item>
     </style>
 
     <style
