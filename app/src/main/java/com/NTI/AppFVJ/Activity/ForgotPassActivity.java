@@ -3,7 +3,9 @@ package com.NTI.AppFVJ.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.R;
@@ -20,4 +22,6 @@ public class ForgotPassActivity extends AppCompatActivity {
 
         code.addTextChangedListener(MaskEditUtil.mask(code,"####-####"));
     }
+
+
 }
