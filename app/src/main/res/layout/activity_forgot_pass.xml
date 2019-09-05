@@ -86,7 +86,7 @@
             android:layout_marginTop="60dp"
             android:text="Confirm"
             android:textStyle="bold"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textColor="@color/ButtonColor"
             android:background="@drawable/input_submit_style"/>
 
