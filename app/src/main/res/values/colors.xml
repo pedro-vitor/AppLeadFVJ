@@ -1,26 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color
-        name="colorPrimary">#008577</color>
-    <color
-        name="colorPrimaryDark">#00574B</color>
-    <color
-        name="colorAccent">#D81B60</color>
-
-    <color
         name="gradianteStart">#06746C</color>
     <color
         name="gradianteCenter">#01A276</color>
     <color
         name="gradianteEnd">#A300E344</color>
 
-
     <color
         name="TextColor">#FFFFFF</color>
     <color
+        name="TextColorDark">#88035D54</color>
+    <color
         name="HintColor">#FFFFFF</color>
     <color
-        name="ButtonColor">#88035D54</color>
+        name="InputFieldColor">#40000000</color>
     <color
-        name="ButtonColorBlack">#40000000</color>
+        name="InputSubmitColor">#FFFFFF</color>
 </resources>

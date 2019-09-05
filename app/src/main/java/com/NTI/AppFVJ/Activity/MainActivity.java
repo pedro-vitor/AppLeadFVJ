@@ -7,7 +7,6 @@ import android.widget.ListView;
 
 import com.NTI.AppFVJ.Adapters.LeadsAdapter;
 import com.NTI.AppFVJ.Models.Leads;
-import com.NTI.AppFVJ.Models.Users;
 import com.NTI.AppFVJ.R;
 
 import java.util.ArrayList;
