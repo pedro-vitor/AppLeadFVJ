@@ -6,12 +6,6 @@
         <item
             name="actionBarSize">120dp</item>
         <item
-<<<<<<< HEAD
-            name="android:textColor">@color/TextColor</item>
-=======
-            name="colorPrimaryDark">#A300E344</item>
->>>>>>> 051c55d0f7ba51c4ffb15839b2c20bf66c31a095
-        <item
             name="actionBarStyle">@style/AppThemeStyle</item>
     </style>
 
