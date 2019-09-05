@@ -7,40 +7,91 @@
     android:layout_height="match_parent"
     tools:context=".Activity.ForgotPassActivity"
     android:background="@drawable/gradiante_vertical"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:gravity="center">
+    android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="Enviamos um código de oito digitos para seu Email:"
-        android:textSize="19dp"
-        android:textColor="@color/TextColor"
-        android:textStyle="bold"
-        android:background="@drawable/input_field_style"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/linear_layout_style_forgot_pass">
 
-    <EditText
-        android:id="@+id/Code"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="50dp"
-        android:inputType="number"
-        android:textColor="@color/TextColor"
-        android:textColorHint="@color/HintColor"
-        android:paddingLeft="20dp"
-        android:background="@drawable/input_field_style"
-        android:gravity="center"
-        android:digits="0123456789"
-        android:maxLength="9" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enviamos um código de oito digitos para seu Email:"
+            android:textSize="19dp"
+            android:textColor="@color/TextColor"
+            android:textStyle="bold" />
 
-    <Button
+            <TableRow
+                android:id="@+id/hr"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#fff"
+                android:layout_marginTop="7dp"></TableRow>
+
+        <TextView
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PeopleEmail@gmail.com"
+            android:textColor="@color/TextColor"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="70dp"
-        android:text="Confirm"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:textColor="@color/ButtonColor"
-        android:background="@drawable/input_submit_style" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password Recovery"
+            android:textColor="@color/TextColor"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="70dp"
+            android:paddingRight="5dp"
+            android:shadowColor="#000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="3"/>
+
+        <EditText
+            android:id="@+id/Code"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:inputType="number"
+            android:textColor="@color/TextColor"
+            android:textSize="18dp"
+            android:textColorHint="@color/HintColor"
+            android:background="@drawable/input_field_style"
+            android:gravity="center"
+            android:digits="0123456789"
+            android:maxLength="9"
+            android:hint="Digite o codigo de confirmação"/>
+
+
+
+        <Button
+            android:id="@+id/bt_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DarkButton"
+            android:layout_marginTop="60dp"
+            android:text="Confirm"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/ButtonColor"
+            android:background="@drawable/input_submit_style"/>
+
+    </LinearLayout>
+
+
 </LinearLayout>
