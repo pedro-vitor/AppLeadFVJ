@@ -4,4 +4,109 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.Fragment1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="18dp"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/tv_nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/user_2"
+            android:text="Nome"
+            android:textSize="18dp"
+            android:textColor="#000"
+            android:gravity="center_vertical"
+            android:drawablePadding="20dp"/>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#000"
+                android:layout_marginTop="2dp"></TableRow>
+
+
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/envelope_1"
+            android:text="Email"
+            android:textSize="18dp"
+            android:textColor="#000"
+            android:gravity="center_vertical"
+            android:drawablePadding="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="5dp"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#000"
+            android:layout_marginTop="3dp"></TableRow>
+
+
+        <TextView
+            android:id="@+id/tv_telefone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/phone_numbers_call"
+            android:text="Telefone"
+            android:textSize="18dp"
+            android:textColor="#000"
+            android:gravity="center_vertical"
+            android:drawablePadding="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#000"
+            android:layout_marginTop="3dp"></TableRow>
+
+        <TextView
+            android:id="@+id/tv_curso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/graduation_cap"
+            android:text="Curso"
+            android:textSize="18dp"
+            android:textColor="#000"
+            android:gravity="center_vertical"
+            android:drawablePadding="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#000"
+            android:layout_marginTop="3dp"></TableRow>
+
+        <TextView
+            android:id="@+id/tv_endereco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/address"
+            android:text="Endereço"
+            android:textSize="18dp"
+            android:textColor="#000"
+            android:gravity="center_vertical"
+            android:drawablePadding="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#000"
+            android:layout_marginTop="3dp"></TableRow>
+
+
+    </LinearLayout>
 </FrameLayout>

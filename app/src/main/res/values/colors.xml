@@ -23,4 +23,9 @@
         name="ButtonColor">#88035D54</color>
     <color
         name="ButtonColorBlack">#40000000</color>
+    <string-array name="nomes_cursos">
+        <item>administração</item>
+        <item>Informática</item>
+        <item>Enfermagem</item>
+    </string-array>
 </resources>
