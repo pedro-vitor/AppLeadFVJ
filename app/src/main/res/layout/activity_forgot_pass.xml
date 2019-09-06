@@ -35,6 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="PeopleEmail@gmail.com"
+            android:textColor="@color/TextColor"
             android:textStyle="bold"
             android:textSize="18dp"
             android:layout_marginTop="10dp"
@@ -77,17 +78,15 @@
             android:maxLength="9"
             android:hint="Digite o codigo de confirmação"/>
 
-
-
         <Button
             android:id="@+id/bt_confirm"
             android:layout_width="match_parent"
             android:layout_height="@dimen/DarkButton"
             android:layout_marginTop="60dp"
-            android:text="Confirm"
-            android:textStyle="bold"
+            android:textColor="@color/TextColorDark"
             android:textSize="16sp"
-            android:textColor="@color/ButtonColor"
+            android:textStyle="bold"
+            android:text="Confirm"
             android:background="@drawable/input_submit_style"/>
 
     </LinearLayout>

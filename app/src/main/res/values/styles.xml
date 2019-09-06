@@ -5,10 +5,6 @@
             name="android:actionBarSize">120dp</item>
         <item
             name="actionBarSize">120dp</item>
-        <item
-            name="colorPrimaryDark">#000</item>
-        <item
-            name="actionBarStyle">@style/AppThemeStyle</item>
     </style>
 
     <style name="AppThemeStyle" parent="Widget.AppCompat.ActionBar.Solid">
