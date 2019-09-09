@@ -1,7 +1,15 @@
 package com.NTI.AppFVJ.Activity;
 
 import android.os.Bundle;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.NTI.AppFVJ.Database.DataHelper;
+import com.NTI.AppFVJ.Fragment.Fragment1;
+import com.NTI.AppFVJ.Fragment.Fragment2;
+import com.NTI.AppFVJ.Models.Comments;
+import com.NTI.AppFVJ.Models.Leads;
+import com.NTI.AppFVJ.Models.Users;
 import com.NTI.AppFVJ.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -10,7 +18,28 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.NTI.AppFVJ.ui.main.SectionsPagerAdapter;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProfileActivity extends AppCompatActivity {
+    private Fragment1 fragment1;
+    private TextView tv_nome;
+    private TextView tv_email;
+    private TextView tv_telefone;
+    private TextView tv_curso;
+    private TextView tv_endereco;
+    private TextView tv_criado;
+
+    private Fragment2 fragment2;
+    private ListView lv_comentario;
+
+    private List<Leads> leadsList;
+    private List<Comments> commentsList;
+
+    private DataHelper dataHelper;
+
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,5 +52,33 @@ public class ProfileActivity extends AppCompatActivity {
 
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
+        tv_nome = findViewById(R.id.tv_nome);
+        tv_email = findViewById(R.id.tv_email);
+        tv_telefone = findViewById(R.id.tv_telefone);
+        tv_curso = findViewById(R.id.tv_curso);
+        tv_endereco = findViewById(R.id.tv_endereco);
+        tv_criado = findViewById(R.id.tv_criado);
+
+        lv_comentario = findViewById(R.id.lv_comentarios);
+
+    }
+
+    public void datasLeads(int id){
+        leadsList = dataHelper.GetByIdLeads(id);
+
+        tv_nome.setText("");
+        tv_email.setText("");
+        tv_telefone.setText("");
+        tv_curso.setText("");
+        tv_endereco.setText("");
+
+        for (Leads lead : leadsList) {
+            tv_nome.setText(lead.getName());
+            tv_email.setText(lead.getEmail());
+            tv_telefone.setText(lead.getNumber_phone());
+            tv_curso.setText(lead.getDesired_course());
+            tv_endereco.setText(lead.getAddress() + " - " + lead.getTown()  );
+        }
     }
 }

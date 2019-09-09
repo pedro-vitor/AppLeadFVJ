@@ -34,6 +34,7 @@ public class DataHelper extends SQLiteOpenHelper {
     private static final String KEY_ID_LEADS = "Id";
     private static final String KEY_USERS_ID_LEADS = "Users_Id";
     private static final String KEY_NAME_LEADS = "Name";
+    private static final String KEY_EMAIL_LEADS = "Email";
     private static final String KEY_NUMBER_PHONE_LEADS = "Number_phone";
     private static final String KEY_DESIRED_COURSE_LEADS = "Desired_course";
     private static final String KEY_TOWN_LEADS = "Town";
@@ -60,6 +61,7 @@ public class DataHelper extends SQLiteOpenHelper {
             + "(" + KEY_ID_LEADS + " INTEGER  PRIMARY KEY AUTOINCREMENT,"
             + KEY_USERS_ID_LEADS + " INTEGER,"
             + KEY_NAME_LEADS + " TEXT,"
+            + KEY_EMAIL_LEADS + "TEXT,"
             + KEY_NUMBER_PHONE_LEADS + "TEXT,"
             + KEY_DESIRED_COURSE_LEADS + "TEXT,"
             + KEY_TOWN_LEADS + "INTEGER,"
@@ -142,6 +144,7 @@ public class DataHelper extends SQLiteOpenHelper {
                 lead.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_LEADS)));
                 lead.setUsers_Id(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_LEADS)));
                 lead.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME_LEADS)));
+                lead.setEmail(cursor.getString(cursor.getColumnIndex(KEY_EMAIL_LEADS)));
                 lead.setNumber_phone(cursor.getString(cursor.getColumnIndex(KEY_NUMBER_PHONE_LEADS)));
                 lead.setDesired_course(cursor.getString(cursor.getColumnIndex(KEY_DESIRED_COURSE_LEADS)));
                 lead.setTown(cursor.getString(cursor.getColumnIndex(KEY_TOWN_LEADS)));
@@ -163,7 +166,7 @@ public class DataHelper extends SQLiteOpenHelper {
         if(cursor.moveToFirst()){
             while(cursor.moveToFirst()){
                 Comments comment = new Comments();
-                comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_LEADS)));
+                comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
                 comment.setLeads_Id(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
                 comment.setUsers_Id(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
                 comment.setText(cursor.getString(cursor.getColumnIndex(KEY_TEXT_COMMENT)));
@@ -174,6 +177,80 @@ public class DataHelper extends SQLiteOpenHelper {
         }
         return comments;
     }
+
+    /*TODO GETBYID*/
+
+    public List<Users> GetByIdUsers(int id){
+        List<Users> users = new ArrayList<Users>();
+        String Query = "SELECT * FROM " + TABLE_USERS + " = " + id;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(Query, null);
+
+        if(cursor.moveToFirst()){
+            while(cursor.moveToFirst()){
+                Users user = new Users();
+                user.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_USERS)));
+                user.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME_USERS)));
+                user.setEmail(cursor.getString(cursor.getColumnIndex(KEY_EMAIL_USERS)));
+                user.setUser(cursor.getString(cursor.getColumnIndex(KEY_USER_USERS)));
+                user.setPassword(cursor.getString(cursor.getColumnIndex(KEY_PASSWORD_USERS)));
+                user.setActive(cursor.getInt(cursor.getColumnIndex(KEY_ACTIVE_USERS)));
+                user.setTimeStamp(cursor.getString(cursor.getColumnIndex(KEY_TIMESTAMP_USERS)));
+
+                users.add(user);
+            }
+        }
+        return users;
+    }
+
+    public List<Leads> GetByIdLeads(int id){
+        List<Leads> leads = new ArrayList<Leads>();
+        String Query = "SELECT * FROM " + TABLE_LEADS + "WHERE " + KEY_ID_LEADS + " = " + id;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(Query, null);
+
+        if(cursor.moveToFirst()){
+            while(cursor.moveToFirst()){
+                Leads lead = new Leads();
+                lead.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_LEADS)));
+                lead.setUsers_Id(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_LEADS)));
+                lead.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME_LEADS)));
+                lead.setEmail(cursor.getString(cursor.getColumnIndex(KEY_EMAIL_LEADS)));
+                lead.setNumber_phone(cursor.getString(cursor.getColumnIndex(KEY_NUMBER_PHONE_LEADS)));
+                lead.setDesired_course(cursor.getString(cursor.getColumnIndex(KEY_DESIRED_COURSE_LEADS)));
+                lead.setTown(cursor.getString(cursor.getColumnIndex(KEY_TOWN_LEADS)));
+                lead.setAddress(cursor.getString(cursor.getColumnIndex(KEY_ADDRESS_LEADS)));
+
+                leads.add(lead);
+            }
+        }
+        return leads;
+    }
+
+    public List<Comments> GetByIdComments(int Lead_id){
+        List<Comments> comments = new ArrayList<Comments>();
+        String Query = "SELECT * FROM " + TABLE_COMMENTS + " WHERE " + KEY_LEADS_ID_COMMENT + " = " + Lead_id;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(Query, null);
+
+        if(cursor.moveToFirst()){
+            while(cursor.moveToFirst()){
+                Comments comment = new Comments();
+                comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
+                comment.setLeads_Id(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
+                comment.setUsers_Id(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
+                comment.setText(cursor.getString(cursor.getColumnIndex(KEY_TEXT_COMMENT)));
+                comment.setTimeStamp(cursor.getString(cursor.getColumnIndex(KEY_TIMESTAMP_COMMENT)));
+
+                comments.add(comment);
+            }
+        }
+        return comments;
+    }
+
 
     /*TODO INSERT*/
     public long insertUsers(Users users) {
@@ -198,6 +275,7 @@ public class DataHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_USERS_ID_LEADS, leads.getUsers_Id());
         values.put(KEY_NAME_LEADS, leads.getName());
+        values.put(KEY_EMAIL_LEADS, leads.getEmail());
         values.put(KEY_NUMBER_PHONE_LEADS, leads.getNumber_phone());
         values.put(KEY_DESIRED_COURSE_LEADS, leads.getDesired_course());
         values.put(KEY_TOWN_LEADS, leads.getTown());
@@ -249,6 +327,7 @@ public class DataHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_USERS_ID_LEADS, leads.getUsers_Id());
         values.put(KEY_NAME_LEADS, leads.getName());
+        values.put(KEY_EMAIL_LEADS, leads.getEmail());
         values.put(KEY_NUMBER_PHONE_LEADS, leads.getNumber_phone());
         values.put(KEY_DESIRED_COURSE_LEADS, leads.getDesired_course());
         values.put(KEY_TOWN_LEADS, leads.getTown());
