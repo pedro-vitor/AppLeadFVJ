@@ -32,75 +32,74 @@
             android:textColor="@color/TextColor"
             android:text="Register"
             android:layout_gravity="center"/>
+    <EditText
+        android:id="@+id/et_nome"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DarkButton"
+        android:layout_marginTop="20dp"
+        android:hint="Name"
+        android:textColor="@color/TextColor"
+        android:textColorHint="@color/HintColor"
+        android:paddingLeft="15dp"
+        android:background="@drawable/input_field_style"
+        android:drawablePadding="20dp"
+        android:drawableLeft="@drawable/user_3"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/DarkButton"
-            android:layout_marginTop="20dp"
-            android:hint="Name"
-            android:textColor="@color/TextColor"
-            android:textColorHint="@color/HintColor"
-            android:paddingLeft="15dp"
-            android:maxLines="1"
-            android:inputType="text"
-            android:background="@drawable/input_field_style"
-            android:drawablePadding="20dp"
-            android:drawableLeft="@drawable/user_3"/>
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DarkButton"
+        android:layout_marginTop="@dimen/SpaceDarkButton"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/TextColor"
+        android:textColorHint="@color/HintColor"
+        android:paddingLeft="15dp"
+        android:background="@drawable/input_field_style"
+        android:drawablePadding="20dp"
+        android:drawableLeft="@drawable/envelope"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/DarkButton"
-            android:layout_marginTop="@dimen/SpaceDarkButton"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/TextColor"
-            android:textColorHint="@color/HintColor"
-            android:paddingLeft="15dp"
-            android:maxLines="1"
-            android:background="@drawable/input_field_style"
-            android:drawablePadding="20dp"
-            android:drawableLeft="@drawable/envelope"/>
+    <EditText
+        android:id="@+id/et_usuario"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DarkButton"
+        android:layout_marginTop="@dimen/SpaceDarkButton"
+        android:hint="User"
+        android:textColor="@color/TextColor"
+        android:textColorHint="@color/HintColor"
+        android:paddingLeft="15dp"
+        android:background="@drawable/input_field_style"
+        android:drawablePadding="20dp"
+        android:drawableLeft="@drawable/user_1"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/DarkButton"
-            android:layout_marginTop="@dimen/SpaceDarkButton"
-            android:hint="User"
-            android:textColor="@color/TextColor"
-            android:textColorHint="@color/HintColor"
-            android:paddingLeft="15dp"
-            android:maxLines="1"
-            android:inputType="text"
-            android:background="@drawable/input_field_style"
-            android:drawablePadding="20dp"
-            android:drawableLeft="@drawable/user_1"/>
+    <EditText
+        android:id="@+id/et_senha"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DarkButton"
+        android:layout_marginTop="@dimen/SpaceDarkButton"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColor="@color/TextColor"
+        android:textColorHint="@color/HintColor"
+        android:paddingLeft="15dp"
+        android:background="@drawable/input_field_style"
+        android:drawablePadding="20dp"
+        android:drawableLeft="@drawable/key"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/DarkButton"
-            android:layout_marginTop="@dimen/SpaceDarkButton"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:textColor="@color/TextColor"
-            android:textColorHint="@color/HintColor"
-            android:paddingLeft="15dp"
-            android:background="@drawable/input_field_style"
-            android:drawablePadding="20dp"
-            android:drawableLeft="@drawable/key"/>
+    <EditText
+        android:id="@+id/et_confirmSenha"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DarkButton"
+        android:layout_marginTop="@dimen/SpaceDarkButton"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:textColor="@color/TextColor"
+        android:textColorHint="@color/HintColor"
+        android:paddingLeft="15dp"
+        android:background="@drawable/input_field_style"
+        android:drawablePadding="20dp"
+        android:drawableLeft="@drawable/login"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/DarkButton"
-            android:layout_marginTop="@dimen/SpaceDarkButton"
-            android:hint="Confirm Password"
-            android:inputType="textPassword"
-            android:textColor="@color/TextColor"
-            android:textColorHint="@color/HintColor"
-            android:paddingLeft="15dp"
-            android:maxLines="1"
-            android:background="@drawable/input_field_style"
-            android:drawablePadding="20dp"
-            android:drawableLeft="@drawable/login"/>
 
         <Button
             android:layout_width="match_parent"

@@ -4,6 +4,7 @@ public class Leads {
     private int Id;
     private int Users_Id;
     private String Name;
+    private String Email;
     private String Number_phone;
     private String Desired_course;
     private String Town;
@@ -72,5 +73,13 @@ public class Leads {
 
     public void setTimeStamp(String timeStamp) {
         TimeStamp = timeStamp;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
     }
 }
