@@ -12,14 +12,11 @@
     tools:context=".Activity.RegisterActivity"
     android:background="@drawable/gradiante_vertical">
 
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:scrollbars="none">
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +32,6 @@
             android:textColor="@color/TextColor"
             android:text="Register"
             android:layout_gravity="center"/>
-
     <EditText
         android:id="@+id/et_nome"
         android:layout_width="match_parent"
@@ -104,17 +100,18 @@
         android:drawablePadding="20dp"
         android:drawableLeft="@drawable/login"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="35dp"
-        android:text="Confirm"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:textColor="@color/TextColorDark"
-        android:background="@drawable/input_submit_style"
-        android:onClick="RegisterClick"/>
 
-    </LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="35dp"
+            android:text="Confirm"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@color/TextColorDark"
+            android:background="@drawable/input_submit_style"
+            android:onClick="RegisterClick"/>
+
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>
