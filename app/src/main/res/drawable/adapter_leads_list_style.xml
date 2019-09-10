@@ -5,10 +5,11 @@
 
     <corners
         android:radius="10dp"/>
-
+<!--
     <gradient
         android:startColor="@color/gradianteStart"
         android:centerColor="@color/gradianteCenter"
         android:endColor="@color/gradianteEnd"
         android:angle="90" />
+-->
 </shape>

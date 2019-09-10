@@ -1,6 +1,7 @@
 package com.NTI.AppFVJ.Adapter;
 
 import android.content.Context;
+import android.location.Address;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,15 +31,17 @@ public class LeadsAdapter extends ArrayAdapter<Leads> {
         if (rowView == null)
             rowView = LayoutInflater.from(getContext()).inflate(R.layout.adapter_leads_list, parent, false);
 
-        TextView Name, Town;
+        TextView Name, Town, Address;
 
         Name = rowView.findViewById(R.id.Name);
         Town = rowView.findViewById(R.id.Town);
+        Address = rowView.findViewById(R.id.Address);
 
         Leads Leads = getItem(position);
 
         Name.setText(Leads.getName());
         Town.setText(Leads.getTown());
+        Address.setText(Leads.getAddress());
 
         return rowView;
     }

@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Activity.ForgotPassActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.ForgotPassActivity"
-    android:background="@drawable/gradiante_vertical"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/gradiante_vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,28 +18,28 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enviamos um código de oito digitos para seu Email:"
             android:textSize="19dp"
+            android:textStyle="bold"
             android:textColor="@color/TextColor"
-            android:textStyle="bold" />
+            android:text="Enviamos um código de oito digitos para seu Email:" />
 
             <TableRow
                 android:id="@+id/hr"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#fff"
-                android:layout_marginTop="7dp"></TableRow>
+                android:layout_marginTop="7dp"
+                android:background="@color/BackgroundColorLight"/>
 
         <TextView
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="PeopleEmail@gmail.com"
-            android:textColor="@color/TextColor"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
             android:textStyle="bold"
             android:textSize="18dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"/>
+            android:textColor="@color/TextColor"
+            android:text="PeopleEmail@gmail.com"/>
 
     </LinearLayout>
 
@@ -52,16 +52,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Recuperação de Senha"
-            android:textColor="@color/TextColor"
-            android:textSize="20dp"
-            android:textStyle="bold"
             android:layout_marginTop="70dp"
-            android:paddingRight="5dp"
             android:shadowColor="#000000"
             android:shadowDx="1"
             android:shadowDy="1"
-            android:shadowRadius="3"/>
+            android:shadowRadius="3"
+            android:textColor="@color/TextColor"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Recuperação de Senha"
+            android:paddingRight="5dp"/>
 
         <EditText
             android:id="@+id/Code"
@@ -70,8 +70,8 @@
             android:layout_marginTop="10dp"
             android:inputType="number"
             android:textColor="@color/TextColor"
-            android:textSize="18dp"
             android:textColorHint="@color/HintColor"
+            android:textSize="18dp"
             android:background="@drawable/input_field_style"
             android:gravity="center"
             android:digits="0123456789"
@@ -83,13 +83,11 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/DarkButton"
             android:layout_marginTop="60dp"
-            android:textColor="@color/TextColorDark"
+            android:textColor="@color/TextColorDarkGreen"
             android:textSize="16sp"
             android:textStyle="bold"
             android:text="Confirm"
             android:background="@drawable/input_submit_style"/>
 
     </LinearLayout>
-
-
 </LinearLayout>
