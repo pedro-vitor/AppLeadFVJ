@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:padding="10dp"
     android:orientation="vertical"
-    android:background="#FFFFFF">
+    android:background="@color/BackgroundColorLight">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,32 +16,45 @@
             android:id="@+id/Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
             android:layout_alignParentLeft="true"
-            android:textColor="#000000"
+            android:textColor="@color/TextColorDark"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Name"
-            android:drawableLeft="@drawable/user_2"
-            android:drawablePadding="20dp"/>
-
-        <!--
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/more"/>
-        -->
+            android:text="Name"/>
 
         <TextView
             android:id="@+id/Town"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="82dp"
-            android:layout_marginBottom="10dp"
             android:layout_alignParentBottom="true"
-            android:textColor="#000000"
-            android:textStyle="bold"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/TextColorDark"
+            android:textSize="15sp"
             android:text="Town"/>
+
+        <TextView
+            android:id="@+id/Divider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/Town"
+            android:textColor="@color/TextColorDark"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="-"/>
+
+        <TextView
+            android:id="@+id/Address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/Divider"
+            android:textColor="@color/TextColorDark"
+            android:textSize="15sp"
+            android:text="Address"/>
     </RelativeLayout>
 </LinearLayout>

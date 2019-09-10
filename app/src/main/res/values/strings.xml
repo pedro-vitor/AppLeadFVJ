@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">AppFVJ</string>
-    <string name="tab_text_1">Informações</string>
-    <string name="tab_text_2">Comentários</string>
+    <string
+        name="app_name">AppFVJ</string>
+    <string
+        name="tab_text_1">Informações</string>
+    <string
+        name="tab_text_2">Comentários</string>
 </resources>

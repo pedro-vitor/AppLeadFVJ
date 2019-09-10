@@ -108,7 +108,7 @@
             android:text="Confirm"
             android:textStyle="bold"
             android:textSize="14sp"
-            android:textColor="@color/TextColorDark"
+            android:textColor="@color/TextColorDarkGreen"
             android:background="@drawable/input_submit_style"
             android:onClick="RegisterClick"/>
 

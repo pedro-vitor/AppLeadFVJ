@@ -5,15 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import com.NTI.AppFVJ.Adapter.LeadsAdapter;
 import com.NTI.AppFVJ.Models.Leads;
@@ -35,10 +32,12 @@ public class MainActivity extends AppCompatActivity {
         Leads Le = new Leads();
         Le.setTown("Aracati");
         Le.setName("Arthur da Silva Braga");
+        Le.setAddress("Rua Coronel Alexanzito");
 
         Leads Le1 = new Leads();
         Le1.setTown("Fortim");
         Le1.setName("Davi Lima Silva");
+        Le1.setAddress("Rua Test");
 
         Leads Le2 = new Leads();
         Le2.setTown("Icapui");
@@ -78,15 +77,10 @@ public class MainActivity extends AppCompatActivity {
         ListLeads.add(Le7);
         ListLeads.add(Le8);
 
-
         List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            /*
-                RelativeLayout LayoutMain = (RelativeLayout)findViewById(R.id.activity_main);
-                View LayoutOptions = LayoutInflater.from(getApplicationContext()).inflate(R.layout.options_leads_list, null);
-                LayoutMain.addView(LayoutOptions);
-             */
+
             }
         });
 

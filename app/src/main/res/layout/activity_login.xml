@@ -71,7 +71,7 @@
             android:text="Entrar"
             android:textStyle="bold"
             android:textSize="16sp"
-            android:textColor="@color/TextColorDark"
+            android:textColor="@color/TextColorDarkGreen"
             android:background="@drawable/input_submit_style"
             android:onClick="MainView"/>
 
