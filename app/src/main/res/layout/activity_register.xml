@@ -37,6 +37,7 @@
             android:layout_gravity="center"/>
 
     <EditText
+        android:id="@+id/et_nome"
         android:layout_width="match_parent"
         android:layout_height="@dimen/DarkButton"
         android:layout_marginTop="20dp"
@@ -49,6 +50,7 @@
         android:drawableLeft="@drawable/user_3"/>
 
     <EditText
+        android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="@dimen/DarkButton"
         android:layout_marginTop="@dimen/SpaceDarkButton"
@@ -62,6 +64,7 @@
         android:drawableLeft="@drawable/envelope"/>
 
     <EditText
+        android:id="@+id/et_usuario"
         android:layout_width="match_parent"
         android:layout_height="@dimen/DarkButton"
         android:layout_marginTop="@dimen/SpaceDarkButton"
@@ -74,6 +77,7 @@
         android:drawableLeft="@drawable/user_1"/>
 
     <EditText
+        android:id="@+id/et_senha"
         android:layout_width="match_parent"
         android:layout_height="@dimen/DarkButton"
         android:layout_marginTop="@dimen/SpaceDarkButton"
@@ -87,6 +91,7 @@
         android:drawableLeft="@drawable/key"/>
 
     <EditText
+        android:id="@+id/et_confirmSenha"
         android:layout_width="match_parent"
         android:layout_height="@dimen/DarkButton"
         android:layout_marginTop="@dimen/SpaceDarkButton"

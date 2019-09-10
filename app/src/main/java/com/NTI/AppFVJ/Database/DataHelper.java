@@ -54,7 +54,7 @@ public class DataHelper extends SQLiteOpenHelper {
             + KEY_EMAIL_USERS + " TEXT,"
             + KEY_USER_USERS + "TEXT,"
             + KEY_PASSWORD_USERS + "TEXT,"
-            + KEY_ACTIVE_USERS+ "INTEGER, "
+            + KEY_ACTIVE_USERS+ "INTEGER DEFAULT 1, "
             + KEY_TIMESTAMP_USERS+ "TEXT " + ")";
 
     private static final String CREATE_TABLE_LEADS = "CREATE TABLE " + TABLE_LEADS

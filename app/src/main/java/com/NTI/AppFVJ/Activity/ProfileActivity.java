@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.NTI.AppFVJ.Adapters.CommentsAdapter;
 import com.NTI.AppFVJ.Database.DataHelper;
 import com.NTI.AppFVJ.Fragment.Fragment1;
 import com.NTI.AppFVJ.Fragment.Fragment2;
@@ -62,9 +63,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         lv_comentario = findViewById(R.id.lv_comentarios);
 
+        //datasLeads(id);
+        //datasComments(id);
     }
 
-    public void datasLeads(int id){
+    /*public void datasLeads(int id){
         leadsList = dataHelper.GetByIdLeads(id);
 
         tv_nome.setText("");
@@ -78,7 +81,13 @@ public class ProfileActivity extends AppCompatActivity {
             tv_email.setText(lead.getEmail());
             tv_telefone.setText(lead.getNumber_phone());
             tv_curso.setText(lead.getDesired_course());
-            tv_endereco.setText(lead.getAddress() + " - " + lead.getTown()  );
+            tv_endereco.setText(lead.getAddress() + " - " + lead.getTown());
         }
     }
+
+    public void datasComments(int id){
+        commentsList = dataHelper.GetByIdComments(id);
+        CommentsAdapter adapter = new CommentsAdapter(this, commentsList);
+        lv_comentario.setAdapter(adapter);
+    }*/
 }
