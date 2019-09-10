@@ -35,6 +35,8 @@
             android:layout_marginBottom="@dimen/SpaceDarkButton"
             android:paddingLeft="20dp"
             android:background="@drawable/input_field_style"
+            android:maxLines="1"
+            android:inputType="text"
             android:drawablePadding="20dp"
             android:drawableLeft="@drawable/user" />
 

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color
+        name="BackgroundColor">#01A276</color>
+
+    <color
         name="gradianteStart">#06746C</color>
     <color
         name="gradianteCenter">#01A276</color>

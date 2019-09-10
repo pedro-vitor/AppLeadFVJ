@@ -9,10 +9,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="85dp"
-        android:padding="10dp"
-        android:orientation="vertical"
-        android:background="@drawable/gradiante_vertical">
+        android:layout_height="90dp"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/Name"
@@ -20,26 +18,30 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
             android:layout_alignParentLeft="true"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Name" />
+            android:text="Name"
+            android:drawableLeft="@drawable/user_2"
+            android:drawablePadding="20dp"/>
 
+        <!--
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentRight="true"
             android:src="@drawable/more"/>
+        -->
 
         <TextView
             android:id="@+id/Town"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="82dp"
+            android:layout_marginBottom="10dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
+            android:textStyle="bold"
             android:text="Town"/>
     </RelativeLayout>
 </LinearLayout>
