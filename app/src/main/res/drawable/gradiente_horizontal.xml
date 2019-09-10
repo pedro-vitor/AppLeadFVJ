@@ -10,5 +10,11 @@
         android:startColor="@color/gradianteStart"
         android:centerColor="@color/gradianteCenter"
         android:endColor="@color/gradianteEnd"
+<<<<<<< HEAD
         android:angle="0" />-->
+=======
+        android:angle="0"/>
+
+
+>>>>>>> b5a08d5ba3db6793a03683a226c253e31a057b0d
 </shape>
