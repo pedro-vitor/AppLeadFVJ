@@ -25,17 +25,10 @@
         name="HintColor">#FFFFFF</color>
     <color
         name="InputFieldColor">#40000000</color>
-<<<<<<< HEAD
 
     <string-array
         name="nomes_cursos">
         <item>Administração</item>
-=======
-    <color
-        name="InputSubmitColor">#E6FFFFFF</color>
-    <string-array name="nomes_cursos">
-        <item>administração</item>
->>>>>>> 6f876f8e62560e982284b1a8c4f5da9a42e63fb3
         <item>Informática</item>
         <item>Enfermagem</item>
     </string-array>
