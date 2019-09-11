@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ForgotEmailActivity"
+    android:background="@color/BackgroundColor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="18dp"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Informe seu Email:"
+            android:textSize="16dp"
+            android:textColor="@color/TextColor"
+            android:textStyle="bold"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:shadowColor="#000000"/>
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/input_field_style"
+            android:hint="Email"
+            android:textSize="16dp"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
+            android:textColor="@color/InputSubmitColor"
+            android:textColorHint="@color/TextColor" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Proximo"
+            android:textSize="14dp"
+            android:textColor="@color/TextColorDarkGreen"
+            android:textStyle="bold"
+            android:background="@drawable/input_submit_style"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:onClick="InformEmail"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancelar"
+            android:textSize="14dp"
+            android:textColor="@color/InputSubmitColor"
+            android:textStyle="bold"
+            android:background="@drawable/input_field_style"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:onClick="CancelForgot"/>
+
+    </LinearLayout>
+
+</LinearLayout>

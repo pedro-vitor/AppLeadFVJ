@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="19dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             android:textColor="@color/TextColor"
             android:text="Enviamos um código de oito digitos para seu Email:" />
@@ -41,7 +41,21 @@
             android:textColor="@color/TextColor"
             android:text="PeopleEmail@gmail.com"/>
 
+
+
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Este não é meu Email."
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="16dp"
+        android:textColor="@color/InputSubmitColor"
+        android:layout_gravity="right"
+        android:onClick="CorrectEmail"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,13 +66,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="55dp"
             android:shadowColor="#000000"
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="3"
             android:textColor="@color/TextColor"
-            android:textSize="20dp"
+            android:textSize="17dp"
             android:textStyle="bold"
             android:text="Recuperação de Senha"
             android:paddingRight="5dp"/>
@@ -71,7 +85,7 @@
             android:inputType="number"
             android:textColor="@color/TextColor"
             android:textColorHint="@color/HintColor"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:background="@drawable/input_field_style"
             android:gravity="center"
             android:digits="0123456789"
@@ -84,7 +98,7 @@
             android:layout_height="@dimen/DarkButton"
             android:layout_marginTop="60dp"
             android:textColor="@color/TextColorDarkGreen"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             android:text="Confirm"
             android:background="@drawable/input_submit_style"/>

@@ -16,7 +16,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void ForgotPasswordView(View view) {
-        Intent intent = new Intent(this, ForgotPassActivity.class);
+        Intent intent = new Intent(this, ForgotEmailActivity.class);
         startActivity(intent);
     }
 
@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void MainView(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, ForgotEmailActivity.class);
         startActivity(intent);
     }
 }

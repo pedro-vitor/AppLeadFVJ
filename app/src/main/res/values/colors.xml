@@ -17,7 +17,7 @@
     <color
         name="TextColorDark">#000000</color>
     <color
-        name="TextColorDarkGreen">#88035D54</color>
+        name="TextColorDarkGreen">#88064740</color>
 
     <color
         name="InputSubmitColor">#FFFFFF</color>
@@ -25,6 +25,7 @@
         name="HintColor">#FFFFFF</color>
     <color
         name="InputFieldColor">#40000000</color>
+<<<<<<< HEAD
 
     <string-array
         name="nomes_cursos">
@@ -32,4 +33,6 @@
         <item>Informática</item>
         <item>Enfermagem</item>
     </string-array>
+=======
+>>>>>>> 2bd011253f1e3238cb8e22a0ded14487d19f6c41
 </resources>
