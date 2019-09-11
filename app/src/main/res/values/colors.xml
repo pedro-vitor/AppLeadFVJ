@@ -25,7 +25,6 @@
         name="HintColor">#FFFFFF</color>
     <color
         name="InputFieldColor">#40000000</color>
-<<<<<<< HEAD
 
     <string-array
         name="nomes_cursos">
@@ -33,6 +32,4 @@
         <item>Informática</item>
         <item>Enfermagem</item>
     </string-array>
-=======
->>>>>>> 2bd011253f1e3238cb8e22a0ded14487d19f6c41
 </resources>

@@ -43,12 +43,14 @@ public class RegisterActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(this, "Todos os campos devem ser preenchidos", Toast.LENGTH_LONG);
             toast.show();
 
-        }else if(et_senha.getText().toString().trim() != et_confirmSenha.getText().toString().trim()){
+        }
+        else if(et_senha.getText().toString().trim() != et_confirmSenha.getText().toString().trim()){
 
             Toast toast = Toast.makeText(this, "Senhas incompativeis", Toast.LENGTH_LONG);
             toast.show();
 
-        }else{
+        }
+        else{
             Users users = new Users();
             users.setName(et_nome.getText().toString().trim());
             users.setEmail(et_email.getText().toString().trim());
@@ -62,8 +64,5 @@ public class RegisterActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
-
-
-
     }
 }
