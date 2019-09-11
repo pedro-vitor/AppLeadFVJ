@@ -3,13 +3,6 @@
         name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item
             name="actionBarStyle">@style/AppThemeStyle</item>
-<<<<<<< HEAD
-=======
-        <item
-            name="android:actionBarSize">120dp</item>
-        <item
-            name="actionBarSize">120dp</item>
->>>>>>> 6f876f8e62560e982284b1a8c4f5da9a42e63fb3
     </style>
 
     <style

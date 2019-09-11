@@ -4,13 +4,11 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.NTI.AppFVJ.Adapters.CommentsAdapter;
 import com.NTI.AppFVJ.Database.DataHelper;
 import com.NTI.AppFVJ.Fragment.Fragment1;
 import com.NTI.AppFVJ.Fragment.Fragment2;
 import com.NTI.AppFVJ.Models.Comments;
 import com.NTI.AppFVJ.Models.Leads;
-import com.NTI.AppFVJ.Models.Users;
 import com.NTI.AppFVJ.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -18,9 +16,6 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.NTI.AppFVJ.ui.main.SectionsPagerAdapter;
-
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
