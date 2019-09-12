@@ -10,7 +10,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="190dp"
-        android:layout_height="190dp"
+        android:layout_height="170dp"
         android:background="@drawable/options_leads_list_style">
 
         <TextView
@@ -33,7 +33,8 @@
 
         <TextView
             android:id="@+id/Edit"
-            android:layout_width="wrap_content"
+            android:onClick="RegisterPeopleView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="Edit"
@@ -43,7 +44,8 @@
 
         <TextView
             android:id="@+id/Delete"
-            android:layout_width="wrap_content"
+            android:onClick="DeleteAct"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="Delete"
@@ -53,7 +55,7 @@
 
         <TextView
             android:id="@+id/AddComment"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="Add Comment"

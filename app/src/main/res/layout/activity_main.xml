@@ -10,7 +10,7 @@
     tools:context=".Activity.MainActivity">
 
     <ListView
-        android:id="@+id/LeadsList"
+        android:id="@+id/lv_listleads"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@drawable/adapter_leads_list_line"

@@ -17,13 +17,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText et_nome;
-    private EditText et_email;
-    private EditText et_usuario;
-    private EditText et_senha;
-    private EditText et_confirmSenha;
+    private EditText et_nome, et_email, et_usuario, et_senha, et_confirmsenha;
+    private DataHelper datahelper;
 
-    private DataHelper dataHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +29,13 @@ public class RegisterActivity extends AppCompatActivity {
         et_email = findViewById(R.id.et_email);
         et_usuario = findViewById(R.id.et_usuario);
         et_senha = findViewById(R.id.et_senha);
+<<<<<<< HEAD
         et_confirmSenha = findViewById(R.id.et_confirmSenha);
 
         dataHelper = new DataHelper(this);
+=======
+        et_confirmsenha = findViewById(R.id.et_confirmSenha);
+>>>>>>> ae3fbb23aff3d19eae95630d5df2c89550db9961
     }
 
     public void RegisterClick(View view) {
@@ -43,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
            et_email.getText().toString().trim().isEmpty()  ||
            et_usuario.getText().toString().trim().isEmpty()||
            et_senha.getText().toString().trim().isEmpty()  ||
+<<<<<<< HEAD
            et_confirmSenha.getText().toString().trim().isEmpty()) {
 
             Toast toast = Toast.makeText(this, "Todos os campos devem ser preenchidos", Toast.LENGTH_LONG);
@@ -61,6 +62,27 @@ public class RegisterActivity extends AppCompatActivity {
             user.setCreatedAt(GetCurrentTime());
 
             dataHelper.insertUsers(user);
+=======
+           et_confirmsenha.getText().toString().trim().isEmpty()) {
+
+            Toast toast = Toast.makeText(this, "Todos os campos devem ser preenchidos", Toast.LENGTH_LONG);
+            toast.show();
+        }
+        else if(et_senha.getText().toString().trim() != et_confirmsenha.getText().toString().trim()) {
+            Toast toast = Toast.makeText(this, "Senhas incompativeis", Toast.LENGTH_LONG);
+            toast.show();
+        }
+        else {
+            Users users = new Users();
+            users.setName(et_nome.getText().toString().trim());
+            users.setEmail(et_email.getText().toString().trim());
+            users.setUser(et_usuario.getText().toString().trim());
+            users.setPassword(et_senha.getText().toString().trim());
+
+            datahelper.insertUsers(users);
+
+            Toast toast = Toast.makeText(this, "Usuário inserido com sucesso",Toast.LENGTH_SHORT);
+>>>>>>> ae3fbb23aff3d19eae95630d5df2c89550db9961
 
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);

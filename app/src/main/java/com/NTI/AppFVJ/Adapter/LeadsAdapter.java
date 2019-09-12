@@ -23,25 +23,31 @@ public class LeadsAdapter extends ArrayAdapter<Lead> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        View rowview = convertView;
 
-        View rowView = convertView;
+        if (rowview == null)
+            rowview = LayoutInflater.from(getContext()).inflate(R.layout.adapter_leads_list, parent, false);
 
-        if (rowView == null)
-            rowView = LayoutInflater.from(getContext()).inflate(R.layout.adapter_leads_list, parent, false);
+        TextView tv_id, tv_name, tv_town, tv_address;
 
-        TextView Name, Town, Address;
-
-        Name = rowView.findViewById(R.id.Name);
-        Town = rowView.findViewById(R.id.Town);
-        Address = rowView.findViewById(R.id.Address);
+        tv_id = rowview.findViewById(R.id.tv_id);
+        tv_name = rowview.findViewById(R.id.tv_name);
+        tv_town = rowview.findViewById(R.id.tv_town);
+        tv_address = rowview.findViewById(R.id.tv_address);
 
         Lead Lead = getItem(position);
 
+<<<<<<< HEAD
         Name.setText(Lead.getName());
         Town.setText(Lead.getTown());
         Address.setText(Lead.getAddress());
+=======
+        tv_id.setText(Leads.getId()+"");
+        tv_name.setText(Leads.getName());
+        tv_town.setText(Leads.getTown());
+        tv_address.setText(Leads.getAddress());
+>>>>>>> ae3fbb23aff3d19eae95630d5df2c89550db9961
 
-        return rowView;
+        return rowview;
     }
-
 }
