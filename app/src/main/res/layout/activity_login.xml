@@ -11,7 +11,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     tools:context=".Activity.LoginActivity"
-    android:background="@drawable/gradiante_vertical">
+    android:background="@color/BackgroundColor">
 
     <ImageView
         android:layout_width="wrap_content"

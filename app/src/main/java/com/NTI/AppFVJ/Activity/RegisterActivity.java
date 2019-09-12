@@ -48,11 +48,17 @@ public class RegisterActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(this, "Todos os campos devem ser preenchidos", Toast.LENGTH_LONG);
             toast.show();
 
+<<<<<<< HEAD
         }else if(!et_senha.getText().toString().equals(et_confirmSenha.getText().toString()) ){
+=======
+        }
+        else if(et_senha.getText().toString().trim() != et_confirmSenha.getText().toString().trim()){
+>>>>>>> 1d8e000970e9d356a2403e936d40ae5483f5042a
 
             Toast toast = Toast.makeText(this, "Senhas incompativeis", Toast.LENGTH_LONG);
             toast.show();
 
+<<<<<<< HEAD
         }else{
             User user = new User();
             user.setName(et_nome.getText().toString().trim());
@@ -61,12 +67,24 @@ public class RegisterActivity extends AppCompatActivity {
             user.setPassword(et_senha.getText().toString().trim());
             user.setActive(0);
             user.setCreatedAt(GetCurrentTime());
+=======
+        }
+        else{
+            Users users = new Users();
+            users.setName(et_nome.getText().toString().trim());
+            users.setEmail(et_email.getText().toString().trim());
+            users.setUser(et_usuario.getText().toString().trim());
+            users.setPassword(et_senha.getText().toString().trim());
+
+            dataHelper.insertUsers(users);
+>>>>>>> 1d8e000970e9d356a2403e936d40ae5483f5042a
 
             dataHelper.insertUsers(user);
 
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
+<<<<<<< HEAD
     }
 
     private String GetCurrentTime(){
@@ -80,5 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
         String currentTime = date_timeFormat.format(time);
 
         return currentTime;
+=======
+>>>>>>> 1d8e000970e9d356a2403e936d40ae5483f5042a
     }
 }

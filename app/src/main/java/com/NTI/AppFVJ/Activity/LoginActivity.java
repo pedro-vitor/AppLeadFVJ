@@ -26,7 +26,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void MainView(View view) {
-        Intent intent = new Intent(this, ForgotEmailActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 }

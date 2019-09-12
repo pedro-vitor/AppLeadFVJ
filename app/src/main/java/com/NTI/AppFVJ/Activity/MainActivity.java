@@ -3,14 +3,25 @@ package com.NTI.AppFVJ.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.NTI.AppFVJ.Adapter.LeadsAdapter;
 import com.NTI.AppFVJ.Models.Lead;
@@ -88,16 +99,42 @@ public class MainActivity extends AppCompatActivity {
         List.setAdapter(Adapter);
     }
 
+    public void MoreOptions(View view) {
+        final PopupWindow popupWindow;
+        LinearLayout linearLayout1 = findViewById(R.id.activity_main);
+
+        LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View customView = layoutInflater.inflate(R.layout.options_leads_list,null);
+
+        popupWindow = new PopupWindow(customView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setTouchable(true);
+        popupWindow.setBackgroundDrawable(new BitmapDrawable());
+        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+                    popupWindow.dismiss();
+                    return true;
+                }
+                return false;
+            }
+        });
+        popupWindow.showAsDropDown(view);
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.Profile:
                 break;
             case R.id.Register:
+                Intent intent2 = new Intent(this, RegisterPeopleActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.Logout:
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
+                Intent intent3 = new Intent(this, LoginActivity.class);
+                startActivity(intent3);
                 finish();
                 break;
         }

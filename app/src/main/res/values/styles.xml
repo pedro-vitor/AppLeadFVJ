@@ -8,7 +8,7 @@
     <style
         name="AppThemeStyle" parent="Widget.AppCompat.ActionBar.Solid">
         <item
-            name="background">@drawable/gradiente_horizontal</item>
+            name="background">@color/BackgroundColor</item>
     </style>
 
     <style
