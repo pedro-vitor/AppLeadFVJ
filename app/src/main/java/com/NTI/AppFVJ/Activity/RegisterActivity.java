@@ -34,6 +34,8 @@ public class RegisterActivity extends AppCompatActivity {
         et_usuario = findViewById(R.id.et_usuario);
         et_senha = findViewById(R.id.et_senha);
         et_confirmSenha = findViewById(R.id.et_confirmSenha);
+
+        dataHelper = new DataHelper(this);
     }
 
     public void RegisterClick(View view) {
@@ -46,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(this, "Todos os campos devem ser preenchidos", Toast.LENGTH_LONG);
             toast.show();
 
-        }else if(et_senha.getText().toString().trim() != et_confirmSenha.getText().toString().trim()){
+        }else if(!et_senha.getText().toString().equals(et_confirmSenha.getText().toString()) ){
 
             Toast toast = Toast.makeText(this, "Senhas incompativeis", Toast.LENGTH_LONG);
             toast.show();
@@ -61,9 +63,6 @@ public class RegisterActivity extends AppCompatActivity {
             user.setCreatedAt(GetCurrentTime());
 
             dataHelper.insertUsers(user);
-
-            Toast toast = Toast.makeText(this, "Usuário inserido com sucesso",Toast.LENGTH_SHORT);
-            toast.show();
 
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
