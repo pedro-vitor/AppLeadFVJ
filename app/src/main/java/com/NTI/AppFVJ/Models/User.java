@@ -1,13 +1,13 @@
 package com.NTI.AppFVJ.Models;
 
-public class Users {
+public class User {
     private int Id;
     private String Name;
     private String Email;
     private String User;
     private String Password;
     private int Active;
-    private String TimeStamp;
+    private String CreatedAt;
 
     public int getId() {
         return Id;
@@ -57,11 +57,11 @@ public class Users {
         Active = active;
     }
 
-    public String getTimeStamp() {
-        return TimeStamp;
+    public String getCreatedAt() {
+        return CreatedAt;
     }
 
-    public void setTimeStamp(String timeStamp) {
-        TimeStamp = timeStamp;
+    public void setCreatedAt(String createdAt) {
+        CreatedAt = createdAt;
     }
 }

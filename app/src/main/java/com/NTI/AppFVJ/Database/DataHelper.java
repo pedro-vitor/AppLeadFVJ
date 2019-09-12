@@ -6,9 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.NTI.AppFVJ.Models.Comments;
-import com.NTI.AppFVJ.Models.Leads;
-import com.NTI.AppFVJ.Models.Users;
+import com.NTI.AppFVJ.Models.Comment;
+import com.NTI.AppFVJ.Models.Lead;
+import com.NTI.AppFVJ.Models.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ public class DataHelper extends SQLiteOpenHelper {
     private static final String KEY_USER_USERS = "User";
     private static final String KEY_PASSWORD_USERS = "Password";
     private static final String KEY_ACTIVE_USERS = "Active";
-    private static final String KEY_TIMESTAMP_USERS = "TimeStamp";
+    private static final String KEY_CREATEDAT_USERS = "CreatedAt";
 
     private static final String KEY_ID_LEADS = "Id";
     private static final String KEY_USERS_ID_LEADS = "Users_Id";
@@ -39,13 +39,13 @@ public class DataHelper extends SQLiteOpenHelper {
     private static final String KEY_DESIRED_COURSE_LEADS = "Desired_course";
     private static final String KEY_TOWN_LEADS = "Town";
     private static final String KEY_ADDRESS_LEADS = "Address";
-    private static final String KEY_TIMESTAMP_LEADS = "TimeStamp";
+    private static final String KEY_CREATEDAT_LEADS = "CreatedAt";
 
     private static final String KEY_ID_COMMENT = "Id";
     private static final String KEY_LEADS_ID_COMMENT = "Leads_Id";
     private static final String KEY_USERS_ID_COMMENT = "Users_Id";
     private static final String KEY_TEXT_COMMENT = "Text";
-    private static final String KEY_TIMESTAMP_COMMENT = "TimeStamp";
+    private static final String KEY_CREATEDAT_COMMENT = "CreatedAt";
 
 
     private static final String CREATE_TABLE_USERS = "CREATE TABLE " + TABLE_USERS
@@ -55,7 +55,7 @@ public class DataHelper extends SQLiteOpenHelper {
             + KEY_USER_USERS + "TEXT,"
             + KEY_PASSWORD_USERS + "TEXT,"
             + KEY_ACTIVE_USERS+ "INTEGER DEFAULT 1, "
-            + KEY_TIMESTAMP_USERS+ "TEXT " + ")";
+            + KEY_CREATEDAT_USERS + "TEXT " + ")";
 
     private static final String CREATE_TABLE_LEADS = "CREATE TABLE " + TABLE_LEADS
             + "(" + KEY_ID_LEADS + " INTEGER  PRIMARY KEY AUTOINCREMENT,"
@@ -66,7 +66,7 @@ public class DataHelper extends SQLiteOpenHelper {
             + KEY_DESIRED_COURSE_LEADS + "TEXT,"
             + KEY_TOWN_LEADS + "INTEGER,"
             + KEY_ADDRESS_LEADS + "TEXT, "
-            + KEY_TIMESTAMP_LEADS + "TEXT, "
+            + KEY_CREATEDAT_LEADS + "TEXT, "
             + "FOREIGN KEY(" + KEY_USERS_ID_LEADS + ") "
             + "REFERENCES " + TABLE_USERS + "(" + KEY_ID_USERS + ") "
             + "ON DELETE NO ACTION "
@@ -77,7 +77,7 @@ public class DataHelper extends SQLiteOpenHelper {
             + KEY_LEADS_ID_COMMENT + "INTEGER,"
             + KEY_USERS_ID_COMMENT + "INTEGER,"
             + KEY_TEXT_COMMENT + "TEXT,"
-            + KEY_TIMESTAMP_COMMENT + "TEXT,"
+            + KEY_CREATEDAT_COMMENT + "TEXT,"
             + "FOREIGN KEY (" + KEY_USERS_ID_COMMENT + ") "
             + "REFERENCES " + TABLE_USERS + "(" + KEY_ID_USERS + ") "
             + "ON DELETE NO ACTION ON UPDATE NO ACTION, "
@@ -107,8 +107,8 @@ public class DataHelper extends SQLiteOpenHelper {
     }
 
     //TODO GetAll
-    public List<Users> GetAllUsers(){
-        List<Users> users = new ArrayList<Users>();
+    public List<User> GetAllUsers(){
+        List<User> users = new ArrayList<User>();
         String Query = "SELECT * FROM " + TABLE_USERS;
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -116,14 +116,14 @@ public class DataHelper extends SQLiteOpenHelper {
 
         if(cursor.moveToFirst()){
             while(cursor.moveToFirst()){
-                Users user = new Users();
+                User user = new User();
                 user.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_USERS)));
                 user.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME_USERS)));
                 user.setEmail(cursor.getString(cursor.getColumnIndex(KEY_EMAIL_USERS)));
                 user.setUser(cursor.getString(cursor.getColumnIndex(KEY_USER_USERS)));
                 user.setPassword(cursor.getString(cursor.getColumnIndex(KEY_PASSWORD_USERS)));
                 user.setActive(cursor.getInt(cursor.getColumnIndex(KEY_ACTIVE_USERS)));
-                user.setTimeStamp(cursor.getString(cursor.getColumnIndex(KEY_TIMESTAMP_USERS)));
+                user.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_USERS)));
 
                 users.add(user);
             }
@@ -131,8 +131,8 @@ public class DataHelper extends SQLiteOpenHelper {
         return users;
     }
 
-    public List<Leads> GetAllLeads(){
-        List<Leads> leads = new ArrayList<Leads>();
+    public List<Lead> GetAllLeads(){
+        List<Lead> leads = new ArrayList<Lead>();
         String Query = "SELECT * FROM " + TABLE_LEADS;
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -140,7 +140,7 @@ public class DataHelper extends SQLiteOpenHelper {
 
         if(cursor.moveToFirst()){
             while(cursor.moveToFirst()){
-                Leads lead = new Leads();
+                Lead lead = new Lead();
                 lead.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_LEADS)));
                 lead.setUsers_Id(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_LEADS)));
                 lead.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME_LEADS)));
@@ -149,6 +149,7 @@ public class DataHelper extends SQLiteOpenHelper {
                 lead.setDesired_course(cursor.getString(cursor.getColumnIndex(KEY_DESIRED_COURSE_LEADS)));
                 lead.setTown(cursor.getString(cursor.getColumnIndex(KEY_TOWN_LEADS)));
                 lead.setAddress(cursor.getString(cursor.getColumnIndex(KEY_ADDRESS_LEADS)));
+                lead.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_LEADS)));
 
                 leads.add(lead);
             }
@@ -156,8 +157,8 @@ public class DataHelper extends SQLiteOpenHelper {
         return leads;
     }
 
-    public List<Comments> GetAllComments(){
-        List<Comments> comments = new ArrayList<Comments>();
+    public List<Comment> GetAllComments(){
+        List<Comment> comments = new ArrayList<Comment>();
         String Query = "SELECT * FROM " + TABLE_COMMENTS;
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -165,12 +166,12 @@ public class DataHelper extends SQLiteOpenHelper {
 
         if(cursor.moveToFirst()){
             while(cursor.moveToFirst()){
-                Comments comment = new Comments();
+                Comment comment = new Comment();
                 comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
                 comment.setLeads_Id(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
                 comment.setUsers_Id(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
                 comment.setText(cursor.getString(cursor.getColumnIndex(KEY_TEXT_COMMENT)));
-                comment.setTimeStamp(cursor.getString(cursor.getColumnIndex(KEY_TIMESTAMP_COMMENT)));
+                comment.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_COMMENT)));
 
                 comments.add(comment);
             }
@@ -180,8 +181,8 @@ public class DataHelper extends SQLiteOpenHelper {
 
     /*TODO GETBYID*/
 
-    public List<Users> GetByIdUsers(int id){
-        List<Users> users = new ArrayList<Users>();
+    public List<User> GetByIdUsers(int id){
+        List<User> users = new ArrayList<User>();
         String Query = "SELECT * FROM " + TABLE_USERS + " = " + id;
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -189,14 +190,14 @@ public class DataHelper extends SQLiteOpenHelper {
 
         if(cursor.moveToFirst()){
             while(cursor.moveToFirst()){
-                Users user = new Users();
+                User user = new User();
                 user.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_USERS)));
                 user.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME_USERS)));
                 user.setEmail(cursor.getString(cursor.getColumnIndex(KEY_EMAIL_USERS)));
                 user.setUser(cursor.getString(cursor.getColumnIndex(KEY_USER_USERS)));
                 user.setPassword(cursor.getString(cursor.getColumnIndex(KEY_PASSWORD_USERS)));
                 user.setActive(cursor.getInt(cursor.getColumnIndex(KEY_ACTIVE_USERS)));
-                user.setTimeStamp(cursor.getString(cursor.getColumnIndex(KEY_TIMESTAMP_USERS)));
+                user.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_USERS)));
 
                 users.add(user);
             }
@@ -204,8 +205,8 @@ public class DataHelper extends SQLiteOpenHelper {
         return users;
     }
 
-    public List<Leads> GetByIdLeads(int id){
-        List<Leads> leads = new ArrayList<Leads>();
+    public List<Lead> GetByIdLeads(int id){
+        List<Lead> leads = new ArrayList<Lead>();
         String Query = "SELECT * FROM " + TABLE_LEADS + "WHERE " + KEY_ID_LEADS + " = " + id;
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -213,7 +214,7 @@ public class DataHelper extends SQLiteOpenHelper {
 
         if(cursor.moveToFirst()){
             while(cursor.moveToFirst()){
-                Leads lead = new Leads();
+                Lead lead = new Lead();
                 lead.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_LEADS)));
                 lead.setUsers_Id(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_LEADS)));
                 lead.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME_LEADS)));
@@ -222,6 +223,7 @@ public class DataHelper extends SQLiteOpenHelper {
                 lead.setDesired_course(cursor.getString(cursor.getColumnIndex(KEY_DESIRED_COURSE_LEADS)));
                 lead.setTown(cursor.getString(cursor.getColumnIndex(KEY_TOWN_LEADS)));
                 lead.setAddress(cursor.getString(cursor.getColumnIndex(KEY_ADDRESS_LEADS)));
+                lead.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_LEADS)));
 
                 leads.add(lead);
             }
@@ -229,8 +231,8 @@ public class DataHelper extends SQLiteOpenHelper {
         return leads;
     }
 
-    public List<Comments> GetByIdComments(int Lead_id){
-        List<Comments> comments = new ArrayList<Comments>();
+    public List<Comment> GetByIdComments(int Lead_id){
+        List<Comment> comments = new ArrayList<Comment>();
         String Query = "SELECT * FROM " + TABLE_COMMENTS + " WHERE " + KEY_LEADS_ID_COMMENT + " = " + Lead_id;
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -238,12 +240,12 @@ public class DataHelper extends SQLiteOpenHelper {
 
         if(cursor.moveToFirst()){
             while(cursor.moveToFirst()){
-                Comments comment = new Comments();
+                Comment comment = new Comment();
                 comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
                 comment.setLeads_Id(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
                 comment.setUsers_Id(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
                 comment.setText(cursor.getString(cursor.getColumnIndex(KEY_TEXT_COMMENT)));
-                comment.setTimeStamp(cursor.getString(cursor.getColumnIndex(KEY_TIMESTAMP_COMMENT)));
+                comment.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_COMMENT)));
 
                 comments.add(comment);
             }
@@ -253,47 +255,47 @@ public class DataHelper extends SQLiteOpenHelper {
 
 
     /*TODO INSERT*/
-    public long insertUsers(Users users) {
+    public long insertUsers(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_NAME_USERS, users.getName());
-        values.put(KEY_EMAIL_USERS, users.getEmail());
-        values.put(KEY_USER_USERS, users.getUser());
-        values.put(KEY_PASSWORD_USERS, users.getPassword());
-        values.put(KEY_ACTIVE_USERS, users.getActive());
-        values.put(KEY_TIMESTAMP_USERS, users.getTimeStamp());
+        values.put(KEY_NAME_USERS, user.getName());
+        values.put(KEY_EMAIL_USERS, user.getEmail());
+        values.put(KEY_USER_USERS, user.getUser());
+        values.put(KEY_PASSWORD_USERS, user.getPassword());
+        values.put(KEY_ACTIVE_USERS, user.getActive());
+        values.put(KEY_CREATEDAT_USERS, user.getCreatedAt());
 
         long id = db.insert(TABLE_USERS, null, values);
 
         return id;
     }
 
-    public long insertLeads(Leads leads) {
+    public long insertLeads(Lead lead) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_USERS_ID_LEADS, leads.getUsers_Id());
-        values.put(KEY_NAME_LEADS, leads.getName());
-        values.put(KEY_EMAIL_LEADS, leads.getEmail());
-        values.put(KEY_NUMBER_PHONE_LEADS, leads.getNumber_phone());
-        values.put(KEY_DESIRED_COURSE_LEADS, leads.getDesired_course());
-        values.put(KEY_TOWN_LEADS, leads.getTown());
-        values.put(KEY_TIMESTAMP_LEADS, leads.getTimeStamp());
+        values.put(KEY_USERS_ID_LEADS, lead.getUsers_Id());
+        values.put(KEY_NAME_LEADS, lead.getName());
+        values.put(KEY_EMAIL_LEADS, lead.getEmail());
+        values.put(KEY_NUMBER_PHONE_LEADS, lead.getNumber_phone());
+        values.put(KEY_DESIRED_COURSE_LEADS, lead.getDesired_course());
+        values.put(KEY_TOWN_LEADS, lead.getTown());
+        values.put(KEY_CREATEDAT_LEADS, lead.getCreatedAt());
 
         long id = db.insert(TABLE_LEADS, null, values);
 
         return id;
     }
 
-    public long insertComments(Comments comments) {
+    public long insertComments(Comment comment) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_LEADS_ID_COMMENT, comments.getLeads_Id());
-        values.put(KEY_USERS_ID_COMMENT, comments.getUsers_Id());
-        values.put(KEY_TEXT_COMMENT, comments.getText());
-        values.put(KEY_TIMESTAMP_COMMENT, comments.getTimeStamp());
+        values.put(KEY_LEADS_ID_COMMENT, comment.getLeads_Id());
+        values.put(KEY_USERS_ID_COMMENT, comment.getUsers_Id());
+        values.put(KEY_TEXT_COMMENT, comment.getText());
+        values.put(KEY_CREATEDAT_COMMENT, comment.getCreatedAt());
 
         long id = db.insert(TABLE_COMMENTS, null, values);
 
@@ -301,56 +303,56 @@ public class DataHelper extends SQLiteOpenHelper {
     }
 
     /*TODO UPDATE*/
-    public List<Users> updateUsers(Users users){
+    public List<User> updateUsers(User user){
         SQLiteDatabase db = this.getWritableDatabase();
-        List<Users> list;
+        List<User> list;
 
         ContentValues values = new ContentValues();
-        values.put(KEY_NAME_USERS, users.getName());
-        values.put(KEY_EMAIL_USERS, users.getEmail());
-        values.put(KEY_USER_USERS, users.getUser());
-        values.put(KEY_PASSWORD_USERS, users.getPassword());
-        values.put(KEY_ACTIVE_USERS, users.getActive());
-        values.put(KEY_TIMESTAMP_USERS, users.getTimeStamp());
+        values.put(KEY_NAME_USERS, user.getName());
+        values.put(KEY_EMAIL_USERS, user.getEmail());
+        values.put(KEY_USER_USERS, user.getUser());
+        values.put(KEY_PASSWORD_USERS, user.getPassword());
+        values.put(KEY_ACTIVE_USERS, user.getActive());
+        values.put(KEY_CREATEDAT_USERS, user.getCreatedAt());
 
-        db.update(TABLE_USERS,values,KEY_ID_USERS + " = ?", new String[]{String.valueOf(users.getId())});
+        db.update(TABLE_USERS,values,KEY_ID_USERS + " = ?", new String[]{String.valueOf(user.getId())});
 
         list = this.GetAllUsers();
 
         return list;
     }
 
-    public List<Leads> updateLeads(Leads leads){
+    public List<Lead> updateLeads(Lead lead){
         SQLiteDatabase db = this.getWritableDatabase();
-        List<Leads> list;
+        List<Lead> list;
 
         ContentValues values = new ContentValues();
-        values.put(KEY_USERS_ID_LEADS, leads.getUsers_Id());
-        values.put(KEY_NAME_LEADS, leads.getName());
-        values.put(KEY_EMAIL_LEADS, leads.getEmail());
-        values.put(KEY_NUMBER_PHONE_LEADS, leads.getNumber_phone());
-        values.put(KEY_DESIRED_COURSE_LEADS, leads.getDesired_course());
-        values.put(KEY_TOWN_LEADS, leads.getTown());
-        values.put(KEY_TIMESTAMP_LEADS, leads.getTimeStamp());
+        values.put(KEY_USERS_ID_LEADS, lead.getUsers_Id());
+        values.put(KEY_NAME_LEADS, lead.getName());
+        values.put(KEY_EMAIL_LEADS, lead.getEmail());
+        values.put(KEY_NUMBER_PHONE_LEADS, lead.getNumber_phone());
+        values.put(KEY_DESIRED_COURSE_LEADS, lead.getDesired_course());
+        values.put(KEY_TOWN_LEADS, lead.getTown());
+        values.put(KEY_CREATEDAT_LEADS, lead.getCreatedAt());
 
-        db.update(TABLE_USERS,values,KEY_ID_LEADS + " = ?", new String[]{String.valueOf(leads.getId())});
+        db.update(TABLE_USERS,values,KEY_ID_LEADS + " = ?", new String[]{String.valueOf(lead.getId())});
 
         list = this.GetAllLeads();
 
         return list;
     }
 
-    public List<Comments> updateComments(Comments comments){
+    public List<Comment> updateComments(Comment comment){
         SQLiteDatabase db = this.getWritableDatabase();
-        List<Comments> list;
+        List<Comment> list;
 
         ContentValues values = new ContentValues();
-        values.put(KEY_LEADS_ID_COMMENT, comments.getLeads_Id());
-        values.put(KEY_USERS_ID_COMMENT, comments.getUsers_Id());
-        values.put(KEY_TEXT_COMMENT, comments.getText());
-        values.put(KEY_TIMESTAMP_COMMENT, comments.getTimeStamp());
+        values.put(KEY_LEADS_ID_COMMENT, comment.getLeads_Id());
+        values.put(KEY_USERS_ID_COMMENT, comment.getUsers_Id());
+        values.put(KEY_TEXT_COMMENT, comment.getText());
+        values.put(KEY_CREATEDAT_COMMENT, comment.getCreatedAt());
 
-        db.update(TABLE_COMMENTS, values, KEY_ID_COMMENT + "= ?", new String[] {String.valueOf(comments.getId())});
+        db.update(TABLE_COMMENTS, values, KEY_ID_COMMENT + "= ?", new String[] {String.valueOf(comment.getId())});
 
         list = this.GetAllComments();
 

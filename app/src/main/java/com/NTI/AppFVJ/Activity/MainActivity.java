@@ -13,7 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.NTI.AppFVJ.Adapter.LeadsAdapter;
-import com.NTI.AppFVJ.Models.Leads;
+import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
 
 import java.util.ArrayList;
@@ -27,55 +27,55 @@ public class MainActivity extends AppCompatActivity {
 
         ListView List = findViewById(R.id.LeadsList);
 
-        List<Leads> ListLeads = new ArrayList<Leads>();
+        List<Lead> listLeads = new ArrayList<Lead>();
 
-        Leads Le = new Leads();
+        Lead Le = new Lead();
         Le.setTown("Aracati");
         Le.setName("Arthur da Silva Braga");
         Le.setAddress("Rua Coronel Alexanzito");
 
-        Leads Le1 = new Leads();
+        Lead Le1 = new Lead();
         Le1.setTown("Fortim");
         Le1.setName("Davi Lima Silva");
         Le1.setAddress("Rua Test");
 
-        Leads Le2 = new Leads();
+        Lead Le2 = new Lead();
         Le2.setTown("Icapui");
         Le2.setName("Izabelle Silva Costa");
 
-        Leads Le3 = new Leads();
+        Lead Le3 = new Lead();
         Le3.setTown("Russas");
         Le3.setName("Maria Correia Silva");
 
-        Leads Le4 = new Leads();
+        Lead Le4 = new Lead();
         Le4.setTown("Itaiçaba");
         Le4.setName("Matheus Oliveira dos Santos");
 
-        Leads Le5 = new Leads();
+        Lead Le5 = new Lead();
         Le5.setTown("Itaiçaba");
         Le5.setName("Felipe Barros Lima");
 
-        Leads Le6 = new Leads();
+        Lead Le6 = new Lead();
         Le6.setTown("Pontal");
         Le6.setName("Rafaela Barbosa");
 
-        Leads Le7 = new Leads();
+        Lead Le7 = new Lead();
         Le7.setTown("Santa Tereza");
         Le7.setName("Armando Teobaldo Silva");
 
-        Leads Le8 = new Leads();
+        Lead Le8 = new Lead();
         Le8.setTown("Aracati");
         Le8.setName("Rosangela Torres Lima");
 
-        ListLeads.add(Le);
-        ListLeads.add(Le1);
-        ListLeads.add(Le2);
-        ListLeads.add(Le3);
-        ListLeads.add(Le4);
-        ListLeads.add(Le5);
-        ListLeads.add(Le6);
-        ListLeads.add(Le7);
-        ListLeads.add(Le8);
+        listLeads.add(Le);
+        listLeads.add(Le1);
+        listLeads.add(Le2);
+        listLeads.add(Le3);
+        listLeads.add(Le4);
+        listLeads.add(Le5);
+        listLeads.add(Le6);
+        listLeads.add(Le7);
+        listLeads.add(Le8);
 
         List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        LeadsAdapter Adapter = new LeadsAdapter(this, ListLeads);
+        LeadsAdapter Adapter = new LeadsAdapter(this, listLeads);
         List.setAdapter(Adapter);
     }
 

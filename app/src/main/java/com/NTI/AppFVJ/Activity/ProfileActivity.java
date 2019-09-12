@@ -7,8 +7,8 @@ import android.widget.TextView;
 import com.NTI.AppFVJ.Database.DataHelper;
 import com.NTI.AppFVJ.Fragment.Fragment1;
 import com.NTI.AppFVJ.Fragment.Fragment2;
-import com.NTI.AppFVJ.Models.Comments;
-import com.NTI.AppFVJ.Models.Leads;
+import com.NTI.AppFVJ.Models.Comment;
+import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.NTI.AppFVJ.ui.main.SectionsPagerAdapter;
 import java.util.List;
+import com.NTI.AppFVJ.Adapters.CommentsAdapter;
 
 public class ProfileActivity extends AppCompatActivity {
     private Fragment1 fragment1;
@@ -30,8 +31,8 @@ public class ProfileActivity extends AppCompatActivity {
     private Fragment2 fragment2;
     private ListView lv_comentario;
 
-    private List<Leads> leadsList;
-    private List<Comments> commentsList;
+    private List<Lead> leadList;
+    private List<Comment> commentsList;
 
     private DataHelper dataHelper;
 
@@ -62,8 +63,8 @@ public class ProfileActivity extends AppCompatActivity {
         //datasComments(id);
     }
 
-    /*public void datasLeads(int id){
-        leadsList = dataHelper.GetByIdLeads(id);
+    public void datasLeads(int id){
+        leadList = dataHelper.GetByIdLeads(id);
 
         tv_nome.setText("");
         tv_email.setText("");
@@ -71,7 +72,7 @@ public class ProfileActivity extends AppCompatActivity {
         tv_curso.setText("");
         tv_endereco.setText("");
 
-        for (Leads lead : leadsList) {
+        for (Lead lead : leadList) {
             tv_nome.setText(lead.getName());
             tv_email.setText(lead.getEmail());
             tv_telefone.setText(lead.getNumber_phone());
@@ -84,5 +85,5 @@ public class ProfileActivity extends AppCompatActivity {
         commentsList = dataHelper.GetByIdComments(id);
         CommentsAdapter adapter = new CommentsAdapter(this, commentsList);
         lv_comentario.setAdapter(adapter);
-    }*/
+    }
 }

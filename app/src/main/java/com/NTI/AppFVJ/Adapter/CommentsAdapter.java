@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.NTI.AppFVJ.Models.Comments;
+import com.NTI.AppFVJ.Models.Comment;
 import com.NTI.AppFVJ.R;
 
 import java.util.List;
@@ -15,10 +15,10 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class CommentsAdapter extends ArrayAdapter<Comments> {
+public class CommentsAdapter extends ArrayAdapter<Comment> {
 
 
-    public CommentsAdapter(@NonNull Context context, @NonNull List<Comments> objects) {
+    public CommentsAdapter(@NonNull Context context, @NonNull List<Comment> objects) {
         super(context, R.layout.adapter_comments_list, objects);
     }
 
@@ -30,7 +30,7 @@ public class CommentsAdapter extends ArrayAdapter<Comments> {
         if (RowView == null)
             RowView = LayoutInflater.from(getContext()).inflate(R.layout.adapter_comments_list, parent, false);
 
-        Comments comments = getItem(position);
+        Comment comments = getItem(position);
 
         TextView Nome, Data, Comentario;
 

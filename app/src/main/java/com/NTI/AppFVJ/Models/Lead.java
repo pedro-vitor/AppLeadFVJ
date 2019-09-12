@@ -1,6 +1,6 @@
 package com.NTI.AppFVJ.Models;
 
-public class Leads {
+public class Lead {
     private int Id;
     private int Users_Id;
     private String Name;
@@ -9,7 +9,7 @@ public class Leads {
     private String Desired_course;
     private String Town;
     private String Address;
-    private String TimeStamp;
+    private String CreatedAt;
 
     public int getId() {
         return Id;
@@ -67,12 +67,12 @@ public class Leads {
         Address = address;
     }
 
-    public String getTimeStamp() {
-        return TimeStamp;
+    public String getCreatedAt() {
+        return CreatedAt;
     }
 
-    public void setTimeStamp(String timeStamp) {
-        TimeStamp = timeStamp;
+    public void setCreatedAt(String createdAt) {
+        CreatedAt = createdAt;
     }
 
     public String getEmail() {
