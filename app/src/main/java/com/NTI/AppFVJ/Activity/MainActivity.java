@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,12 +15,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.NTI.AppFVJ.Adapter.LeadsAdapter;
 import com.NTI.AppFVJ.Models.Leads;
@@ -36,11 +32,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView List = findViewById(R.id.LeadsList);
+        ListView List = findViewById(R.id.lv_listleads);
 
         List<Leads> ListLeads = new ArrayList<Leads>();
 
         Leads Le = new Leads();
+        Le.setId(99);
         Le.setTown("Aracati");
         Le.setName("Arthur da Silva Braga");
         Le.setAddress("Rua Coronel Alexanzito");
@@ -91,36 +88,53 @@ public class MainActivity extends AppCompatActivity {
         List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                TextView tv_id, tv_name, tv_town, tv_address;
 
+                tv_id = view.findViewById(R.id.tv_id);
+                tv_name = view.findViewById(R.id.tv_name);
+                tv_town = view.findViewById(R.id.tv_town);
+                tv_address = view.findViewById(R.id.tv_address);
+
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                intent.putExtra("id", tv_id.getText().toString());
+                intent.putExtra("name", tv_name.getText().toString());
+                intent.putExtra("town", tv_town.getText().toString());
+                intent.putExtra("address", tv_address.getText());
+
+                startActivity(intent);
             }
         });
 
-        LeadsAdapter Adapter = new LeadsAdapter(this, ListLeads);
-        List.setAdapter(Adapter);
+        LeadsAdapter leadsadapter = new LeadsAdapter(this, ListLeads);
+        List.setAdapter(leadsadapter);
     }
 
     public void MoreOptions(View view) {
-        final PopupWindow popupWindow;
-        LinearLayout linearLayout1 = findViewById(R.id.activity_main);
+        final PopupWindow popupwindow;
 
-        LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View customView = layoutInflater.inflate(R.layout.options_leads_list,null);
+        LayoutInflater layoutinflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View customview = layoutinflater.inflate(R.layout.options_leads_list, null);
 
-        popupWindow = new PopupWindow(customView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.setTouchable(true);
-        popupWindow.setBackgroundDrawable(new BitmapDrawable());
-        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+        popupwindow = new PopupWindow(customview, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupwindow.setOutsideTouchable(true);
+        popupwindow.setTouchable(true);
+        popupwindow.setBackgroundDrawable(new BitmapDrawable());
+        popupwindow.setTouchInterceptor(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
-                    popupWindow.dismiss();
+                    popupwindow.dismiss();
                     return true;
                 }
                 return false;
             }
         });
-        popupWindow.showAsDropDown(view);
+        popupwindow.showAsDropDown(view);
+    }
+
+    public void RegisterPeopleView(View view) {
+        Intent intent = new Intent(this, RegisterPeopleActivity.class);
+        startActivity(intent);
     }
 
     @Override
