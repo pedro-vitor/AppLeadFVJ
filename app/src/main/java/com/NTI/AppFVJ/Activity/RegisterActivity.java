@@ -12,6 +12,10 @@ import com.NTI.AppFVJ.Database.DataHelper;
 import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class RegisterActivity extends AppCompatActivity {
     private EditText et_nome;
     private EditText et_email;
@@ -48,21 +52,34 @@ public class RegisterActivity extends AppCompatActivity {
             toast.show();
 
         }else{
-            User users = new User();
-            users.setName(et_nome.getText().toString().trim());
-            users.setEmail(et_email.getText().toString().trim());
-            users.setUser(et_usuario.getText().toString().trim());
-            users.setPassword(et_senha.getText().toString().trim());
+            User user = new User();
+            user.setName(et_nome.getText().toString().trim());
+            user.setEmail(et_email.getText().toString().trim());
+            user.setUser(et_usuario.getText().toString().trim());
+            user.setPassword(et_senha.getText().toString().trim());
+            user.setActive(0);
+            user.setCreatedAt(GetCurrentTime());
 
-            dataHelper.insertUsers(users);
+            dataHelper.insertUsers(user);
 
             Toast toast = Toast.makeText(this, "Usuário inserido com sucesso",Toast.LENGTH_SHORT);
+            toast.show();
 
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
+    }
 
+    private String GetCurrentTime(){
+        SimpleDateFormat date_timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        Date time = calendar.getTime();
 
+        String currentTime = date_timeFormat.format(time);
+
+        return currentTime;
     }
 }
