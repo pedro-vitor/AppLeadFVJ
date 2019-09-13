@@ -40,7 +40,7 @@ public class Fragment1 extends Fragment {
         tv_criado = view.findViewById(R.id.tv_criado);
 
         lv_comentario = view.findViewById(R.id.lv_comentarios);
-/*
+
         id = Integer.parseInt(getArguments().getString("id"));
 
         tv_nome.setText(getArguments().getString("nome"));
@@ -52,7 +52,7 @@ public class Fragment1 extends Fragment {
 
         //datasLeads(id);
         //datasComments(id);
-*/
+
         return view;
     }
 
