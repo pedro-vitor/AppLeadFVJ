@@ -11,8 +11,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.NTI.AppFVJ.Database.DataHelper;
-import com.NTI.AppFVJ.Models.Comments;
-import com.NTI.AppFVJ.Models.Leads;
+import com.NTI.AppFVJ.Models.Comment;
+import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
 
 import java.util.List;
@@ -21,8 +21,8 @@ public class Fragment1 extends Fragment {
     private TextView tv_nome, tv_email, tv_telefone, tv_curso, tv_endereco, tv_criado;
     private ListView lv_comentario;
 
-    private List<Leads> leadsList;
-    private List<Comments> commentsList;
+    private List<Lead> leadsList;
+    private List<Comment> commentsList;
 
     private DataHelper datahelper;
 

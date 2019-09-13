@@ -23,7 +23,6 @@ import com.NTI.AppFVJ.Adapters.CommentsAdapter;
 public class ProfileActivity extends AppCompatActivity {
     private Fragment1 fragment1;
     private Fragment2 fragment2;
-<<<<<<< HEAD
     private ListView lv_comentario;
 
     private List<Lead> leadList;
@@ -32,8 +31,6 @@ public class ProfileActivity extends AppCompatActivity {
     private DataHelper dataHelper;
 
     private int id;
-=======
->>>>>>> b955ac4daff3103d4fd04c4eec7ca3517ec9b01a
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,45 +43,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-<<<<<<< HEAD
-
-        tv_nome = findViewById(R.id.tv_nome);
-        tv_email = findViewById(R.id.tv_email);
-        tv_telefone = findViewById(R.id.tv_telefone);
-        tv_curso = findViewById(R.id.tv_curso);
-        tv_endereco = findViewById(R.id.tv_endereco);
-        tv_criado = findViewById(R.id.tv_criado);
-
         lv_comentario = findViewById(R.id.lv_comentarios);
 
-        //datasLeads(id);
-        //datasComments(id);
-    }
 
-    public void datasLeads(int id){
-        leadList = dataHelper.GetByIdLeads(id);
-
-        tv_nome.setText("");
-        tv_email.setText("");
-        tv_telefone.setText("");
-        tv_curso.setText("");
-        tv_endereco.setText("");
-
-        for (Lead lead : leadList) {
-            tv_nome.setText(lead.getName());
-            tv_email.setText(lead.getEmail());
-            tv_telefone.setText(lead.getNumber_phone());
-            tv_curso.setText(lead.getDesired_course());
-            tv_endereco.setText(lead.getAddress() + " - " + lead.getTown());
-        }
     }
-
-    public void datasComments(int id){
-        commentsList = dataHelper.GetByIdComments(id);
-        CommentsAdapter adapter = new CommentsAdapter(this, commentsList);
-        lv_comentario.setAdapter(adapter);
-    }
-=======
-    }
->>>>>>> b955ac4daff3103d4fd04c4eec7ca3517ec9b01a
 }

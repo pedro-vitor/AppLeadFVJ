@@ -153,7 +153,9 @@
                     android:hint="Telefone"
                     android:textColorHint="@color/TextColor"
                     android:textColor="@color/TextColor"
-                    android:backgroundTint="@color/TextColor"/>
+                    android:backgroundTint="@color/TextColor"
+                    android:inputType="number"
+                    android:maxLength="15"/>
             </LinearLayout>
 
             <LinearLayout
