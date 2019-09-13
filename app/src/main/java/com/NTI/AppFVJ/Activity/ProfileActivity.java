@@ -22,14 +22,8 @@ import com.NTI.AppFVJ.Adapters.CommentsAdapter;
 
 public class ProfileActivity extends AppCompatActivity {
     private Fragment1 fragment1;
-    private TextView tv_nome;
-    private TextView tv_email;
-    private TextView tv_telefone;
-    private TextView tv_curso;
-    private TextView tv_endereco;
-    private TextView tv_criado;
-
     private Fragment2 fragment2;
+<<<<<<< HEAD
     private ListView lv_comentario;
 
     private List<Lead> leadList;
@@ -38,6 +32,8 @@ public class ProfileActivity extends AppCompatActivity {
     private DataHelper dataHelper;
 
     private int id;
+=======
+>>>>>>> b955ac4daff3103d4fd04c4eec7ca3517ec9b01a
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+<<<<<<< HEAD
 
         tv_nome = findViewById(R.id.tv_nome);
         tv_email = findViewById(R.id.tv_email);
@@ -87,4 +84,7 @@ public class ProfileActivity extends AppCompatActivity {
         CommentsAdapter adapter = new CommentsAdapter(this, commentsList);
         lv_comentario.setAdapter(adapter);
     }
+=======
+    }
+>>>>>>> b955ac4daff3103d4fd04c4eec7ca3517ec9b01a
 }
