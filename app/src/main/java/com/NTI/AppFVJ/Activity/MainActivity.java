@@ -20,6 +20,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.NTI.AppFVJ.Adapter.LeadsAdapter;
+import com.NTI.AppFVJ.Database.DataHelper;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
 
@@ -27,67 +28,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private DataHelper dataHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         ListView List = findViewById(R.id.lv_listleads);
+        dataHelper = new DataHelper(this);
 
-        List<Lead> listLeads = new ArrayList<Lead>();
+        List<Lead> listLeads = dataHelper.GetAllLeads();
+        
 
-<<<<<<< HEAD
-        Lead Le = new Lead();
-=======
-        Leads Le = new Leads();
-        Le.setId(99);
->>>>>>> ae3fbb23aff3d19eae95630d5df2c89550db9961
-        Le.setTown("Aracati");
-        Le.setName("Arthur da Silva Braga");
-        Le.setAddress("Rua Coronel Alexanzito");
+        LeadsAdapter leadsadapter = new LeadsAdapter(this, listLeads);
+        List.setAdapter(leadsadapter);
 
-        Lead Le1 = new Lead();
-        Le1.setTown("Fortim");
-        Le1.setName("Davi Lima Silva");
-        Le1.setAddress("Rua Test");
-
-        Lead Le2 = new Lead();
-        Le2.setTown("Icapui");
-        Le2.setName("Izabelle Silva Costa");
-
-        Lead Le3 = new Lead();
-        Le3.setTown("Russas");
-        Le3.setName("Maria Correia Silva");
-
-        Lead Le4 = new Lead();
-        Le4.setTown("Itaiçaba");
-        Le4.setName("Matheus Oliveira dos Santos");
-
-        Lead Le5 = new Lead();
-        Le5.setTown("Itaiçaba");
-        Le5.setName("Felipe Barros Lima");
-
-        Lead Le6 = new Lead();
-        Le6.setTown("Pontal");
-        Le6.setName("Rafaela Barbosa");
-
-        Lead Le7 = new Lead();
-        Le7.setTown("Santa Tereza");
-        Le7.setName("Armando Teobaldo Silva");
-
-        Lead Le8 = new Lead();
-        Le8.setTown("Aracati");
-        Le8.setName("Rosangela Torres Lima");
-
-        listLeads.add(Le);
-        listLeads.add(Le1);
-        listLeads.add(Le2);
-        listLeads.add(Le3);
-        listLeads.add(Le4);
-        listLeads.add(Le5);
-        listLeads.add(Le6);
-        listLeads.add(Le7);
-        listLeads.add(Le8);
 
         List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -108,14 +65,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-<<<<<<< HEAD
-        LeadsAdapter Adapter = new LeadsAdapter(this, listLeads);
-        List.setAdapter(Adapter);
-=======
-        LeadsAdapter leadsadapter = new LeadsAdapter(this, ListLeads);
-        List.setAdapter(leadsadapter);
->>>>>>> ae3fbb23aff3d19eae95630d5df2c89550db9961
     }
 
     public void MoreOptions(View view) {

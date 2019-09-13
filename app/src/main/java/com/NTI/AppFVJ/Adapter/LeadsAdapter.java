@@ -35,18 +35,12 @@ public class LeadsAdapter extends ArrayAdapter<Lead> {
         tv_town = rowview.findViewById(R.id.tv_town);
         tv_address = rowview.findViewById(R.id.tv_address);
 
-        Lead Lead = getItem(position);
+        Lead Leads = getItem(position);
 
-<<<<<<< HEAD
-        Name.setText(Lead.getName());
-        Town.setText(Lead.getTown());
-        Address.setText(Lead.getAddress());
-=======
         tv_id.setText(Leads.getId()+"");
         tv_name.setText(Leads.getName());
         tv_town.setText(Leads.getTown());
         tv_address.setText(Leads.getAddress());
->>>>>>> ae3fbb23aff3d19eae95630d5df2c89550db9961
 
         return rowview;
     }

@@ -10,8 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.NTI.AppFVJ.R;
 
@@ -20,6 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class RegisterPeopleActivity extends AppCompatActivity {
+    private EditText et_nome, et_email, et_telefone, et_endereco;
     private Spinner sp_curso;
     private String[] cursos = { "Curso", "Informatica"  , "Administração", "Hopedagem"
                               };
@@ -28,6 +31,11 @@ public class RegisterPeopleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_people);
+
+        et_nome = findViewById(R.id.et_nome);
+        et_email = findViewById(R.id.et_email);
+        et_telefone = findViewById(R.id.et_telefone);
+        et_endereco = findViewById(R.id.et_endereco);
         sp_curso = findViewById(R.id.sp_curso);
 
         final List<String> listCursos = new ArrayList<String>(Arrays.asList(cursos));
@@ -77,6 +85,20 @@ public class RegisterPeopleActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
+        }
+        //verificar se o spiner não tem a opção "Curso" marcada, e fazer a inserção no banco
+        public void InsertPeople(View View){
+            if(et_nome.getText().toString().trim().isEmpty() ||
+               et_email.getText().toString().trim().isEmpty() ||
+               et_telefone.getText().toString().trim().isEmpty() ||
+               et_endereco.getText().toString().trim().isEmpty() ||
+               sp_curso.getSelectedItem().toString().equals("Curso")){
+
+                Toast toast = Toast.makeText(this, "Todos os campos devem ser preenchidos",Toast.LENGTH_SHORT);
+                toast.show();
+            }else {
+
+            }
         }
     }
 
