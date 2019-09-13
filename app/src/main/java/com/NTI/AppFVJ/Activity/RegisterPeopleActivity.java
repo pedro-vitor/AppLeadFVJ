@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.NTI.AppFVJ.CurrentTime.CurrentTime.GetCurrentTime;
+
 public class RegisterPeopleActivity extends AppCompatActivity {
     private EditText et_nome, et_email, et_telefone, et_endereco;
     private Spinner sp_curso;
@@ -114,12 +116,22 @@ public class RegisterPeopleActivity extends AppCompatActivity {
                 lead.setEmail(et_email.getText().toString().trim());
                 lead.setNumber_phone(MaskEditUtil.unmask(et_telefone.getText().toString().trim()));
                 lead.setDesired_course(sp_curso.getSelectedItem().toString());
+
                 lead.setAddress(et_endereco.getText().toString().trim());
+                lead.setCreatedAt(GetCurrentTime("yyyy-MM-dd HH:mm:ss"));
 
-                dataHelper.insertLeads(lead);
+                if(dataHelper.insertLeads(lead) > 0){
+                    Toast toast = Toast.makeText(this, "inserido",Toast.LENGTH_SHORT);
+                    toast.show();
+                }else{
+                    Toast toast = Toast.makeText(this, "error",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
 
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+
+
+                /*Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);*/
             }
         }
     }

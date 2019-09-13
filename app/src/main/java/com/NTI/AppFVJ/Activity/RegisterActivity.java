@@ -12,9 +12,7 @@ import com.NTI.AppFVJ.Database.DataHelper;
 import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import static com.NTI.AppFVJ.CurrentTime.CurrentTime.GetCurrentTime;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText et_nome, et_email, et_usuario, et_senha, et_confirmsenha;
@@ -55,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
             user.setUser(et_usuario.getText().toString().trim());
             user.setPassword(et_senha.getText().toString().trim());
             user.setActive(0);
-            user.setCreatedAt(GetCurrentTime());
+            user.setCreatedAt(GetCurrentTime("yyyy-MM-dd HH:mm:ss"));
 
             datahelper.insertUsers(user);
 
@@ -66,18 +64,5 @@ public class RegisterActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
-    }
-
-    private String GetCurrentTime(){
-        SimpleDateFormat date_timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-        Date date = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        Date time = calendar.getTime();
-
-        String currentTime = date_timeFormat.format(time);
-
-        return currentTime;
     }
 }

@@ -185,6 +185,33 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="12dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/building"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"/>
+
+                <EditText
+                    android:id="@+id/et_cidade"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="16dp"
+                    android:hint="Cidade"
+                    android:paddingLeft="10dp"
+                    android:textColorHint="@color/TextColor"
+                    android:textColor="@color/TextColor"
+                    android:backgroundTint="@color/TextColor"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp">
 
                 <ImageView
@@ -201,10 +228,13 @@
                     android:layout_marginLeft="18dp"
                     android:layout_marginRight="16dp"
                     android:hint="Endereco"
+                    android:paddingLeft="10dp"
                     android:textColorHint="@color/TextColor"
                     android:textColor="@color/TextColor"
                     android:backgroundTint="@color/TextColor"/>
             </LinearLayout>
+
+
 
             <Button
                 android:layout_width="match_parent"
