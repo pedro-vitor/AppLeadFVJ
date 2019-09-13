@@ -22,10 +22,6 @@ import java.util.List;
 public class ProfileActivity extends AppCompatActivity {
     private Fragment1 fragment1;
     private Fragment2 fragment2;
-<<<<<<< HEAD
-=======
-
->>>>>>> 53ab003a26b52bb4d99bd2ec19261e2a873a65f1
     private ListView lv_comentario;
 
     private List<Lead> leadList;
@@ -46,10 +42,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-<<<<<<< HEAD
+
         lv_comentario = findViewById(R.id.lv_comentarios);
 
-=======
 /*
         tv_nome = findViewById(R.id.tv_nome);
         tv_email = findViewById(R.id.tv_email);
@@ -68,9 +63,5 @@ public class ProfileActivity extends AppCompatActivity {
         leadList = dataHelper.GetByIdLeads(id);
 >>>>>>> 53ab003a26b52bb4d99bd2ec19261e2a873a65f1
 
-    }
-<<<<<<< HEAD
-=======
->>>>>>> b955ac4daff3103d4fd04c4eec7ca3517ec9b01a*/
->>>>>>> 53ab003a26b52bb4d99bd2ec19261e2a873a65f1
+    }*/
 }

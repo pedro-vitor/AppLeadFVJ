@@ -67,9 +67,15 @@
             android:layout_marginTop="2dp">
 
             <TextView
+                android:id="@+id/tv_id"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="invisible"/>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Registro"
+                android:text="Atualização"
                 android:textSize="30dp"
                 android:textColor="@color/TextColor"
                 android:textStyle="bold"
@@ -123,11 +129,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="19dp"
                     android:layout_marginRight="16dp"
-                    android:padding="10dp"
+                    android:backgroundTint="@color/TextColor"
                     android:hint="Email"
-                    android:textColorHint="@color/TextColor"
+                    android:padding="10dp"
                     android:textColor="@color/TextColor"
-                    android:backgroundTint="@color/TextColor"/>
+                    android:textColorHint="@color/TextColor" />
             </LinearLayout>
 
             <LinearLayout
@@ -239,7 +245,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cadastrar"
+                android:text="Atualizar"
                 android:textSize="16dp"
                 android:background="@drawable/input_submit_style"
                 android:layout_marginRight="16dp"

@@ -207,7 +207,7 @@ public class DataHelper extends SQLiteOpenHelper {
 
     public List<Lead> GetByIdLeads(int id){
         List<Lead> leads = new ArrayList<Lead>();
-        String Query = "SELECT * FROM " + TABLE_LEADS + "WHERE " + KEY_ID_LEADS + " = " + id;
+        String Query = "SELECT * FROM " + TABLE_LEADS + " WHERE " + KEY_ID_LEADS + " = " + id;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
@@ -304,9 +304,8 @@ public class DataHelper extends SQLiteOpenHelper {
     }
 
     /*TODO UPDATE*/
-    public List<User> updateUsers(User user){
+    public int updateUsers(User user){
         SQLiteDatabase db = this.getWritableDatabase();
-        List<User> list;
 
         ContentValues values = new ContentValues();
         values.put(KEY_NAME_USERS, user.getName());
@@ -316,16 +315,11 @@ public class DataHelper extends SQLiteOpenHelper {
         values.put(KEY_ACTIVE_USERS, user.getActive());
         values.put(KEY_CREATEDAT_USERS, user.getCreatedAt());
 
-        db.update(TABLE_USERS,values,KEY_ID_USERS + " = ?", new String[]{String.valueOf(user.getId())});
-
-        list = this.GetAllUsers();
-
-        return list;
+        return db.update(TABLE_USERS,values,KEY_ID_USERS + " = ?", new String[]{String.valueOf(user.getId())});
     }
 
-    public List<Lead> updateLeads(Lead lead){
+    public int updateLeads(Lead lead){
         SQLiteDatabase db = this.getWritableDatabase();
-        List<Lead> list;
 
         ContentValues values = new ContentValues();
         values.put(KEY_USERS_ID_LEADS, lead.getUsers_Id());
@@ -335,18 +329,14 @@ public class DataHelper extends SQLiteOpenHelper {
         values.put(KEY_DESIRED_COURSE_LEADS, lead.getDesired_course());
         values.put(KEY_TOWN_LEADS, lead.getTown());
         values.put(KEY_ADDRESS_LEADS, lead.getAddress());
-        values.put(KEY_CREATEDAT_LEADS, lead.getCreatedAt());
 
-        db.update(TABLE_USERS,values,KEY_ID_LEADS + " = ?", new String[]{String.valueOf(lead.getId())});
+        return db.update(TABLE_USERS,values,KEY_ID_LEADS + " = ?", new String[]{String.valueOf(lead.getId())});
 
-        list = this.GetAllLeads();
 
-        return list;
     }
 
-    public List<Comment> updateComments(Comment comment){
+    public int updateComments(Comment comment){
         SQLiteDatabase db = this.getWritableDatabase();
-        List<Comment> list;
 
         ContentValues values = new ContentValues();
         values.put(KEY_LEADS_ID_COMMENT, comment.getLeads_Id());
@@ -354,10 +344,6 @@ public class DataHelper extends SQLiteOpenHelper {
         values.put(KEY_TEXT_COMMENT, comment.getText());
         values.put(KEY_CREATEDAT_COMMENT, comment.getCreatedAt());
 
-        db.update(TABLE_COMMENTS, values, KEY_ID_COMMENT + "= ?", new String[] {String.valueOf(comment.getId())});
-
-        list = this.GetAllComments();
-
-        return list;
+        return db.update(TABLE_COMMENTS, values, KEY_ID_COMMENT + "= ?", new String[] {String.valueOf(comment.getId())});
     }
 }

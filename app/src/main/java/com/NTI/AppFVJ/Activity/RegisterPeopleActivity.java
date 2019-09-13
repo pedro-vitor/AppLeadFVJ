@@ -133,7 +133,7 @@ public class RegisterPeopleActivity extends AppCompatActivity {
                     finish();
                 }else{
 
-                    Toast toast = Toast.makeText(this, "Erro!! Usuario não Inserido",Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(this, "Erro ao inserir a pessoa",Toast.LENGTH_SHORT);
                     toast.show();
                 }
             }
