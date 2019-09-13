@@ -23,7 +23,7 @@ import com.NTI.AppFVJ.Adapters.CommentsAdapter;
 public class ProfileActivity extends AppCompatActivity {
     private Fragment1 fragment1;
     private Fragment2 fragment2;
-<<<<<<< HEAD
+
     private ListView lv_comentario;
 
     private List<Lead> leadList;
@@ -32,8 +32,6 @@ public class ProfileActivity extends AppCompatActivity {
     private DataHelper dataHelper;
 
     private int id;
-=======
->>>>>>> b955ac4daff3103d4fd04c4eec7ca3517ec9b01a
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-<<<<<<< HEAD
-
+/*
         tv_nome = findViewById(R.id.tv_nome);
         tv_email = findViewById(R.id.tv_email);
         tv_telefone = findViewById(R.id.tv_telefone);
@@ -56,11 +53,11 @@ public class ProfileActivity extends AppCompatActivity {
         tv_criado = findViewById(R.id.tv_criado);
 
         lv_comentario = findViewById(R.id.lv_comentarios);
-
+*/
         //datasLeads(id);
         //datasComments(id);
     }
-
+/*
     public void datasLeads(int id){
         leadList = dataHelper.GetByIdLeads(id);
 
@@ -86,5 +83,5 @@ public class ProfileActivity extends AppCompatActivity {
     }
 =======
     }
->>>>>>> b955ac4daff3103d4fd04c4eec7ca3517ec9b01a
+>>>>>>> b955ac4daff3103d4fd04c4eec7ca3517ec9b01a*/
 }

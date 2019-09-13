@@ -2,7 +2,9 @@ package com.NTI.AppFVJ.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import android.app.Fragment;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
@@ -21,10 +23,9 @@ import android.widget.TextView;
 
 import com.NTI.AppFVJ.Adapter.LeadsAdapter;
 import com.NTI.AppFVJ.Database.DataHelper;
+import com.NTI.AppFVJ.Fragment.Fragment1;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,11 +41,17 @@ public class MainActivity extends AppCompatActivity {
         dataHelper = new DataHelper(this);
 
         List<Lead> listLeads = dataHelper.GetAllLeads();
-        
+        Lead obj = new Lead();
+        obj.setAddress("Rua Coronel Alexanzito");
+        obj.setName("Davi Rebouças Lima");
+        obj.setEmail("email@gmail.com");
+        obj.setId(999);
+        obj.setTown("Aracati");
+
+        listLeads.add(obj);
 
         LeadsAdapter leadsadapter = new LeadsAdapter(this, listLeads);
         List.setAdapter(leadsadapter);
-
 
         List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -56,13 +63,16 @@ public class MainActivity extends AppCompatActivity {
                 tv_town = view.findViewById(R.id.tv_town);
                 tv_address = view.findViewById(R.id.tv_address);
 
-                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                intent.putExtra("id", tv_id.getText().toString());
-                intent.putExtra("name", tv_name.getText().toString());
-                intent.putExtra("town", tv_town.getText().toString());
-                intent.putExtra("address", tv_address.getText());
+                Bundle bundle = new Bundle();
 
-                startActivity(intent);
+                Fragment1 fragment = new Fragment1();
+
+                bundle.putString("id", tv_id.getText().toString());
+                bundle.putString("name", tv_name.getText().toString());
+                bundle.putString("town", tv_town.getText().toString());
+                bundle.putString("address", tv_address.getText().toString());
+
+                fragment.setArguments(bundle);
             }
         });
     }
