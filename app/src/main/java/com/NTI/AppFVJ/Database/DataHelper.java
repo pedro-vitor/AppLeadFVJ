@@ -115,7 +115,7 @@ public class DataHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(Query, null);
 
         if(cursor.moveToFirst()){
-            while(cursor.moveToFirst()){
+            while(cursor.moveToNext()){
                 User user = new User();
                 user.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_USERS)));
                 user.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME_USERS)));
@@ -139,7 +139,7 @@ public class DataHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(Query, null);
 
         if(cursor.moveToFirst()){
-            while(cursor.moveToFirst()){
+            while(cursor.moveToNext()){
                 Lead lead = new Lead();
                 lead.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_LEADS)));
                 lead.setUsers_Id(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_LEADS)));
@@ -165,7 +165,7 @@ public class DataHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(Query, null);
 
         if(cursor.moveToFirst()){
-            while(cursor.moveToFirst()){
+            while(cursor.moveToNext()){
                 Comment comment = new Comment();
                 comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
                 comment.setLeads_Id(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
@@ -189,7 +189,7 @@ public class DataHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(Query, null);
 
         if(cursor.moveToFirst()){
-            while(cursor.moveToFirst()){
+            while(cursor.moveToNext()){
                 User user = new User();
                 user.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_USERS)));
                 user.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME_USERS)));
@@ -213,7 +213,7 @@ public class DataHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(Query, null);
 
         if(cursor.moveToFirst()){
-            while(cursor.moveToFirst()){
+            while(cursor.moveToNext()){
                 Lead lead = new Lead();
                 lead.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_LEADS)));
                 lead.setUsers_Id(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_LEADS)));
@@ -239,7 +239,7 @@ public class DataHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(Query, null);
 
         if(cursor.moveToFirst()){
-            while(cursor.moveToFirst()){
+            while(cursor.moveToNext()){
                 Comment comment = new Comment();
                 comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
                 comment.setLeads_Id(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
@@ -281,6 +281,7 @@ public class DataHelper extends SQLiteOpenHelper {
         values.put(KEY_NUMBER_PHONE_LEADS, lead.getNumber_phone());
         values.put(KEY_DESIRED_COURSE_LEADS, lead.getDesired_course());
         values.put(KEY_TOWN_LEADS, lead.getTown());
+        values.put(KEY_ADDRESS_LEADS, lead.getAddress());
         values.put(KEY_CREATEDAT_LEADS, lead.getCreatedAt());
 
         long id = db.insert(TABLE_LEADS, null, values);
@@ -333,6 +334,7 @@ public class DataHelper extends SQLiteOpenHelper {
         values.put(KEY_NUMBER_PHONE_LEADS, lead.getNumber_phone());
         values.put(KEY_DESIRED_COURSE_LEADS, lead.getDesired_course());
         values.put(KEY_TOWN_LEADS, lead.getTown());
+        values.put(KEY_ADDRESS_LEADS, lead.getAddress());
         values.put(KEY_CREATEDAT_LEADS, lead.getCreatedAt());
 
         db.update(TABLE_USERS,values,KEY_ID_LEADS + " = ?", new String[]{String.valueOf(lead.getId())});

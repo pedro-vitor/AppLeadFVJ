@@ -244,7 +244,7 @@
                 android:background="@drawable/input_submit_style"
                 android:layout_marginRight="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="35dp"
                 android:padding="10dp"
                 android:onClick="InsertPeople"/>
 

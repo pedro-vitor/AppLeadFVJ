@@ -18,7 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.NTI.AppFVJ.ui.main.SectionsPagerAdapter;
 import java.util.List;
-import com.NTI.AppFVJ.Adapters.CommentsAdapter;
 
 public class ProfileActivity extends AppCompatActivity {
     private Fragment1 fragment1;
