@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 tv_town = view.findViewById(R.id.tv_town);
                 tv_address = view.findViewById(R.id.tv_address);
 
-                Bundle bundle = new Bundle();
+                /*Bundle bundle = new Bundle();
 
                 Fragment1 fragment = new Fragment1();
 
@@ -73,7 +73,10 @@ public class MainActivity extends AppCompatActivity {
                 bundle.putString("town", tv_town.getText().toString());
                 bundle.putString("address", tv_address.getText().toString());
 
-                fragment.setArguments(bundle);
+                fragment.setArguments(bundle);*/
+
+                Toast toast = Toast.makeText(MainActivity.this, tv_id.getText().toString(), Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
     }
@@ -101,9 +104,9 @@ public class MainActivity extends AppCompatActivity {
         popupwindow.showAsDropDown(view);
     }
 
-    public void RegisterPeopleView(View view) {
-        Intent intent = new Intent(this, RegisterPeopleActivity.class);
-        startActivity(intent);
+    public void UpdatePeopleView(View view) {
+        ListView listView = findViewById(R.id.lv_listleads);
+
     }
 
     @Override

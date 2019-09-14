@@ -94,6 +94,12 @@ public class UpdatePeopleActivity extends AppCompatActivity {
         });
     }
 
+    public void BacktoMain(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     public void SetDatas(View view){
         int id = Integer.parseInt(getIntent().getStringExtra("Id"));
 
@@ -103,7 +109,16 @@ public class UpdatePeopleActivity extends AppCompatActivity {
             et_nome.setText(lead.getName());
             et_email.setText(lead.getEmail());
             et_telefone.setText(lead.getNumber_phone());
-            sp_curso.setSelection();
+            switch (lead.getDesired_course()){
+                case "Informatica": sp_curso.setSelection(1);
+                    break;
+                case "Administração": sp_curso.setSelection(2);
+                    break;
+                case "Hospedagem": sp_curso.setSelection(3);
+                    break;
+            }
+            et_cidade.setText(lead.getTown());
+            et_endereco.setText(lead.getAddress());
         }
     }
 
