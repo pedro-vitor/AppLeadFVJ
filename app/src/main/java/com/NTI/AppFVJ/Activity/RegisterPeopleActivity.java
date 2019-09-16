@@ -1,8 +1,6 @@
 package com.NTI.AppFVJ.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -98,45 +96,7 @@ public class RegisterPeopleActivity extends AppCompatActivity {
             finish();
         }
         //verificar se o spiner não tem a opção "Curso" marcada, e fazer a inserção no banco
-        public void InsertPeople(View View){
-            if(et_nome.getText().toString().trim().isEmpty() ||
-               et_email.getText().toString().trim().isEmpty() ||
-               et_telefone.getText().toString().trim().isEmpty() ||
-               et_endereco.getText().toString().trim().isEmpty() ||
-               et_cidade.getText().toString().trim().isEmpty() ||
-               sp_curso.getSelectedItem().toString().equals("Curso")){
 
-                Toast toast = Toast.makeText(this, "Todos os campos devem ser preenchidos",Toast.LENGTH_SHORT);
-                toast.show();
-            }else {
 
-                String name_upcase = et_nome.getText().toString().trim().substring(0,1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));
-                String town = et_cidade.getText().toString().trim().substring(0,1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));
-
-                Lead lead = new Lead();
-                lead.setUsers_Id(12);
-                lead.setName(name_upcase);
-                lead.setEmail(et_email.getText().toString().trim());
-                lead.setNumber_phone(MaskEditUtil.unmask(et_telefone.getText().toString().trim()));
-                lead.setDesired_course(sp_curso.getSelectedItem().toString());
-                lead.setTown(town);
-                lead.setAddress(et_endereco.getText().toString().trim());
-                lead.setCreatedAt(GetCurrentTime("yyyy-MM-dd HH:mm:ss"));
-
-                if(dataHelper.insertLeads(lead) > 0){
-
-                    Toast toast = Toast.makeText(this, "Inserido com sucesso",Toast.LENGTH_SHORT);
-                    toast.show();
-
-                    Intent intent = new Intent(this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                }else{
-
-                    Toast toast = Toast.makeText(this, "Erro ao inserir a pessoa",Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-            }
-        }
     }
 

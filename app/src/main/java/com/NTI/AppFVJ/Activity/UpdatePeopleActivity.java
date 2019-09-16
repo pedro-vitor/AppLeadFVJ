@@ -26,13 +26,15 @@ import java.util.List;
 import static com.NTI.AppFVJ.CurrentTime.CurrentTime.GetCurrentTime;
 
 public class UpdatePeopleActivity extends AppCompatActivity {
+
     private TextView tv_id;
     private EditText et_nome, et_email, et_telefone, et_endereco, et_cidade;
     private Spinner sp_curso;
     private String[] cursos = { "Curso", "Informatica"  , "Administração", "Hopedagem"};
 
-    private List<Lead> leadList;
     private DataHelper dataHelper;
+
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,33 +94,32 @@ public class UpdatePeopleActivity extends AppCompatActivity {
 
             }
         });
+
+        /*id = Integer.parseInt(getIntent().getStringExtra("Id"));
+        setDatas(id);*/
     }
 
-    public void BacktoMain(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
-    }
+    public void setDatas(int id){
+        List<Lead> leadList = dataHelper.GetByIdLeads(id);
 
-    public void SetDatas(View view){
-        int id = Integer.parseInt(getIntent().getStringExtra("Id"));
+        if(!leadList.isEmpty()){
+            for (Lead lead : leadList) {
 
-        leadList = dataHelper.GetByIdLeads(id);
-
-        for (Lead lead: leadList) {
-            et_nome.setText(lead.getName());
-            et_email.setText(lead.getEmail());
-            et_telefone.setText(lead.getNumber_phone());
-            switch (lead.getDesired_course()){
-                case "Informatica": sp_curso.setSelection(1);
-                    break;
-                case "Administração": sp_curso.setSelection(2);
-                    break;
-                case "Hospedagem": sp_curso.setSelection(3);
-                    break;
+                tv_id.setText(lead.getId());
+                et_nome.setText(lead.getName());
+                et_email.setText(lead.getEmail());
+                et_telefone.setText(lead.getNumber_phone());
+                switch (lead.getDesired_course()){
+                    case "Informatica":
+                        sp_curso.setSelection(1);
+                    case "Administração":
+                        sp_curso.setSelection(2);
+                    case "Hospedagem":
+                        sp_curso.setSelection(3);
+                }
+                et_cidade.setText(lead.getTown());
+                et_endereco.setText(lead.getAddress());
             }
-            et_cidade.setText(lead.getTown());
-            et_endereco.setText(lead.getAddress());
         }
     }
 
@@ -138,8 +139,6 @@ public class UpdatePeopleActivity extends AppCompatActivity {
             String town = et_cidade.getText().toString().trim().substring(0,1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));
 
             Lead lead = new Lead();
-            lead.setId(Integer.parseInt(tv_id.getText().toString()));
-            //mudar esse ID
             lead.setUsers_Id(12);
             lead.setName(name_upcase);
             lead.setEmail(et_email.getText().toString().trim());
@@ -163,4 +162,6 @@ public class UpdatePeopleActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }

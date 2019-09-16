@@ -322,7 +322,6 @@ public class DataHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_USERS_ID_LEADS, lead.getUsers_Id());
         values.put(KEY_NAME_LEADS, lead.getName());
         values.put(KEY_EMAIL_LEADS, lead.getEmail());
         values.put(KEY_NUMBER_PHONE_LEADS, lead.getNumber_phone());
