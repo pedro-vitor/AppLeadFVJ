@@ -1,5 +1,6 @@
 package com.NTI.AppFVJ.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.NTI.AppFVJ.Activity.ProfileActivity;
+
 import com.NTI.AppFVJ.Database.DataHelper;
 import com.NTI.AppFVJ.Models.Comment;
 import com.NTI.AppFVJ.Models.Lead;
@@ -18,6 +21,10 @@ import com.NTI.AppFVJ.R;
 import java.util.List;
 
 public class Fragment1 extends Fragment {
+    private View view;
+
+    private int id;
+
     private TextView tv_nome, tv_email, tv_telefone, tv_curso, tv_endereco, tv_criado;
     private ListView lv_comentario;
 
@@ -26,11 +33,9 @@ public class Fragment1 extends Fragment {
 
     private DataHelper datahelper;
 
-    private int id;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_fragment1, container, false);
+        view = inflater.inflate(R.layout.fragment_fragment1, container, false);
 
         tv_nome = view.findViewById(R.id.tv_nome);
         tv_email = view.findViewById(R.id.tv_email);
@@ -41,23 +46,16 @@ public class Fragment1 extends Fragment {
 
         lv_comentario = view.findViewById(R.id.lv_comentarios);
 
-        id = Integer.parseInt(getArguments().getString("id"));
+        id = Integer.parseInt(ProfileActivity.getId());
 
-        tv_nome.setText(getArguments().getString("nome"));
-        tv_email.setText(getArguments().getString("email"));
-        tv_telefone.setText(getArguments().getString("telefone"));
-        tv_curso.setText(getArguments().getString("curso"));
-        tv_endereco.setText(getArguments().getString("endereco"));
-        tv_criado.setText(getArguments().getString("criado"));
-
-        //datasLeads(id);
-        //datasComments(id);
+        // DataLeads();
+        // DataComments();
 
         return view;
     }
 
-    /*public void datasLeads(int id){
-        leadsList = dataHelper.GetByIdLeads(id);
+    private void DataLeads(){
+        leadsList = datahelper.GetByIdLeads(id);
 
         tv_nome.setText("");
         tv_email.setText("");
@@ -65,7 +63,7 @@ public class Fragment1 extends Fragment {
         tv_curso.setText("");
         tv_endereco.setText("");
 
-        for (Leads lead : leadsList) {
+        for (Lead lead : leadsList) {
             tv_nome.setText(lead.getName());
             tv_email.setText(lead.getEmail());
             tv_telefone.setText(lead.getNumber_phone());
@@ -73,10 +71,11 @@ public class Fragment1 extends Fragment {
             tv_endereco.setText(lead.getAddress() + " - " + lead.getTown());
         }
     }
-
-    public void datasComments(int id){
-        commentsList = dataHelper.GetByIdComments(id);
-        CommentsAdapter adapter = new CommentsAdapter(this, commentsList);
+/*
+    private void DataComments() {
+        commentsList = datahelper.GetByIdComments(id);
+        CommentsAdapter adapter = new CommentsAdapter(view.getContext(), commentsList);
         lv_comentario.setAdapter(adapter);
-    }*/
+    }
+*/
 }
