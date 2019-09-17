@@ -2,53 +2,52 @@ package com.NTI.AppFVJ.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.app.Fragment;
+import androidx.appcompat.widget.SearchView;
+import androidx.core.view.MenuItemCompat;
 
-import android.app.FragmentManager;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.NTI.AppFVJ.Adapter.LeadsAdapter;
 import com.NTI.AppFVJ.Database.DataHelper;
-import com.NTI.AppFVJ.Fragment.Fragment1;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    private DataHelper dataHelper;
+    private DataHelper datahelper;
+    private List<Lead> listLeads;
+    private List<Lead> search_result_arraylist;
+    private String     keyword;
+    private ListView   List;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView List = findViewById(R.id.lv_listleads);
-        dataHelper = new DataHelper(this);
+        List = findViewById(R.id.lv_listleads);
+        datahelper = new DataHelper(this);
 
-        List<Lead> listLeads = dataHelper.GetAllLeads();
-        Lead obj = new Lead();
-        obj.setAddress("Rua Coronel Alexanzito");
-        obj.setName("Davi Rebouças Lima");
-        obj.setEmail("email@gmail.com");
-        obj.setId(999);
-        obj.setTown("Aracati");
+        listLeads = datahelper.GetAllLeads();
 
-        listLeads.add(obj);
+        Lead lead = new Lead();
+        lead.setId(999);
+        lead.setName("Mariana Costa Silva");
+        lead.setAddress("Rua Oliveira Barros");
+        lead.setTown("Fortaleza");
+
+        listLeads.add(lead);
 
         LeadsAdapter leadsadapter = new LeadsAdapter(this, listLeads);
         List.setAdapter(leadsadapter);
@@ -56,48 +55,15 @@ public class MainActivity extends AppCompatActivity {
         List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                TextView tv_id, tv_name, tv_town, tv_address;
+                TextView tv_id;
 
                 tv_id = view.findViewById(R.id.tv_id);
-                tv_name = view.findViewById(R.id.tv_name);
-                tv_town = view.findViewById(R.id.tv_town);
-                tv_address = view.findViewById(R.id.tv_address);
 
-                Bundle bundle = new Bundle();
-
-                Fragment1 fragment = new Fragment1();
-
-                bundle.putString("id", tv_id.getText().toString());
-                bundle.putString("name", tv_name.getText().toString());
-                bundle.putString("town", tv_town.getText().toString());
-                bundle.putString("address", tv_address.getText().toString());
-
-                fragment.setArguments(bundle);
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                intent.putExtra("id", tv_id.getText().toString());
+                startActivity(intent);
             }
         });
-    }
-
-    public void MoreOptions(View view) {
-        final PopupWindow popupwindow;
-
-        LayoutInflater layoutinflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View customview = layoutinflater.inflate(R.layout.options_leads_list, null);
-
-        popupwindow = new PopupWindow(customview, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        popupwindow.setOutsideTouchable(true);
-        popupwindow.setTouchable(true);
-        popupwindow.setBackgroundDrawable(new BitmapDrawable());
-        popupwindow.setTouchInterceptor(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
-                    popupwindow.dismiss();
-                    return true;
-                }
-                return false;
-            }
-        });
-        popupwindow.showAsDropDown(view);
     }
 
     public void RegisterPeopleView(View view) {
@@ -128,6 +94,34 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
 
-        return true;
+        MenuItem searchViewItem = menu.findItem(R.id.action_search);
+        final SearchView searchViewAndroidActionBar = (SearchView) MenuItemCompat.getActionView(searchViewItem);
+        searchViewAndroidActionBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(MainActivity.this, query, Toast.LENGTH_SHORT).show();
+
+                search_result_arraylist = new ArrayList<Lead>();
+                search_result_arraylist.clear();
+                keyword = query.toUpperCase();
+
+                for(int i = 0 ; i < listLeads.size(); i++){
+                    if(listLeads.get(i).getName().toUpperCase().contains(keyword)){
+                        search_result_arraylist.add(listLeads.get(i));
+                    }
+                }
+
+                LeadsAdapter leadsadapter = new LeadsAdapter(MainActivity.this, search_result_arraylist);
+                List.setAdapter(leadsadapter);
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
 }
