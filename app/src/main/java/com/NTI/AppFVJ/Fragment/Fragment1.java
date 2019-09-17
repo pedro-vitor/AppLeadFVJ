@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.NTI.AppFVJ.Activity.ProfileActivity;
 
@@ -47,6 +48,7 @@ public class Fragment1 extends Fragment {
         lv_comentario = view.findViewById(R.id.lv_comentarios);
 
         id = Integer.parseInt(ProfileActivity.getId());
+        Toast.makeText(view.getContext(), ""+id, Toast.LENGTH_LONG).show();
 
         // DataLeads();
         // DataComments();

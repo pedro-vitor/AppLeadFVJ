@@ -78,8 +78,7 @@ public class RegisterPeopleActivity extends AppCompatActivity {
                     String selectedItemText = (String) parent.getItemAtPosition(position);
 
                     if(position > 0) {
-                        // Ação realizada quando um elemento diferente
-                        // do hint é selecionado
+
                     }
                 }
 
@@ -130,7 +129,8 @@ public class RegisterPeopleActivity extends AppCompatActivity {
                     Intent intent = new Intent(this, MainActivity.class);
                     startActivity(intent);
                     finish();
-                }else{
+                }
+                else{
 
                     Toast toast = Toast.makeText(this, "Erro ao inserir a pessoa",Toast.LENGTH_SHORT);
                     toast.show();
