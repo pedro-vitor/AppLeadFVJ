@@ -71,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void UpdatePeopleView(View view) {
+        ListView listView = findViewById(R.id.lv_listleads);
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {

@@ -115,7 +115,7 @@ public class DataHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(Query, null);
 
         if(cursor.moveToFirst()){
-            while(cursor.moveToFirst()){
+            while(cursor.moveToNext()){
                 User user = new User();
                 user.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_USERS)));
                 user.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME_USERS)));
@@ -139,7 +139,7 @@ public class DataHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(Query, null);
 
         if(cursor.moveToFirst()){
-            while(cursor.moveToFirst()){
+            while(cursor.moveToNext()){
                 Lead lead = new Lead();
                 lead.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_LEADS)));
                 lead.setUsers_Id(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_LEADS)));
@@ -165,7 +165,7 @@ public class DataHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(Query, null);
 
         if(cursor.moveToFirst()){
-            while(cursor.moveToFirst()){
+            while(cursor.moveToNext()){
                 Comment comment = new Comment();
                 comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
                 comment.setLeads_Id(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
@@ -189,7 +189,7 @@ public class DataHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(Query, null);
 
         if(cursor.moveToFirst()){
-            while(cursor.moveToFirst()){
+            while(cursor.moveToNext()){
                 User user = new User();
                 user.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_USERS)));
                 user.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME_USERS)));
@@ -207,13 +207,13 @@ public class DataHelper extends SQLiteOpenHelper {
 
     public List<Lead> GetByIdLeads(int id){
         List<Lead> leads = new ArrayList<Lead>();
-        String Query = "SELECT * FROM " + TABLE_LEADS + "WHERE " + KEY_ID_LEADS + " = " + id;
+        String Query = "SELECT * FROM " + TABLE_LEADS + " WHERE " + KEY_ID_LEADS + " = " + id;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
 
         if(cursor.moveToFirst()){
-            while(cursor.moveToFirst()){
+            while(cursor.moveToNext()){
                 Lead lead = new Lead();
                 lead.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_LEADS)));
                 lead.setUsers_Id(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_LEADS)));
@@ -239,7 +239,7 @@ public class DataHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(Query, null);
 
         if(cursor.moveToFirst()){
-            while(cursor.moveToFirst()){
+            while(cursor.moveToNext()){
                 Comment comment = new Comment();
                 comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
                 comment.setLeads_Id(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
@@ -281,6 +281,7 @@ public class DataHelper extends SQLiteOpenHelper {
         values.put(KEY_NUMBER_PHONE_LEADS, lead.getNumber_phone());
         values.put(KEY_DESIRED_COURSE_LEADS, lead.getDesired_course());
         values.put(KEY_TOWN_LEADS, lead.getTown());
+        values.put(KEY_ADDRESS_LEADS, lead.getAddress());
         values.put(KEY_CREATEDAT_LEADS, lead.getCreatedAt());
 
         long id = db.insert(TABLE_LEADS, null, values);
@@ -303,9 +304,8 @@ public class DataHelper extends SQLiteOpenHelper {
     }
 
     /*TODO UPDATE*/
-    public List<User> updateUsers(User user){
+    public int updateUsers(User user){
         SQLiteDatabase db = this.getWritableDatabase();
-        List<User> list;
 
         ContentValues values = new ContentValues();
         values.put(KEY_NAME_USERS, user.getName());
@@ -315,36 +315,27 @@ public class DataHelper extends SQLiteOpenHelper {
         values.put(KEY_ACTIVE_USERS, user.getActive());
         values.put(KEY_CREATEDAT_USERS, user.getCreatedAt());
 
-        db.update(TABLE_USERS,values,KEY_ID_USERS + " = ?", new String[]{String.valueOf(user.getId())});
-
-        list = this.GetAllUsers();
-
-        return list;
+        return db.update(TABLE_USERS,values,KEY_ID_USERS + " = ?", new String[]{String.valueOf(user.getId())});
     }
 
-    public List<Lead> updateLeads(Lead lead){
+    public int updateLeads(Lead lead){
         SQLiteDatabase db = this.getWritableDatabase();
-        List<Lead> list;
 
         ContentValues values = new ContentValues();
-        values.put(KEY_USERS_ID_LEADS, lead.getUsers_Id());
         values.put(KEY_NAME_LEADS, lead.getName());
         values.put(KEY_EMAIL_LEADS, lead.getEmail());
         values.put(KEY_NUMBER_PHONE_LEADS, lead.getNumber_phone());
         values.put(KEY_DESIRED_COURSE_LEADS, lead.getDesired_course());
         values.put(KEY_TOWN_LEADS, lead.getTown());
-        values.put(KEY_CREATEDAT_LEADS, lead.getCreatedAt());
+        values.put(KEY_ADDRESS_LEADS, lead.getAddress());
 
-        db.update(TABLE_USERS,values,KEY_ID_LEADS + " = ?", new String[]{String.valueOf(lead.getId())});
+        return db.update(TABLE_USERS,values,KEY_ID_LEADS + " = ?", new String[]{String.valueOf(lead.getId())});
 
-        list = this.GetAllLeads();
 
-        return list;
     }
 
-    public List<Comment> updateComments(Comment comment){
+    public int updateComments(Comment comment){
         SQLiteDatabase db = this.getWritableDatabase();
-        List<Comment> list;
 
         ContentValues values = new ContentValues();
         values.put(KEY_LEADS_ID_COMMENT, comment.getLeads_Id());
@@ -352,10 +343,20 @@ public class DataHelper extends SQLiteOpenHelper {
         values.put(KEY_TEXT_COMMENT, comment.getText());
         values.put(KEY_CREATEDAT_COMMENT, comment.getCreatedAt());
 
-        db.update(TABLE_COMMENTS, values, KEY_ID_COMMENT + "= ?", new String[] {String.valueOf(comment.getId())});
+        return db.update(TABLE_COMMENTS, values, KEY_ID_COMMENT + "= ?", new String[] {String.valueOf(comment.getId())});
+    }
 
-        list = this.GetAllComments();
+    /*TODO LOGIN*/
 
-        return list;
+    public boolean login(User user){
+        String query = "SELECT * FROM "+ TABLE_USERS +" WHERE " + KEY_EMAIL_USERS + " = '" + user.getEmail() + "' " +
+                " AND " + KEY_PASSWORD_USERS + " = '" + user.getPassword() + "'";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        if(cursor.getCount() > 0){
+            return true;
+        }
+        return false;
     }
 }

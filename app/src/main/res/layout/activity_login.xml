@@ -27,9 +27,10 @@
         android:gravity="center">
 
         <EditText
+            android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="@dimen/DarkButton"
-            android:hint="Usuário"
+            android:hint="Email"
             android:textColor="@color/TextColor"
             android:textSize="16dp"
             android:textColorHint="@color/HintColor"
@@ -37,11 +38,12 @@
             android:paddingLeft="20dp"
             android:background="@drawable/input_field_style"
             android:maxLines="1"
-            android:inputType="text"
+            android:inputType="textEmailAddress"
             android:drawablePadding="20dp"
             android:drawableLeft="@drawable/user" />
 
         <EditText
+            android:id="@+id/et_senha"
             android:layout_width="match_parent"
             android:layout_height="@dimen/DarkButton"
             android:hint="Senha"

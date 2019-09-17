@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.RegisterPeopleActivity"
-    android:background="@color/BackgroundColor"
+    tools:context=".Activity.UserProfileActivity"
     android:orientation="vertical">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/BackgroundColor">
+        android:background="@color/BackgroundColor"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +29,6 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:onClick="BacktoMain"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/back"
@@ -52,31 +52,36 @@
 
                 </LinearLayout>
 
+
             </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Registro"
-                android:textSize="30dp"
-                android:textColor="@color/TextColor"
+                android:layout_height="match_parent"
+                android:text="People \n      Name"
+                android:textColor="#fff"
                 android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:shadowDy="1"
-                android:shadowDx="1"
-                android:shadowRadius="2"
-                android:shadowColor="@color/InputFieldColor"/>
+                android:textSize="45dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginLeft="46dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:orientation="horizontal" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -88,7 +93,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/user_3"/>
+                    android:src="@drawable/user_2"/>
 
                 <EditText
                     android:id="@+id/et_nome"
@@ -98,9 +103,9 @@
                     android:layout_marginRight="16dp"
                     android:padding="10dp"
                     android:hint="Nome"
-                    android:textColorHint="@color/TextColor"
-                    android:textColor="@color/TextColor"
-                    android:backgroundTint="@color/TextColor"/>
+                    android:textColorHint="@color/TextColorDark"
+                    android:textColor="@color/TextColorDark"
+                    android:backgroundTint="@color/TextColorDark"/>
             </LinearLayout>
 
             <LinearLayout
@@ -113,7 +118,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/envelope"
+                    android:src="@drawable/envelope_1"
                     android:layout_marginTop="8dp"/>
 
                 <EditText
@@ -125,9 +130,9 @@
                     android:padding="10dp"
                     android:hint="Email"
                     android:inputType="textEmailAddress"
-                    android:textColorHint="@color/TextColor"
-                    android:textColor="@color/TextColor"
-                    android:backgroundTint="@color/TextColor"/>
+                    android:textColorHint="@color/TextColorDark"
+                    android:textColor="@color/TextColorDark"
+                    android:backgroundTint="@color/TextColorDark"/>
             </LinearLayout>
 
             <LinearLayout
@@ -140,22 +145,21 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/phone_numbers_call_1"
-                    android:layout_marginTop="2dp"/>
+                    android:src="@drawable/user"
+                    android:layout_marginTop="2dp"
+                    />
 
                 <EditText
-                    android:id="@+id/et_telefone"
+                    android:id="@+id/et_usuario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="16dp"
                     android:padding="10dp"
-                    android:hint="Telefone"
-                    android:textColorHint="@color/TextColor"
-                    android:textColor="@color/TextColor"
-                    android:backgroundTint="@color/TextColor"
-                    android:inputType="number"
-                    android:maxLength="15"/>
+                    android:hint="Usuário"
+                    android:textColorHint="@color/TextColorDark"
+                    android:textColor="@color/TextColorDark"
+                    android:backgroundTint="@color/TextColorDark"/>
             </LinearLayout>
 
             <LinearLayout
@@ -172,12 +176,19 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginLeft="5dp"/>
 
-                <Spinner
-                    android:id="@+id/sp_curso"
+                <EditText
+                    android:id="@+id/et_senha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
                     android:layout_marginRight="16dp"
-                    android:layout_marginLeft="18dp"/>
+                    android:padding="10dp"
+                    android:hint="Senha"
+                    android:textColorHint="@color/TextColorDark"
+                    android:textColor="@color/TextColorDark"
+                    android:backgroundTint="@color/TextColorDark"/>
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -200,53 +211,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="16dp"
-                    android:hint="Cidade"
+                    android:hint="Confirme sua senha"
                     android:paddingLeft="10dp"
-                    android:textColorHint="@color/TextColor"
-                    android:textColor="@color/TextColor"
-                    android:backgroundTint="@color/TextColor"/>
+                    android:textColorHint="@color/TextColorDark"
+                    android:textColor="@color/TextColorDark"
+                    android:backgroundTint="@color/TextColorDark"/>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/address_1"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginLeft="5dp"/>
-
-                <EditText
-                    android:id="@+id/et_endereco"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginRight="16dp"
-                    android:hint="Endereco"
-                    android:paddingLeft="10dp"
-                    android:textColorHint="@color/TextColor"
-                    android:textColor="@color/TextColor"
-                    android:backgroundTint="@color/TextColor"/>
-            </LinearLayout>
-
-
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cadastrar"
-                android:textSize="16dp"
-                android:background="@drawable/input_submit_style"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="35dp"
-                android:padding="10dp"
-                android:onClick="InsertPeople"/>
 
         </LinearLayout>
     </ScrollView>
