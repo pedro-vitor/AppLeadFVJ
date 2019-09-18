@@ -58,15 +58,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void RegisterPeopleView(View view) {
-        Intent intent = new Intent(this, RegisterPeopleActivity.class);
-        startActivity(intent);
-    }
-
-    public void UpdatePeopleView(View view) {
-        ListView listView = findViewById(R.id.lv_listleads);
-    }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -113,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 keyword = query.toUpperCase();
 
                 for(int i = 0 ; i < listLeads.size(); i++){
-                    if(listLeads.get(i).getName().toUpperCase().contains(keyword)){
+                    if(listLeads.get(i).getName().toUpperCase().contains(keyword)) {
                         search_result_arraylist.add(listLeads.get(i));
                     }
                 }
