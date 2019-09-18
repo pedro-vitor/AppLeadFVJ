@@ -1,4 +1,4 @@
-package com.NTI.AppFVJ.Adapters;
+package com.NTI.AppFVJ.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,8 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class CommentsAdapter extends ArrayAdapter<Comment> {
-
-
     public CommentsAdapter(@NonNull Context context, @NonNull List<Comment> objects) {
         super(context, R.layout.adapter_comments_list, objects);
     }

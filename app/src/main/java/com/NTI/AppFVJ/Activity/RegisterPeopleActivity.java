@@ -106,7 +106,8 @@ public class RegisterPeopleActivity extends AppCompatActivity {
 
                 Toast toast = Toast.makeText(this, "Todos os campos devem ser preenchidos",Toast.LENGTH_SHORT);
                 toast.show();
-            }else {
+            }
+            else {
 
                 String name_upcase = et_nome.getText().toString().trim().substring(0,1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));
                 String town = et_cidade.getText().toString().trim().substring(0,1).toUpperCase().concat(et_cidade.getText().toString().trim().substring(1));
