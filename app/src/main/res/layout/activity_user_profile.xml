@@ -81,11 +81,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="8dp"
-            android:gravity="center"
-            android:layout_marginTop="30dp">
+            android:padding="8dp">
 
-            <!--<LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -164,7 +162,7 @@
                     android:backgroundTint="@color/TextColorDark"/>
             </LinearLayout>
 
-            <LinearLayout
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -220,64 +218,39 @@
                     android:textColorHint="@color/TextColorDark"
                     android:textColor="@color/TextColorDark"
                     android:backgroundTint="@color/TextColorDark"/>
-            </LinearLayout>-->
+            </LinearLayout> -->
 
-            <LinearLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alterar Senha"
+                android:textSize="14dp"
+                android:textColor="@color/TextColorDark"
+                android:layout_gravity="right"
+                android:layout_marginRight="16dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginTop="12dp">
+
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="12dp">
+                android:text="Atualizar"
+                android:background="@drawable/input_field_style"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/user"
-                    android:layout_marginLeft="5dp"
-                    android:tint="@color/TextColorDark"
-                    android:layout_gravity="center_vertical"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Alterar Dados Pessoais"
-                    android:textSize="20dp"
-                    android:layout_marginLeft="19dp"
-                    android:layout_marginRight="16dp"
-                    android:paddingLeft="10dp"
-                    android:textColor="@color/TextColorDark"
-                    android:layout_gravity="center_vertical"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/key_1"
-                    android:layout_marginLeft="5dp"
-                    android:tint="@color/TextColorDark"
-                    android:layout_gravity="center_vertical"/>
-
-                <TextView
-                    android:id="@+id/et_confirmSenha"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Alterar Senha"
-                    android:textSize="20dp"
-                    android:layout_marginLeft="19dp"
-                    android:layout_marginRight="16dp"
-                    android:paddingLeft="10dp"
-                    android:textColor="@color/TextColorDark"
-                    android:layout_gravity="center_vertical"
-                    />
-            </LinearLayout>
+        </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

@@ -19,4 +19,11 @@ public class CurrentTime {
 
         return currentTime;
     }
+
+    public static String GetOnlyTime(String DateTime){
+        SimpleDateFormat date_timeFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String currentTime = date_timeFormat.format(DateTime);
+
+        return currentTime;
+    }
 }

@@ -1,17 +1,21 @@
 package com.NTI.AppFVJ.Activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.NTI.AppFVJ.Database.DataHelper;
 import com.NTI.AppFVJ.Fragment.Fragment1;
 import com.NTI.AppFVJ.Fragment.Fragment2;
 import com.NTI.AppFVJ.R;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,7 +27,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     private static Intent intent;
 
-    private int id;
+    private DataHelper dataHelper;
+
+    private AlertDialog alert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,25 +46,23 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportActionBar().setElevation(0);
 
         intent = getIntent();
+
+
+        dataHelper = new DataHelper(this);
     }
 
-    public static String getId() {
-        return intent.getStringExtra("id");
-    }
+    public static String getId() { return intent.getStringExtra("id"); }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.Profile:
-                break;
-            case R.id.Register:
-                Intent intent2 = new Intent(this, RegisterPeopleActivity.class);
+            case R.id.update:
+                Intent intent2 = new Intent(this, UpdatePeopleActivity.class);
+                intent2.putExtra("Id",intent.getStringExtra("id")); //colocar no method estatico
                 startActivity(intent2);
                 break;
-            case R.id.Logout:
-                Intent intent3 = new Intent(this, LoginActivity.class);
-                startActivity(intent3);
-                finish();
+            case R.id.delete:
+                dialogAlert();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -67,8 +71,31 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.menu_profile, menu);
 
         return true;
+    }
+
+    private void dialogAlert(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Deletar");
+        builder.setMessage("Você deseja realmente deletar esta pessoa?");
+
+        builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // TODO adicionar o metodo de Delete
+            }
+        });
+
+        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+
+        alert =  builder.create();
+        alert.show();
     }
 }

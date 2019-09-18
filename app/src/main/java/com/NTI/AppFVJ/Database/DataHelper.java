@@ -207,13 +207,14 @@ public class DataHelper extends SQLiteOpenHelper {
 
     public List<Lead> GetByIdLeads(int id){
         List<Lead> leads = new ArrayList<Lead>();
-        String Query = "SELECT * FROM " + TABLE_LEADS + " WHERE " + KEY_ID_LEADS + " = " + id;
+        String Query = "SELECT * FROM " + TABLE_LEADS + " WHERE " + KEY_ID_LEADS + " =" + id;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
 
-        if(cursor.moveToFirst()){
-            while(cursor.moveToNext()){
+        if(cursor != null)
+            cursor.moveToFirst();
+
                 Lead lead = new Lead();
                 lead.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_LEADS)));
                 lead.setUsers_Id(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_LEADS)));
@@ -226,8 +227,6 @@ public class DataHelper extends SQLiteOpenHelper {
                 lead.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_LEADS)));
 
                 leads.add(lead);
-            }
-        }
         return leads;
     }
 

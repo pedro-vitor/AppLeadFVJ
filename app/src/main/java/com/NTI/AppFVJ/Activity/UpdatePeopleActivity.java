@@ -95,8 +95,8 @@ public class UpdatePeopleActivity extends AppCompatActivity {
             }
         });
 
-        /*id = Integer.parseInt(getIntent().getStringExtra("Id"));
-        setDatas(id);*/
+        id = Integer.parseInt(getIntent().getStringExtra("Id"));
+        setDatas(id);
     }
 
     public void setDatas(int id){
