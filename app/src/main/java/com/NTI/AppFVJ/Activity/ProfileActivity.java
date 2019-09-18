@@ -27,10 +27,13 @@ public class ProfileActivity extends AppCompatActivity {
 
     private static Intent intent;
 
+<<<<<<< HEAD
     private DataHelper dataHelper;
 
     private AlertDialog alert;
 
+=======
+>>>>>>> 0dc68c670228382f7e1e9808c84dfd737b4c7f71
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

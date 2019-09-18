@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.NTI.AppFVJ.Adapter.LeadsAdapter;
 import com.NTI.AppFVJ.Database.DataHelper;
@@ -30,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Lead> search_result_arraylist;
     private String     keyword;
     private ListView   List;
+    private LeadsAdapter leadsadapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +37,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         List = findViewById(R.id.lv_listleads);
-        datahelper = new DataHelper(this);
 
+        datahelper = new DataHelper(this);
         listLeads = datahelper.GetAllLeads();
 
-        Lead lead = new Lead();
-        lead.setId(999);
-        lead.setName("Mariana Costa Silva");
-        lead.setAddress("Rua Oliveira Barros");
-        lead.setTown("Fortaleza");
-
-        listLeads.add(lead);
-
-        LeadsAdapter leadsadapter = new LeadsAdapter(this, listLeads);
+        leadsadapter = new LeadsAdapter(this, listLeads);
         List.setAdapter(leadsadapter);
 
         List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -99,12 +91,23 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu, menu);
 
         MenuItem searchViewItem = menu.findItem(R.id.action_search);
+        MenuItemCompat.setOnActionExpandListener(searchViewItem, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                List.setAdapter(leadsadapter);
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return true;
+            }
+        });
         final SearchView searchViewAndroidActionBar = (SearchView) MenuItemCompat.getActionView(searchViewItem);
+        searchViewAndroidActionBar.setQueryHint("Procurar...");
         searchViewAndroidActionBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(MainActivity.this, query, Toast.LENGTH_SHORT).show();
-
                 search_result_arraylist = new ArrayList<Lead>();
                 search_result_arraylist.clear();
                 keyword = query.toUpperCase();
@@ -115,9 +118,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-                LeadsAdapter leadsadapter = new LeadsAdapter(MainActivity.this, search_result_arraylist);
-                List.setAdapter(leadsadapter);
-
+                LeadsAdapter leadssearchadapter = new LeadsAdapter(MainActivity.this, search_result_arraylist);
+                List.setAdapter(leadssearchadapter);
                 return true;
             }
 

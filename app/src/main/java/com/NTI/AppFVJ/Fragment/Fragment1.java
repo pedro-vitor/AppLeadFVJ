@@ -46,7 +46,12 @@ public class Fragment1 extends Fragment {
 
         datahelper = new DataHelper(view.getContext());
 
+<<<<<<< HEAD
         DataLeads();
+=======
+        id = Integer.parseInt(ProfileActivity.getId());
+        Toast.makeText(view.getContext(), ""+id, Toast.LENGTH_LONG).show();
+>>>>>>> 0dc68c670228382f7e1e9808c84dfd737b4c7f71
 
 
         return view;
