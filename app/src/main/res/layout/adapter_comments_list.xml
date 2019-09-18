@@ -46,7 +46,7 @@
             android:id="@+id/et_comentario"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text=""
+            android:text="comentario"
             android:textSize="14dp"
             android:textColor="#323131"/>
 

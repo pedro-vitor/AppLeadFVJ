@@ -36,8 +36,8 @@ public class CommentsAdapter extends ArrayAdapter<Comment> {
         Data = RowView.findViewById(R.id.et_data);
         Comentario = RowView.findViewById(R.id.et_comentario);
 
-        Nome.setText(comments.getText());
-        Data.setText(comments.getText());
+        Nome.setText(comments.getUsers_Id()+"");
+        Data.setText(comments.getCreatedAt());
         Comentario.setText(comments.getText());
 
         return RowView;
