@@ -321,14 +321,16 @@ public class DataHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(KEY_USERS_ID_LEADS, lead.getUsers_Id());
         values.put(KEY_NAME_LEADS, lead.getName());
         values.put(KEY_EMAIL_LEADS, lead.getEmail());
         values.put(KEY_NUMBER_PHONE_LEADS, lead.getNumber_phone());
         values.put(KEY_DESIRED_COURSE_LEADS, lead.getDesired_course());
         values.put(KEY_TOWN_LEADS, lead.getTown());
         values.put(KEY_ADDRESS_LEADS, lead.getAddress());
+        values.put(KEY_CREATEDAT_LEADS, lead.getCreatedAt());
 
-        return db.update(TABLE_USERS,values,KEY_ID_LEADS + " = ?", new String[]{String.valueOf(lead.getId())});
+        return db.update(TABLE_LEADS,values,KEY_ID_LEADS + " = ?", new String[]{String.valueOf(lead.getId())});
 
 
     }

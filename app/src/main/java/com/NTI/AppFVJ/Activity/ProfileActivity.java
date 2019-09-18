@@ -27,13 +27,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     private static Intent intent;
 
-<<<<<<< HEAD
     private DataHelper dataHelper;
 
     private AlertDialog alert;
-
-=======
->>>>>>> 0dc68c670228382f7e1e9808c84dfd737b4c7f71
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.update:
                 Intent intent2 = new Intent(this, UpdatePeopleActivity.class);
-                intent2.putExtra("Id",intent.getStringExtra("id")); //colocar no method estatico
+                intent2.putExtra("Id",intent.getStringExtra("id"));
                 startActivity(intent2);
                 break;
             case R.id.delete:

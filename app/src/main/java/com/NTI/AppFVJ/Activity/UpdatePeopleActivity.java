@@ -27,7 +27,7 @@ import static com.NTI.AppFVJ.CurrentTime.CurrentTime.GetCurrentTime;
 
 public class UpdatePeopleActivity extends AppCompatActivity {
 
-    private TextView tv_id;
+    private TextView tv_id, tv_createdat;
     private EditText et_nome, et_email, et_telefone, et_endereco, et_cidade;
     private Spinner sp_curso;
     private String[] cursos = { "Curso", "Informatica"  , "Administração", "Hopedagem"};
@@ -42,6 +42,7 @@ public class UpdatePeopleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update_people);
 
         tv_id = findViewById(R.id.tv_id);
+        tv_createdat = findViewById(R.id.tv_createdat);
         et_nome = findViewById(R.id.et_nome);
         et_email = findViewById(R.id.et_email);
         et_telefone = findViewById(R.id.et_telefone);
@@ -97,30 +98,33 @@ public class UpdatePeopleActivity extends AppCompatActivity {
 
         id = Integer.parseInt(getIntent().getStringExtra("Id"));
         setDatas(id);
+
     }
 
     public void setDatas(int id){
         List<Lead> leadList = dataHelper.GetByIdLeads(id);
 
-        if(!leadList.isEmpty()){
             for (Lead lead : leadList) {
 
-                tv_id.setText(lead.getId());
+                tv_id.setText(String.valueOf(lead.getId()));
+                tv_createdat.setText(lead.getCreatedAt());
                 et_nome.setText(lead.getName());
                 et_email.setText(lead.getEmail());
                 et_telefone.setText(lead.getNumber_phone());
                 switch (lead.getDesired_course()){
                     case "Informatica":
                         sp_curso.setSelection(1);
+                    break;
                     case "Administração":
                         sp_curso.setSelection(2);
+                    break;
                     case "Hospedagem":
                         sp_curso.setSelection(3);
+                    break;
                 }
                 et_cidade.setText(lead.getTown());
                 et_endereco.setText(lead.getAddress());
             }
-        }
     }
 
     public void UpdatePeople(View View){
@@ -136,9 +140,10 @@ public class UpdatePeopleActivity extends AppCompatActivity {
         }else {
 
             String name_upcase = et_nome.getText().toString().trim().substring(0,1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));
-            String town = et_cidade.getText().toString().trim().substring(0,1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));
+            String town = et_cidade.getText().toString().trim().substring(0,1).toUpperCase().concat(et_cidade.getText().toString().trim().substring(1));
 
             Lead lead = new Lead();
+            lead.setId(id);
             lead.setUsers_Id(12);
             lead.setName(name_upcase);
             lead.setEmail(et_email.getText().toString().trim());
@@ -146,6 +151,7 @@ public class UpdatePeopleActivity extends AppCompatActivity {
             lead.setDesired_course(sp_curso.getSelectedItem().toString());
             lead.setTown(town);
             lead.setAddress(et_endereco.getText().toString().trim());
+            lead.setCreatedAt(tv_createdat.getText().toString());
 
             if(dataHelper.updateLeads(lead) > 0){
 
