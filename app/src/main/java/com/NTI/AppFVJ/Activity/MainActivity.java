@@ -40,6 +40,11 @@ public class MainActivity extends AppCompatActivity {
 
         datahelper = new DataHelper(this);
         listLeads = datahelper.GetAllLeads();
+        Lead lead = new Lead();
+        lead.setName("Mirella Silva Costa");
+        lead.setTown("Aracati");
+        lead.setAddress("Rua José de Alencar");
+        listLeads.add(lead);
 
         leadsadapter = new LeadsAdapter(this, listLeads);
         List.setAdapter(leadsadapter);

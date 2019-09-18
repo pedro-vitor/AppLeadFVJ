@@ -49,7 +49,6 @@ public class ForgotEmailActivity extends AppCompatActivity {
     }
 
     public static class UserProfileActivity extends AppCompatActivity {
-
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);

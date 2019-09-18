@@ -27,10 +27,7 @@ public class Fragment1 extends Fragment {
     private int id;
 
     private TextView tv_nome, tv_email, tv_telefone, tv_curso, tv_endereco, tv_criado;
-    private ListView lv_comentario;
-
     private List<Lead> leadsList;
-    private List<Comment> commentsList;
 
     private DataHelper datahelper;
 
@@ -45,10 +42,7 @@ public class Fragment1 extends Fragment {
         tv_endereco = view.findViewById(R.id.tv_endereco);
         tv_criado = view.findViewById(R.id.tv_criado);
 
-        lv_comentario = view.findViewById(R.id.lv_comentarios);
-
         id = Integer.parseInt(ProfileActivity.getId());
-        Toast.makeText(view.getContext(), ""+id, Toast.LENGTH_LONG).show();
 
         // DataLeads();
         // DataComments();
@@ -73,11 +67,4 @@ public class Fragment1 extends Fragment {
             tv_endereco.setText(lead.getAddress() + " - " + lead.getTown());
         }
     }
-/*
-    private void DataComments() {
-        commentsList = datahelper.GetByIdComments(id);
-        CommentsAdapter adapter = new CommentsAdapter(view.getContext(), commentsList);
-        lv_comentario.setAdapter(adapter);
-    }
-*/
 }
