@@ -207,13 +207,14 @@ public class DataHelper extends SQLiteOpenHelper {
 
     public List<Lead> GetByIdLeads(int id){
         List<Lead> leads = new ArrayList<Lead>();
-        String Query = "SELECT * FROM " + TABLE_LEADS + " WHERE " + KEY_ID_LEADS + " = " + id;
+        String Query = "SELECT * FROM " + TABLE_LEADS + " WHERE " + KEY_ID_LEADS + " =" + id;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
 
-        if(cursor.moveToFirst()){
-            while(cursor.moveToNext()){
+        if(cursor != null)
+            cursor.moveToFirst();
+
                 Lead lead = new Lead();
                 lead.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_LEADS)));
                 lead.setUsers_Id(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_LEADS)));
@@ -226,8 +227,6 @@ public class DataHelper extends SQLiteOpenHelper {
                 lead.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_LEADS)));
 
                 leads.add(lead);
-            }
-        }
         return leads;
     }
 
@@ -322,14 +321,16 @@ public class DataHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(KEY_USERS_ID_LEADS, lead.getUsers_Id());
         values.put(KEY_NAME_LEADS, lead.getName());
         values.put(KEY_EMAIL_LEADS, lead.getEmail());
         values.put(KEY_NUMBER_PHONE_LEADS, lead.getNumber_phone());
         values.put(KEY_DESIRED_COURSE_LEADS, lead.getDesired_course());
         values.put(KEY_TOWN_LEADS, lead.getTown());
         values.put(KEY_ADDRESS_LEADS, lead.getAddress());
+        values.put(KEY_CREATEDAT_LEADS, lead.getCreatedAt());
 
-        return db.update(TABLE_USERS,values,KEY_ID_LEADS + " = ?", new String[]{String.valueOf(lead.getId())});
+        return db.update(TABLE_LEADS,values,KEY_ID_LEADS + " = ?", new String[]{String.valueOf(lead.getId())});
 
 
     }

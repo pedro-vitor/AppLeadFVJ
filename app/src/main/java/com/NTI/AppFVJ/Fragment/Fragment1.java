@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.NTI.AppFVJ.Activity.ProfileActivity;
 
+import com.NTI.AppFVJ.CurrentTime.CurrentTime;
 import com.NTI.AppFVJ.Database.DataHelper;
 import com.NTI.AppFVJ.Models.Comment;
 import com.NTI.AppFVJ.Models.Lead;
@@ -27,6 +28,10 @@ public class Fragment1 extends Fragment {
     private int id;
 
     private TextView tv_nome, tv_email, tv_telefone, tv_curso, tv_endereco, tv_criado;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4c0addb0f0ab1b7534dcc4a866bfedde854ca3d2
     private List<Lead> leadsList;
 
     private DataHelper datahelper;
@@ -42,11 +47,18 @@ public class Fragment1 extends Fragment {
         tv_endereco = view.findViewById(R.id.tv_endereco);
         tv_criado = view.findViewById(R.id.tv_criado);
 
+<<<<<<< HEAD
         id = Integer.parseInt(ProfileActivity.getId());
 
         // DataLeads();
         // DataComments();
+=======
+        datahelper = new DataHelper(view.getContext());
 
+        id = Integer.parseInt(ProfileActivity.getId());
+>>>>>>> 4c0addb0f0ab1b7534dcc4a866bfedde854ca3d2
+
+        DataLeads();
         return view;
     }
 
@@ -58,6 +70,7 @@ public class Fragment1 extends Fragment {
         tv_telefone.setText("");
         tv_curso.setText("");
         tv_endereco.setText("");
+        tv_criado.setText("");
 
         for (Lead lead : leadsList) {
             tv_nome.setText(lead.getName());
