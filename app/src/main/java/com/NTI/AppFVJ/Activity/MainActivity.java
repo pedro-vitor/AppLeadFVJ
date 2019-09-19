@@ -6,6 +6,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,10 +32,16 @@ public class MainActivity extends AppCompatActivity {
     private ListView   List;
     private LeadsAdapter leadsadapter;
 
+
+    private SharedPreferences sharedpreferences;
+    private SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sharedpreferences = getSharedPreferences("user_preference", MODE_PRIVATE);
 
         List = findViewById(R.id.lv_listleads);
 
@@ -70,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent2);
                 break;
             case R.id.Logout:
+                editor = sharedpreferences.edit();
+                editor.clear();
+                editor.commit();
                 Intent intent3 = new Intent(this, LoginActivity.class);
                 startActivity(intent3);
                 finish();
