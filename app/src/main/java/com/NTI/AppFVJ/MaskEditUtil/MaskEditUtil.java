@@ -6,20 +6,12 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 
 public abstract class MaskEditUtil {
-
     public static final String FORMAT_CPF = "###.###.###-##";
-    public static final String FORMAT_FONE = "(###)####-#####";
+    public static final String FORMAT_FONE = "(##) ####-#####";
     public static final String FORMAT_CEP = "#####-###";
     public static final String FORMAT_DATE = "##/##/####";
     public static final String FORMAT_HOUR = "##:##";
 
-    /**
-     * Método que deve ser chamado para realizar a formatação
-     *
-     * @param ediTxt
-     * @param mask
-     * @return
-     */
     public static TextWatcher mask(final EditText ediTxt, final String mask) {
         return new TextWatcher() {
             boolean isUpdating;
@@ -62,5 +54,21 @@ public abstract class MaskEditUtil {
 
     public static String unmask(final String s) {
         return s.replaceAll("[.]", "").replaceAll("[-]", "").replaceAll("[/]", "").replaceAll("[(]", "").replaceAll("[ ]","").replaceAll("[:]", "").replaceAll("[)]", "");
+    }
+
+    public static String setmask(final String numberstring) {
+        char format[] = FORMAT_FONE.toCharArray();
+        char number[] = numberstring.toCharArray();
+        char result[] = new char[format.length];
+
+        for (int i = 0, j = 0, k = 0; i < format.length; i++, j++)
+            if (format[i] == '#') {
+                result[j] = number[k];
+                k++;
+            }
+            else
+                result[j] = format[i];
+
+        return String.copyValueOf(result);
     }
 }

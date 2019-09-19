@@ -46,7 +46,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         intent = getIntent();
 
-
         dataHelper = new DataHelper(this);
     }
 

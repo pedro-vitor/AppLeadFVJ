@@ -40,11 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
         datahelper = new DataHelper(this);
         listLeads = datahelper.GetAllLeads();
-        Lead lead = new Lead();
-        lead.setName("Mirella Silva Costa");
-        lead.setTown("Aracati");
-        lead.setAddress("Rua José de Alencar");
-        listLeads.add(lead);
 
         leadsadapter = new LeadsAdapter(this, listLeads);
         List.setAdapter(leadsadapter);
@@ -67,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.Profile:
+                Intent intent1 = new Intent(this, UserProfileActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.Register:
                 Intent intent2 = new Intent(this, RegisterPeopleActivity.class);
