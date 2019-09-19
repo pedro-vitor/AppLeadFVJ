@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
-<<<<<<< HEAD
 import android.widget.Toast;
 
 import com.NTI.AppFVJ.Activity.ProfileActivity;
@@ -25,7 +24,6 @@ import com.NTI.AppFVJ.R;
 
 import java.util.List;
 
-=======
 
 import com.NTI.AppFVJ.Activity.ProfileActivity;
 import com.NTI.AppFVJ.Adapter.CommentsAdapter;
@@ -34,12 +32,10 @@ import com.NTI.AppFVJ.Models.Comment;
 import com.NTI.AppFVJ.R;
 
 import java.util.List;
->>>>>>> e53f618626af3c65416275a6d2f02971eb1916ea
 
 public class Fragment2 extends Fragment {
     private View view;
 
-<<<<<<< HEAD
     private List<Comment> commentsList;
 
     private DataHelper datahelper;
@@ -47,20 +43,10 @@ public class Fragment2 extends Fragment {
     private int id;
 
     private ListView lv_comentarios;
-=======
-    private int id;
-
-    private DataHelper datahelper;
-
-    private List<Comment> commentsList;
-    private ListView lv_comentario;
->>>>>>> e53f618626af3c65416275a6d2f02971eb1916ea
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_fragment2, container, false);
-
-        lv_comentario = view.findViewById(R.id.lv_comentarios);
 
         id = Integer.parseInt(ProfileActivity.getId());
 
@@ -113,16 +99,9 @@ public class Fragment2 extends Fragment {
 
     private void DataComments() {
         commentsList = datahelper.GetByIdComments(id);
-<<<<<<< HEAD
         if(!commentsList.isEmpty()){
             CommentsAdapter adapter = new CommentsAdapter(getContext(), commentsList);
             lv_comentarios.setAdapter(adapter);
         }
     }
-
-=======
-        CommentsAdapter adapter = new CommentsAdapter(view.getContext(), commentsList);
-        lv_comentario.setAdapter(adapter);
-    }
->>>>>>> e53f618626af3c65416275a6d2f02971eb1916ea
 }

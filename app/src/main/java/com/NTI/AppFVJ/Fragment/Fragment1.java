@@ -12,11 +12,7 @@ import android.widget.TextView;
 import com.NTI.AppFVJ.Activity.ProfileActivity;
 
 import com.NTI.AppFVJ.Database.DataHelper;
-<<<<<<< HEAD
-=======
 import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
-import com.NTI.AppFVJ.Models.Comment;
->>>>>>> e53f618626af3c65416275a6d2f02971eb1916ea
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
 

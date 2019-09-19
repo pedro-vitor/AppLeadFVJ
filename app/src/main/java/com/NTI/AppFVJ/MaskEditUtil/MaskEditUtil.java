@@ -56,18 +56,17 @@ public abstract class MaskEditUtil {
         return s.replaceAll("[.]", "").replaceAll("[-]", "").replaceAll("[/]", "").replaceAll("[(]", "").replaceAll("[ ]","").replaceAll("[:]", "").replaceAll("[)]", "");
     }
 
-<<<<<<< HEAD
-
-    public static String[] returnOnlyName(String string){
-        String [] stringsArray = string.trim().split(" ");
+    public static String[] returnOnlyName(String string) {
+        String[] stringsArray = string.trim().split(" ");
         String[] stringResult = new String[2];
 
-        for(int i=0; i < 2; i++){
+        for (int i = 0; i < 2; i++) {
             stringResult[i] = stringsArray[i];
         }
 
-        return  stringResult;
-=======
+        return stringResult;
+    }
+
     public static String setmask(final String numberstring) {
         char format[] = FORMAT_FONE.toCharArray();
         char number[] = numberstring.toCharArray();
@@ -82,6 +81,5 @@ public abstract class MaskEditUtil {
                 result[j] = format[i];
 
         return String.copyValueOf(result);
->>>>>>> e53f618626af3c65416275a6d2f02971eb1916ea
     }
 }
