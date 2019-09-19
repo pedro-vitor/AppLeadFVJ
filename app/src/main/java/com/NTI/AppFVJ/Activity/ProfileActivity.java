@@ -44,10 +44,15 @@ public class ProfileActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
         getSupportActionBar().setElevation(0);
 
+<<<<<<< HEAD
         tv_firstName = findViewById(R.id.tv_firstname);
         tv_secondName = findViewById(R.id.tv_secondname);
 
         intent = getIntent();
+=======
+        intent = getIntent();
+
+>>>>>>> e53f618626af3c65416275a6d2f02971eb1916ea
         dataHelper = new DataHelper(this);
 
         setNames();

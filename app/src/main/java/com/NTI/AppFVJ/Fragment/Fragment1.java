@@ -12,6 +12,11 @@ import android.widget.TextView;
 import com.NTI.AppFVJ.Activity.ProfileActivity;
 
 import com.NTI.AppFVJ.Database.DataHelper;
+<<<<<<< HEAD
+=======
+import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
+import com.NTI.AppFVJ.Models.Comment;
+>>>>>>> e53f618626af3c65416275a6d2f02971eb1916ea
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
 
@@ -23,7 +28,6 @@ public class Fragment1 extends Fragment {
     private int id;
 
     private TextView tv_nome, tv_email, tv_telefone, tv_curso, tv_endereco, tv_criado;
-
     private List<Lead> leadsList;
 
     private DataHelper datahelper;
@@ -38,6 +42,8 @@ public class Fragment1 extends Fragment {
         tv_curso = view.findViewById(R.id.tv_curso);
         tv_endereco = view.findViewById(R.id.tv_endereco);
         tv_criado = view.findViewById(R.id.tv_criado);
+
+        id = Integer.parseInt(ProfileActivity.getId());
 
         datahelper = new DataHelper(view.getContext());
 
@@ -60,7 +66,7 @@ public class Fragment1 extends Fragment {
         for (Lead lead : leadsList) {
             tv_nome.setText(lead.getName());
             tv_email.setText(lead.getEmail());
-            tv_telefone.setText(lead.getNumber_phone());
+            tv_telefone.setText(MaskEditUtil.setmask(lead.getNumber_phone()));
             tv_curso.setText(lead.getDesired_course());
             tv_endereco.setText(lead.getAddress() + " - " + lead.getTown());
             tv_criado.setText(lead.getCreatedAt());
