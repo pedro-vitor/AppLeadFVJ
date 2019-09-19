@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -66,12 +67,7 @@ public class Fragment2 extends Fragment {
 
                             if(datahelper.insertComments(comment) > 0){
                                 Toast.makeText(getContext(),"Comentário adicionado com sucesso", Toast.LENGTH_SHORT).show();
-                                /*Fragment frg = null;
-                                frg = getSupportFragmentManager().findFragmentByTag("Your_Fragment_TAG");
-                                final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                                ft.detach(frg);
-                                ft.attach(frg);
-                                ft.commit()*/ // fazer refresh
+                                et_comment.setText("");
                             }else{
                                 Toast.makeText(getContext(),"Erro ao adicionar comentário", Toast.LENGTH_SHORT).show();
                             }
