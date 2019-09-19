@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.NTI.AppFVJ.Database.DataHelper;
-import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
 
@@ -51,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void MainView(View view) {
         if (et_email.getText().toString().trim().isEmpty() ||
-                et_senha.getText().toString().trim().isEmpty()) {
+            et_senha.getText().toString().trim().isEmpty()) {
 
             Toast toast = Toast.makeText(this, "Todos os campos devem ser preenchidos", Toast.LENGTH_SHORT);
             toast.show();

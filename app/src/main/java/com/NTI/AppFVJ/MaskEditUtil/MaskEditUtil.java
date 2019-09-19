@@ -56,6 +56,17 @@ public abstract class MaskEditUtil {
         return s.replaceAll("[.]", "").replaceAll("[-]", "").replaceAll("[/]", "").replaceAll("[(]", "").replaceAll("[ ]","").replaceAll("[:]", "").replaceAll("[)]", "");
     }
 
+    public static String[] returnOnlyName(String string) {
+        String[] stringsArray = string.trim().split(" ");
+        String[] stringResult = new String[2];
+
+        for (int i = 0; i < 2; i++) {
+            stringResult[i] = stringsArray[i];
+        }
+
+        return stringResult;
+    }
+
     public static String setmask(final String numberstring) {
         char format[] = FORMAT_FONE.toCharArray();
         char number[] = numberstring.toCharArray();

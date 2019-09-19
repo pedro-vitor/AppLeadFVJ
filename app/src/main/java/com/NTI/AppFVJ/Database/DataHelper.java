@@ -114,7 +114,6 @@ public class DataHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
 
-        if(cursor.moveToFirst()){
             while(cursor.moveToNext()){
                 User user = new User();
                 user.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_USERS)));
@@ -127,7 +126,6 @@ public class DataHelper extends SQLiteOpenHelper {
 
                 users.add(user);
             }
-        }
         return users;
     }
 
@@ -138,7 +136,6 @@ public class DataHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
 
-        if(cursor.moveToFirst()){
             while(cursor.moveToNext()){
                 Lead lead = new Lead();
                 lead.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_LEADS)));
@@ -153,7 +150,6 @@ public class DataHelper extends SQLiteOpenHelper {
 
                 leads.add(lead);
             }
-        }
         return leads;
     }
 
@@ -164,7 +160,6 @@ public class DataHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
 
-        if(cursor.moveToFirst()){
             while(cursor.moveToNext()){
                 Comment comment = new Comment();
                 comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
@@ -175,7 +170,6 @@ public class DataHelper extends SQLiteOpenHelper {
 
                 comments.add(comment);
             }
-        }
         return comments;
     }
 
@@ -236,9 +230,9 @@ public class DataHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
+        int i = cursor.getCount()-1;
 
-        if(cursor.moveToFirst()){
-            while(cursor.moveToNext()){
+            while(cursor.moveToPosition(i)){
                 Comment comment = new Comment();
                 comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
                 comment.setLeads_Id(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
@@ -247,8 +241,8 @@ public class DataHelper extends SQLiteOpenHelper {
                 comment.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_COMMENT)));
 
                 comments.add(comment);
+                i--;
             }
-        }
         return comments;
     }
 

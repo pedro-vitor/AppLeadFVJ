@@ -6,11 +6,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.NTI.AppFVJ.Database.DataHelper;
-import com.NTI.AppFVJ.Fragment.Fragment1;
-import com.NTI.AppFVJ.Fragment.Fragment2;
+import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
+import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -21,9 +21,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.NTI.AppFVJ.ui.main.SectionsPagerAdapter;
 
+import java.util.List;
+
 public class ProfileActivity extends AppCompatActivity {
-    private Fragment1 fragment1;
-    private Fragment2 fragment2;
+    private TextView tv_firstName, tv_secondName;
 
     private static Intent intent;
 
@@ -41,12 +42,15 @@ public class ProfileActivity extends AppCompatActivity {
 
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-
         getSupportActionBar().setElevation(0);
 
-        intent = getIntent();
+        tv_firstName = findViewById(R.id.tv_firstname);
+        tv_secondName = findViewById(R.id.tv_secondname);
 
+        intent = getIntent();
         dataHelper = new DataHelper(this);
+
+        setNames();
     }
 
     public static String getId() { return intent.getStringExtra("id"); }
@@ -83,7 +87,6 @@ public class ProfileActivity extends AppCompatActivity {
         builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                // TODO adicionar o metodo de Delete
             }
         });
 
@@ -96,4 +99,19 @@ public class ProfileActivity extends AppCompatActivity {
         alert =  builder.create();
         alert.show();
     }
+
+    private void setNames(){
+        List<Lead> leadList;
+        String[] name = new String[2];
+        int id = Integer.parseInt(intent.getStringExtra("id"));
+        leadList = dataHelper.GetByIdLeads(id);
+
+        for (Lead lead : leadList) {
+            name = MaskEditUtil.returnOnlyName(lead.getName());
+        }
+
+        tv_firstName.setText(name[0]);
+        tv_secondName.setText(name[1]);
+    }
+
 }

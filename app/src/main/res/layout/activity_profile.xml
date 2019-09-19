@@ -62,14 +62,25 @@
             </LinearLayout>
 -->
             <TextView
+                android:id="@+id/tv_firstname"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="People \n      Name"
+                android:text="People"
                 android:textColor="#fff"
                 android:textStyle="bold"
-                android:textSize="45dp"
-                android:layout_marginTop="18dp"
+                android:textSize="40dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginLeft="46dp"/>
+
+            <TextView
+                android:id="@+id/tv_secondname"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Name"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:textSize="40dp"
+                android:layout_marginLeft="100dp"/>
 
     </LinearLayout>
 
@@ -86,6 +97,6 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
     </com.google.android.material.appbar.AppBarLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
