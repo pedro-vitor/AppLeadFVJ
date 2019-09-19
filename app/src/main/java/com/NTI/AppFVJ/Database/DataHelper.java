@@ -343,15 +343,16 @@ public class DataHelper extends SQLiteOpenHelper {
 
     /*TODO LOGIN*/
 
-    public boolean login(User user){
+    public int login(User user){
         String query = "SELECT * FROM "+ TABLE_USERS +" WHERE " + KEY_EMAIL_USERS + " = '" + user.getEmail() + "' " +
                 " AND " + KEY_PASSWORD_USERS + " = '" + user.getPassword() + "'";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         if(cursor.getCount() > 0){
-            return true;
+            return cursor.getInt(cursor.getColumnIndex(KEY_ID_USERS));
         }
-        return false;
+
+        return 0;
     }
 }

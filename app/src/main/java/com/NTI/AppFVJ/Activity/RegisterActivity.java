@@ -3,6 +3,7 @@ package com.NTI.AppFVJ.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -18,6 +19,9 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText et_nome, et_email, et_usuario, et_senha, et_confirmsenha;
 
     private DataHelper datahelper;
+
+    private SharedPreferences sharedpreferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +50,12 @@ public class RegisterActivity extends AppCompatActivity {
 
             Toast toast = Toast.makeText(this, "Senhas incompativeis", Toast.LENGTH_LONG);
             toast.show();
-        }else{
+        }
+        else{
+            editor = sharedpreferences.edit();
+            editor.putBoolean("logged", true);
+            editor.commit();
+
             User user = new User();
             user.setName(et_nome.getText().toString().trim());
             user.setEmail(et_email.getText().toString().trim());
@@ -56,7 +65,6 @@ public class RegisterActivity extends AppCompatActivity {
             user.setCreatedAt(GetCurrentTime("yyyy-MM-dd HH:mm:ss"));
 
             datahelper.insertUsers(user);
-
 
             Toast toast = Toast.makeText(this, "Usuário inserido com sucesso",Toast.LENGTH_SHORT);
             toast.show();
