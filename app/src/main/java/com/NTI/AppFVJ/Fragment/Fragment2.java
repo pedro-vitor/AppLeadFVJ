@@ -68,6 +68,10 @@ public class Fragment2 extends Fragment {
                             if(datahelper.insertComments(comment) > 0){
                                 Toast.makeText(getContext(),"Comentário adicionado com sucesso", Toast.LENGTH_SHORT).show();
                                 et_comment.setText("");
+
+                                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                ft.detach(Fragment2.this).attach(Fragment2.this).commit();
+
                             }else{
                                 Toast.makeText(getContext(),"Erro ao adicionar comentário", Toast.LENGTH_SHORT).show();
                             }

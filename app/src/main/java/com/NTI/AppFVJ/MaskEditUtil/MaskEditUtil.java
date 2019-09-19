@@ -63,4 +63,16 @@ public abstract class MaskEditUtil {
     public static String unmask(final String s) {
         return s.replaceAll("[.]", "").replaceAll("[-]", "").replaceAll("[/]", "").replaceAll("[(]", "").replaceAll("[ ]","").replaceAll("[:]", "").replaceAll("[)]", "");
     }
+
+
+    public static String[] returnOnlyName(String string){
+        String [] stringsArray = string.trim().split(" ");
+        String[] stringResult = new String[2];
+
+        for(int i=0; i < 2; i++){
+            stringResult[i] = stringsArray[i];
+        }
+
+        return  stringResult;
+    }
 }

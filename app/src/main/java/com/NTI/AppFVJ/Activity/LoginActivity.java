@@ -40,8 +40,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void MainView(View view) {
-        if (et_email.getText().toString().trim().isEmpty() ||
-                et_senha.getText().toString().trim().isEmpty()) {
+        /*if (et_email.getText().toString().trim().isEmpty() ||
+            et_senha.getText().toString().trim().isEmpty()) {
 
             Toast toast = Toast.makeText(this, "Todos os campos devem ser preenchidos", Toast.LENGTH_SHORT);
             toast.show();
@@ -51,14 +51,14 @@ public class LoginActivity extends AppCompatActivity {
             user.setEmail(et_email.getText().toString().trim());
             user.setPassword(et_senha.getText().toString().trim());
 
-            if (dataHelper.login(user) == true) {
+            if (dataHelper.login(user) == true) {*/
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish();
-            } else {
+            /*} else {
                 Toast toast = Toast.makeText(this, "Email ou senha incorreto", Toast.LENGTH_SHORT);
                 toast.show();
-            }
+            }*/
         }
     }
-}
+//}

@@ -1,6 +1,5 @@
 package com.NTI.AppFVJ.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,15 +7,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.NTI.AppFVJ.Activity.ProfileActivity;
 
-import com.NTI.AppFVJ.CurrentTime.CurrentTime;
 import com.NTI.AppFVJ.Database.DataHelper;
-import com.NTI.AppFVJ.Models.Comment;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
 
@@ -68,13 +63,7 @@ public class Fragment1 extends Fragment {
             tv_telefone.setText(lead.getNumber_phone());
             tv_curso.setText(lead.getDesired_course());
             tv_endereco.setText(lead.getAddress() + " - " + lead.getTown());
+            tv_criado.setText(lead.getCreatedAt());
         }
     }
-/*
-    private void DataComments() {
-        commentsList = datahelper.GetByIdComments(id);
-        CommentsAdapter adapter = new CommentsAdapter(view.getContext(), commentsList);
-        lv_comentario.setAdapter(adapter);
-    }
-*/
 }

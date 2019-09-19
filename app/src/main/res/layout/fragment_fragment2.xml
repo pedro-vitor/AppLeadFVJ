@@ -15,15 +15,17 @@
         <EditText
             android:id="@+id/et_comment"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             android:hint="Comment"
+            android:textSize="16dp"
             android:drawableTint="#999588"
-            android:drawableRight="@drawable/send_button" />
+            android:drawableRight="@drawable/send_button"
+            android:padding="10dp"/>
 
         <ListView
             android:id="@+id/lv_comentarios"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
 </FrameLayout>

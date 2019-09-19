@@ -18,7 +18,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pedro Vitor"
-                android:textSize="16dp"
+                android:textSize="14dp"
                 android:textColor="@color/TextColorDark"
                 android:layout_alignParentRight="true"/>
 
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="11/03/2003"
-                android:textSize="16dp"
+                android:textSize="14dp"
                 android:textColor="@color/TextColorDark"
                 android:paddingTop="10dp"/>
 
