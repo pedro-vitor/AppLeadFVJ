@@ -8,22 +8,17 @@ import android.view.View;
 
 import com.NTI.AppFVJ.R;
 
-public class UserProfileActivity extends AppCompatActivity {
+public class AlterarSenhaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
+        setContentView(R.layout.activity_alterar_senha);
     }
 
     public void backToMain(View view){
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, UserProfileActivity.class);
         startActivity(intent);
         finish();
-    }
-
-    public void changePassword(View view){
-        Intent intent = new Intent(this, AlterarSenhaActivity.class);
-        startActivity(intent);
     }
 }

@@ -1,6 +1,7 @@
 package com.NTI.AppFVJ.Fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.NTI.AppFVJ.Activity.MainActivity;
 import com.NTI.AppFVJ.Activity.ProfileActivity;
 import com.NTI.AppFVJ.Adapter.CommentsAdapter;
 import com.NTI.AppFVJ.CurrentTime.CurrentTime;
@@ -33,6 +35,8 @@ import com.NTI.AppFVJ.R;
 
 import java.util.List;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class Fragment2 extends Fragment {
     private View view;
 
@@ -47,6 +51,7 @@ public class Fragment2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_fragment2, container, false);
+
 
         id = Integer.parseInt(ProfileActivity.getId());
 
@@ -71,7 +76,7 @@ public class Fragment2 extends Fragment {
                         }else{
                             Comment comment = new Comment();
                             comment.setLeads_Id(id);
-                            comment.setUsers_Id(12);
+                            comment.setUsers_Id(MainActivity.getIduser());
                             comment.setText(et_comment.getText().toString().trim());
                             comment.setCreatedAt(CurrentTime.GetCurrentTime("yyyy-MM-dd HH:mm:ss"));
 

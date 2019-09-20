@@ -24,9 +24,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:textColor="@color/TextColorDark"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textStyle="bold"
-            android:text="Name"/>s
+            android:text="Name"/>
 
         <TextView
             android:id="@+id/tv_town"
@@ -35,7 +35,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="10dp"
             android:textColor="@color/TextColorDark"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:text="Town"/>
 
         <TextView
@@ -60,7 +60,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/Divider"
             android:textColor="@color/TextColorDark"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:text="Address"/>
     </RelativeLayout>
 </LinearLayout>
