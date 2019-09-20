@@ -40,7 +40,8 @@
             android:maxLines="1"
             android:inputType="textEmailAddress"
             android:drawablePadding="20dp"
-            android:drawableLeft="@drawable/user" />
+            android:drawableLeft="@drawable/user"
+            android:drawableTint="@color/TextColor"/>
 
         <EditText
             android:id="@+id/et_senha"

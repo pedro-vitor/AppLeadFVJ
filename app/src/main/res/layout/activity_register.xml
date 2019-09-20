@@ -73,7 +73,8 @@
         android:paddingLeft="15dp"
         android:background="@drawable/input_field_style"
         android:drawablePadding="20dp"
-        android:drawableLeft="@drawable/user"/>
+        android:drawableLeft="@drawable/user"
+        android:drawableTint="@color/TextColor"/>
 
     <EditText
         android:id="@+id/et_senha"

@@ -138,5 +138,10 @@ public class RegisterPeopleActivity extends AppCompatActivity {
                 }
             }
         }
+
+    public void backToMain(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
+}
 

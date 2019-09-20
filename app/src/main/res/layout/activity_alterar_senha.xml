@@ -50,26 +50,20 @@
                         android:layout_marginTop="10dp"/>
 
                 </LinearLayout>
-
-
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="People \n      Name"
+                android:text="Alterar a senha"
                 android:textColor="#fff"
                 android:textStyle="bold"
                 android:textSize="45dp"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="46dp"/>
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:orientation="horizontal" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
@@ -86,27 +80,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="20dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/user_2"/>
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp">
 
                 <EditText
-                    android:id="@+id/et_nome"
+                    android:id="@+id/et_senhaAtual"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:layout_marginTop="10dp"
-                    android:padding="10dp"
-                    android:textSize="14dp"
-                    android:hint="Nome"
+
+                    android:hint="Senha Atual"
                     android:textColorHint="@color/TextColorDark"
                     android:textColor="@color/TextColorDark"
                     android:backgroundTint="@color/TextColorDark"/>
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -115,78 +103,11 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/envelope_1"
-                    android:layout_marginTop="8dp"/>
-
-                <EditText
-                    android:id="@+id/et_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="19dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="5dp"
-                    android:textSize="14dp"
-                    android:padding="10dp"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress"
-                    android:textColorHint="@color/TextColorDark"
-                    android:textColor="@color/TextColorDark"
-                    android:backgroundTint="@color/TextColorDark"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/user"
-                    android:layout_marginTop="2dp"
-                    android:tint="@color/TextColorDark"/>
-
-                <EditText
-                    android:id="@+id/et_usuario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="19dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="10dp"
-                    android:backgroundTint="@color/TextColorDark"
-                    android:hint="Usuário"
-                    android:textSize="14dp"
-                    android:padding="10dp"
-                    android:textColor="@color/TextColorDark"
-                    android:textColorHint="@color/TextColorDark" />
-            </LinearLayout>
-
-            <!--<LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/key_1"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginLeft="3dp"
-                    android:tint="@color/TextColorDark"/>
 
                 <EditText
                     android:id="@+id/et_senha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="18dp"
                     android:layout_marginRight="16dp"
                     android:padding="10dp"
                     android:hint="Senha"
@@ -201,16 +122,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="12dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/login"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:tint="@color/TextColorDark"/>
 
                 <EditText
                     android:id="@+id/et_confirmSenha"
@@ -223,40 +135,22 @@
                     android:textColorHint="@color/TextColorDark"
                     android:textColor="@color/TextColorDark"
                     android:backgroundTint="@color/TextColorDark"/>
-            </LinearLayout> -->
+            </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="12dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Alterar Senha"
-                android:textSize="14dp"
-                android:textStyle="bold"
-                android:textColor="@color/TextColorDark"
-                android:layout_gravity="right"
-                android:layout_marginRight="16dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:layout_marginTop="12dp">
-
-            <Button
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Atualizar"
-                android:background="@drawable/input_field_style"/>
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginTop="12dp">
 
-        </LinearLayout>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Atualizar"
+                    android:background="@drawable/input_field_style"/>
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
