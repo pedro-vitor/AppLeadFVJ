@@ -13,6 +13,8 @@ import com.NTI.AppFVJ.Database.DataHelper;
 import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
 
+import java.util.List;
+
 public class LoginActivity extends AppCompatActivity {
     private EditText et_email, et_senha;
 
@@ -60,9 +62,18 @@ public class LoginActivity extends AppCompatActivity {
             user.setEmail(et_email.getText().toString().trim());
             user.setPassword(et_senha.getText().toString().trim());
 
-            if (dataHelper.login(user)) {
+            int id = dataHelper.login(user);
+
+            if (id > 0) {
+                List<User> userList = dataHelper.GetByIdUsers(id);
+                String name = "";
+                for (User user1 : userList) {
+                    name = user1.getName();
+                }
                 editor = sharedpreferences.edit();
                 editor.putBoolean("logged", true);
+                editor.putInt("id", id);
+                editor.putString("name", name);
                 editor.commit();
 
                 Intent intent = new Intent(this, MainActivity.class);

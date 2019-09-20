@@ -40,10 +40,7 @@ public class RegisterPeopleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_people);
 
         sharedpreferences = getSharedPreferences("user_preference", MODE_PRIVATE);
-        if (sharedpreferences.contains("logged")) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }
+
 
         et_nome = findViewById(R.id.et_nome);
         et_email = findViewById(R.id.et_email);
@@ -117,15 +114,12 @@ public class RegisterPeopleActivity extends AppCompatActivity {
                 toast.show();
             }
             else {
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putBoolean("logged", true);
-                editor.commit();
 
                 String name_upcase = et_nome.getText().toString().trim().substring(0,1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));
                 String town = et_cidade.getText().toString().trim().substring(0,1).toUpperCase().concat(et_cidade.getText().toString().trim().substring(1));
 
                 Lead lead = new Lead();
-                lead.setUsers_Id(12);
+                lead.setUsers_Id(MainActivity.getIduser());
                 lead.setName(name_upcase);
                 lead.setEmail(et_email.getText().toString().trim());
                 lead.setNumber_phone(MaskEditUtil.unmask(et_telefone.getText().toString().trim()));

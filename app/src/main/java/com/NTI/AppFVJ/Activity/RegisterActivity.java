@@ -52,9 +52,6 @@ public class RegisterActivity extends AppCompatActivity {
             toast.show();
         }
         else{
-            editor = sharedpreferences.edit();
-            editor.putBoolean("logged", true);
-            editor.commit();
 
             User user = new User();
             user.setName(et_nome.getText().toString().trim());
@@ -69,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(this, "Usuário inserido com sucesso",Toast.LENGTH_SHORT);
             toast.show();
 
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
     }

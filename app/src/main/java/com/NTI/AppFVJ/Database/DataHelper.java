@@ -177,13 +177,14 @@ public class DataHelper extends SQLiteOpenHelper {
 
     public List<User> GetByIdUsers(int id){
         List<User> users = new ArrayList<User>();
-        String Query = "SELECT * FROM " + TABLE_USERS + " = " + id;
+        String Query = "SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_ID_USERS + " = " + id;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
 
-        if(cursor.moveToFirst()){
-            while(cursor.moveToNext()){
+        if(cursor != null)
+            cursor.moveToFirst();
+
                 User user = new User();
                 user.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_USERS)));
                 user.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME_USERS)));
@@ -194,8 +195,6 @@ public class DataHelper extends SQLiteOpenHelper {
                 user.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_USERS)));
 
                 users.add(user);
-            }
-        }
         return users;
     }
 
@@ -343,16 +342,18 @@ public class DataHelper extends SQLiteOpenHelper {
 
     /*TODO LOGIN*/
 
-    public boolean login(User user){
+    public int login(User user){
         String query = "SELECT * FROM "+ TABLE_USERS +" WHERE " + KEY_EMAIL_USERS + " = '" + user.getEmail() + "' " +
                 " AND " + KEY_PASSWORD_USERS + " = '" + user.getPassword() + "'";
+        int id = 0;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         if(cursor.getCount() > 0){
-            return true;
+            while (cursor.moveToNext())
+                id = cursor.getInt(cursor.getColumnIndex(KEY_ID_USERS));
+            return id;
         }
-
-        return false;
+        return 0;
     }
 }

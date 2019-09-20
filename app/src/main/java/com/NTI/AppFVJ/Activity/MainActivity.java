@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.NTI.AppFVJ.Adapter.LeadsAdapter;
 import com.NTI.AppFVJ.Database.DataHelper;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences sharedpreferences;
     private SharedPreferences.Editor editor;
+    private static int id_user = 0;
+    private static String name_user = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sharedpreferences = getSharedPreferences("user_preference", MODE_PRIVATE);
+        id_user = sharedpreferences.getInt("id",0);
+        name_user = sharedpreferences.getString("name","");
 
         List = findViewById(R.id.lv_listleads);
 
@@ -87,6 +92,11 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public static int getIduser(){
+        return id_user;
+    }
+    public static String getNameUser(){return name_user;}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
