@@ -2,6 +2,7 @@ package com.NTI.AppFVJ.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -31,10 +32,18 @@ public class RegisterPeopleActivity extends AppCompatActivity {
 
     private DataHelper dataHelper;
 
+    private SharedPreferences sharedpreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_people);
+
+        sharedpreferences = getSharedPreferences("user_preference", MODE_PRIVATE);
+        if (sharedpreferences.contains("logged")) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
 
         et_nome = findViewById(R.id.et_nome);
         et_email = findViewById(R.id.et_email);
@@ -108,6 +117,9 @@ public class RegisterPeopleActivity extends AppCompatActivity {
                 toast.show();
             }
             else {
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putBoolean("logged", true);
+                editor.commit();
 
                 String name_upcase = et_nome.getText().toString().trim().substring(0,1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));
                 String town = et_cidade.getText().toString().trim().substring(0,1).toUpperCase().concat(et_cidade.getText().toString().trim().substring(1));

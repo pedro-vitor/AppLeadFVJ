@@ -352,6 +352,7 @@ public class DataHelper extends SQLiteOpenHelper {
         if(cursor.getCount() > 0){
             return true;
         }
+
         return false;
     }
 }
