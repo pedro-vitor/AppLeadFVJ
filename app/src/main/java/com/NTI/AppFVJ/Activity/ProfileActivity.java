@@ -63,7 +63,7 @@ public class ProfileActivity extends AppCompatActivity {
                 intent2.putExtra("Id",intent.getStringExtra("id"));
                 startActivity(intent2);
                 break;
-            case R.id.delete:
+            case R.id.more:
                 dialogAlert();
                 break;
         }
@@ -81,22 +81,26 @@ public class ProfileActivity extends AppCompatActivity {
     private void dialogAlert(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Deletar");
-        builder.setMessage("Você deseja realmente deletar esta pessoa?");
+        List<Lead> leads = dataHelper.GetByIdLeads(Integer.parseInt(getId()));
+
+        builder.setTitle("Mais Informações");
+        builder.setMessage("Criado em: "+leads.get(0).getCreatedAt()+"\r\n");
 
         builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
             }
         });
 
         builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
             }
         });
 
-        alert =  builder.create();
+        alert = builder.create();
         alert.show();
     }
 

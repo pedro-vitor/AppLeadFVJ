@@ -248,7 +248,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Atualizar"
-                android:background="@drawable/input_field_style"/>
+                android:background="@drawable/input_submit_style_light"/>
 
         </LinearLayout>
 

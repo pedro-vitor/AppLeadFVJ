@@ -14,6 +14,8 @@
     <color
         name="InputSubmitColor">#FFFFFF</color>
     <color
+        name="InputSubmitColorLight">#C1C1C1</color>
+    <color
         name="HintColor">#FFFFFF</color>
     <color
         name="InputFieldColor">#40000000</color>
