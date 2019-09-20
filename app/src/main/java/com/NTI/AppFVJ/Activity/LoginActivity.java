@@ -60,12 +60,9 @@ public class LoginActivity extends AppCompatActivity {
             user.setEmail(et_email.getText().toString().trim());
             user.setPassword(et_senha.getText().toString().trim());
 
-            int id = dataHelper.login(user);
-            Toast.makeText(this, ""+id, Toast.LENGTH_SHORT).show();
-            if (id > 0) {
+            if (dataHelper.login(user)) {
                 editor = sharedpreferences.edit();
                 editor.putBoolean("logged", true);
-               // editor.putInt("id", id);
                 editor.commit();
 
                 Intent intent = new Intent(this, MainActivity.class);
