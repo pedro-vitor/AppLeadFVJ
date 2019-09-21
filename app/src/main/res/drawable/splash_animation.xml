@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/user"
+        android:duration="250"/>
+
+    <item
+        android:drawable="@drawable/key"
+        android:duration="250"/>
+
+    <item
+        android:drawable="@drawable/login"
+        android:duration="250"/>
+    <item
+        android:drawable="@drawable/envelope"
+        android:duration="250"/>
+    <item
+        android:drawable="@drawable/address_1"
+        android:duration="250"/>
+    <item
+        android:drawable="@drawable/graduation_cap_1"
+        android:duration="250"/>
+
+</animation-list>

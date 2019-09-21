@@ -1,9 +1,11 @@
 package com.NTI.AppFVJ.Fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -11,8 +13,10 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.NTI.AppFVJ.Activity.MainActivity;
@@ -36,6 +40,7 @@ import com.NTI.AppFVJ.R;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
+import static android.widget.AdapterView.*;
 
 public class Fragment2 extends Fragment {
     private View view;
@@ -47,6 +52,8 @@ public class Fragment2 extends Fragment {
     private int id;
 
     private ListView lv_comentarios;
+
+    private AlertDialog alert;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -98,7 +105,15 @@ public class Fragment2 extends Fragment {
             }
         });
 
+        lv_comentarios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                TextView tv_id;
 
+                tv_id = view.findViewById(R.id.tv_id);
+                showComments(Integer.parseInt(tv_id.getText().toString()));
+            }
+        });
         return view;
     }
 
@@ -108,5 +123,28 @@ public class Fragment2 extends Fragment {
             CommentsAdapter adapter = new CommentsAdapter(getContext(), commentsList);
             lv_comentarios.setAdapter(adapter);
         }
+    }
+
+    private void showComments(int id){
+        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+        commentsList = datahelper.GetCommentsById(id);
+        String mensagem = "";
+
+        builder.setTitle("Comentário");
+        for (Comment comment:commentsList) {
+            mensagem = "Postado em: " + comment.getCreatedAt() + " \n \n "
+                              +comment.getText();
+        }
+        builder.setMessage(mensagem);
+
+
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+
+        alert =  builder.create();
+        alert.show();
     }
 }

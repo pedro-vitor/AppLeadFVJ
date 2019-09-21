@@ -52,9 +52,10 @@ public class RegisterActivity extends AppCompatActivity {
             toast.show();
         }
         else{
+            String name_upcase = et_nome.getText().toString().trim().substring(0,1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));
 
             User user = new User();
-            user.setName(et_nome.getText().toString().trim());
+            user.setName(name_upcase);
             user.setEmail(et_email.getText().toString().trim());
             user.setUser(et_usuario.getText().toString().trim());
             user.setPassword(et_senha.getText().toString().trim());
