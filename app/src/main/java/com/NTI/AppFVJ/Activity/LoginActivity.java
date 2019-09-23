@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         if (sharedpreferences.contains("logged")) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+            finish();
         }
 
         et_email = findViewById(R.id.et_email);
