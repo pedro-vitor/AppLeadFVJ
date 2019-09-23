@@ -55,6 +55,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/et_username"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="People \n      Name"
@@ -252,10 +253,11 @@
             android:layout_marginTop="12dp">
 
             <Button
+                android:onClick="Atualizar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Atualizar"
-                android:background="@drawable/input_field_style"/>
+                android:background="@drawable/input_submit_style_light"/>
 
         </LinearLayout>
 

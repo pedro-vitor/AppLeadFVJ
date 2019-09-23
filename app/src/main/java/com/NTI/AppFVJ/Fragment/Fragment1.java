@@ -23,7 +23,7 @@ public class Fragment1 extends Fragment {
 
     private int id;
 
-    private TextView tv_nome, tv_email, tv_telefone, tv_curso, tv_endereco, tv_criado;
+    private TextView tv_nome, tv_email, tv_telefone, tv_curso, tv_endereco;
     private List<Lead> leadsList;
 
     private DataHelper datahelper;
@@ -37,7 +37,6 @@ public class Fragment1 extends Fragment {
         tv_telefone = view.findViewById(R.id.tv_telefone);
         tv_curso = view.findViewById(R.id.tv_curso);
         tv_endereco = view.findViewById(R.id.tv_endereco);
-        tv_criado = view.findViewById(R.id.tv_criado);
 
         id = Integer.parseInt(ProfileActivity.getId());
 
@@ -57,7 +56,6 @@ public class Fragment1 extends Fragment {
         tv_telefone.setText("");
         tv_curso.setText("");
         tv_endereco.setText("");
-        tv_criado.setText("");
 
         for (Lead lead : leadsList) {
             tv_nome.setText(lead.getName());
@@ -65,7 +63,6 @@ public class Fragment1 extends Fragment {
             tv_telefone.setText(MaskEditUtil.setmask(lead.getNumber_phone()));
             tv_curso.setText(lead.getDesired_course());
             tv_endereco.setText(lead.getAddress() + " - " + lead.getTown());
-            tv_criado.setText(lead.getCreatedAt());
         }
     }
 }

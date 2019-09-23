@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.NTI.AppFVJ.Database.DataHelper;
 import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.Lead;
+import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -66,7 +67,7 @@ public class ProfileActivity extends AppCompatActivity {
                 intent2.putExtra("Id",intent.getStringExtra("id"));
                 startActivity(intent2);
                 break;
-            case R.id.delete:
+            case R.id.more:
                 dialogAlert();
                 break;
         }
@@ -84,22 +85,21 @@ public class ProfileActivity extends AppCompatActivity {
     private void dialogAlert(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Deletar");
-        builder.setMessage("Você deseja realmente deletar esta pessoa?");
+        List<User> users = dataHelper.GetByIdUsers(MainActivity.getIduser());
+        List<Lead> leads = dataHelper.GetByIdLeads(Integer.parseInt(getId()));
 
-        builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+        builder.setTitle("Mais Informações");
+        builder.setMessage("Criado em: "+leads.get(0).getCreatedAt()+"\r\n"+
+                           "Criado por: "+MainActivity.getNameUser());
+
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
             }
         });
 
-        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-            }
-        });
-
-        alert =  builder.create();
+        alert = builder.create();
         alert.show();
     }
 
