@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.NTI.AppFVJ.Database.DataHelper;
+import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
 
@@ -50,6 +51,9 @@ public class RegisterActivity extends AppCompatActivity {
 
             Toast toast = Toast.makeText(this, "Senhas incompativeis", Toast.LENGTH_LONG);
             toast.show();
+        }else if(!MaskEditUtil.validEmail(et_email.getText().toString().trim())){
+
+            Toast.makeText(this,"Informe um Email valido",Toast.LENGTH_SHORT).show();
         }
         else{
             String name_upcase = et_nome.getText().toString().trim().substring(0,1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));

@@ -38,7 +38,7 @@ public class CommentsAdapter extends ArrayAdapter<Comment> {
 
         Comment comments = getItem(position);
 
-        TextView Nome, Data, Comentario,Id;
+        TextView Nome, Comentario,Id;
 
         Id  = RowView.findViewById(R.id.tv_id);
         Nome = RowView.findViewById(R.id.et_nome);
@@ -50,7 +50,11 @@ public class CommentsAdapter extends ArrayAdapter<Comment> {
 
         for (User user : userList) {
             String[] name = MaskEditUtil.returnOnlyName(user.getName());
-            Nome.setText(name[0]+" "+name[1]);
+            if(name.length > 1){
+                Nome.setText(name[0]+" "+name[1]);
+            }else{
+                Nome.setText(name[0]);
+            }
         }
 
         Comentario.setText(comments.getText());

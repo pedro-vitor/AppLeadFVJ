@@ -112,6 +112,9 @@ public class RegisterPeopleActivity extends AppCompatActivity {
 
                 Toast toast = Toast.makeText(this, "Todos os campos devem ser preenchidos",Toast.LENGTH_SHORT);
                 toast.show();
+            }else if(!MaskEditUtil.validEmail(et_email.getText().toString().trim())){
+
+                Toast.makeText(this,"Informe um Email valido",Toast.LENGTH_SHORT).show();
             }
             else {
 

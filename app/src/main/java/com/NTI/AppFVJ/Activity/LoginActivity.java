@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.NTI.AppFVJ.Database.DataHelper;
+import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
 
@@ -58,6 +60,11 @@ public class LoginActivity extends AppCompatActivity {
 
             Toast toast = Toast.makeText(this, "Todos os campos devem ser preenchidos", Toast.LENGTH_SHORT);
             toast.show();
+        } else if(!MaskEditUtil.validEmail(et_email.getText().toString().trim())){
+
+            Toast toast = Toast.makeText(this, "Email invalido", Toast.LENGTH_SHORT);
+            toast.show();
+
         } else {
 
             User user = new User();

@@ -54,8 +54,6 @@ public class ProfileActivity extends AppCompatActivity {
         dataHelper = new DataHelper(this);
 
         setNames();
-
-
     }
 
     public static String getId() { return intent.getStringExtra("id"); }

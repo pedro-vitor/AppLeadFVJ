@@ -3,6 +3,7 @@ package com.NTI.AppFVJ.MaskEditUtil;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.widget.EditText;
 
 public abstract class MaskEditUtil {
@@ -87,5 +88,12 @@ public abstract class MaskEditUtil {
         return String.copyValueOf(result);
     }
 
+
+    public static boolean validEmail(final String email){
+        if(Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            return true;
+        }
+        return false;
+    }
 
 }
