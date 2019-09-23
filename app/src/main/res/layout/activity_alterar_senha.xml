@@ -84,6 +84,7 @@
                 android:layout_marginTop="10dp">
 
                 <EditText
+                    android:inputType="textPassword"
                     android:id="@+id/et_senhaAtual"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -105,6 +106,7 @@
                 android:layout_marginTop="10dp">
 
                 <EditText
+                    android:inputType="textPassword"
                     android:id="@+id/et_senha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -126,6 +128,7 @@
 
                 <EditText
                     android:id="@+id/et_confirmSenha"
+                    android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="19dp"
