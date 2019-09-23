@@ -245,6 +245,29 @@ public class DataHelper extends SQLiteOpenHelper {
         return comments;
     }
 
+    /*TODO GET BY ID*/
+    public List<Comment> GetCommentsById(int Comment_id){
+        List<Comment> comments = new ArrayList<Comment>();
+        String Query = "SELECT * FROM " + TABLE_COMMENTS + " WHERE " + KEY_ID_COMMENT + " = " + Comment_id;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(Query, null);
+
+        if(cursor != null)
+            cursor.moveToFirst();
+
+            Comment comment = new Comment();
+            comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
+            comment.setLeads_Id(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
+            comment.setUsers_Id(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
+            comment.setText(cursor.getString(cursor.getColumnIndex(KEY_TEXT_COMMENT)));
+            comment.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_COMMENT)));
+
+            comments.add(comment);
+
+        return comments;
+    }
+
 
     /*TODO INSERT*/
     public long insertUsers(User user) {

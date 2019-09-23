@@ -7,7 +7,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.NTI.AppFVJ.Activity.MainActivity;
+import com.NTI.AppFVJ.Database.DataHelper;
+import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.Comment;
+import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
 
 import java.util.List;
@@ -16,8 +20,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class CommentsAdapter extends ArrayAdapter<Comment> {
+    private DataHelper dataHelper;
+    private List<User> userList;
+
     public CommentsAdapter(@NonNull Context context, @NonNull List<Comment> objects) {
         super(context, R.layout.adapter_comments_list, objects);
+        dataHelper = new DataHelper(getContext());
     }
 
     @NonNull
@@ -30,14 +38,25 @@ public class CommentsAdapter extends ArrayAdapter<Comment> {
 
         Comment comments = getItem(position);
 
-        TextView Nome, Data, Comentario;
+        TextView Nome, Comentario,Id;
 
+        Id  = RowView.findViewById(R.id.tv_id);
         Nome = RowView.findViewById(R.id.et_nome);
-        Data = RowView.findViewById(R.id.et_data);
         Comentario = RowView.findViewById(R.id.et_comentario);
 
-        Nome.setText(comments.getUsers_Id()+"");
-        Data.setText(comments.getCreatedAt());
+        userList = dataHelper.GetByIdUsers(comments.getUsers_Id());
+
+        Id.setText(String.valueOf(comments.getId()));
+
+        for (User user : userList) {
+            String[] name = MaskEditUtil.returnOnlyName(user.getName());
+            if(name.length > 1){
+                Nome.setText(name[0]+" "+name[1]);
+            }else{
+                Nome.setText(name[0]);
+            }
+        }
+
         Comentario.setText(comments.getText());
 
         return RowView;
