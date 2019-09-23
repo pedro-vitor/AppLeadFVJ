@@ -60,6 +60,10 @@ public abstract class MaskEditUtil {
         String[] stringsArray = string.trim().split(" ");
         String[] stringResult = new String[2];
 
+        if(stringsArray.length == 1){
+            return stringsArray;
+        }
+
         for (int i = 0; i < 2; i++) {
             stringResult[i] = stringsArray[i];
         }

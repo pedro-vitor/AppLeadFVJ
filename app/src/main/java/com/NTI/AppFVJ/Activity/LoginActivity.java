@@ -84,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
             } else {
                 Toast toast = Toast.makeText(this, "Email ou senha incorreto", Toast.LENGTH_SHORT);
                 toast.show();
+                et_senha.setText("");
             }
         }
     }
