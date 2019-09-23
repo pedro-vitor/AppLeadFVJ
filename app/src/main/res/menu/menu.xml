@@ -9,11 +9,11 @@
         app:showAsAction="collapseActionView|always" />
     <item
         android:id="@+id/Profile"
-        android:title="Profile"/>
+        android:title="Perfil"/>
     <item
         android:id="@+id/Register"
-        android:title="Register"/>
+        android:title="Registrar"/>
     <item
         android:id="@+id/Logout"
-        android:title="Logout" />
+        android:title="Sair" />
 </menu>

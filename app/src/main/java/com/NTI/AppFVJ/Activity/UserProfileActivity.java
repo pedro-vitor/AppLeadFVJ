@@ -12,7 +12,7 @@ import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
 
 public class UserProfileActivity extends AppCompatActivity {
-    private TextView et_nome, et_email, et_usuario;
+    private TextView et_username, et_nome, et_email, et_usuario;
 
     private User user;
     private DataHelper datahelper;
@@ -23,6 +23,7 @@ public class UserProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
+        et_username = findViewById(R.id.et_username);
         et_nome = findViewById(R.id.et_nome);
         et_email = findViewById(R.id.et_email);
         et_usuario = findViewById(R.id.et_usuario);
@@ -32,6 +33,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
         user = datahelper.GetByIdUsers(id).get(0);
 
+        et_username.setText(user.getUser());
         et_nome.setText(user.getName());
         et_email.setText(user.getEmail());
         et_usuario.setText(user.getUser());
