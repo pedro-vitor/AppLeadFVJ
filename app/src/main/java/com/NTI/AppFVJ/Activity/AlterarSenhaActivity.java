@@ -5,20 +5,56 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.NTI.AppFVJ.Database.DataHelper;
+import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
 
 public class AlterarSenhaActivity extends AppCompatActivity {
+    private TextView et_senhaAtual, et_senha, et_confirmSenha;
+
+    private DataHelper datahelper;
+    private int id;
+
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alterar_senha);
+
+        id = MainActivity.getIduser();
+        datahelper = new DataHelper(this);
+
+        et_senhaAtual = findViewById(R.id.et_senhaAtual);
+        et_senha = findViewById(R.id.et_senha);
+        et_confirmSenha = findViewById(R.id.et_confirmSenha);
+
+        user = datahelper.GetByIdUsers(id).get(0);
     }
 
     public void backToMain(View view){
         Intent intent = new Intent(this, UserProfileActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void Atualizar(View view) {
+        if (et_senhaAtual.getText().toString().length() > 0)
+            if (et_senhaAtual.getText().toString().equals(user.getPassword())) {
+                if (et_senha.getText().toString().length() > 0 &&
+                    et_confirmSenha.getText().toString().length() > 0)
+                    if (et_senha.getText().toString().equals(et_confirmSenha.getText().toString())) {
+                        user.setPassword(et_senha.getText().toString());
+                        datahelper.updateUsers(user);
+
+                        startActivity(new Intent(this, MainActivity.class));
+                    }
+            }
+            else {
+                Toast.makeText(this, "Digite a sua senha atual!", Toast.LENGTH_SHORT).show();
+            }
     }
 }
