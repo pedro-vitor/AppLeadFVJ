@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
     android:focusable="true"
     android:focusableInTouchMode="true"
     tools:context=".Activity.RegisterActivity"
@@ -14,110 +13,93 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:scrollbars="none">
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="bottom">
+        android:scrollbars="none"
+        android:padding="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="@color/TextColor"
-            android:text="Register"
-            android:layout_gravity="center"/>
-    <EditText
-        android:id="@+id/et_nome"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/DarkButton"
-        android:layout_marginTop="20dp"
-        android:hint="Name"
-        android:textColor="@color/TextColor"
-        android:textSize="16dp"
-        android:textColorHint="@color/HintColor"
-        android:paddingLeft="15dp"
-        android:background="@drawable/input_field_style"
-        android:drawablePadding="20dp"
-        android:drawableLeft="@drawable/user_3"/>
-
-    <EditText
-        android:id="@+id/et_email"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/DarkButton"
-        android:layout_marginTop="@dimen/SpaceDarkButton"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/TextColor"
-        android:textSize="16dp"
-        android:textColorHint="@color/HintColor"
-        android:paddingLeft="15dp"
-        android:background="@drawable/input_field_style"
-        android:drawablePadding="20dp"
-        android:drawableLeft="@drawable/envelope"/>
-
-    <EditText
-        android:id="@+id/et_usuario"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/DarkButton"
-        android:layout_marginTop="@dimen/SpaceDarkButton"
-        android:hint="User"
-        android:textColor="@color/TextColor"
-        android:textSize="16dp"
-        android:textColorHint="@color/HintColor"
-        android:paddingLeft="15dp"
-        android:background="@drawable/input_field_style"
-        android:drawablePadding="20dp"
-        android:drawableLeft="@drawable/user"
-        android:drawableTint="@color/TextColor"/>
-
-    <EditText
-        android:id="@+id/et_senha"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/DarkButton"
-        android:layout_marginTop="@dimen/SpaceDarkButton"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:textColor="@color/TextColor"
-        android:textSize="16dp"
-        android:textColorHint="@color/HintColor"
-        android:paddingLeft="15dp"
-        android:background="@drawable/input_field_style"
-        android:drawablePadding="20dp"
-        android:drawableLeft="@drawable/key"/>
-
-    <EditText
-        android:id="@+id/et_confirmSenha"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/DarkButton"
-        android:layout_marginTop="@dimen/SpaceDarkButton"
-        android:hint="Confirm Password"
-        android:inputType="textPassword"
-        android:textColor="@color/TextColor"
-        android:textSize="16dp"
-        android:textColorHint="@color/HintColor"
-        android:paddingLeft="15dp"
-        android:background="@drawable/input_field_style"
-        android:drawablePadding="20dp"
-        android:drawableLeft="@drawable/login"/>
-
-
-        <Button
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="35dp"
-            android:text="Confirm"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:textColor="@color/TextColorDarkGreen"
-            android:background="@drawable/input_submit_style"
-            android:onClick="RegisterClick"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@color/TextColor"
+                android:text="Registro"
+                android:layout_gravity="center"/>
+
+            <EditText
+                android:id="@+id/et_nome"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DarkButton"
+                android:layout_marginTop="60dp"
+                android:hint="Nome"
+                android:textColor="@color/TextColor"
+                android:textSize="16dp"
+                android:textColorHint="@color/HintColor"
+                android:paddingLeft="15dp"
+                android:background="@drawable/input_field_style"
+                android:drawablePadding="20dp"
+                android:drawableLeft="@drawable/user_3" />
+
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DarkButton"
+                android:layout_marginTop="@dimen/SpaceDarkButton"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/TextColor"
+                android:textSize="16dp"
+                android:textColorHint="@color/HintColor"
+                android:paddingLeft="15dp"
+                android:background="@drawable/input_field_style"
+                android:drawablePadding="20dp"
+                android:drawableLeft="@drawable/envelope"/>
+
+            <EditText
+                android:id="@+id/et_senha"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DarkButton"
+                android:layout_marginTop="@dimen/SpaceDarkButton"
+                android:hint="Senha"
+                android:inputType="textPassword"
+                android:textColor="@color/TextColor"
+                android:textSize="16dp"
+                android:textColorHint="@color/HintColor"
+                android:paddingLeft="15dp"
+                android:background="@drawable/input_field_style"
+                android:drawablePadding="20dp"
+                android:drawableLeft="@drawable/key"/>
+
+            <EditText
+                android:id="@+id/et_confirmSenha"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DarkButton"
+                android:layout_marginTop="@dimen/SpaceDarkButton"
+                android:hint="Confirmar senha"
+                android:inputType="textPassword"
+                android:textColor="@color/TextColor"
+                android:textSize="16dp"
+                android:textColorHint="@color/HintColor"
+                android:paddingLeft="15dp"
+                android:background="@drawable/input_field_style"
+                android:drawablePadding="20dp"
+                android:drawableLeft="@drawable/login"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="35dp"
+                android:text="Registrar"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/TextColorDarkGreen"
+                android:background="@drawable/input_submit_style"
+                android:onClick="RegisterClick"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -35,12 +35,6 @@ public class AlterarSenhaActivity extends AppCompatActivity {
         user = datahelper.GetByIdUsers(id).get(0);
     }
 
-    public void backToMain(View view){
-        Intent intent = new Intent(this, UserProfileActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
     public void Atualizar(View view) {
         if (et_senhaAtual.getText().toString().length() > 0)
             if (et_senhaAtual.getText().toString().equals(user.getPassword())) {

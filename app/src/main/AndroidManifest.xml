@@ -9,20 +9,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Activity.SplashScreenNActivity"
+        <activity
+            android:name=".Activity.SplashScreenNActivity"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action
+                    android:name="android.intent.action.MAIN" />
+                <category
+                    android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.AlterarSenhaActivity" />
-        <activity android:name=".Activity.UserProfileActivity" />
-        <activity android:name=".Activity.ForgotEmailActivity$UserProfileActivity" />
-        <activity android:name=".Activity.UpdatePeopleActivity" />
-        <activity android:name=".Activity.RegisterPeopleActivity" />
-        <activity android:name=".Activity.ForgotEmailActivity" />
+        <activity
+            android:name=".Activity.AlterarSenhaActivity" />
+        <activity
+            android:name=".Activity.UserProfileActivity"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".Activity.ForgotEmailActivity$UserProfileActivity" />
+        <activity
+            android:name=".Activity.UpdatePeopleActivity" />
+        <activity
+            android:name=".Activity.RegisterPeopleActivity" />
+        <activity
+            android:name=".Activity.ForgotEmailActivity" />
         <activity
             android:name=".Activity.MainActivity"
             android:theme="@style/AppTheme" />

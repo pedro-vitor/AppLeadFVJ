@@ -16,41 +16,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/back"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginLeft="20dp"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/logo_fvj_3"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="10dp"/>
-
-                </LinearLayout>
-            </LinearLayout>
+            android:orientation="vertical"
+            android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -58,10 +25,9 @@
                 android:text="Alterar a senha"
                 android:textColor="#fff"
                 android:textStyle="bold"
-                android:textSize="45dp"
+                android:textSize="28dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="46dp"/>
+                android:layout_marginBottom="10dp"/>
 
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -70,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -81,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="40dp">
 
                 <EditText
                     android:inputType="textPassword"
@@ -89,8 +56,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
-
                     android:hint="Senha Atual"
+                    android:textSize="18dp"
                     android:textColorHint="@color/TextColorDark"
                     android:textColor="@color/TextColorDark"
                     android:backgroundTint="@color/TextColorDark"/>
@@ -113,6 +80,7 @@
                     android:layout_marginRight="16dp"
                     android:padding="10dp"
                     android:hint="Senha"
+                    android:textSize="18dp"
                     android:textColorHint="@color/TextColorDark"
                     android:textColor="@color/TextColorDark"
                     android:backgroundTint="@color/TextColorDark"/>
@@ -135,6 +103,7 @@
                     android:layout_marginRight="16dp"
                     android:hint="Confirme sua senha"
                     android:paddingLeft="10dp"
+                    android:textSize="18dp"
                     android:textColorHint="@color/TextColorDark"
                     android:textColor="@color/TextColorDark"
                     android:backgroundTint="@color/TextColorDark"/>
@@ -152,7 +121,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Atualizar"
-                    android:background="@drawable/input_field_style"/>
+                    android:background="@drawable/input_submit_style_light"/>
 
             </LinearLayout>
 

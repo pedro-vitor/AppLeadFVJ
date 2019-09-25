@@ -6,15 +6,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.NTI.AppFVJ.Database.DataHelper;
 import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.Lead;
-import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -47,10 +43,10 @@ public class ProfileActivity extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
         getSupportActionBar().setElevation(0);
-
+/*
         tv_firstName = findViewById(R.id.tv_firstname);
         tv_secondName = findViewById(R.id.tv_secondname);
-
+*/
         intent = getIntent();
         dataHelper = new DataHelper(this);
 
@@ -85,7 +81,6 @@ public class ProfileActivity extends AppCompatActivity {
     private void dialogAlert(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        List<User> users = dataHelper.GetByIdUsers(MainActivity.getIduser());
         List<Lead> leads = dataHelper.GetByIdLeads(Integer.parseInt(getId()));
 
         builder.setTitle("Mais Informações");
@@ -114,14 +109,13 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         if(name.length > 1){
+            setTitle(name[0]);
+/*
             tv_firstName.setText(name[0]);
-            tv_secondName.setText(name[1]);
-        }else {
+            tv_secondName.setText(name[1]);*/
+        }else {/*
             tv_firstName.setText(name[0]);
-            tv_secondName.setText("");
+            tv_secondName.setText("");*/
         }
-
-
     }
-
 }

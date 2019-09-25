@@ -1,10 +1,10 @@
 package com.NTI.AppFVJ.Fragment;
 
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -25,22 +25,9 @@ import com.NTI.AppFVJ.Adapter.CommentsAdapter;
 import com.NTI.AppFVJ.CurrentTime.CurrentTime;
 import com.NTI.AppFVJ.Database.DataHelper;
 import com.NTI.AppFVJ.Models.Comment;
-import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
 
 import java.util.List;
-
-
-import com.NTI.AppFVJ.Activity.ProfileActivity;
-import com.NTI.AppFVJ.Adapter.CommentsAdapter;
-import com.NTI.AppFVJ.Database.DataHelper;
-import com.NTI.AppFVJ.Models.Comment;
-import com.NTI.AppFVJ.R;
-
-import java.util.List;
-
-import static android.content.Context.MODE_PRIVATE;
-import static android.widget.AdapterView.*;
 
 public class Fragment2 extends Fragment {
     private View view;
@@ -55,6 +42,7 @@ public class Fragment2 extends Fragment {
 
     private AlertDialog alert;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_fragment2, container, false);
@@ -71,6 +59,7 @@ public class Fragment2 extends Fragment {
 
         final EditText et_comment;
         et_comment = view.findViewById(R.id.et_comment);
+        et_comment.setElevation(2);
 
         et_comment.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -94,6 +83,7 @@ public class Fragment2 extends Fragment {
                                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                                 ft.detach(Fragment2.this).attach(Fragment2.this).commit();
 
+                                et_comment.setSelected(true);
                             }else{
                                 Toast.makeText(getContext(),"Erro ao adicionar comentário", Toast.LENGTH_SHORT).show();
                             }
