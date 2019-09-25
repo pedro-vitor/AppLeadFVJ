@@ -24,8 +24,6 @@ import com.NTI.AppFVJ.ui.main.SectionsPagerAdapter;
 import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
-    private TextView tv_firstName, tv_secondName;
-
     private static Intent intent;
 
     private DataHelper dataHelper;
@@ -43,10 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
         getSupportActionBar().setElevation(0);
-/*
-        tv_firstName = findViewById(R.id.tv_firstname);
-        tv_secondName = findViewById(R.id.tv_secondname);
-*/
+
         intent = getIntent();
         dataHelper = new DataHelper(this);
 
@@ -108,14 +103,6 @@ public class ProfileActivity extends AppCompatActivity {
             name = MaskEditUtil.returnOnlyName(lead.getName());
         }
 
-        if(name.length > 1){
-            setTitle(name[0]);
-/*
-            tv_firstName.setText(name[0]);
-            tv_secondName.setText(name[1]);*/
-        }else {/*
-            tv_firstName.setText(name[0]);
-            tv_secondName.setText("");*/
-        }
+        setTitle(name[0]);
     }
 }
