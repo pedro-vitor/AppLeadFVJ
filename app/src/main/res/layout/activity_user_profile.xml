@@ -23,7 +23,7 @@
             android:layout_gravity="left"
             android:textColor="@color/TextColor"
             android:textSize="38sp"
-            android:text="Natan"/>
+            android:text="Nome"/>
     </LinearLayout>
 
     <ScrollView
