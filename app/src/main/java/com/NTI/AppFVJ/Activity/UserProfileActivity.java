@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -60,6 +62,9 @@ public class UserProfileActivity extends AppCompatActivity {
 
                 et_nome.setEnabled(edit_pressed);
                 et_email.setEnabled(edit_pressed);
+
+                InputMethodManager inputmethodmanager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputmethodmanager.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -107,12 +112,6 @@ public class UserProfileActivity extends AppCompatActivity {
             startActivity(new Intent(UserProfileActivity.this, MainActivity.class));
             finish();
         }
-    }
-
-    public void backToMain(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
     }
 
     public void changePassword(View view){
