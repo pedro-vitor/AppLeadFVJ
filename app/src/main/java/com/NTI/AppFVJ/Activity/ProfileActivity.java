@@ -6,9 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-import com.NTI.AppFVJ.Database.DataHelper;
+import com.NTI.AppFVJ.Data.DataHelper;
 import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;

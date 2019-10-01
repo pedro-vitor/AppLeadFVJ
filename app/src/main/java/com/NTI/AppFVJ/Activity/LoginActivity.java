@@ -5,17 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.NTI.AppFVJ.Database.DataHelper;
+import com.NTI.AppFVJ.Data.DataHelper;
+import com.NTI.AppFVJ.Data.HttpConnection;
+import com.NTI.AppFVJ.Data.JsonUtil;
 import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -41,6 +41,13 @@ public class LoginActivity extends AppCompatActivity {
 
         et_email = findViewById(R.id.et_email);
         et_senha = findViewById(R.id.et_senha);
+
+        User user = new User(1, "Teste");
+        String json = new Gson().toJson(user);
+
+        String result = HttpConnection.POST("rota", json);
+
+        User temp = JsonUtil.jsonToUser(result);
 
         dataHelper = new DataHelper(this);
     }

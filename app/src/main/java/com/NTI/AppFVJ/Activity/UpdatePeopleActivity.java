@@ -14,7 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.NTI.AppFVJ.Database.DataHelper;
+import com.NTI.AppFVJ.Data.DataHelper;
 import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
@@ -22,8 +22,6 @@ import com.NTI.AppFVJ.R;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static com.NTI.AppFVJ.CurrentTime.CurrentTime.GetCurrentTime;
 
 public class UpdatePeopleActivity extends AppCompatActivity {
 

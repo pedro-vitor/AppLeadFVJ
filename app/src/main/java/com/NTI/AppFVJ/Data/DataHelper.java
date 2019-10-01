@@ -1,4 +1,4 @@
-package com.NTI.AppFVJ.Database;
+package com.NTI.AppFVJ.Data;
 
 import android.content.ContentValues;
 import android.content.Context;
