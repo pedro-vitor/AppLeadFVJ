@@ -9,6 +9,14 @@ public class User {
     private int Active;
     private String CreatedAt;
 
+    public User() {
+    }
+
+    public User(int id, String name) {
+        Id = id;
+        Name = name;
+    }
+
     public int getId() {
         return Id;
     }
