@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.NTI.AppFVJ.Database.DataHelper;
 import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.Lead;
+import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -77,10 +78,11 @@ public class ProfileActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         List<Lead> leads = dataHelper.GetByIdLeads(Integer.parseInt(getId()));
+        List<User> user = dataHelper.GetByIdUsers(MainActivity.getIduser());
 
         builder.setTitle("Mais Informações");
         builder.setMessage("Criado em: "+leads.get(0).getCreatedAt()+"\r\n"+
-                           "Criado por: "+MainActivity.getNameUser());
+                           "Criado por: "+user.get(0).getName());
 
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override

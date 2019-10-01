@@ -73,19 +73,16 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.Profile:
-                Intent intent1 = new Intent(this, UserProfileActivity.class);
-                startActivity(intent1);
+                startActivity(new Intent(this, UserProfileActivity.class));
                 break;
             case R.id.Register:
-                Intent intent2 = new Intent(this, RegisterPeopleActivity.class);
-                startActivity(intent2);
+                startActivity(new Intent(this, RegisterPeopleActivity.class));
                 break;
             case R.id.Logout:
                 editor = sharedpreferences.edit();
                 editor.clear();
                 editor.commit();
-                Intent intent3 = new Intent(this, LoginActivity.class);
-                startActivity(intent3);
+                startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;
         }
