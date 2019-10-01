@@ -8,44 +8,11 @@
     android:background="@color/BackgroundColor"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/BackgroundColor">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/logo_fvj_3"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="10dp"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -55,19 +22,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Atualizar"
-                android:textSize="30dp"
+                android:textSize="28sp"
                 android:textColor="@color/TextColor"
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
                 android:shadowDy="1"
                 android:shadowDx="1"
                 android:shadowRadius="2"
-                android:shadowColor="@color/InputFieldColor"/>
+                android:shadowColor="@color/InputFieldColor" />
+
             <TextView
                 android:id="@+id/tv_id"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:visibility="invisible"/>
+                android:visibility="invisible"
+                android:layout_marginTop="60dp"/>
 
             <TextView
                 android:id="@+id/tv_createdat"

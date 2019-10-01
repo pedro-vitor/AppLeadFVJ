@@ -6,7 +6,4 @@
         android:title="Editar informações"
         android:icon="@drawable/edit"
         app:showAsAction="collapseActionView|always"/>
-    <item
-        android:id="@+id/more"
-        android:title="Mais Informações" />
 </menu>

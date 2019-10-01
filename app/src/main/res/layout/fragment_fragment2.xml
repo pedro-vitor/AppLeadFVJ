@@ -5,27 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Fragment.Fragment2">
+    tools:context=".Fragment.Fragment2"
+    android:background="@color/BackgroundColorLight">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/et_comment"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:hint="Comment"
-            android:textSize="16dp"
-            android:drawableTint="#999588"
-            android:drawableRight="@drawable/send_button"
-            android:padding="10dp"/>
 
         <ListView
             android:id="@+id/lv_comentarios"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"/>
-    </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_comment"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="Adicionar Comentario"
+            android:textSize="16dp"
+            android:drawableTint="#999588"
+            android:drawableRight="@drawable/send_button"
+            android:background="@color/BackgroundColorLight"
+            android:padding="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"/>
+
+    </RelativeLayout>
 </FrameLayout>

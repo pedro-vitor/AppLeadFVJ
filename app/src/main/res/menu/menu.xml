@@ -8,11 +8,13 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="collapseActionView|always" />
     <item
+        android:id="@+id/Register"
+        android:title="Registrar"
+        android:icon="@drawable/add"
+        app:showAsAction="collapseActionView|always"/>
+    <item
         android:id="@+id/Profile"
         android:title="Perfil"/>
-    <item
-        android:id="@+id/Register"
-        android:title="Registrar"/>
     <item
         android:id="@+id/Logout"
         android:title="Sair" />

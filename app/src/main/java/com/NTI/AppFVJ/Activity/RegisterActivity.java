@@ -17,7 +17,7 @@ import com.NTI.AppFVJ.R;
 import static com.NTI.AppFVJ.CurrentTime.CurrentTime.GetCurrentTime;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText et_nome, et_email, et_usuario, et_senha, et_confirmsenha;
+    private EditText et_nome, et_email, et_senha, et_confirmsenha;
 
     private DataHelper datahelper;
 
@@ -31,7 +31,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         et_nome = findViewById(R.id.et_nome);
         et_email = findViewById(R.id.et_email);
-        et_usuario = findViewById(R.id.et_usuario);
         et_senha = findViewById(R.id.et_senha);
         et_confirmsenha = findViewById(R.id.et_confirmSenha);
 
@@ -41,7 +40,6 @@ public class RegisterActivity extends AppCompatActivity {
     public void RegisterClick(View view) {
         if(et_nome.getText().toString().trim().isEmpty()   ||
            et_email.getText().toString().trim().isEmpty()  ||
-           et_usuario.getText().toString().trim().isEmpty()||
            et_senha.getText().toString().trim().isEmpty()  ||
            et_confirmsenha.getText().toString().trim().isEmpty()) {
 
@@ -61,7 +59,6 @@ public class RegisterActivity extends AppCompatActivity {
             User user = new User();
             user.setName(name_upcase);
             user.setEmail(et_email.getText().toString().trim());
-            user.setUser(et_usuario.getText().toString().trim());
             user.setPassword(et_senha.getText().toString().trim());
             user.setActive(0);
             user.setCreatedAt(GetCurrentTime("yyyy-MM-dd HH:mm:ss"));

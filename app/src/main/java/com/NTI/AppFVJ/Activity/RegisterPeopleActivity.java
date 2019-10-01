@@ -28,7 +28,23 @@ import static com.NTI.AppFVJ.CurrentTime.CurrentTime.GetCurrentTime;
 public class RegisterPeopleActivity extends AppCompatActivity {
     private EditText et_nome, et_email, et_telefone, et_endereco, et_cidade;
     private Spinner sp_curso;
-    private String[] cursos = { "Curso", "Informatica"  , "Administração", "Hopedagem"};
+    private String[] cursos = {
+         "Cursos",
+         "Administração",
+         "Ciências Contábeis",
+         "Direito",
+         "Educação Física (Bacharelado)",
+         "Educação Física (Licenciatura)",
+         "Enfermagem",
+         "Farmácia",
+         "Fisioterapia",
+         "GastronomiaNovo",
+         "Letras",
+         "Nutrição",
+         "Pedagogia",
+         "Psicologia",
+         "Recursos Humanos",
+         "Serviço Social" };
 
     private DataHelper dataHelper;
 
@@ -40,7 +56,6 @@ public class RegisterPeopleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_people);
 
         sharedpreferences = getSharedPreferences("user_preference", MODE_PRIVATE);
-
 
         et_nome = findViewById(R.id.et_nome);
         et_email = findViewById(R.id.et_email);
@@ -71,53 +86,49 @@ public class RegisterPeopleActivity extends AppCompatActivity {
                 if(position == 0)
                     textview.setTextColor(Color.GRAY);
 
-                    return view;
-                }
-            };
+                return view;
+            }
+        };
 
-            spinnerArrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-            sp_curso.setAdapter(spinnerArrayAdapter);
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        sp_curso.setAdapter(spinnerArrayAdapter);
 
-            sp_curso.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    String selectedItemText = (String) parent.getItemAtPosition(position);
+        sp_curso.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItemText = (String) parent.getItemAtPosition(position);
+                ((TextView)parent.getChildAt(0)).setTextColor(0xFFFFFFFF);
+            }
 
-                    if(position > 0) {
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-                    }
-                }
+            }
+        });
+    }
 
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
+    public void BacktoMain(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
-                }
-            });
-        }
-
-        public void BacktoMain(View view) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-
-
-        public void InsertPeople(View View){
-            if(et_nome.getText().toString().trim().isEmpty() ||
-               et_email.getText().toString().trim().isEmpty() ||
-               et_telefone.getText().toString().trim().isEmpty() ||
+    public void InsertPeople(View View){
+        if(et_nome.getText().toString().trim().isEmpty() ||
+           et_email.getText().toString().trim().isEmpty() ||
+           et_telefone.getText().toString().trim().isEmpty() ||
                et_endereco.getText().toString().trim().isEmpty() ||
                et_cidade.getText().toString().trim().isEmpty() ||
-               sp_curso.getSelectedItem().toString().equals("Curso")){
+               sp_curso.getSelectedItem().toString().equals("Cursos")){
 
                 Toast toast = Toast.makeText(this, "Todos os campos devem ser preenchidos",Toast.LENGTH_SHORT);
                 toast.show();
-            }else if(!MaskEditUtil.validEmail(et_email.getText().toString().trim())){
+            }
+            else if(!MaskEditUtil.validEmail(et_email.getText().toString().trim())){
 
                 Toast.makeText(this,"Informe um Email valido",Toast.LENGTH_SHORT).show();
             }
             else {
-
                 String name_upcase = et_nome.getText().toString().trim().substring(0,1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));
                 String town = et_cidade.getText().toString().trim().substring(0,1).toUpperCase().concat(et_cidade.getText().toString().trim().substring(1));
 
@@ -141,16 +152,10 @@ public class RegisterPeopleActivity extends AppCompatActivity {
                     finish();
                 }
                 else{
-
                     Toast toast = Toast.makeText(this, "Erro ao inserir a pessoa",Toast.LENGTH_SHORT);
                     toast.show();
                 }
-            }
         }
-
-    public void backToMain(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
     }
 }
 

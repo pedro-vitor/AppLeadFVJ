@@ -30,8 +30,23 @@ public class UpdatePeopleActivity extends AppCompatActivity {
     private TextView tv_id, tv_createdat;
     private EditText et_nome, et_email, et_telefone, et_endereco, et_cidade;
     private Spinner sp_curso;
-    private String[] cursos = { "Curso", "Informatica"  , "Administração", "Hopedagem"};
-
+    private String[] cursos = {
+            "Cursos",
+            "Administração",
+            "Ciências Contábeis",
+            "Direito",
+            "Educação Física (Bacharelado)",
+            "Educação Física (Licenciatura)",
+            "Enfermagem",
+            "Farmácia",
+            "Fisioterapia",
+            "GastronomiaNovo",
+            "Letras",
+            "Nutrição",
+            "Pedagogia",
+            "Psicologia",
+            "Recursos Humanos",
+            "Serviço Social" };
     private DataHelper dataHelper;
 
     private int id;
@@ -83,6 +98,7 @@ public class UpdatePeopleActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
+                ((TextView)parent.getChildAt(0)).setTextColor(0xFFFFFFFF);
 
                 if(position > 0) {
                     // Ação realizada quando um elemento diferente
@@ -111,16 +127,53 @@ public class UpdatePeopleActivity extends AppCompatActivity {
                 et_nome.setText(lead.getName());
                 et_email.setText(lead.getEmail());
                 et_telefone.setText(lead.getNumber_phone());
+
                 switch (lead.getDesired_course()){
-                    case "Informatica":
-                        sp_curso.setSelection(1);
-                    break;
                     case "Administração":
+                        sp_curso.setSelection(1);
+                        break;
+                    case "Ciências Contábeis":
                         sp_curso.setSelection(2);
-                    break;
-                    case "Hospedagem":
+                        break;
+                    case "Direito":
                         sp_curso.setSelection(3);
-                    break;
+                        break;
+                    case "Educação Física (Bacharelado)":
+                        sp_curso.setSelection(4);
+                        break;
+                    case "Educação Física (Licenciatura)":
+                        sp_curso.setSelection(5);
+                        break;
+                    case "Enfermagem":
+                        sp_curso.setSelection(6);
+                        break;
+                    case "Farmácia":
+                        sp_curso.setSelection(7);
+                        break;
+                    case "Fisioterapia":
+                        sp_curso.setSelection(8);
+                        break;
+                    case "GastronomiaNovo":
+                        sp_curso.setSelection(9);
+                        break;
+                    case "Letras":
+                        sp_curso.setSelection(10);
+                        break;
+                    case "Nutrição":
+                        sp_curso.setSelection(11);
+                        break;
+                    case "Pedagogia":
+                        sp_curso.setSelection(12);
+                        break;
+                    case "Psicologia":
+                        sp_curso.setSelection(13);
+                        break;
+                    case "Recursos Humanos":
+                        sp_curso.setSelection(14);
+                        break;
+                    case "Serviço Social":
+                        sp_curso.setSelection(15);
+                        break;
                 }
                 et_cidade.setText(lead.getTown());
                 et_endereco.setText(lead.getAddress());
@@ -133,7 +186,7 @@ public class UpdatePeopleActivity extends AppCompatActivity {
            et_telefone.getText().toString().trim().isEmpty() ||
            et_endereco.getText().toString().trim().isEmpty() ||
            et_cidade.getText().toString().trim().isEmpty() ||
-           sp_curso.getSelectedItem().toString().equals("Curso")){
+           sp_curso.getSelectedItem().toString().equals("Cursos")){
 
             Toast toast = Toast.makeText(this, "Todos os campos devem ser preenchidos",Toast.LENGTH_SHORT);
             toast.show();
