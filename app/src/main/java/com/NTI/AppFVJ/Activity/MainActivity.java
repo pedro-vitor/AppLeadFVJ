@@ -17,7 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.NTI.AppFVJ.Adapter.LeadsAdapter;
-import com.NTI.AppFVJ.Database.DataHelper;
+import com.NTI.AppFVJ.Data.DataHelper;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
 

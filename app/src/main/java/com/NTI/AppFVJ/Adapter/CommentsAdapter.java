@@ -7,8 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.NTI.AppFVJ.Activity.MainActivity;
-import com.NTI.AppFVJ.Database.DataHelper;
+import com.NTI.AppFVJ.Data.DataHelper;
 import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.Comment;
 import com.NTI.AppFVJ.Models.User;

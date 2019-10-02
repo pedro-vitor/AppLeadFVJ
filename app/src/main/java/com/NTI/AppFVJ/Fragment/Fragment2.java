@@ -23,7 +23,7 @@ import com.NTI.AppFVJ.Activity.MainActivity;
 import com.NTI.AppFVJ.Activity.ProfileActivity;
 import com.NTI.AppFVJ.Adapter.CommentsAdapter;
 import com.NTI.AppFVJ.CurrentTime.CurrentTime;
-import com.NTI.AppFVJ.Database.DataHelper;
+import com.NTI.AppFVJ.Data.DataHelper;
 import com.NTI.AppFVJ.Models.Comment;
 import com.NTI.AppFVJ.R;
 
