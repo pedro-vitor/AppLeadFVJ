@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         dataHelper = new DataHelper(this);
     }
 
-    public void ForgotPasswordView(View view) {
+    public void ForgotPasswordVie4w(View view) {
         Intent intent = new Intent(this, ForgotEmailActivity.class);
         startActivity(intent);
     }
