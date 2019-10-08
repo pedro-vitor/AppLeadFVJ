@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.NTI.AppFVJ.Data.DataHelper;
+import com.NTI.AppFVJ.Filter;
 import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
 
@@ -38,14 +39,17 @@ public class AlterarSenhaActivity extends AppCompatActivity {
     public void Atualizar(View view) {
         if (et_senhaAtual.getText().toString().length() > 0)
             if (et_senhaAtual.getText().toString().equals(user.getPassword())) {
-                if (et_senha.getText().toString().length() > 0 &&
-                    et_confirmSenha.getText().toString().length() > 0)
+                if (Filter.Senha(et_senha.getText().toString()) && Filter.Senha(et_confirmSenha.getText().toString())) {
                     if (et_senha.getText().toString().equals(et_confirmSenha.getText().toString())) {
                         user.setPassword(et_senha.getText().toString());
                         datahelper.updateUsers(user);
 
                         startActivity(new Intent(this, MainActivity.class));
                     }
+                }
+                else {
+                    Toast.makeText(this, "A senha deve conter no mínimo 4 caracteres e no máximo 15", Toast.LENGTH_SHORT).show();
+                }
             }
             else {
                 Toast.makeText(this, "Digite a sua senha atual!", Toast.LENGTH_SHORT).show();

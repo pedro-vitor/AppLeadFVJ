@@ -60,8 +60,8 @@ public class Fragment1 extends Fragment {
         for (Lead lead : leadsList) {
             tv_nome.setText(lead.getName());
             tv_email.setText(lead.getEmail());
-            tv_telefone.setText(MaskEditUtil.setmask(lead.getNumber_phone()));
-            tv_curso.setText(lead.getDesired_course());
+            tv_telefone.setText(MaskEditUtil.setmask(lead.getNumberPhone()));
+            tv_curso.setText(lead.getDesiredCourse());
             tv_endereco.setText(lead.getAddress() + " - " + lead.getTown());
         }
     }

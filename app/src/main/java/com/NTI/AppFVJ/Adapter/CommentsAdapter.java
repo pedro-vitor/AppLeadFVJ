@@ -43,7 +43,7 @@ public class CommentsAdapter extends ArrayAdapter<Comment> {
         Nome = RowView.findViewById(R.id.et_nome);
         Comentario = RowView.findViewById(R.id.et_comentario);
 
-        userList = dataHelper.GetByIdUsers(comments.getUsers_Id());
+        userList = dataHelper.GetByIdUsers(comments.getUsersId());
 
         Id.setText(String.valueOf(comments.getId()));
 

@@ -2,84 +2,128 @@ package com.NTI.AppFVJ.Models;
 
 public class Lead {
     private int Id;
-    private int Users_Id;
+    private int ExternId;
+    private int UserId;
     private String Name;
     private String Email;
-    private String Number_phone;
-    private String Desired_course;
+    private String NumberPhone;
+    private String DesiredCourse;
     private String Town;
     private String Address;
     private String CreatedAt;
+    private int Active;
+    private int Updated;
+
+
+    public Lead() {}
+    public Lead(int Id, int ExternId, int UserId, String Name, String Email, String NumberPhone, String DesiredCourse, String Town, String Address, String CreatedAt, int Active, int Updated) {
+        this.Id = Id;
+        this.ExternId = ExternId;
+        this.UserId = UserId;
+        this.Name = Name;
+        this.Email = Email;
+        this.NumberPhone = NumberPhone;
+        this.DesiredCourse = DesiredCourse;
+        this.Town = Town;
+        this.Address = Address;
+        this.CreatedAt = CreatedAt;
+        this.Active = Active;
+        this.Updated = Updated;
+    }
 
     public int getId() {
-        return Id;
+        return this.Id;
     }
 
-    public void setId(int id) {
-        Id = id;
+    public void setId(int Id) {
+        this.Id = Id;
     }
 
-    public int getUsers_Id() {
-        return Users_Id;
+    public int getExternId() {
+        return this.ExternId;
     }
 
-    public void setUsers_Id(int users_Id) {
-        Users_Id = users_Id;
+    public void setExternId(int ExternId) {
+        this.ExternId = ExternId;
+    }
+
+    public int getUserId() {
+        return this.UserId;
+    }
+
+    public void setUserId(int UserId) {
+        this.UserId = UserId;
     }
 
     public String getName() {
-        return Name;
+        return this.Name;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
-    public String getNumber_phone() {
-        return Number_phone;
+    public String getNumberPhone() {
+        return this.NumberPhone;
     }
 
-    public void setNumber_phone(String number_phone) {
-        Number_phone = number_phone;
+    public void setNumberPhone(String NumberPhone) {
+        this.NumberPhone = NumberPhone;
     }
 
-    public String getDesired_course() {
-        return Desired_course;
+    public String getDesiredCourse() {
+        return this.DesiredCourse;
     }
 
-    public void setDesired_course(String desired_course) {
-        Desired_course = desired_course;
+    public void setDesiredCourse(String DesiredCourse) {
+        this.DesiredCourse = DesiredCourse;
     }
 
     public String getTown() {
-        return Town;
+        return this.Town;
     }
 
-    public void setTown(String town) {
-        Town = town;
+    public void setTown(String Town) {
+        this.Town = Town;
     }
 
     public String getAddress() {
-        return Address;
+        return this.Address;
     }
 
-    public void setAddress(String address) {
-        Address = address;
+    public void setAddress(String Address) {
+        this.Address = Address;
     }
 
     public String getCreatedAt() {
-        return CreatedAt;
+        return this.CreatedAt;
     }
 
-    public void setCreatedAt(String createdAt) {
-        CreatedAt = createdAt;
+    public void setCreatedAt(String CreatedAt) {
+        this.CreatedAt = CreatedAt;
     }
 
     public String getEmail() {
-        return Email;
+        return this.Email;
     }
 
-    public void setEmail(String email) {
-        Email = email;
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+
+    public int getActive() {
+        return this.Active;
+    }
+
+    public void setActive(int Active) {
+        this.Active = Active;
+    }
+
+    public int getUpdated() {
+        return this.Updated;
+    }
+
+    public void setUpdated(int Updated) {
+        this.Updated = Updated;
     }
 }

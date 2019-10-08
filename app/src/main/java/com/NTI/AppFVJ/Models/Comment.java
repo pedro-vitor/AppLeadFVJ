@@ -2,48 +2,76 @@ package com.NTI.AppFVJ.Models;
 
 public class Comment {
     private int Id;
-    private int Leads_Id;
-    private int Users_Id;
+    private int ExternId;
+    private int LeadsId;
+    private int UsersId;
     private String Text;
     private String CreatedAt;
+    private int Active;
+    private int Updated;
+
 
     public int getId() {
-        return Id;
+        return this.Id;
     }
 
-    public void setId(int id) {
-        Id = id;
+    public void setId(int Id) {
+        this.Id = Id;
     }
 
-    public int getLeads_Id() {
-        return Leads_Id;
+    public int getExternId() {
+        return this.ExternId;
     }
 
-    public void setLeads_Id(int leads_Id) {
-        Leads_Id = leads_Id;
+    public void setExternId(int ExternId) {
+        this.ExternId = ExternId;
     }
 
-    public int getUsers_Id() {
-        return Users_Id;
+    public int getLeadsId() {
+        return this.LeadsId;
     }
 
-    public void setUsers_Id(int users_Id) {
-        Users_Id = users_Id;
+    public void setLeadsId(int LeadsId) {
+        this.LeadsId = LeadsId;
+    }
+
+    public int getUsersId() {
+        return this.UsersId;
+    }
+
+    public void setUsersId(int UsersId) {
+        this.UsersId = UsersId;
     }
 
     public String getText() {
-        return Text;
+        return this.Text;
     }
 
-    public void setText(String text) {
-        Text = text;
+    public void setText(String Text) {
+        this.Text = Text;
     }
 
     public String getCreatedAt() {
-        return CreatedAt;
+        return this.CreatedAt;
     }
 
-    public void setCreatedAt(String createdAt) {
-        CreatedAt = createdAt;
+    public void setCreatedAt(String CreatedAt) {
+        this.CreatedAt = CreatedAt;
+    }
+
+    public int getActive() {
+        return this.Active;
+    }
+
+    public void setActive(int Active) {
+        this.Active = Active;
+    }
+
+    public int getUpdated() {
+        return this.Updated;
+    }
+
+    public void setUpdated(int Updated) {
+        this.Updated = Updated;
     }
 }

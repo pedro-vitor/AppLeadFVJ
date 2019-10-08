@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.NTI.AppFVJ.Data.DataHelper;
+import com.NTI.AppFVJ.Filter;
 import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
@@ -114,30 +115,30 @@ public class RegisterPeopleActivity extends AppCompatActivity {
     }
 
     public void InsertPeople(View View){
-        if(et_nome.getText().toString().trim().isEmpty() ||
-           et_email.getText().toString().trim().isEmpty() ||
-           et_telefone.getText().toString().trim().isEmpty() ||
-               et_endereco.getText().toString().trim().isEmpty() ||
-               et_cidade.getText().toString().trim().isEmpty() ||
-               sp_curso.getSelectedItem().toString().equals("Cursos")){
-
-                Toast toast = Toast.makeText(this, "Todos os campos devem ser preenchidos",Toast.LENGTH_SHORT);
-                toast.show();
-            }
-            else if(!MaskEditUtil.validEmail(et_email.getText().toString().trim())){
-
-                Toast.makeText(this,"Informe um Email valido",Toast.LENGTH_SHORT).show();
-            }
+        if (et_nome.getText().toString().trim().isEmpty() || et_email.getText().toString().trim().isEmpty() || et_telefone.getText().toString().trim().isEmpty() || et_endereco.getText().toString().trim().isEmpty() || et_cidade.getText().toString().trim().isEmpty() || sp_curso.getSelectedItem().toString().equals("Cursos"))
+            Toast.makeText(this, "Todos os campos devem ser preenchidos",Toast.LENGTH_SHORT).show();
+        else
+        if (!Filter.Nome(et_nome.getText().toString()))
+            Toast.makeText(this, "O nome do lead deve conter no mínimo 3 caracteres e no máximo 50", Toast.LENGTH_SHORT).show();
+        else
+        if (!MaskEditUtil.validEmail(et_email.getText().toString().trim()))
+            Toast.makeText(this, "Informe um Email valido", Toast.LENGTH_SHORT).show();
+        else
+        if (!Filter.Endereco(et_endereco.getText().toString()))
+            Toast.makeText(this, "Verifique o endereço", Toast.LENGTH_SHORT).show();
+        else
+        if (!Filter.Cidade(et_cidade.getText().toString()))
+            Toast.makeText(this, "Verifique o nome da cidade", Toast.LENGTH_SHORT).show();
             else {
                 String name_upcase = et_nome.getText().toString().trim().substring(0,1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));
                 String town = et_cidade.getText().toString().trim().substring(0,1).toUpperCase().concat(et_cidade.getText().toString().trim().substring(1));
 
                 Lead lead = new Lead();
-                lead.setUsers_Id(MainActivity.getIduser());
+                lead.setUserId(MainActivity.getIduser());
                 lead.setName(name_upcase);
                 lead.setEmail(et_email.getText().toString().trim());
-                lead.setNumber_phone(MaskEditUtil.unmask(et_telefone.getText().toString().trim()));
-                lead.setDesired_course(sp_curso.getSelectedItem().toString());
+                lead.setNumberPhone(MaskEditUtil.unmask(et_telefone.getText().toString().trim()));
+                lead.setDesiredCourse(sp_curso.getSelectedItem().toString());
                 lead.setTown(town);
                 lead.setAddress(et_endereco.getText().toString().trim());
                 lead.setCreatedAt(GetCurrentTime("yyyy-MM-dd HH:mm:ss"));

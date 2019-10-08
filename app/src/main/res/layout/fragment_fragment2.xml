@@ -8,30 +8,37 @@
     tools:context=".Fragment.Fragment2"
     android:background="@color/BackgroundColorLight">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ListView
             android:id="@+id/lv_comentarios"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:paddingBottom="66dp"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/et_comment"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:hint="Adicionar Comentario"
             android:textSize="16dp"
             android:drawableTint="#999588"
             android:drawableRight="@drawable/send_button"
-            android:background="@color/BackgroundColorLight"
-            android:padding="10dp"
-            android:layout_marginBottom="5dp"
+            android:background="@drawable/input_field_style_light"
+            android:padding="18dp"
+            android:layout_marginBottom="2dp"
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"/>
-
     </RelativeLayout>
 </FrameLayout>

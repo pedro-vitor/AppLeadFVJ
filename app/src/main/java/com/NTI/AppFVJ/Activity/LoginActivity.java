@@ -42,39 +42,39 @@ public class LoginActivity extends AppCompatActivity {
         et_email = findViewById(R.id.et_email);
         et_senha = findViewById(R.id.et_senha);
 
-        User user = new User(1, "Teste");
-        String json = new Gson().toJson(user);
-
-        String result = HttpConnection.POST("rota", json);
-
-        User temp = JsonUtil.jsonToUser(result);
-
         dataHelper = new DataHelper(this);
     }
 
+<<<<<<< HEAD
     public void ForgotPasswordVie4w(View view) {
         Intent intent = new Intent(this, ForgotEmailActivity.class);
         startActivity(intent);
+=======
+    public void ForgotPasswordView(View view) {
+        startActivity(new Intent(this, ForgotEmailActivity.class));
+>>>>>>> 9dc3139ecc9ca8ddeca468e30a5258b233c2e9be
     }
 
     public void RegisterView(View view) {
-        Intent intent = new Intent(this, RegisterActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, RegisterActivity.class));
     }
 
     public void MainView(View view) {
-        if (et_email.getText().toString().trim().isEmpty() ||
-            et_senha.getText().toString().trim().isEmpty()) {
-
+        if (et_email.getText().toString().trim().isEmpty() || et_senha.getText().toString().trim().isEmpty()) {
             Toast toast = Toast.makeText(this, "Todos os campos devem ser preenchidos", Toast.LENGTH_SHORT);
             toast.show();
-        } else if(!MaskEditUtil.validEmail(et_email.getText().toString().trim())){
-
-            Toast toast = Toast.makeText(this, "Email invalido", Toast.LENGTH_SHORT);
-            toast.show();
-
-        } else {
-
+        }
+        else
+        if(!MaskEditUtil.validEmail(et_email.getText().toString().trim())){
+            Toast.makeText(this, "Email invalido", Toast.LENGTH_SHORT).show();
+        }
+        else {
+/*
+            User user = new User(et_email.getText().toString(), et_senha.getText().toString());
+            String json = new Gson().toJson(user);
+            String result = HttpConnection.POST("/token", json);
+            User temp = JsonUtil.jsonToUser(result);
+/*
             User user = new User();
             user.setEmail(et_email.getText().toString().trim());
             user.setPassword(et_senha.getText().toString().trim());
@@ -84,23 +84,23 @@ public class LoginActivity extends AppCompatActivity {
             if (id > 0) {
                 List<User> userList = dataHelper.GetByIdUsers(id);
                 String name = "";
-                for (User user1 : userList) {
+
+                for (User user1 : userList)
                     name = user1.getName();
-                }
+
                 editor = sharedpreferences.edit();
                 editor.putBoolean("logged", true);
                 editor.putInt("id", id);
                 editor.putString("name", name);
                 editor.commit();
 
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(this, MainActivity.class));
                 finish();
-            } else {
-                Toast toast = Toast.makeText(this, "Email ou senha incorreto", Toast.LENGTH_SHORT);
-                toast.show();
-                et_senha.setText("");
             }
+            else {
+                Toast.makeText(this, "Email ou senha incorreto!", Toast.LENGTH_SHORT).show();
+                et_senha.setText("");
+            }*/
         }
     }
 }
