@@ -53,6 +53,19 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(this, RegisterActivity.class));
     }
 
+    public static String access_token = null;
+
+    public void LoginRequest(final String query) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String result = HttpConnection.POST("token", query);
+                access_token = JsonUtil.jsonToken(result);
+            }
+        });
+        thread.start();
+    }
+
     public void MainView(View view) {
         if (et_email.getText().toString().trim().isEmpty() || et_senha.getText().toString().trim().isEmpty()) {
             Toast toast = Toast.makeText(this, "Todos os campos devem ser preenchidos", Toast.LENGTH_SHORT);
@@ -63,16 +76,13 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Email invalido", Toast.LENGTH_SHORT).show();
         }
         else {
-            User user = new User(et_email.getText().toString(), et_senha.getText().toString());
-            String json = new Gson().toJson(user);
+            LoginRequest("username="+et_email.getText().toString()+"&password="+et_senha.getText().toString()+"&grant_type=password");
 
-            Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    String result = HttpConnection.POST("token", "username=natan12@gmail.com&password=123654&grant_type=password");
-                }
-            });
-            thread.start();
+            if (access_token != null) {
+                Toast.makeText(this,"Okay", Toast.LENGTH_SHORT).show();
+            }
+            else
+                Toast.makeText(this,"Error", Toast.LENGTH_SHORT).show();
 
             //User temp = JsonUtil.jsonToUser(result);
 /*

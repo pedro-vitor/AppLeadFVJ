@@ -11,6 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonUtil {
+    public static String jsonToken(String json) {
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            String token = jsonObject.getString("access_token");
+            return token;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static User jsonToUser(String json) {
         try {
             JSONObject jsonObject = new JSONObject(json);
