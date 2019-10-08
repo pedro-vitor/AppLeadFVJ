@@ -63,11 +63,18 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Email invalido", Toast.LENGTH_SHORT).show();
         }
         else {
-/*
             User user = new User(et_email.getText().toString(), et_senha.getText().toString());
             String json = new Gson().toJson(user);
-            String result = HttpConnection.POST("/token", json);
-            User temp = JsonUtil.jsonToUser(result);
+
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String result = HttpConnection.POST("token", "username=natan12@gmail.com&password=123654&grant_type=password");
+                }
+            });
+            thread.start();
+
+            //User temp = JsonUtil.jsonToUser(result);
 /*
             User user = new User();
             user.setEmail(et_email.getText().toString().trim());
