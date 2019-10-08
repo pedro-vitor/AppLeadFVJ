@@ -5,8 +5,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class CurrentTime {
-
-
     public static String GetCurrentTime(String format){
         SimpleDateFormat date_timeFormat = new SimpleDateFormat(format);
 

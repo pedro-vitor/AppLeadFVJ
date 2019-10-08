@@ -1,5 +1,6 @@
 package com.NTI.AppFVJ.Fragment;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -59,20 +61,20 @@ public class Fragment2 extends Fragment {
 
         final EditText et_comment;
         et_comment = view.findViewById(R.id.et_comment);
-        et_comment.setElevation(2);
+        et_comment.setElevation(150);
 
         et_comment.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 final int DRAWABLE_RIGHT = 2;
                 if(event.getAction() == MotionEvent.ACTION_UP) {
-                    if(event.getRawX() >= (et_comment.getRight() - et_comment.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    if(event.getRawX() >= (et_comment.getRight() - et_comment.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width()) - 100) {
                         if(et_comment.getText().toString().trim().isEmpty()){
                             Toast.makeText(getContext(),"Preencha o campo de comentário", Toast.LENGTH_SHORT).show();
                         }else{
                             Comment comment = new Comment();
-                            comment.setLeads_Id(id);
-                            comment.setUsers_Id(MainActivity.getIduser());
+                            comment.setLeadsId(id);
+                            comment.setUsersId(MainActivity.getIduser());
                             comment.setText(et_comment.getText().toString().trim());
                             comment.setCreatedAt(CurrentTime.GetCurrentTime("yyyy-MM-dd HH:mm:ss"));
 
@@ -83,7 +85,8 @@ public class Fragment2 extends Fragment {
                                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                                 ft.detach(Fragment2.this).attach(Fragment2.this).commit();
 
-                                et_comment.setSelected(true);
+                                et_comment.setEnabled(true);
+                                et_comment.setFocusable(true);
                             }else{
                                 Toast.makeText(getContext(),"Erro ao adicionar comentário", Toast.LENGTH_SHORT).show();
                             }

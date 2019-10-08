@@ -15,8 +15,11 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.NTI.AppFVJ.Data.DataHelper;
+import com.NTI.AppFVJ.Filter;
+import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
 
@@ -120,8 +123,15 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     public void Atualizar(View view) {
-        if (et_nome.getText().toString().length() > 0 &&
-            et_email.getText().toString().length() > 0) {
+        if (et_nome.getText().toString().trim().isEmpty() || et_email.getText().toString().trim().isEmpty())
+            Toast.makeText(this, "Todos os campos devem ser preenchidos", Toast.LENGTH_SHORT).show();
+        else
+        if (!Filter.Nome(et_nome.getText().toString()))
+            Toast.makeText(this, "O nome de usuario deve conter no mínimo 3 caracteres e no máximo 50", Toast.LENGTH_SHORT).show();
+        else
+        if (!MaskEditUtil.validEmail(et_email.getText().toString().trim()))
+            Toast.makeText(this, "Informe um Email valido", Toast.LENGTH_SHORT).show();
+        else {
 
             user.setName(et_nome.getText().toString());
             user.setEmail(et_email.getText().toString());

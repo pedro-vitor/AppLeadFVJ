@@ -1,5 +1,6 @@
 package com.NTI.AppFVJ.Data;
 
+import com.NTI.AppFVJ.Models.Comment;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.Models.User;
 
@@ -13,9 +14,16 @@ public class JsonUtil {
     public static User jsonToUser(String json) {
         try {
             JSONObject jsonObject = new JSONObject(json);
-            User user = new User(
-                    jsonObject.getInt("id"),
-                    jsonObject.getString("name"));
+            User user = new User();
+
+            user.setId(jsonObject.getInt("Id"));
+            user.setExternId(jsonObject.getInt("ExternId"));
+            user.setName(jsonObject.getString("name"));
+            user.setEmail(jsonObject.getString("email"));
+            user.setPassword(jsonObject.getString("password"));
+            user.setCreatedAt(jsonObject.getString("createdat"));
+            user.setActive(jsonObject.getInt("active"));
+
             return user;
         } catch (Exception e) {
             e.printStackTrace();
@@ -27,21 +35,52 @@ public class JsonUtil {
         try {
             JSONArray jsonArray = new JSONArray(json);
             List<Lead> leads = new ArrayList<>();
-            /*for (int i = 0; i < jsonArray.length(); i++) {
+            for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                Lead campo = new Lead(
-                        jsonObject.getInt("Id"),
-                        jsonObject.getString("PesquisaCodigo"),
-                        jsonObject.getString("Titulo"),
-                        jsonObject.getString("Tipo"),
-                        jsonObject.getInt("Ordem"),
-                        jsonObject.getBoolean("IsCategoria"),
-                        jsonObject.getBoolean("Destaque"),
-                        jsonObject.getBoolean("Obrigatorio"));
+                Lead campo = new Lead();
+
+                campo.setId(jsonObject.getInt("Id"));
+                campo.setExternId(jsonObject.getInt("ExternId"));
+                campo.setUserId(jsonObject.getInt("UserId"));
+                campo.setName(jsonObject.getString("name"));
+                campo.setEmail(jsonObject.getString("email"));
+                campo.setNumberPhone(jsonObject.getString("numberphone"));
+                campo.setDesiredCourse(jsonObject.getString("desiredcourse"));
+                campo.setTown(jsonObject.getString("town"));
+                campo.setAddress(jsonObject.getString("address"));
+                campo.setActive(jsonObject.getInt("active"));
+
                 leads.add(campo);
-            }*/
+            }
+
             return leads;
         } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static List<Comment> jsonToListComment(String json) {
+        try {
+            JSONArray jsonArray = new JSONArray(json);
+            List<Comment> comments = new ArrayList<>();
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                Comment comment = new Comment();
+
+                comment.setId(jsonObject.getInt("Id"));
+                comment.setExternId(jsonObject.getInt("ExternId"));
+                comment.setLeadsId(jsonObject.getInt("LeadId"));
+                comment.setUsersId(jsonObject.getInt("UserId"));
+                comment.setText(jsonObject.getString("text"));
+                comment.setActive(jsonObject.getInt("active"));
+
+                comments.add(comment);
+            }
+
+            return comments;
+        }
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
