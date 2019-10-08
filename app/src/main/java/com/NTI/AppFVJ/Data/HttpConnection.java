@@ -1,5 +1,7 @@
 package com.NTI.AppFVJ.Data;
 
+import android.widget.Toast;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
@@ -39,7 +41,7 @@ public class HttpConnection {
             in.close();
             return response.toString();
         } catch (Exception e) {
-            return null;
+            return e.getMessage();
         }
     }
 
@@ -91,7 +93,7 @@ public class HttpConnection {
             in.close();
             return response.toString();
         } catch (Exception e) {
-            return null;
+            return e.getMessage();
         }
     }
 

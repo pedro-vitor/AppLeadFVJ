@@ -66,9 +66,9 @@ public class LoginActivity extends AppCompatActivity {
 /*
             User user = new User(et_email.getText().toString(), et_senha.getText().toString());
             String json = new Gson().toJson(user);
-            String result = HttpConnection.POST("rota", json);
+            String result = HttpConnection.POST("/token", json);
             User temp = JsonUtil.jsonToUser(result);
-*/
+/*
             User user = new User();
             user.setEmail(et_email.getText().toString().trim());
             user.setPassword(et_senha.getText().toString().trim());
@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
             else {
                 Toast.makeText(this, "Email ou senha incorreto!", Toast.LENGTH_SHORT).show();
                 et_senha.setText("");
-            }
+            }*/
         }
     }
 }
