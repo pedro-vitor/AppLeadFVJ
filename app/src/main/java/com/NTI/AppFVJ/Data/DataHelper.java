@@ -80,7 +80,7 @@ public class DataHelper extends SQLiteOpenHelper {
             + KEY_ACTIVE_LEADS + " INTEGER, "
             + KEY_UPDATED_LEADS + " INTEGER, "
             + "FOREIGN KEY(" + KEY_USERS_ID_LEADS + ") "
-            + "REFERENCES " + TABLE_USERS + "(" + KEY_ID_USERS
+            + "REFERENCES " + TABLE_USERS + "(" + KEY_EXTERN_ID_USERS
             + ") "
             + "ON DELETE NO ACTION "
             + "ON UPDATE NO ACTION" + ")";
@@ -95,10 +95,10 @@ public class DataHelper extends SQLiteOpenHelper {
             + KEY_ACTIVE_COMMENT + " INTEGER, "
             + KEY_UPDATED_COMMENT + " INTEGER, "
             + "FOREIGN KEY (" + KEY_USERS_ID_COMMENT + ") "
-            + "REFERENCES " + TABLE_USERS + "(" + KEY_ID_USERS + ") "
+            + "REFERENCES " + TABLE_USERS + "(" + KEY_EXTERN_ID_USERS + ") "
             + "ON DELETE NO ACTION ON UPDATE NO ACTION, "
             + "FOREIGN KEY(" + KEY_LEADS_ID_COMMENT + ") "
-            + "REFERENCES " + TABLE_LEADS + "(" + KEY_ID_LEADS +")"
+            + "REFERENCES " + TABLE_LEADS + "(" + KEY_EXTERN_ID_LEADS +")"
             + "ON DELETE NO ACTION ON UPDATE NO ACTION " + ")";
 
     public DataHelper(Context context) { super(context, DATABASE_NAME, null, DATABASE_VERSION); }
