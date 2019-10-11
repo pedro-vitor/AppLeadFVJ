@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void run() {
                 String result = HttpConnection.POST("token", query);
-                access_token = JsonUtil.jsonToken(result);
+                access_token = JsonUtil.jsonValue(result, "access_token");
 
                 if (access_token != null) {
                     editor = sharedpreferences.edit();

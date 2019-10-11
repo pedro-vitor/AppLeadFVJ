@@ -10,20 +10,20 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.NTI.AppFVJ.Data.DataHelper;
-import com.NTI.AppFVJ.Filter;
+import com.NTI.AppFVJ.Data.HttpConnection;
+import com.NTI.AppFVJ.Data.JsonUtil;
+import com.NTI.AppFVJ.Data.Filter;
 import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
+import com.google.gson.Gson;
 
 import static com.NTI.AppFVJ.CurrentTime.CurrentTime.GetCurrentTime;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText et_nome, et_email, et_senha, et_confirmsenha;
-
     private DataHelper datahelper;
 
-    private SharedPreferences sharedpreferences;
-    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,25 @@ public class RegisterActivity extends AppCompatActivity {
         et_confirmsenha = findViewById(R.id.et_confirmSenha);
 
         datahelper = new DataHelper(this);
+    }
+
+    private void RegisterRequest(final User user) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String json = new Gson().toJson(user);
+                String result = HttpConnection.POST("lead", json);
+
+                if (JsonUtil.jsonValue(result, "ExternId") != null) {
+                    User local_user = JsonUtil.jsonToUser(result);
+                    datahelper.insertUsers(local_user);
+
+                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                    finish();
+                }
+            }
+        });
+        thread.start();
     }
 
     public void RegisterClick(View view) {
@@ -63,13 +82,15 @@ public class RegisterActivity extends AppCompatActivity {
             user.setName(name_upcase);
             user.setEmail(et_email.getText().toString().trim());
             user.setPassword(et_senha.getText().toString().trim());
-            user.setActive(0);
+            user.setActive(1);
+            user.setUpdated(0);
             user.setCreatedAt(GetCurrentTime("yyyy-MM-dd HH:mm:ss"));
 
-            datahelper.insertUsers(user);
-
+            RegisterRequest(user);
+/*
             Toast.makeText(this, "Usuário inserido com sucesso",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, LoginActivity.class));
+ */
         }
     }
 }
