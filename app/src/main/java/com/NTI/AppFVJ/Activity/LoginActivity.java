@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
     private String access_token = null;
     private boolean token_okay = false;
 
-    public void LoginRequest(final String query) {
+    private void LoginRequest(final String query) {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {

@@ -46,12 +46,10 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, getIntent().getStringExtra("token"), Toast.LENGTH_LONG).show();
 
         sharedpreferences = getSharedPreferences("user_preference", MODE_PRIVATE);
-        id_user = sharedpreferences.getInt("id",0);
-        name_user = sharedpreferences.getString("name","");
 
         List = findViewById(R.id.lv_listleads);
 
-        datahelper = new DataHelper(this);
+        // datahelper = new DataHelper(this);
         listLeads = datahelper.GetAllLeads();
 
         leadsadapter = new LeadsAdapter(this, listLeads);
