@@ -50,6 +50,7 @@ public class ServiceExport extends Service {
                     @Override
                     public void run() {
                         new AsyncInsertWS().execute();
+                        new AsyncUpdateWS().execute();
                     }
                 });
             }
@@ -74,10 +75,9 @@ public class ServiceExport extends Service {
 
             if(con.isConnected()){
 
-                //fazer outra função
-                List<User> userList = dataHelper.GetByUpdatedUsers();
-                List<Lead> leadList = dataHelper.GetByUpdatedLeads();
-                List<Comment> commentList = dataHelper.GetByIdComments();
+                List<User> userList = dataHelper.GetByCreatedUsers();
+                List<Lead> leadList = dataHelper.GetByCreatedLeads();
+                List<Comment> commentList = dataHelper.GetByCreatedComments();
 
                 Gson gson = new Gson();
                 String jsonUser = gson.toJson(userList, listTypeUser);
@@ -90,6 +90,60 @@ public class ServiceExport extends Service {
                     commentListResult = JsonUtil.jsonToListComment(HttpConnection.POST("comment", jsonComment));
                 }catch (Exception e){
                     Toast.makeText(ServiceExport.this, "Error: "+e.getMessage(),Toast.LENGTH_LONG);
+                }
+            }
+
+            return  null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            for (User user : userListResult) {
+                dataHelper.updateUsers(user);
+            }
+
+            for (Lead lead : leadListResult) {
+                dataHelper.updateLeads(lead);
+            }
+
+            for (Comment comment : commentListResult) {
+                dataHelper.updateComments(comment);
+            }
+        }
+    }
+
+    private class AsyncUpdateWS extends AsyncTask<Void, Void, Void>{
+
+        private List<User> userListResult = new ArrayList<>();
+        private List<Lead> leadListResult = new ArrayList<>();
+        private List<Comment> commentListResult = new ArrayList<>();
+        private DataHelper dataHelper = new DataHelper(ServiceExport.this);
+        private Connetion con = new Connetion(ServiceExport.this);
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            Type listTypeUser = new TypeToken<List<User>>() {}.getType();
+            Type listTypeLead = new TypeToken<List<Lead>>() {}.getType();
+            Type listTypeComment = new TypeToken<List<Comment>>() {}.getType();
+
+            if(con.isConnected()){
+
+                List<User> userList = dataHelper.GetByUpdatedUsers();
+                List<Lead> leadList = dataHelper.GetByUpdatedLeads();
+                List<Comment> commentList = dataHelper.GetByUpdatedComments();
+
+                Gson gson = new Gson();
+                String jsonUser = gson.toJson(userList, listTypeUser);
+                String jsonLead = gson.toJson(leadList, listTypeLead);
+                String jsonComment = gson.toJson(commentList, listTypeComment);
+
+                try {
+                    userListResult = JsonUtil.jsonToListUsers(HttpConnection.POST("user", jsonUser));
+                    leadListResult = JsonUtil.jsonToListLeads(HttpConnection.POST("lead", jsonLead));
+                    commentListResult = JsonUtil.jsonToListComment(HttpConnection.POST("comment", jsonComment));
+                }catch (Exception e){
+                    Toast.makeText(ServiceExport.this, "Error Update: "+e.getMessage(),Toast.LENGTH_LONG);
                 }
             }
 
