@@ -76,10 +76,8 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this,"Informe um Email valido", Toast.LENGTH_SHORT).show();
         }
         else {
-            String name_upcase = et_nome.getText().toString().trim().substring(0,1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));
-
             User user = new User();
-            user.setName(name_upcase);
+            user.setName(et_nome.getText().toString().trim().substring(0,1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1)));
             user.setEmail(et_email.getText().toString().trim());
             user.setPassword(et_senha.getText().toString().trim());
             user.setActive(1);
