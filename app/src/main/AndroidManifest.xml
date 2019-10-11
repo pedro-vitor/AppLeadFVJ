@@ -52,10 +52,5 @@
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
-<<<<<<< HEAD
-
-
-=======
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
->>>>>>> 6b5aad27c8e47ed9735f3da09f25589bcbf7159f
 </manifest>

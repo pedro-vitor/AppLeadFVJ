@@ -4,18 +4,16 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import java.sql.Connection;
 
-
-public class ConnectionMoble {
+public class Connetion {
 
     private Context context;
 
-    public ConnectionMoble(Context context){
+    public Connetion(Context context){
         context = context;
     }
 
-    public boolean boolean isConnected() {
+    public boolean isConnected() {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         if ( cm != null ) {
