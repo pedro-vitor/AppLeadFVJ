@@ -1,7 +1,5 @@
 package com.NTI.AppFVJ.Data;
 
-import android.widget.Toast;
-
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;

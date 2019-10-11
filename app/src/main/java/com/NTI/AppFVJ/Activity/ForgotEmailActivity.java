@@ -27,18 +27,18 @@ public class ForgotEmailActivity extends AppCompatActivity {
     public void InformEmail(View view){
         EditText email = findViewById(R.id.et_email);
 
-        if(email.getText().toString().trim().isEmpty()){
+        if (email.getText().toString().trim().isEmpty())
+        {
 
             Toast toast = Toast.makeText(this, "Informe o email", Toast.LENGTH_SHORT);
             toast.show();
 
-        }else {
-
+        }
+        else {
             Intent intent = new Intent(this, ForgotPassActivity.class);
             intent.putExtra("Email", email.getText().toString());
             startActivity(intent);
             finish();
-
         }
     }
 

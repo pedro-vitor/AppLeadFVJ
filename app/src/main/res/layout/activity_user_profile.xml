@@ -64,7 +64,8 @@
                     android:hint="Nome"
                     android:textColorHint="@color/TextColorDark"
                     android:textColor="@color/TextColorDark"
-                    android:backgroundTint="@color/TextColorDark"/>
+                    android:backgroundTint="@color/TextColorDark"
+                    android:digits="abcdefghijklmnopqrstuvwyxzABCDEFGHIJKLMNOPQRSTUVWYXZ "/>/>
             </LinearLayout>
 
             <LinearLayout

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -54,7 +56,8 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(this, RegisterActivity.class));
     }
 
-    public static String access_token = null;
+    private String access_token = null;
+    private boolean token_okay = false;
 
     public void LoginRequest(final String query) {
         Thread thread = new Thread(new Runnable() {
@@ -62,6 +65,19 @@ public class LoginActivity extends AppCompatActivity {
             public void run() {
                 String result = HttpConnection.POST("token", query);
                 access_token = JsonUtil.jsonToken(result);
+
+                if (access_token != null) {
+                    editor = sharedpreferences.edit();
+                    editor.putBoolean("logged", true);
+                    editor.putString("email", et_email.getText().toString());
+                    editor.putString("senha", et_senha.getText().toString());
+                    editor.commit();
+
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("token", access_token);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
         thread.start();
@@ -79,13 +95,7 @@ public class LoginActivity extends AppCompatActivity {
         else {
             LoginRequest("username="+et_email.getText().toString()+"&password="+et_senha.getText().toString()+"&grant_type=password");
 
-            if (access_token != null) {
-                Toast.makeText(this,"Okay", Toast.LENGTH_SHORT).show();
-            }
-            else
-                Toast.makeText(this,"Error", Toast.LENGTH_SHORT).show();
-
-            //User temp = JsonUtil.jsonToUser(result);
+            // User temp = JsonUtil.jsonToUser(result);
 /*
             User user = new User();
             user.setEmail(et_email.getText().toString().trim());

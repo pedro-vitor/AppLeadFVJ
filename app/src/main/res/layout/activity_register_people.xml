@@ -52,7 +52,8 @@
                     android:hint="Nome"
                     android:textColorHint="@color/TextColor"
                     android:textColor="@color/TextColor"
-                    android:backgroundTint="@color/TextColor"/>
+                    android:backgroundTint="@color/TextColor"
+                    android:digits="abcdefghijklmnopqrstuvwyxzABCDEFGHIJKLMNOPQRSTUVWYXZ "/>
             </LinearLayout>
 
             <LinearLayout
@@ -156,7 +157,8 @@
                     android:paddingLeft="10dp"
                     android:textColorHint="@color/TextColor"
                     android:textColor="@color/TextColor"
-                    android:backgroundTint="@color/TextColor"/>
+                    android:backgroundTint="@color/TextColor"
+                    android:digits="abcdefghijklmnopqrstuvwyxzABCDEFGHIJKLMNOPQRSTUVWYXZ "/>
             </LinearLayout>
 
             <LinearLayout
@@ -183,7 +185,8 @@
                     android:paddingLeft="10dp"
                     android:textColorHint="@color/TextColor"
                     android:textColor="@color/TextColor"
-                    android:backgroundTint="@color/TextColor"/>
+                    android:backgroundTint="@color/TextColor"
+                    android:digits=".1234567890abcdefghijklmnopqrstuvwyxzABCDEFGHIJKLMNOPQRSTUVWYXZ "/>
             </LinearLayout>
 
             <Button

@@ -43,7 +43,8 @@
                 android:paddingLeft="15dp"
                 android:background="@drawable/input_field_style"
                 android:drawablePadding="20dp"
-                android:drawableLeft="@drawable/user_3" />
+                android:drawableLeft="@drawable/user_3"
+                android:digits="abcdefghijklmnopqrstuvwyxzABCDEFGHIJKLMNOPQRSTUVWYXZ "/>
 
             <EditText
                 android:id="@+id/et_email"

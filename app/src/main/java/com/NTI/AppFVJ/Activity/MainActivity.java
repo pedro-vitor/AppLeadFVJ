@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.NTI.AppFVJ.Adapter.LeadsAdapter;
 import com.NTI.AppFVJ.Data.DataHelper;
@@ -32,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private ListView   List;
     private LeadsAdapter leadsadapter;
 
-
     private SharedPreferences sharedpreferences;
     private SharedPreferences.Editor editor;
     private static int id_user = 0;
@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toast.makeText(this, getIntent().getStringExtra("token"), Toast.LENGTH_LONG).show();
 
         sharedpreferences = getSharedPreferences("user_preference", MODE_PRIVATE);
         id_user = sharedpreferences.getInt("id",0);
