@@ -28,6 +28,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private SharedPreferences sharedpreferences;
     private SharedPreferences.Editor editor;
+    private SharedPreferences FirstRun;
+
+    private String email;
+    private String senha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         sharedpreferences = getSharedPreferences("user_preference", MODE_PRIVATE);
+        FirstRun = getSharedPreferences("firstRun", MODE_PRIVATE);
 
         if (sharedpreferences.contains("logged")) {
             Intent intent = new Intent(this, MainActivity.class);
@@ -58,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private String access_token = null;
-    private boolean token_okay = false;
 
     private void LoginRequest(final String query, final String email, final String password) {
         Thread thread = new Thread(new Runnable() {
@@ -66,16 +70,22 @@ public class LoginActivity extends AppCompatActivity {
             public void run() {
                 String result = HttpConnection.POST("token", query);
                 access_token = JsonUtil.jsonValue(result, "access_token");
+                Intent intent;
 
                 if (access_token != null) {
                     editor = sharedpreferences.edit();
                     editor.putBoolean("logged", true);
                     editor.putString("email", email);
                     editor.putString("senha", password);
-                    editor.apply();
+                    editor.commit();
 
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    intent.putExtra("token", access_token);
+                    if (FirstRun.getBoolean("firstRun", true)) {
+                        FirstRun.edit().putBoolean("firstRun", false).apply();
+                        intent = new Intent(LoginActivity.this, ScreenLodingActivity.class);
+                    }else {
+                        intent = new Intent(LoginActivity.this, MainActivity.class);
+                    }
+
                     startActivity(intent);
                     finish();
                 }
@@ -96,34 +106,6 @@ public class LoginActivity extends AppCompatActivity {
         else {
             LoginRequest("username="+et_email.getText().toString()+"&password="+et_senha.getText().toString()+"&grant_type=password",et_email.getText().toString(),et_senha.getText().toString());
 
-            // User temp = JsonUtil.jsonToUser(result);
-/*
-            User user = new User();
-            user.setEmail(et_email.getText().toString().trim());
-            user.setPassword(et_senha.getText().toString().trim());
-
-            int id = dataHelper.login(user);
-
-            if (id > 0) {
-                List<User> userList = dataHelper.GetByIdUsers(id);
-                String name = "";
-
-                for (User user1 : userList)
-                    name = user1.getName();
-
-                editor = sharedpreferences.edit();
-                editor.putBoolean("logged", true);
-                editor.putInt("id", id);
-                editor.putString("name", name);
-                editor.commit();
-
-                startActivity(new Intent(this, MainActivity.class));
-                finish();
-            }
-            else {
-                Toast.makeText(this, "Email ou senha incorreto!", Toast.LENGTH_SHORT).show();
-                et_senha.setText("");
-            }*/
         }
     }
 }

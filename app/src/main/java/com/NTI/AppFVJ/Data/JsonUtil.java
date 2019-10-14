@@ -85,6 +85,7 @@ public class JsonUtil {
                 campo.setDesiredCourse(jsonObject.getString("desiredcourse"));
                 campo.setTown(jsonObject.getString("town"));
                 campo.setAddress(jsonObject.getString("address"));
+                campo.setCreatedAt(jsonObject.getString("createdat"));
                 campo.setActive(jsonObject.getInt("active"));
 
                 leads.add(campo);

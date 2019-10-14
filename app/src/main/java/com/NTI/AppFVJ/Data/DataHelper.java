@@ -344,7 +344,7 @@ public class DataHelper extends SQLiteOpenHelper {
         return id;
     }
 
-    public long insertComments(Comment comment) {
+    public long  insertComments(Comment comment) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -411,8 +411,8 @@ public class DataHelper extends SQLiteOpenHelper {
 
     /*TODO LOGIN*/
 
-    public int login(User user){
-        String query = "SELECT * FROM "+ TABLE_USERS +" WHERE " + KEY_EMAIL_USERS + " = '" + user.getEmail() + "' " + " AND " + KEY_PASSWORD_USERS + " = '" + user.getPassword() + "'";
+    public int login(String email, String password){
+        String query = "SELECT * FROM "+ TABLE_USERS +" WHERE " + KEY_EMAIL_USERS + " = '" + email + "' " + " AND " + KEY_PASSWORD_USERS + " = '" + password + "'";
         int id = 0;
 
         SQLiteDatabase db = this.getReadableDatabase();
