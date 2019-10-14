@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         sharedpreferences = getSharedPreferences("user_preference", MODE_PRIVATE);
+
         if (sharedpreferences.contains("logged")) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
