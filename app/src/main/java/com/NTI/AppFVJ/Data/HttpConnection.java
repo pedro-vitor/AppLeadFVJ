@@ -2,6 +2,7 @@ package com.NTI.AppFVJ.Data;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -78,12 +79,13 @@ public class HttpConnection {
     public static String GET(String path) {
         try {
             URL uURLAddress = new URL(URL_API + path);
-            HttpsURLConnection objConnection = (HttpsURLConnection) uURLAddress.openConnection();
+            HttpURLConnection objConnection = (HttpURLConnection) uURLAddress.openConnection();
             objConnection.setRequestMethod("GET");
-            objConnection.setRequestProperty("Content-type", "application/json");
-            objConnection.setDoOutput(true);
+            objConnection.connect();
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(objConnection.getInputStream()));
+            InputStream inputStream = objConnection.getInputStream();
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
             String inputLine;
             StringBuilder response = new StringBuilder();
 

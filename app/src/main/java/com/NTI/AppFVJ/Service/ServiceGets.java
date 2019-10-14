@@ -1,20 +1,58 @@
 package com.NTI.AppFVJ.Service;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
 import com.NTI.AppFVJ.Data.DataHelper;
+import com.NTI.AppFVJ.Data.HttpConnection;
+import com.NTI.AppFVJ.Data.JsonUtil;
 import com.NTI.AppFVJ.Models.Comment;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.Models.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceGets{
+public class ServiceGets extends AsyncTask<Void, Void, Void> {
 
     private Context _context;
+    private DataHelper dataHelper;
 
-    public ServiceGets(Context context){
+    private String _email;
+    private String _password;
+
+    private static List<User> userListResult = new ArrayList<>();
+    private static List<Lead> leadListResult = new ArrayList<>();
+    private static List<Comment> commentListResult = new ArrayList<>();
+
+    public ServiceGets(Context context, String email, String password){
         _context = context;
+        dataHelper = new DataHelper(_context);
+        _email = email;
+        _password = password;
+    }
+
+
+    @Override
+    protected Void doInBackground(Void... voids) {
+        String query = "username="+_email+"&password="+_password+"&grant_type=password";
+        String result = HttpConnection.POST("token", query);
+        String access_token = JsonUtil.jsonValue(result, "access_token");
+
+        userListResult = JsonUtil.jsonToListUsers(HttpConnection.GET("user"));
+        leadListResult = JsonUtil.jsonToListLeads(HttpConnection.GET("lead",access_token));
+        commentListResult = JsonUtil.jsonToListComment(HttpConnection.GET("comment",access_token));
+
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        super.onPostExecute(aVoid);
+
+        InsertUsersOnDb(userListResult);
+        InsertLeadsOnDb(leadListResult);
+        InsertCommentsOnDb(commentListResult);
     }
 
     public void  InsertUsersOnDb(List<User> userListResult){
@@ -73,4 +111,5 @@ public class ServiceGets{
             }
         }
     }
+
 }

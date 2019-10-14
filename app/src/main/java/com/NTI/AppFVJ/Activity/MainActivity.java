@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String email;
     private String senha;
+    private static int id = 1;
 
     private static List<User> userListResult = new ArrayList<>();
     private static List<Lead> leadListResult = new ArrayList<>();
@@ -57,10 +58,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Toast.makeText(this, getIntent().getStringExtra("token"), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, getIntent().getStringExtra("token"), Toast.LENGTH_LONG).show();
 
         sharedpreferences = getSharedPreferences("user_preference", MODE_PRIVATE);
         sharedpreferences = getSharedPreferences("firstRun", MODE_PRIVATE);
+
+        email = sharedpreferences.getString("email","");
+        senha = sharedpreferences.getString("senha","");
 
         List = findViewById(R.id.lv_listleads);
 
@@ -126,30 +130,16 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if (sharedpreferences.getBoolean("firstRun", true)) {
             sharedpreferences.edit().putBoolean("firstRun", false).apply();
-
-                        //if (datahelper.GetAllUsers().size() > 0) {
-                        List<User> userList = datahelper.GetAllUsers();
-
-                        userListResult = JsonUtil.jsonToListUsers(HttpConnection.GET("user"));
-
-                        if(userList.size() > 0) {
-                            for (User user : userList) {
-                                for (User us : userListResult) {
-                                    if (user.getExternId() != us.getExternId()) {
-                                        datahelper.insertUsers(us);
-                                    }
-                                }
-                            }
-                        }else {
-                            for (User us : userListResult) {
-                                datahelper.insertUsers(us);
-                            }
-                        }
-                        //}
+            ServiceGets serviceGets = new ServiceGets(this,email,senha);
+            serviceGets.execute();
 
         } else {
             Toast.makeText(getApplicationContext(), "segundo? terceiro?...", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public static int getIduser(){
+        return  id;
     }
 
     @Override
