@@ -424,4 +424,151 @@ public class DataHelper extends SQLiteOpenHelper {
         }
         return 0;
     }
+
+    public List<User> GetByUpdatedUsers(){
+        List<User> users = new ArrayList<User>();
+        String Query = "SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_UPDATED_USERS + " = " + 1;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(Query, null);
+
+        while(cursor.moveToNext()){
+            User user = new User();
+            user.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_USERS)));
+            user.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_USERS)));
+            user.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME_USERS)));
+            user.setEmail(cursor.getString(cursor.getColumnIndex(KEY_EMAIL_USERS)));
+            user.setPassword(cursor.getString(cursor.getColumnIndex(KEY_PASSWORD_USERS)));
+            user.setActive(cursor.getInt(cursor.getColumnIndex(KEY_ACTIVE_USERS)));
+            user.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_USERS)));
+            user.setUpdated(cursor.getColumnIndex(KEY_UPDATED_USERS));
+
+            users.add(user);
+        }
+        return users;
+    }
+
+    public List<Lead> GetByUpdatedLeads(){
+        List<Lead> leads = new ArrayList<Lead>();
+        String Query = "SELECT * FROM " + TABLE_LEADS + " WHERE " + KEY_UPDATED_LEADS + " = " + 1;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(Query, null);
+
+        while(cursor.moveToNext()) {
+            Lead lead = new Lead();
+            lead.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_LEADS)));
+            lead.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_LEADS)));
+            lead.setUserId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_LEADS)));
+            lead.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME_LEADS)));
+            lead.setEmail(cursor.getString(cursor.getColumnIndex(KEY_EMAIL_LEADS)));
+            lead.setNumberPhone(cursor.getString(cursor.getColumnIndex(KEY_NUMBER_PHONE_LEADS)));
+            lead.setDesiredCourse(cursor.getString(cursor.getColumnIndex(KEY_DESIRED_COURSE_LEADS)));
+            lead.setTown(cursor.getString(cursor.getColumnIndex(KEY_TOWN_LEADS)));
+            lead.setAddress(cursor.getString(cursor.getColumnIndex(KEY_ADDRESS_LEADS)));
+            lead.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_LEADS)));
+            lead.setActive(cursor.getInt(cursor.getColumnIndex(KEY_ACTIVE_LEADS)));
+            lead.setUpdated(cursor.getInt(cursor.getColumnIndex(KEY_UPDATED_LEADS)));
+
+            leads.add(lead);
+        }
+        return leads;
+    }
+
+    public List<Comment> GetByUpdatedComments(){
+        List<Comment> comments = new ArrayList<Comment>();
+        String Query = "SELECT * FROM " + TABLE_COMMENTS + " WHERE " + KEY_UPDATED_COMMENT + " = " + 1;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(Query, null);
+
+        while(cursor.moveToNext()){
+            Comment comment = new Comment();
+            comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
+            comment.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_COMMENT)));
+            comment.setLeadsId(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
+            comment.setUsersId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
+            comment.setText(cursor.getString(cursor.getColumnIndex(KEY_TEXT_COMMENT)));
+            comment.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_COMMENT)));
+            comment.setUpdated(cursor.getInt(cursor.getColumnIndex(KEY_UPDATED_COMMENT)));
+            comment.setActive(cursor.getInt(cursor.getColumnIndex(KEY_ACTIVE_COMMENT)));
+
+            comments.add(comment);
+        }
+        return comments;
+    }
+
+
+    public List<User> GetByCreatedUsers(){
+        List<User> users = new ArrayList<User>();
+        String Query = "SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_EXTERN_ID_USERS + " = " + 0;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(Query, null);
+
+        while(cursor.moveToNext()){
+            User user = new User();
+            user.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_USERS)));
+            user.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_USERS)));
+            user.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME_USERS)));
+            user.setEmail(cursor.getString(cursor.getColumnIndex(KEY_EMAIL_USERS)));
+            user.setPassword(cursor.getString(cursor.getColumnIndex(KEY_PASSWORD_USERS)));
+            user.setActive(cursor.getInt(cursor.getColumnIndex(KEY_ACTIVE_USERS)));
+            user.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_USERS)));
+            user.setUpdated(cursor.getColumnIndex(KEY_UPDATED_USERS));
+
+            users.add(user);
+        }
+        return users;
+    }
+
+    public List<Lead> GetByCreatedLeads(){
+        List<Lead> leads = new ArrayList<Lead>();
+        String Query = "SELECT * FROM " + TABLE_LEADS + " WHERE " + KEY_EXTERN_ID_LEADS + " = " + 0;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(Query, null);
+
+        while(cursor.moveToNext()) {
+            Lead lead = new Lead();
+            lead.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_LEADS)));
+            lead.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_LEADS)));
+            lead.setUserId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_LEADS)));
+            lead.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME_LEADS)));
+            lead.setEmail(cursor.getString(cursor.getColumnIndex(KEY_EMAIL_LEADS)));
+            lead.setNumberPhone(cursor.getString(cursor.getColumnIndex(KEY_NUMBER_PHONE_LEADS)));
+            lead.setDesiredCourse(cursor.getString(cursor.getColumnIndex(KEY_DESIRED_COURSE_LEADS)));
+            lead.setTown(cursor.getString(cursor.getColumnIndex(KEY_TOWN_LEADS)));
+            lead.setAddress(cursor.getString(cursor.getColumnIndex(KEY_ADDRESS_LEADS)));
+            lead.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_LEADS)));
+            lead.setActive(cursor.getInt(cursor.getColumnIndex(KEY_ACTIVE_LEADS)));
+            lead.setUpdated(cursor.getInt(cursor.getColumnIndex(KEY_UPDATED_LEADS)));
+
+            leads.add(lead);
+        }
+        return leads;
+    }
+
+    public List<Comment> GetByCreatedComments(){
+        List<Comment> comments = new ArrayList<Comment>();
+        String Query = "SELECT * FROM " + TABLE_COMMENTS + " WHERE " + KEY_UPDATED_COMMENT + " = " + 0;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(Query, null);
+
+        while(cursor.moveToNext()){
+            Comment comment = new Comment();
+            comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
+            comment.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_COMMENT)));
+            comment.setLeadsId(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
+            comment.setUsersId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
+            comment.setText(cursor.getString(cursor.getColumnIndex(KEY_TEXT_COMMENT)));
+            comment.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_COMMENT)));
+            comment.setUpdated(cursor.getInt(cursor.getColumnIndex(KEY_UPDATED_COMMENT)));
+            comment.setActive(cursor.getInt(cursor.getColumnIndex(KEY_ACTIVE_COMMENT)));
+
+            comments.add(comment);
+        }
+        return comments;
+    }
 }

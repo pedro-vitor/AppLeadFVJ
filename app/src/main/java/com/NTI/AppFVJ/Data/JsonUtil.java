@@ -42,7 +42,33 @@ public class JsonUtil {
         }
     }
 
-    public static List<Lead> jsonToListCampos(String json) {
+    public static List<User> jsonToListUsers(String json) {
+        try {
+            JSONArray jsonArray = new JSONArray(json);
+            List<User> users = new ArrayList<>();
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                User user = new User();
+
+                user.setId(jsonObject.getInt("Id"));
+                user.setExternId(jsonObject.getInt("ExternId"));
+                user.setName(jsonObject.getString("name"));
+                user.setEmail(jsonObject.getString("email"));
+                user.setPassword(jsonObject.getString("password"));
+                user.setCreatedAt(jsonObject.getString("createdat"));
+                user.setActive(jsonObject.getInt("active"));
+
+                users.add(user);
+            }
+
+            return users;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static List<Lead> jsonToListLeads(String json) {
         try {
             JSONArray jsonArray = new JSONArray(json);
             List<Lead> leads = new ArrayList<>();
@@ -74,7 +100,7 @@ public class JsonUtil {
     public static List<Comment> jsonToListComment(String json) {
         try {
             JSONArray jsonArray = new JSONArray(json);
-            List<Comment> comments = new ArrayList<>();
+            List<Comment> comments   = new ArrayList<>();
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 Comment comment = new Comment();

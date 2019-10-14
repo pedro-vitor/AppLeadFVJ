@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     private String access_token = null;
     private boolean token_okay = false;
 
-    private void LoginRequest(final String query) {
+    private void LoginRequest(final String query, final String email, final String password) {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -70,9 +70,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (access_token != null) {
                     editor = sharedpreferences.edit();
                     editor.putBoolean("logged", true);
-                    editor.putString("email", et_email.getText().toString());
-                    editor.putString("senha", et_senha.getText().toString());
-                    editor.commit();
+                    editor.putString("email", email);
+                    editor.putString("senha", password);
+                    editor.apply();
 
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("token", access_token);
@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Email invalido", Toast.LENGTH_SHORT).show();
         }
         else {
-            LoginRequest("username="+et_email.getText().toString()+"&password="+et_senha.getText().toString()+"&grant_type=password");
+            LoginRequest("username="+et_email.getText().toString()+"&password="+et_senha.getText().toString()+"&grant_type=password",et_email.getText().toString(),et_senha.getText().toString());
 
             // User temp = JsonUtil.jsonToUser(result);
 /*
