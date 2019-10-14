@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.NTI.AppFVJ.Data.DataHelper;
-import com.NTI.AppFVJ.Filter;
+import com.NTI.AppFVJ.Data.Filter;
 import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
 

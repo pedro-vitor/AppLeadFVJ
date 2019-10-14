@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonUtil {
-    public static String jsonToken(String json) {
+    public static String jsonValue(String json, String value) {
         try {
             JSONObject jsonObject = new JSONObject(json);
-            String token = jsonObject.getString("access_token");
-            return token;
+            String result = jsonObject.getString(value);
+            return result;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

@@ -1,4 +1,4 @@
-package com.NTI.AppFVJ;
+package com.NTI.AppFVJ.Data;
 
 public class Filter {
     public static boolean Email(String email) {

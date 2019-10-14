@@ -38,14 +38,15 @@ public class MainActivity extends AppCompatActivity {
     private DataHelper datahelper;
     private List<Lead> listLeads;
     private List<Lead> search_result_arraylist;
-    private String     keyword;
-    private ListView   List;
+    private String keyword;
+    private ListView List;
     private LeadsAdapter leadsadapter;
 
     private SharedPreferences sharedpreferences;
     private SharedPreferences.Editor editor;
-    private static int id_user = 0;
-    private static String name_user = "";
+
+    private String email;
+    private String senha;
 
     private static List<User> userListResult = new ArrayList<>();
     private static List<Lead> leadListResult = new ArrayList<>();
@@ -171,11 +172,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static int getIduser(){
-        return id_user;
-    }
-    public static String getNameUser(){return name_user;}
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -194,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
         final SearchView searchViewAndroidActionBar = (SearchView) MenuItemCompat.getActionView(searchViewItem);
         searchViewAndroidActionBar.setQueryHint("Procurar...");
         searchViewAndroidActionBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
