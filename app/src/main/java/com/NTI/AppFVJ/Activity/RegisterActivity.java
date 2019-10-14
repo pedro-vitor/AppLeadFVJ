@@ -12,23 +12,16 @@ import android.widget.Toast;
 import com.NTI.AppFVJ.Data.DataHelper;
 import com.NTI.AppFVJ.Data.HttpConnection;
 import com.NTI.AppFVJ.Data.JsonUtil;
-<<<<<<< HEAD
-import com.NTI.AppFVJ.Filter;
-=======
 import com.NTI.AppFVJ.Data.Filter;
->>>>>>> 4654f0840cfc4ae41f882addf0127144091c0415
 import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
 import com.google.gson.Gson;
-<<<<<<< HEAD
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-=======
->>>>>>> 4654f0840cfc4ae41f882addf0127144091c0415
 
 import static com.NTI.AppFVJ.CurrentTime.CurrentTime.GetCurrentTime;
 
@@ -55,12 +48,11 @@ public class RegisterActivity extends AppCompatActivity {
         datahelper = new DataHelper(this);
     }
 
-<<<<<<< HEAD
     private void insertRequest() {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                String name_upcase = et_nome.getText().toString().trim().substring(0,1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));
+                String name_upcase = et_nome.getText().toString().trim().substring(0, 1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));
                 String Date = GetCurrentTime("yyyy-MM-dd");
                 String Hours = GetCurrentTime("HH:mm:ss");
 
@@ -79,21 +71,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                 for (User usr : userListResult) {
                     datahelper.insertUsers(usr);
-=======
-    private void RegisterRequest(final User user) {
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String json = new Gson().toJson(user);
-                String result = HttpConnection.POST("lead", json);
-
-                if (JsonUtil.jsonValue(result, "ExternId") != null) {
-                    User local_user = JsonUtil.jsonToUser(result);
-                    datahelper.insertUsers(local_user);
-
-                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                    finish();
->>>>>>> 4654f0840cfc4ae41f882addf0127144091c0415
                 }
             }
         });
@@ -120,7 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this,"Informe um Email valido", Toast.LENGTH_SHORT).show();
         }
         else {
-<<<<<<< HEAD
+
             try{
                 insertRequest();
                 Toast.makeText(RegisterActivity.this, "Usuário inserido com sucesso",Toast.LENGTH_SHORT).show();
@@ -128,21 +105,6 @@ public class RegisterActivity extends AppCompatActivity {
             }catch (Exception e){
                 Toast.makeText(this, "Error: "+e.getMessage(), Toast.LENGTH_LONG);
             }
-=======
-            User user = new User();
-            user.setName(et_nome.getText().toString().trim().substring(0,1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1)));
-            user.setEmail(et_email.getText().toString().trim());
-            user.setPassword(et_senha.getText().toString().trim());
-            user.setActive(1);
-            user.setUpdated(0);
-            user.setCreatedAt(GetCurrentTime("yyyy-MM-dd HH:mm:ss"));
-
-            RegisterRequest(user);
-/*
-            Toast.makeText(this, "Usuário inserido com sucesso",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, LoginActivity.class));
- */
->>>>>>> 4654f0840cfc4ae41f882addf0127144091c0415
         }
     }
 }
