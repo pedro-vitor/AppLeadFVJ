@@ -19,7 +19,7 @@ public class HttpConnection {
             con.setDoOutput(true);
             con.setInstanceFollowRedirects(false);
             con.setRequestMethod("POST");
-            con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            con.setRequestProperty("Content-Type", "application/json");
             con.setRequestProperty("charset", "utf-8");
             con.setUseCaches(false);
             con.setDoOutput(true);
@@ -78,8 +78,10 @@ public class HttpConnection {
     public static String GET(String path) {
         try {
             URL uURLAddress = new URL(URL_API + path);
-            HttpURLConnection objConnection = (HttpURLConnection) uURLAddress.openConnection();
+            HttpsURLConnection objConnection = (HttpsURLConnection) uURLAddress.openConnection();
             objConnection.setRequestMethod("GET");
+            objConnection.setRequestProperty("Content-type", "application/json");
+            objConnection.setDoOutput(true);
 
             BufferedReader in = new BufferedReader(new InputStreamReader(objConnection.getInputStream()));
             String inputLine;

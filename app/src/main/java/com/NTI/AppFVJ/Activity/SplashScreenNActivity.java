@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.NTI.AppFVJ.R;
+import com.NTI.AppFVJ.Service.ServiceExport;
 
 public class SplashScreenNActivity extends AppCompatActivity {
     private final int TIME_OUT = 3000;
@@ -20,6 +21,7 @@ public class SplashScreenNActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen_n);
         StartAnimation();
+
     }
 
     private void StartAnimation(){

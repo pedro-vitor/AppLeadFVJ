@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.widget.Toast;
 
-import com.NTI.AppFVJ.Activity.MainActivity;
 import com.NTI.AppFVJ.Data.DataHelper;
 import com.NTI.AppFVJ.Data.HttpConnection;
 import com.NTI.AppFVJ.Data.JsonUtil;
@@ -19,7 +18,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;

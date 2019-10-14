@@ -10,10 +10,18 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.NTI.AppFVJ.Data.DataHelper;
+import com.NTI.AppFVJ.Data.HttpConnection;
+import com.NTI.AppFVJ.Data.JsonUtil;
 import com.NTI.AppFVJ.Filter;
 import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.NTI.AppFVJ.CurrentTime.CurrentTime.GetCurrentTime;
 
@@ -25,6 +33,10 @@ public class RegisterActivity extends AppCompatActivity {
     private SharedPreferences sharedpreferences;
     private SharedPreferences.Editor editor;
 
+    private List<User> userList;
+    private List<User> userListResult;
+    private Type listTypeUser = new TypeToken<List<User>>() {}.getType();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +46,42 @@ public class RegisterActivity extends AppCompatActivity {
         et_email = findViewById(R.id.et_email);
         et_senha = findViewById(R.id.et_senha);
         et_confirmsenha = findViewById(R.id.et_confirmSenha);
+        userList = new ArrayList<>();
 
         datahelper = new DataHelper(this);
     }
 
+    private void insertRequest() {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String name_upcase = et_nome.getText().toString().trim().substring(0,1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));
+                String Date = GetCurrentTime("yyyy-MM-dd");
+                String Hours = GetCurrentTime("HH:mm:ss");
+
+                User user = new User();
+                user.setName(name_upcase);
+                user.setEmail(et_email.getText().toString().trim());
+                user.setPassword(et_senha.getText().toString().trim());
+                user.setActive(1);
+                user.setCreatedAt(Date + "T" + Hours);
+
+                userList.add(user);
+
+                Gson gson = new Gson();
+                String jsonUser = gson.toJson(userList, listTypeUser);
+                userListResult = JsonUtil.jsonToListUsers(HttpConnection.POST("user", jsonUser));
+
+                for (User usr : userListResult) {
+                    datahelper.insertUsers(usr);
+                }
+            }
+        });
+        thread.start();
+    }
+
     public void RegisterClick(View view) {
+
         if (!Filter.Nome(et_nome.getText().toString()))
             Toast.makeText(this, "O nome de usuario deve conter no mínimo 3 caracteres e no máximo 50", Toast.LENGTH_LONG).show();
         else
@@ -57,19 +100,13 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this,"Informe um Email valido", Toast.LENGTH_SHORT).show();
         }
         else {
-            String name_upcase = et_nome.getText().toString().trim().substring(0,1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));
-
-            User user = new User();
-            user.setName(name_upcase);
-            user.setEmail(et_email.getText().toString().trim());
-            user.setPassword(et_senha.getText().toString().trim());
-            user.setActive(0);
-            user.setCreatedAt(GetCurrentTime("yyyy-MM-dd HH:mm:ss"));
-
-            datahelper.insertUsers(user);
-
-            Toast.makeText(this, "Usuário inserido com sucesso",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, LoginActivity.class));
+            try{
+                insertRequest();
+                Toast.makeText(RegisterActivity.this, "Usuário inserido com sucesso",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+            }catch (Exception e){
+                Toast.makeText(this, "Error: "+e.getMessage(), Toast.LENGTH_LONG);
+            }
         }
     }
 }
