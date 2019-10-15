@@ -84,16 +84,6 @@ public class MainActivity extends AppCompatActivity {
         //startService(intent);
     }
 
-    //@Override
-    /*protected void onResume() {
-        super.onResume();
-        if (FirstRun.getBoolean("firstRun", true)) {
-            FirstRun.edit().putBoolean("firstRun", false).apply();
-            ServiceGets serviceGets = new ServiceGets(this,email,senha);
-            serviceGets.execute();
-        }
-    }*/
-
     public static int getIduser(){
         return  id;
     }
@@ -103,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.Profile:
                 startActivity(new Intent(this, UserProfileActivity.class));
+                finish();
                 break;
             case R.id.Register:
                 startActivity(new Intent(this, RegisterPeopleActivity.class));

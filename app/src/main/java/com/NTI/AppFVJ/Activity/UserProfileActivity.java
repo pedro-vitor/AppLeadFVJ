@@ -111,10 +111,10 @@ public class UserProfileActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (edit_pressed)
             dialogAlert();
-        /*else {
+        else {
             startActivity(new Intent(UserProfileActivity.this, MainActivity.class));
             finish();
-        }*/
+        }
     }
 
     public void changePassword(View view){

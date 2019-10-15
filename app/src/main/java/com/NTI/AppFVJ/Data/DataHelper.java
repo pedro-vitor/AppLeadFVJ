@@ -419,7 +419,7 @@ public class DataHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
         if(cursor.getCount() > 0)
             cursor.moveToFirst();
-                id = cursor.getInt(cursor.getColumnIndex(KEY_ID_USERS));
+                id = cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_USERS));
             return id;
     }
 

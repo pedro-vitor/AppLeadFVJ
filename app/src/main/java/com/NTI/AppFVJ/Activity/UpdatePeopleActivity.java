@@ -3,6 +3,7 @@ package com.NTI.AppFVJ.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -198,7 +199,7 @@ public class UpdatePeopleActivity extends AppCompatActivity {
 
             Lead lead = new Lead();
             lead.setId(id);
-            lead.setUserId(12);
+            lead.setUserId(MainActivity.getIduser());
             lead.setName(name_upcase);
             lead.setEmail(et_email.getText().toString().trim());
             lead.setNumberPhone(MaskEditUtil.unmask(et_telefone.getText().toString().trim()));
