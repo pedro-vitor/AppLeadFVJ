@@ -7,27 +7,32 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:padding="16dp"
     android:focusable="true"
     android:focusableInTouchMode="true"
     tools:context=".Activity.LoginActivity"
     android:background="@color/BackgroundColor">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
-        android:src="@drawable/logo_fvj"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="40dp"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:padding="16dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:src="@drawable/logo_fvj"/>
 
         <EditText
             android:id="@+id/et_email"
+            android:layout_marginTop="40dp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/DarkButton"
             android:hint="Email"
@@ -93,4 +98,5 @@
             android:layout_gravity="center_horizontal"/>
 
     </LinearLayout>
+    </ScrollView>
 </LinearLayout>

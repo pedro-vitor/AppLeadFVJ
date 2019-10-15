@@ -196,9 +196,11 @@ public class UpdatePeopleActivity extends AppCompatActivity {
             String name_upcase = et_nome.getText().toString().trim().substring(0, 1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));
             String town = et_cidade.getText().toString().trim().substring(0, 1).toUpperCase().concat(et_cidade.getText().toString().trim().substring(1));
 
+            Lead lead_r = dataHelper.GetByIdLeads(id).get(0);
+
             Lead lead = new Lead();
             lead.setId(id);
-            lead.setUserId(12);
+            lead.setUserId(lead_r.getUserId());
             lead.setName(name_upcase);
             lead.setEmail(et_email.getText().toString().trim());
             lead.setNumberPhone(MaskEditUtil.unmask(et_telefone.getText().toString().trim()));
@@ -206,6 +208,7 @@ public class UpdatePeopleActivity extends AppCompatActivity {
             lead.setTown(town);
             lead.setAddress(et_endereco.getText().toString().trim());
             lead.setCreatedAt(tv_createdat.getText().toString());
+            lead.setUpdated(1);
 
             if (dataHelper.updateLeads(lead) > 0) {
                 Toast.makeText(this, "Atualizado com sucesso", Toast.LENGTH_SHORT).show();
