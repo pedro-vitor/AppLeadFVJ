@@ -39,7 +39,7 @@ public class UpdatePeopleActivity extends AppCompatActivity {
             "Enfermagem",
             "Farmácia",
             "Fisioterapia",
-            "GastronomiaNovo",
+            "Gastronomia",
             "Letras",
             "Nutrição",
             "Pedagogia",
@@ -124,7 +124,7 @@ public class UpdatePeopleActivity extends AppCompatActivity {
             et_nome.setText(lead.getName());
             et_email.setText(lead.getEmail());
             et_telefone.setText(lead.getNumberPhone());
-
+Toast.makeText(this, lead.getDesiredCourse(), Toast.LENGTH_SHORT).show();
             switch (lead.getDesiredCourse()) {
                 case "Administração":
                     sp_curso.setSelection(1);
@@ -150,7 +150,7 @@ public class UpdatePeopleActivity extends AppCompatActivity {
                 case "Fisioterapia":
                     sp_curso.setSelection(8);
                     break;
-                case "GastronomiaNovo":
+                case "Gastronomia":
                     sp_curso.setSelection(9);
                     break;
                 case "Letras":
