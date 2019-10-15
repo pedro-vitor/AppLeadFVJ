@@ -1,6 +1,7 @@
 package com.NTI.AppFVJ.Service;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -8,7 +9,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.widget.Toast;
 
-import com.NTI.AppFVJ.Activity.MainActivity;
 import com.NTI.AppFVJ.Data.DataHelper;
 import com.NTI.AppFVJ.Data.HttpConnection;
 import com.NTI.AppFVJ.Data.JsonUtil;
@@ -26,10 +26,10 @@ import java.util.TimerTask;
 
 import androidx.annotation.Nullable;
 
-public class ServiceExport extends Service {
+public class ServiceExport extends Service{
     private final Handler handler = new Handler();
-    private  String _email;
-    private  String _password;
+    private String  _email;
+    private String  _password;
     private SharedPreferences sharedpreferences;
 
     @Override
@@ -40,6 +40,15 @@ public class ServiceExport extends Service {
         _email = sharedpreferences.getString("email","");
         _password = sharedpreferences.getString("senha","");
     }
+
+    /*public void run(){
+        AsyncUpdateWS bb = new AsyncUpdateWS(_email,_password);
+        bb.execute();
+        AsyncInsertWS asyncInsertWS = new AsyncInsertWS (_email,_password);
+        asyncInsertWS.execute();
+        ServiceGets aa = new ServiceGets(_context,_email,_password);
+        aa.execute();
+    }*/
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -54,21 +63,21 @@ public class ServiceExport extends Service {
     }
 
     private void startTimer(){
-        Timer timer = new Timer();
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        new AsyncInsertWS(_email, _password).execute();
-                        new AsyncUpdateWS(_email, _password).execute();
-                        new ServiceGets(_email, _password).execute();
-                    }
-                });
-            }
-        };
-        timer.schedule(timerTask, 1 * 60 * 1000, 1000);
+            Timer timer = new Timer();
+            TimerTask timerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            new AsyncInsertWS(_email, _password).execute();
+                            new AsyncUpdateWS(_email, _password).execute();
+                            new ServiceGets(ServiceExport.this, _email, _password).execute();
+                        }
+                    });
+                }
+            };
+            timer.schedule(timerTask, 1 * 60 * 1000, 1000);
     }
 
     private class AsyncInsertWS extends AsyncTask<Void, Void, Void>{
@@ -77,7 +86,6 @@ public class ServiceExport extends Service {
         private List<Lead> leadListResult = new ArrayList<>();
         private List<Comment> commentListResult = new ArrayList<>();
         private DataHelper dataHelper = new DataHelper(ServiceExport.this);
-        private Connetion con = new Connetion(ServiceExport.this);
         private String _email;
         private String _password;
 
@@ -93,7 +101,6 @@ public class ServiceExport extends Service {
             Type listTypeLead = new TypeToken<List<Lead>>() {}.getType();
             Type listTypeComment = new TypeToken<List<Comment>>() {}.getType();
 
-            if(con.isConnected()){
 
                 String query = "username="+_email+"&password="+_password+"&grant_type=password";
                 String result = HttpConnection.POST("token", query);
@@ -112,33 +119,29 @@ public class ServiceExport extends Service {
                     userListResult = JsonUtil.jsonToListUsers(HttpConnection.POST("user", jsonUser));
                     leadListResult = JsonUtil.jsonToListLeads(HttpConnection.POST("lead", jsonLead, access_token));
                     commentListResult = JsonUtil.jsonToListComment(HttpConnection.POST("comment", jsonComment, access_token));
+
+                    if(userListResult != null) {
+                        for (User user : userListResult) {
+                            dataHelper.updateUsers(user);
+                        }
+                    }
+
+                    if(leadListResult != null) {
+                        for (Lead lead : leadListResult) {
+                            dataHelper.updateLeads(lead);
+                        }
+                    }
+
+                    if(commentListResult != null) {
+                        for (Comment comment : commentListResult) {
+                            dataHelper.updateComments(comment);
+                        }
+                    }
                 }catch (Exception e){
                     Toast.makeText(ServiceExport.this, "Error: "+e.getMessage(),Toast.LENGTH_LONG);
                 }
-            }
 
             return  null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            if(userListResult != null) {
-                for (User user : userListResult) {
-                    dataHelper.updateUsers(user);
-                }
-            }
-
-            if(leadListResult != null) {
-                for (Lead lead : leadListResult) {
-                    dataHelper.updateLeads(lead);
-                }
-            }
-
-            if(commentListResult != null) {
-                for (Comment comment : commentListResult) {
-                    dataHelper.updateComments(comment);
-                }
-            }
         }
     }
 
@@ -148,9 +151,11 @@ public class ServiceExport extends Service {
         private List<Lead> leadListResult = new ArrayList<>();
         private List<Comment> commentListResult = new ArrayList<>();
         private DataHelper dataHelper = new DataHelper(ServiceExport.this);
-        private Connetion con = new Connetion(ServiceExport.this);
         private String _email;
         private String _password;
+        private Type listTypeUser = new TypeToken<List<User>>() {}.getType();
+        private Type listTypeLead = new TypeToken<List<Lead>>() {}.getType();
+        private Type listTypeComment = new TypeToken<List<Comment>>() {}.getType();
 
         public AsyncUpdateWS(String email, String password){
             _email = email;
@@ -160,11 +165,6 @@ public class ServiceExport extends Service {
         @Override
         protected Void doInBackground(Void... voids) {
 
-            Type listTypeUser = new TypeToken<List<User>>() {}.getType();
-            Type listTypeLead = new TypeToken<List<Lead>>() {}.getType();
-            Type listTypeComment = new TypeToken<List<Comment>>() {}.getType();
-
-            if(con.isConnected()){
                 String query = "username="+_email+"&password="+_password+"&grant_type=password";
                 String result = HttpConnection.POST("token", query);
                 String access_token = JsonUtil.jsonValue(result, "access_token");
@@ -185,13 +185,7 @@ public class ServiceExport extends Service {
                 }catch (Exception e){
                     Toast.makeText(ServiceExport.this, "Error Update: "+e.getMessage(),Toast.LENGTH_LONG);
                 }
-            }
 
-            return  null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
             if(userListResult  != null) {
                 for (User user : userListResult)
                     dataHelper.updateUsers(user);
@@ -205,106 +199,8 @@ public class ServiceExport extends Service {
                     dataHelper.updateComments(comment);
                 }
             }
+
+            return  null;
         }
-    }
-
-    public class ServiceGets extends AsyncTask<Void, Void, Void> {
-
-        private DataHelper dataHelper;
-
-        private String _email;
-        private String _password;
-
-        private  List<User> userListResult = new ArrayList<>();
-        private  List<Lead> leadListResult = new ArrayList<>();
-        private  List<Comment> commentListResult = new ArrayList<>();
-
-        public ServiceGets(String email, String password){
-            dataHelper = new DataHelper(ServiceExport.this);
-            _email = email;
-            _password = password;
-        }
-
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            String query = "username="+_email+"&password="+_password+"&grant_type=password";
-            String result = HttpConnection.POST("token", query);
-            String access_token = JsonUtil.jsonValue(result, "access_token");
-
-            userListResult = JsonUtil.jsonToListUsers(HttpConnection.GET("user"));
-            leadListResult = JsonUtil.jsonToListLeads(HttpConnection.GET("lead",access_token));
-            commentListResult = JsonUtil.jsonToListComment(HttpConnection.GET("comment",access_token));
-
-            InsertUsersOnDb(userListResult);
-            InsertLeadsOnDb(leadListResult);
-            InsertCommentsOnDb(commentListResult);
-
-            return null;
-        }
-
-        public void  InsertUsersOnDb(List<User> userListResult){
-            DataHelper dataHelper = new DataHelper(ServiceExport.this);
-            List<User> userList = dataHelper.GetAllUsers();
-
-            if(userListResult != null || userListResult.size() != 0) {
-                if (userList.size() > 0) {
-                    for (User user : userList) {
-                        for (User us : userListResult) {
-                            if (user.getExternId() != us.getExternId()) {
-                                dataHelper.insertUsers(us);
-                            }
-                        }
-                    }
-                } else {
-                    for (User us : userListResult) {
-                        dataHelper.insertUsers(us);
-                    }
-                }
-            }
-        }
-
-        public void InsertLeadsOnDb(List<Lead> leadListResult){
-            DataHelper dataHelper = new DataHelper(ServiceExport.this);
-            List<Lead> leadList = dataHelper.GetAllLeads();
-
-            if(leadListResult != null || leadListResult.size() != 0) {
-                if (leadList.size() > 0) {
-                    for (Lead lead : leadList) {
-                        for (Lead ld : leadListResult) {
-                            if (lead.getExternId() != ld.getExternId()) {
-                                dataHelper.insertLeads(ld);
-                            }
-                        }
-                    }
-                } else {
-                    for (Lead ld : leadListResult) {
-                        dataHelper.insertLeads(ld);
-                    }
-                }
-            }
-        }
-
-        public void InsertCommentsOnDb(List<Comment> commentListResult){
-            DataHelper dataHelper = new DataHelper(ServiceExport.this);
-            List<Comment> commentList = dataHelper.GetAllComments();
-
-            if(commentListResult != null || commentListResult.size() != 0) {
-                if (commentList.size() > 0) {
-                    for (Comment user : commentList) {
-                        for (Comment cmm : commentListResult) {
-                            if (user.getExternId() != cmm.getExternId()) {
-                                dataHelper.insertComments(cmm);
-                            }
-                        }
-                    }
-                } else {
-                    for (Comment cmm : commentListResult) {
-                        dataHelper.insertComments(cmm);
-                    }
-                }
-            }
-        }
-
     }
 }

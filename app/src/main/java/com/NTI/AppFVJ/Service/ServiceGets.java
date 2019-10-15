@@ -54,17 +54,21 @@ public class ServiceGets extends AsyncTask<Void, Void, Void> {
     }
 
     public void  InsertUsersOnDb(List<User> userListResult){
+        boolean status;
         DataHelper dataHelper = new DataHelper(_context);
         List<User> userList = dataHelper.GetAllUsers();
 
         if(userListResult != null || userListResult.size() != 0) {
             if (userList.size() > 0) {
-                for (User user : userList) {
-                    for (User us : userListResult) {
-                        if (user.getExternId() != us.getExternId()) {
-                            dataHelper.insertUsers(us);
+                for (User us : userListResult) {
+                    status = true;
+                    for (User user : userList) {
+                        if (us.getExternId() == user.getExternId()) {
+                            status = false;
                         }
                     }
+                    if(status)
+                    dataHelper.insertUsers(us);
                 }
             } else {
                 for (User us : userListResult) {
@@ -75,17 +79,21 @@ public class ServiceGets extends AsyncTask<Void, Void, Void> {
     }
 
     public void InsertLeadsOnDb(List<Lead> leadListResult){
+        boolean status = true;
         DataHelper dataHelper = new DataHelper(_context);
         List<Lead> leadList = dataHelper.GetAllLeads();
 
         if(leadListResult != null || leadListResult.size() != 0) {
             if (leadList.size() > 0) {
-                for (Lead lead : leadList) {
-                    for (Lead ld : leadListResult) {
-                        if (lead.getExternId() != ld.getExternId()) {
-                            dataHelper.insertLeads(ld);
+                for (Lead ld : leadListResult) {
+                    status = true;
+                    for (Lead lead : leadList) {
+                        if (lead.getExternId() == ld.getExternId()) {
+                            status = false;
                         }
                     }
+                    if(status)
+                        dataHelper.insertLeads(ld);
                 }
             } else {
                 for (Lead ld : leadListResult) {
@@ -96,17 +104,21 @@ public class ServiceGets extends AsyncTask<Void, Void, Void> {
     }
 
     public void InsertCommentsOnDb(List<Comment> commentListResult){
+        boolean status = true;
         DataHelper dataHelper = new DataHelper(_context);
         List<Comment> commentList = dataHelper.GetAllComments();
 
         if(commentListResult != null || commentListResult.size() != 0) {
             if (commentList.size() > 0) {
-                for (Comment user : commentList) {
-                    for (Comment cmm : commentListResult) {
-                        if (user.getExternId() != cmm.getExternId()) {
-                            dataHelper.insertComments(cmm);
+                for (Comment cmm : commentListResult) {
+                    status = true;
+                    for (Comment comment : commentList) {
+                        if (comment.getExternId() == cmm.getExternId()) {
+                            status = false;
                         }
                     }
+                    if(status)
+                        dataHelper.insertComments(cmm);
                 }
             } else {
                 for (Comment cmm : commentListResult) {
