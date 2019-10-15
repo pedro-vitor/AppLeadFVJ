@@ -96,4 +96,13 @@ public abstract class MaskEditUtil {
         return false;
     }
 
+    public static String setDateFormat(String string) {
+        String[] stringsArray = string.trim().split("T");
+        String[] stringResult = new String[2];
+        stringResult[0] = stringsArray[0];
+
+        stringsArray = stringResult[0].split("-");
+        return stringsArray[2] +"/"+ stringsArray[1] +"/"+ stringsArray[0];
+    }
+
 }

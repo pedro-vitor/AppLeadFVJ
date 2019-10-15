@@ -77,10 +77,13 @@ public class ProfileActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         List<Lead> leads = dataHelper.GetByIdLeads(Integer.parseInt(getId()));
-        List<User> user = dataHelper.GetByIdUsers(MainActivity.getIduser());
+        List<User> user = dataHelper.GetByIdUsers(leads.get(0).getUserId());
+        /*for (Lead ld : leads) {
+            user
+        }*/
 
         builder.setTitle("Mais Informações");
-        builder.setMessage("Criado em: "+leads.get(0).getCreatedAt()+"\r\n"+
+        builder.setMessage("Criado em: "+MaskEditUtil.setDateFormat(leads.get(0).getCreatedAt())+"\r\n\n"+
                            "Criado por: "+user.get(0).getName());
 
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {

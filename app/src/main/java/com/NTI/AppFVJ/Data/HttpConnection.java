@@ -51,7 +51,7 @@ public class HttpConnection {
             con.setDoOutput(true);
             con.setInstanceFollowRedirects(false);
             con.setRequestMethod("POST");
-            con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            con.setRequestProperty("Content-Type", "application/json");
             con.setRequestProperty("charset", "utf-8");
             con.addRequestProperty("Authorization", "Bearer " + token);
             con.setUseCaches(false);
