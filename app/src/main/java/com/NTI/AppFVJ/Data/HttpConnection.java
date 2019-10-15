@@ -76,6 +76,69 @@ public class HttpConnection {
         }
     }
 
+    public static String PUT(String path, String json) {
+        try {
+            URL obj = new URL(URL_API + path);
+            HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+            con.setDoOutput(true);
+            con.setInstanceFollowRedirects(false);
+            con.setRequestMethod("PUT");
+            con.setRequestProperty("Content-Type", "application/json");
+            con.setRequestProperty("charset", "utf-8");
+            con.setUseCaches(false);
+            con.setDoOutput(true);
+
+            DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+            wr.writeBytes(json);
+            wr.flush();
+            wr.close();
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            return response.toString();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
+    public static String PUT(String path, String json, String token) {
+        try {
+            URL obj = new URL(URL_API + path);
+            HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+            con.setDoOutput(true);
+            con.setInstanceFollowRedirects(false);
+            con.setRequestMethod("PUT");
+            con.setRequestProperty("Content-Type", "application/json");
+            con.setRequestProperty("charset", "utf-8");
+            con.addRequestProperty("Authorization", "Bearer " + token);
+            con.setUseCaches(false);
+            con.setDoOutput(true);
+
+            DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+            wr.writeBytes(json);
+            wr.flush();
+            wr.close();
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            return response.toString();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public static String GET(String path) {
         try {
             URL uURLAddress = new URL(URL_API + path);

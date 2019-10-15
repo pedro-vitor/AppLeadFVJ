@@ -15,19 +15,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.NTI.AppFVJ.Adapter.LeadsAdapter;
 import com.NTI.AppFVJ.Data.DataHelper;
-import com.NTI.AppFVJ.Data.HttpConnection;
-import com.NTI.AppFVJ.Data.JsonUtil;
-import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
-import com.NTI.AppFVJ.Models.Comment;
 import com.NTI.AppFVJ.Models.Lead;
-import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
 import com.NTI.AppFVJ.Service.ServiceExport;
-import com.NTI.AppFVJ.Service.ServiceGets;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     private LeadsAdapter leadsadapter;
 
     private SharedPreferences sharedpreferences;
-    private SharedPreferences FirstRun;
     private SharedPreferences.Editor editor;
 
     private String email;
@@ -61,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         email = sharedpreferences.getString("email","");
         senha = sharedpreferences.getString("senha","");
         id = datahelper.login(email,senha);
+
         List = findViewById(R.id.lv_listleads);
         listLeads = datahelper.GetAllLeads();
 
@@ -80,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Intent intent = new Intent(MainActivity.this, ServiceExport.class);
-        //startService(intent);
+        Intent intent = new Intent(MainActivity.this, ServiceExport.class);
+        startService(intent);
     }
 
     public static int getIduser(){
