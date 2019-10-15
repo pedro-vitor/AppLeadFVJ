@@ -32,7 +32,6 @@ public class AlterarSenhaActivity extends AppCompatActivity {
         et_senhaAtual = findViewById(R.id.et_senhaAtual);
         et_senha = findViewById(R.id.et_senha);
         et_confirmSenha = findViewById(R.id.et_confirmSenha);
-
         user = datahelper.GetByIdUsers(id).get(0);
     }
 

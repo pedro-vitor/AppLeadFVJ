@@ -46,8 +46,8 @@ public class UpdatePeopleActivity extends AppCompatActivity {
             "Psicologia",
             "Recursos Humanos",
             "Serviço Social"};
-    private DataHelper dataHelper;
 
+    private DataHelper dataHelper;
     private int id;
 
     @Override
@@ -201,9 +201,7 @@ public class UpdatePeopleActivity extends AppCompatActivity {
 
             Lead lead = new Lead();
             lead.setId(id);
-
             lead.setUserId(lead_r.getUserId());
-
             lead.setName(name_upcase);
             lead.setEmail(et_email.getText().toString().trim());
             lead.setNumberPhone(MaskEditUtil.unmask(et_telefone.getText().toString().trim()));
