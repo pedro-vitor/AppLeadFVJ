@@ -417,12 +417,10 @@ public class DataHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-        if(cursor.getCount() > 0){
-            while (cursor.moveToNext())
+        if(cursor.getCount() > 0)
+            cursor.moveToFirst();
                 id = cursor.getInt(cursor.getColumnIndex(KEY_ID_USERS));
             return id;
-        }
-        return 0;
     }
 
     public List<User> GetByUpdatedUsers(){

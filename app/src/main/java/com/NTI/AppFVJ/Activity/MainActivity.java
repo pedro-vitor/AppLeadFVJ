@@ -56,16 +56,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sharedpreferences = getSharedPreferences("user_preference", MODE_PRIVATE);
+        datahelper = new DataHelper(this);
 
         email = sharedpreferences.getString("email","");
         senha = sharedpreferences.getString("senha","");
         id = datahelper.login(email,senha);
-
-
-
         List = findViewById(R.id.lv_listleads);
-
-        datahelper = new DataHelper(this);
         listLeads = datahelper.GetAllLeads();
 
         leadsadapter = new LeadsAdapter(this, listLeads);
