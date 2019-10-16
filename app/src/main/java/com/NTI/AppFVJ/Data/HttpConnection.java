@@ -1,9 +1,12 @@
 package com.NTI.AppFVJ.Data;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -57,21 +60,29 @@ public class HttpConnection {
             con.setUseCaches(false);
             con.setDoOutput(true);
 
-            DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-            wr.writeBytes(json);
-            wr.flush();
-            wr.close();
+            //Write
+            OutputStream outputStream = con.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            writer.write(json);
+            writer.close();
+            outputStream.close();
 
-            InputStreamReader aa = new InputStreamReader(con.getInputStream());
-            BufferedReader in = new BufferedReader(aa);
-            String inputLine;
-            StringBuilder response = new StringBuilder();
+            int responseCode = con.getResponseCode();
+            if (responseCode == 200) {
+                //Read
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+                String inputLine;
+                StringBuilder response = new StringBuilder();
 
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-            return response.toString();
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                return response.toString();
+            } else if (responseCode == 400 || responseCode == 401) {
+                return "Erro de autenticação.";
+            } else
+                return null;
         } catch (Exception e) {
             return null;
         }
