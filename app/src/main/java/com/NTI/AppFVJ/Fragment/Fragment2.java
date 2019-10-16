@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -48,7 +47,6 @@ public class Fragment2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_fragment2, container, false);
-
 
         id = Integer.parseInt(ProfileActivity.getId());
 
@@ -125,8 +123,7 @@ public class Fragment2 extends Fragment {
 
         builder.setTitle("Comentário");
         for (Comment comment:commentsList) {
-            mensagem = "Postado em: " + comment.getCreatedAt() + " \n \n "
-                              +comment.getText();
+            mensagem = "Postado em: " + comment.getCreatedAt() + " \n \n "+comment.getText();
         }
         builder.setMessage(mensagem);
 
@@ -134,6 +131,30 @@ public class Fragment2 extends Fragment {
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        builder.setNegativeButton("Deletar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setTitle("Deletar comentário?");
+                builder.setMessage("Tem certeza que deseja deletar este comentário?");
+
+                builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // Realize DELETE method
+                    }
+                });
+                builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // Cancelar delete
+                    }
+                });
+                alert = builder.create();
+                alert.show();
             }
         });
 

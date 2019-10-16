@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,11 +13,7 @@ import com.NTI.AppFVJ.Data.DataHelper;
 import com.NTI.AppFVJ.Data.HttpConnection;
 import com.NTI.AppFVJ.Data.JsonUtil;
 import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
-import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
-import com.google.gson.Gson;
-
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText et_email, et_senha;
@@ -81,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (FirstRun.getBoolean("firstRun", true)) {
                         FirstRun.edit().putBoolean("firstRun", false).apply();
-                        intent = new Intent(LoginActivity.this, ScreenLodingActivity.class);
+                        intent = new Intent(LoginActivity.this, ScreenLoadingActivity.class);
                     }else {
                         intent = new Intent(LoginActivity.this, MainActivity.class);
                     }

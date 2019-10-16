@@ -2,7 +2,6 @@ package com.NTI.AppFVJ.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -16,12 +15,11 @@ import com.NTI.AppFVJ.Models.Comment;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
-import com.NTI.AppFVJ.Service.ServiceGets;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScreenLodingActivity extends AppCompatActivity {
+public class ScreenLoadingActivity extends AppCompatActivity {
 
     private SharedPreferences sharedpreferences;
     private SharedPreferences FirstRun;
@@ -40,20 +38,20 @@ public class ScreenLodingActivity extends AppCompatActivity {
         email = sharedpreferences.getString("email","");
         senha = sharedpreferences.getString("senha","");
 
-        Loding loding = new Loding(email,senha);
-        loding.execute();
+        Loading loading = new Loading(email,senha);
+        loading.execute();
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent act = new Intent(ScreenLodingActivity.this,MainActivity.class);
+                Intent act = new Intent(ScreenLoadingActivity.this,MainActivity.class);
                 startActivity(act);
                 finish();
             }
         },TIME_OUT);
     }
 
-    private class Loding extends AsyncTask<Void, Void, Void>{
+    private class Loading extends AsyncTask<Void, Void, Void>{
         private DataHelper dataHelper;
 
         private String _email;
@@ -63,8 +61,8 @@ public class ScreenLodingActivity extends AppCompatActivity {
         private  List<Lead> leadListResult = new ArrayList<>();
         private  List<Comment> commentListResult = new ArrayList<>();
 
-        public Loding(String email, String password){
-            dataHelper = new DataHelper(ScreenLodingActivity.this);
+        public Loading(String email, String password){
+            dataHelper = new DataHelper(ScreenLoadingActivity.this);
             _email = email;
             _password = password;
         }

@@ -96,7 +96,6 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this,"Informe um Email valido", Toast.LENGTH_SHORT).show();
         }
         else {
-
             try{
                 insertRequest();
                 Toast.makeText(RegisterActivity.this, "Usuário inserido com sucesso",Toast.LENGTH_SHORT).show();
