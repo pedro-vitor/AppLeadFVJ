@@ -135,13 +135,16 @@ public class RegisterPeopleActivity extends AppCompatActivity {
 
                 Lead lead = new Lead();
                 lead.setUserId(MainActivity.getIduser());
+                lead.setExternId(0);
                 lead.setName(name_upcase);
                 lead.setEmail(et_email.getText().toString().trim());
                 lead.setNumberPhone(MaskEditUtil.unmask(et_telefone.getText().toString().trim()));
                 lead.setDesiredCourse(sp_curso.getSelectedItem().toString());
                 lead.setTown(town);
                 lead.setAddress(et_endereco.getText().toString().trim());
-                lead.setCreatedAt(GetCurrentTime("yyyy-MM-dd HH:mm:ss"));
+                lead.setActive(1);
+                lead.setCreatedAt(GetCurrentTime("yyyy-MM-dd") + "T" + GetCurrentTime("HH:mm:ss"));
+                lead.setUpdated(0);
 
                 if(dataHelper.insertLeads(lead) > 0){
 

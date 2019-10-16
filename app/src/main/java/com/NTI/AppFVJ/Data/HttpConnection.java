@@ -62,7 +62,8 @@ public class HttpConnection {
             wr.flush();
             wr.close();
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            InputStreamReader aa = new InputStreamReader(con.getInputStream());
+            BufferedReader in = new BufferedReader(aa);
             String inputLine;
             StringBuilder response = new StringBuilder();
 

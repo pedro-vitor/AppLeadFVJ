@@ -119,26 +119,26 @@ public class ServiceExport extends Service{
                     userListResult = JsonUtil.jsonToListUsers(HttpConnection.POST("user", jsonUser));
                     leadListResult = JsonUtil.jsonToListLeads(HttpConnection.POST("lead", jsonLead, access_token));
                     commentListResult = JsonUtil.jsonToListComment(HttpConnection.POST("comment", jsonComment, access_token));
-
-                    if(userListResult != null) {
-                        for (User user : userListResult) {
-                            dataHelper.updateUsers(user);
-                        }
-                    }
-
-                    if(leadListResult != null) {
-                        for (Lead lead : leadListResult) {
-                            dataHelper.updateLeads(lead);
-                        }
-                    }
-
-                    if(commentListResult != null) {
-                        for (Comment comment : commentListResult) {
-                            dataHelper.updateComments(comment);
-                        }
-                    }
                 }catch (Exception e){
                     Toast.makeText(ServiceExport.this, "Error: "+e.getMessage(),Toast.LENGTH_LONG);
+                }
+
+                if(userListResult != null) {
+                    for (User user : userListResult) {
+                        dataHelper.updateUsers(user);
+                    }
+                }
+
+                if(leadListResult != null) {
+                    for (Lead lead : leadListResult) {
+                        dataHelper.updateLeads(lead);
+                    }
+                }
+
+                if(commentListResult != null) {
+                    for (Comment comment : commentListResult) {
+                        dataHelper.updateComments(comment);
+                    }
                 }
 
             return  null;
@@ -186,20 +186,19 @@ public class ServiceExport extends Service{
                     Toast.makeText(ServiceExport.this, "Error Update: "+e.getMessage(),Toast.LENGTH_LONG);
                 }
 
-            if(userListResult  != null) {
-                for (User user : userListResult)
-                    dataHelper.updateUsers(user);
-            }
-            if(leadListResult != null) {
-                for (Lead lead : leadListResult)
-                    dataHelper.updateLeads(lead);
-            }
-            if(commentListResult != null) {
-                for (Comment comment : commentListResult) {
-                    dataHelper.updateComments(comment);
+                if(userListResult  != null) {
+                    for (User user : userListResult)
+                        dataHelper.updateUsers(user);
                 }
-            }
-
+                if(leadListResult != null) {
+                    for (Lead lead : leadListResult)
+                        dataHelper.updateLeads(lead);
+                }
+                if(commentListResult != null) {
+                    for (Comment comment : commentListResult) {
+                        dataHelper.updateComments(comment);
+                    }
+                }
             return  null;
         }
     }

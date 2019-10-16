@@ -124,7 +124,6 @@ public class UpdatePeopleActivity extends AppCompatActivity {
             et_nome.setText(lead.getName());
             et_email.setText(lead.getEmail());
             et_telefone.setText(lead.getNumberPhone());
-Toast.makeText(this, lead.getDesiredCourse(), Toast.LENGTH_SHORT).show();
             switch (lead.getDesiredCourse()) {
                 case "Administração":
                     sp_curso.setSelection(1);
@@ -209,6 +208,7 @@ Toast.makeText(this, lead.getDesiredCourse(), Toast.LENGTH_SHORT).show();
             lead.setTown(town);
             lead.setAddress(et_endereco.getText().toString().trim());
             lead.setCreatedAt(tv_createdat.getText().toString());
+            lead.setActive(1);
             lead.setUpdated(1);
 
             if (dataHelper.updateLeads(lead) > 0) {
