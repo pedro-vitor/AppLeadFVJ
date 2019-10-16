@@ -460,8 +460,26 @@ public class DataHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(Query, null);
 
         if(cursor.moveToFirst()) {
-            while (cursor.moveToNext()) {
+            if(cursor.getCount() > 1) {
+                while (cursor.moveToNext()) {
 
+                    Lead lead = new Lead();
+                    lead.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_LEADS)));
+                    lead.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_LEADS)));
+                    lead.setUserId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_LEADS)));
+                    lead.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME_LEADS)));
+                    lead.setEmail(cursor.getString(cursor.getColumnIndex(KEY_EMAIL_LEADS)));
+                    lead.setNumberPhone(cursor.getString(cursor.getColumnIndex(KEY_NUMBER_PHONE_LEADS)));
+                    lead.setDesiredCourse(cursor.getString(cursor.getColumnIndex(KEY_DESIRED_COURSE_LEADS)));
+                    lead.setTown(cursor.getString(cursor.getColumnIndex(KEY_TOWN_LEADS)));
+                    lead.setAddress(cursor.getString(cursor.getColumnIndex(KEY_ADDRESS_LEADS)));
+                    lead.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_LEADS)));
+                    lead.setActive(cursor.getInt(cursor.getColumnIndex(KEY_ACTIVE_LEADS)));
+                    lead.setUpdated(cursor.getInt(cursor.getColumnIndex(KEY_UPDATED_LEADS)));
+
+                    leads.add(lead);
+                }
+            }else {
                 Lead lead = new Lead();
                 lead.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_LEADS)));
                 lead.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_LEADS)));

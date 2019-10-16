@@ -16,44 +16,53 @@ public class HttpConnection {
 
     public static final String URL_API = "https://portal.fvj.br/APIs/Lead/api/";
 
-    public static String POST(String path, String json) {
+    public static String SETDATAS(String path,String method, String json) {
         try {
             URL obj = new URL(URL_API + path);
             HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
             con.setDoOutput(true);
             con.setInstanceFollowRedirects(false);
-            con.setRequestMethod("POST");
+            con.setRequestMethod(method);
             con.setRequestProperty("Content-Type", "application/json");
             con.setRequestProperty("charset", "utf-8");
             con.setUseCaches(false);
             con.setDoOutput(true);
 
-            DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-            wr.writeBytes(json);
-            wr.flush();
-            wr.close();
+            //Write
+            OutputStream outputStream = con.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            writer.write(json);
+            writer.close();
+            outputStream.close();
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
+            int responseCode = con.getResponseCode();
+            if (responseCode == 200) {
+                //Read
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+                String inputLine;
+                StringBuilder response = new StringBuilder();
 
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-            return response.toString();
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                return response.toString();
+            } else if (responseCode == 400 || responseCode == 401) {
+                return "Erro de autenticação.";
+            } else
+                return null;
         } catch (Exception e) {
-            return e.getMessage();
+            return null;
         }
     }
 
-    public static String POST(String path, String json, String token) {
+    public static String SETDATAS(String path, String json,String method, String token) {
         try {
             URL obj = new URL(URL_API + path);
             HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
             con.setDoOutput(true);
             con.setInstanceFollowRedirects(false);
-            con.setRequestMethod("POST");
+            con.setRequestMethod(method);
             con.setRequestProperty("Content-Type", "application/json");
             con.setRequestProperty("charset", "utf-8");
             con.addRequestProperty("Authorization", "Bearer " + token);
@@ -87,70 +96,6 @@ public class HttpConnection {
             return null;
         }
     }
-
-    public static String PUT(String path, String json) {
-        try {
-            URL obj = new URL(URL_API + path);
-            HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
-            con.setDoOutput(true);
-            con.setInstanceFollowRedirects(false);
-            con.setRequestMethod("PUT");
-            con.setRequestProperty("Content-Type", "application/json");
-            con.setRequestProperty("charset", "utf-8");
-            con.setUseCaches(false);
-            con.setDoOutput(true);
-
-            DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-            wr.writeBytes(json);
-            wr.flush();
-            wr.close();
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-            return response.toString();
-        } catch (Exception e) {
-            return e.getMessage();
-        }
-    }
-
-    public static String PUT(String path, String json, String token) {
-        try {
-            URL obj = new URL(URL_API + path);
-            HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
-            con.setDoOutput(true);
-            con.setInstanceFollowRedirects(false);
-            con.setRequestMethod("PUT");
-            con.setRequestProperty("Content-Type", "application/json");
-            con.setRequestProperty("charset", "utf-8");
-            con.addRequestProperty("Authorization", "Bearer " + token);
-            con.setUseCaches(false);
-            con.setDoOutput(true);
-
-            DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-            wr.writeBytes(json);
-            wr.flush();
-            wr.close();
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-            return response.toString();
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
     public static String GET(String path) {
         try {
             URL uURLAddress = new URL(URL_API + path);

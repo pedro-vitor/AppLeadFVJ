@@ -21,8 +21,6 @@ import com.NTI.AppFVJ.Data.DataHelper;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
 import com.NTI.AppFVJ.Service.ServiceExport;
-import com.NTI.AppFVJ.Service.ServiceGets;
-import com.NTI.AppFVJ.Service.teste;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Intent intent = new Intent(MainActivity.this, ServiceExport.class);
-        //startService(intent);
+        Intent intent = new Intent(MainActivity.this, ServiceExport.class);
+        startService(intent);
     }
 
     public static int getIduser(){
@@ -100,9 +98,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;
-            case R.id.Syn:
-                teste teste = new teste(this, email, senha);
-                teste.run();
         }
         return super.onOptionsItemSelected(item);
     }

@@ -1,11 +1,8 @@
 package com.NTI.AppFVJ.Service;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 
-import com.NTI.AppFVJ.Activity.MainActivity;
 import com.NTI.AppFVJ.Data.DataHelper;
 import com.NTI.AppFVJ.Data.HttpConnection;
 import com.NTI.AppFVJ.Data.JsonUtil;
@@ -39,7 +36,7 @@ public class ServiceGets extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... voids) {
         String query = "username="+_email+"&password="+_password+"&grant_type=password";
-        String result = HttpConnection.POST("token", query);
+        String result = HttpConnection.SETDATAS("token","POST", query);
         String access_token = JsonUtil.jsonValue(result, "access_token");
 
         userListResult = JsonUtil.jsonToListUsers(HttpConnection.GET("user"));

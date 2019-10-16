@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                String result = HttpConnection.POST("token", query);
+                String result = HttpConnection.SETDATAS("token","POST", query);
                 access_token = JsonUtil.jsonValue(result, "access_token");
                 Intent intent;
 
