@@ -20,6 +20,7 @@ public class ServiceGets extends AsyncTask<Void, Void, Void> {
 
     private String _email;
     private String _password;
+    private Connetion _connetion;
 
     private static List<User> userListResult = new ArrayList<>();
     private static List<Lead> leadListResult = new ArrayList<>();
@@ -30,23 +31,25 @@ public class ServiceGets extends AsyncTask<Void, Void, Void> {
         dataHelper = new DataHelper(_context);
         _email = email;
         _password = password;
+        _connetion = new Connetion(_context);
     }
 
 
     @Override
     protected Void doInBackground(Void... voids) {
-        String query = "username="+_email+"&password="+_password+"&grant_type=password";
-        String result = HttpConnection.SETDATAS("token","POST", query);
-        String access_token = JsonUtil.jsonValue(result, "access_token");
+        if(_connetion.isConnected()) {
+            String query = "username=" + _email + "&password=" + _password + "&grant_type=password";
+            String result = HttpConnection.SETDATAS("token", "POST", query);
+            String access_token = JsonUtil.jsonValue(result, "access_token");
 
-        userListResult = JsonUtil.jsonToListUsers(HttpConnection.GET("user"));
-        leadListResult = JsonUtil.jsonToListLeads(HttpConnection.GET("lead",access_token));
-        commentListResult = JsonUtil.jsonToListComment(HttpConnection.GET("comment",access_token));
+            userListResult = JsonUtil.jsonToListUsers(HttpConnection.GET("user"));
+            leadListResult = JsonUtil.jsonToListLeads(HttpConnection.GET("lead", access_token));
+            commentListResult = JsonUtil.jsonToListComment(HttpConnection.GET("comment", access_token));
 
-        InsertUsersOnDb(userListResult);
-        InsertLeadsOnDb(leadListResult);
-        InsertCommentsOnDb(commentListResult);
-
+            InsertUsersOnDb(userListResult);
+            InsertLeadsOnDb(leadListResult);
+            InsertCommentsOnDb(commentListResult);
+        }
         return null;
     }
 
@@ -124,5 +127,4 @@ public class ServiceGets extends AsyncTask<Void, Void, Void> {
             }
         }
     }
-
 }
