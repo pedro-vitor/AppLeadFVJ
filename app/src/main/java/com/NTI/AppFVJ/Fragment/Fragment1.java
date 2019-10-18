@@ -1,5 +1,6 @@
 package com.NTI.AppFVJ.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,15 +16,13 @@ import com.NTI.AppFVJ.Activity.MainActivity;
 import com.NTI.AppFVJ.Activity.ProfileActivity;
 
 import com.NTI.AppFVJ.Data.DataHelper;
-import com.NTI.AppFVJ.Data.HttpConnection;
 import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
-import com.google.gson.Gson;
 
 import java.util.List;
 
-public class Fragment1 extends Fragment implements Toolbar.OnMenuItemClickListener {
+public class Fragment1 extends Fragment {
     private View view;
 
     private int id;
@@ -51,26 +50,6 @@ public class Fragment1 extends Fragment implements Toolbar.OnMenuItemClickListen
 
         DataLeads();
         return view;
-    }
-
-    @Override
-    public boolean onMenuItemClick(MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-            case R.id.delete:
-                DeleteLead();
-                return true;
-        }
-        return false;
-    }
-
-    private void DeleteLead() {
-        Lead lead = datahelper.GetByIdLeads(id).get(0);
-        lead.setActive(0);
-
-        Gson gson = new Gson();
-        String jsonLead = gson.toJson(lead);
-
-        String result = HttpConnection.SETDATAS("lead", "DELETE", jsonLead);
     }
 
     private void DataLeads(){

@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                 search_result_arraylist.clear();
                 keyword = query.toUpperCase();
 
-                for(int i = 0 ; i < listLeads.size(); i++){
+                for (int i = 0 ; i < listLeads.size(); i++){
                     if(listLeads.get(i).getName().toUpperCase().contains(keyword)) {
                         search_result_arraylist.add(listLeads.get(i));
                     }

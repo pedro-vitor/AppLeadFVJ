@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.NTI.AppFVJ.Data.DataHelper;
+import com.NTI.AppFVJ.Data.HttpConnection;
 import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.Models.User;
@@ -20,13 +21,12 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.NTI.AppFVJ.ui.main.SectionsPagerAdapter;
+import com.google.gson.Gson;
 
 import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
     private static Intent intent;
-    public static boolean delete = false;
-
     private DataHelper dataHelper;
 
     private AlertDialog alert;
@@ -60,12 +60,33 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent2);
                 break;
             case R.id.delete:
+                DeleteLead();
                 break;
             case R.id.more:
                 dialogAlert();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void DeleteLead() {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int id;
+                id = Integer.parseInt(intent.getStringExtra("id"));
+                Lead lead = dataHelper.GetByIdLeads(id).get(0);
+                lead.setActive(0);
+
+                Gson gson = new Gson();
+                String jsonLead = gson.toJson(lead);
+
+                String result = HttpConnection.SETDATAS("lead", "DELETE", jsonLead);
+
+                startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+            }
+        });
+        thread.start();
     }
 
     @Override
