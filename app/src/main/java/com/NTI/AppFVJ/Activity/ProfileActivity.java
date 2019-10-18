@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.NTI.AppFVJ.Data.DataHelper;
 import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
@@ -26,6 +25,7 @@ import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
     private static Intent intent;
+    public static boolean delete = false;
 
     private DataHelper dataHelper;
 
@@ -56,8 +56,10 @@ public class ProfileActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.update:
                 Intent intent2 = new Intent(this, UpdatePeopleActivity.class);
-                intent2.putExtra("Id",intent.getStringExtra("id"));
+                intent2.putExtra("Id", intent.getStringExtra("id"));
                 startActivity(intent2);
+                break;
+            case R.id.delete:
                 break;
             case R.id.more:
                 dialogAlert();

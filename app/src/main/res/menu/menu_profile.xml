@@ -7,6 +7,9 @@
         android:icon="@drawable/edit"
         app:showAsAction="collapseActionView|always"/>
     <item
+        android:id="@+id/delete"
+        android:title="Excluir"/>
+    <item
         android:id="@+id/more"
         android:title="Mais Informações" />
 </menu>
