@@ -1,7 +1,7 @@
 package com.NTI.AppFVJ.Service;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -19,14 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class teste {
-
-    private String  _email;
-    private String  _password;
-    private Context _context;
     private List<User> userListResult = new ArrayList<>();
     private List<Lead> leadListResult = new ArrayList<>();
     private List<Comment> commentListResult = new ArrayList<>();
     private DataHelper dataHelper;
+    private String _email;
+    private String _password;
+    private Context _context;
 
     public teste(Context context, String email, String password){
         _context = context;
@@ -36,62 +35,7 @@ public class teste {
     }
 
     public void run(){
-        /*AsyncUpdateWS bb = new AsyncUpdateWS(_email,_password);
-        bb.execute();*/
-        /*AsyncInsertWS asyncInsertWS = new AsyncInsertWS (_email,_password);
-        asyncInsertWS.execute();*/
-        /*ServiceGets aa = new ServiceGets(_context,_email,_password);
-        aa.execute();*/
-
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Type listTypeUser = new TypeToken<List<User>>() {}.getType();
-                Type listTypeLead = new TypeToken<List<Lead>>() {}.getType();
-                Type listTypeComment = new TypeToken<List<Comment>>() {}.getType();
-
-
-                String query = "username="+_email+"&password="+_password+"&grant_type=password";
-                String result = HttpConnection.POST("token", query);
-                String access_token = JsonUtil.jsonValue(result, "access_token");
-
-                List<User> userList = dataHelper.GetByCreatedUsers();
-                List<Lead> leadList = dataHelper.GetByCreatedLeads();
-                List<Comment> commentList = dataHelper.GetByCreatedComments();
-
-                Gson gson = new Gson();
-                String jsonUser = gson.toJson(userList, listTypeUser);
-                String jsonLead = gson.toJson(leadList, listTypeLead);
-                String jsonComment = gson.toJson(commentList, listTypeComment);
-
-                try {
-                    userListResult = JsonUtil.jsonToListUsers(HttpConnection.POST("user", jsonUser));
-                    leadListResult = JsonUtil.jsonToListLeads(HttpConnection.POST("lead", jsonLead, access_token));
-                    commentListResult = JsonUtil.jsonToListComment(HttpConnection.POST("comment", jsonComment, access_token));
-                }catch (Exception e){
-                    Toast.makeText(_context, "Error: "+e.getMessage(),Toast.LENGTH_LONG);
-                }
-
-                if(userListResult != null) {
-                    for (User user : userListResult) {
-                        dataHelper.updateUsers(user);
-                    }
-                }
-
-                if(leadListResult.size() > 0) {
-                    for (Lead lead : leadListResult) {
-                        dataHelper.updateLeads(lead);
-                    }
-                }
-
-                if(commentListResult != null) {
-                    for (Comment comment : commentListResult) {
-                        dataHelper.updateComments(comment);
-                    }
-                }
-            }
-        });
-        thread.start();
+        new AsyncInsertWS(_email,_password).execute();
     }
 
 
@@ -103,22 +47,27 @@ public class teste {
         private DataHelper dataHelper = new DataHelper(_context);
         private String _email;
         private String _password;
+        private Connetion _connetion;
+        private int _AllRight = 0;
 
         public AsyncInsertWS(String email, String password){
             _email = email;
             _password = password;
+            _connetion = new Connetion(_context);
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
 
-            Type listTypeUser = new TypeToken<List<User>>() {}.getType();
-            Type listTypeLead = new TypeToken<List<Lead>>() {}.getType();
-            Type listTypeComment = new TypeToken<List<Comment>>() {}.getType();
+            Type listTypeUser = new TypeToken<List<User>>() {
+            }.getType();
+            Type listTypeLead = new TypeToken<List<Lead>>() {
+            }.getType();
+            Type listTypeComment = new TypeToken<List<Comment>>() {
+            }.getType();
 
-
-            String query = "username="+_email+"&password="+_password+"&grant_type=password";
-            String result = HttpConnection.POST("token", query);
+            String query = "username=" + _email + "&password=" + _password + "&grant_type=password";
+            String result = HttpConnection.SETDATAS("token", "POST", query);
             String access_token = JsonUtil.jsonValue(result, "access_token");
 
             List<User> userList = dataHelper.GetByCreatedUsers();
@@ -130,91 +79,41 @@ public class teste {
             String jsonLead = gson.toJson(leadList, listTypeLead);
             String jsonComment = gson.toJson(commentList, listTypeComment);
 
-            try {
-                userListResult = JsonUtil.jsonToListUsers(HttpConnection.POST("user", jsonUser));
-                leadListResult = JsonUtil.jsonToListLeads(HttpConnection.POST("lead", jsonLead, access_token));
-                commentListResult = JsonUtil.jsonToListComment(HttpConnection.POST("comment", jsonComment, access_token));
-            }catch (Exception e){
-                Toast.makeText(_context, "Error: "+e.getMessage(),Toast.LENGTH_LONG);
-            }
-
-            if(userListResult != null) {
-                for (User user : userListResult) {
-                    dataHelper.updateUsers(user);
+            if (_connetion.isConnected()) {
+                try {
+                    userListResult = JsonUtil.jsonToListUsers(HttpConnection.SETDATAS("user", "POST", jsonUser));
+                    leadListResult = JsonUtil.jsonToListLeads(HttpConnection.SETDATAS("lead", jsonLead, "POST", access_token));
+                    commentListResult = JsonUtil.jsonToListComment(HttpConnection.SETDATAS("comment", jsonComment, "POST", access_token));
+                } catch (Exception e) {
+                    Toast.makeText(_context, "Error: " + e.getMessage(), Toast.LENGTH_LONG);
                 }
-            }
 
-            if(leadListResult.size() > 0) {
-                for (Lead lead : leadListResult) {
-                    dataHelper.updateLeads(lead);
+                if (userListResult != null) {
+                    for (User user : userListResult) {
+                        dataHelper.updateUsers(user);
+                    }
                 }
-            }
 
-            if(commentListResult != null) {
-                for (Comment comment : commentListResult) {
-                    dataHelper.updateComments(comment);
+                if (leadListResult.size() > 0) {
+                    for (Lead lead : leadListResult) {
+                        dataHelper.updateLeads(lead);
+                    }
+                }
+
+                if (commentListResult != null) {
+                    for (Comment comment : commentListResult) {
+                        dataHelper.updateComments(comment);
+                    }
                 }
             }
 
             return  null;
-        }
-    }
-
-    private class AsyncUpdateWS extends AsyncTask<Void, Void, Void>{
-
-        private List<User> userListResult = new ArrayList<>();
-        private List<Lead> leadListResult = new ArrayList<>();
-        private List<Comment> commentListResult = new ArrayList<>();
-        private DataHelper dataHelper = new DataHelper(_context);
-        private String _email;
-        private String _password;
-        private Type listTypeUser = new TypeToken<List<User>>() {}.getType();
-        private Type listTypeLead = new TypeToken<List<Lead>>() {}.getType();
-        private Type listTypeComment = new TypeToken<List<Comment>>() {}.getType();
-
-        public AsyncUpdateWS(String email, String password){
-            _email = email;
-            _password = password;
         }
 
         @Override
-        protected Void doInBackground(Void... voids) {
-
-            String query = "username="+_email+"&password="+_password+"&grant_type=password";
-            String result = HttpConnection.POST("token", query);
-            String access_token = JsonUtil.jsonValue(result, "access_token");
-
-            List<User> userList = dataHelper.GetByUpdatedUsers();
-            List<Lead> leadList = dataHelper.GetByUpdatedLeads();
-            List<Comment> commentList = dataHelper.GetByUpdatedComments();
-
-            Gson gson = new Gson();
-            String jsonUser = gson.toJson(userList, listTypeUser);
-            String jsonLead = gson.toJson(leadList, listTypeLead);
-            String jsonComment = gson.toJson(commentList, listTypeComment);
-
-            try {
-                userListResult = JsonUtil.jsonToListUsers(HttpConnection.PUT("user", jsonUser));
-                leadListResult = JsonUtil.jsonToListLeads(HttpConnection.PUT("lead", jsonLead, access_token));
-                commentListResult = JsonUtil.jsonToListComment(HttpConnection.PUT("comment", jsonComment,access_token));
-            }catch (Exception e){
-                Toast.makeText(_context, "Error Update: "+e.getMessage(),Toast.LENGTH_LONG);
-            }
-
-            if(userListResult  != null) {
-                for (User user : userListResult)
-                    dataHelper.updateUsers(user);
-            }
-            if(leadListResult != null) {
-                for (Lead lead : leadListResult)
-                    dataHelper.updateLeads(lead);
-            }
-            if(commentListResult != null) {
-                for (Comment comment : commentListResult) {
-                    dataHelper.updateComments(comment);
-                }
-            }
-            return  null;
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Toast.makeText(_context, "All right", Toast.LENGTH_SHORT).show();
         }
     }
 }

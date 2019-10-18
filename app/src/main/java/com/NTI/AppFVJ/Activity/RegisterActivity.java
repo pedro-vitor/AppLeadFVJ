@@ -66,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 Gson gson = new Gson();
                 String jsonUser = gson.toJson(userList, listTypeUser);
-                userListResult = JsonUtil.jsonToListUsers(HttpConnection.POST("user", jsonUser));
+                userListResult = JsonUtil.jsonToListUsers(HttpConnection.SETDATAS("user","POST", jsonUser));
 
                 for (User usr : userListResult) {
                     datahelper.insertUsers(usr);

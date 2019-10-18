@@ -7,14 +7,14 @@ import android.net.NetworkInfo;
 
 public class Connetion {
 
-    private Context context;
+    private static Context _context;
 
     public Connetion(Context context){
-        context = context;
+        _context = context;
     }
 
-    public boolean isConnected() {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public static boolean isConnected() {
+        ConnectivityManager cm = (ConnectivityManager) _context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         if ( cm != null ) {
             NetworkInfo ni = cm.getActiveNetworkInfo();
@@ -24,4 +24,14 @@ public class Connetion {
 
         return false;
     }
+
+    /*public boolean verificaConexao() {
+        boolean conectado;
+        ConnectivityManager conectivtyManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (conectivtyManager.getActiveNetworkInfo() != null && conectivtyManager.getActiveNetworkInfo().isAvailable() && conectivtyManager.getActiveNetworkInfo().isConnected()) {
+            conectado = true;
+        } else {
+            conectado = false;
+        } return conectado;
+    }*/
 }

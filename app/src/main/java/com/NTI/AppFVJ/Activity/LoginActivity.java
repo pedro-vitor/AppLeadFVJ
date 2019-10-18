@@ -1,7 +1,9 @@
 package com.NTI.AppFVJ.Activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,6 +17,9 @@ import com.NTI.AppFVJ.Data.JsonUtil;
 import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.R;
 
+import com.NTI.AppFVJ.Service.Connetion;
+
+
 public class LoginActivity extends AppCompatActivity {
     private EditText et_email, et_senha;
 
@@ -23,6 +28,8 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences sharedpreferences;
     private SharedPreferences.Editor editor;
     private SharedPreferences FirstRun;
+    private Connetion _connetion;
+    private AlertDialog alert;
 
     private String email;
     private String senha;
@@ -34,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
         sharedpreferences = getSharedPreferences("user_preference", MODE_PRIVATE);
         FirstRun = getSharedPreferences("firstRun", MODE_PRIVATE);
+        _connetion = new Connetion(this);
 
         if (sharedpreferences.contains("logged")) {
             Intent intent = new Intent(this, MainActivity.class);
@@ -62,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                String result = HttpConnection.POST("token", query);
+                String result = HttpConnection.SETDATAS("token","POST", query);
                 access_token = JsonUtil.jsonValue(result, "access_token");
                 Intent intent;
 
@@ -98,8 +106,28 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Email invalido", Toast.LENGTH_SHORT).show();
         }
         else {
-            LoginRequest("username="+et_email.getText().toString()+"&password="+et_senha.getText().toString()+"&grant_type=password",et_email.getText().toString(),et_senha.getText().toString());
-
+            if(!_connetion.isConnected()) {
+                dialogAlert();
+                et_senha.setText("");
+            }else
+                LoginRequest("username=" + et_email.getText().toString() + "&password=" + et_senha.getText().toString() + "&grant_type=password", et_email.getText().toString(), et_senha.getText().toString());
         }
+    }
+
+    private void dialogAlert(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Sem Conexão");
+        builder.setMessage("Conecte-se a internet para fazer login");
+
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+        alert = builder.create();
+        alert.show();
     }
 }

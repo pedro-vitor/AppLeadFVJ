@@ -1,20 +1,29 @@
 package com.NTI.AppFVJ.Activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.DialogInterface;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
 
 import com.NTI.AppFVJ.Data.DataHelper;
 import com.NTI.AppFVJ.Data.HttpConnection;
 import com.NTI.AppFVJ.Data.JsonUtil;
+import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.Comment;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
+
+import com.NTI.AppFVJ.Service.Connetion;
+import com.NTI.AppFVJ.Service.ServiceGets;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +31,7 @@ import java.util.List;
 public class ScreenLoadingActivity extends AppCompatActivity {
 
     private SharedPreferences sharedpreferences;
+    private SharedPreferences.Editor editor;
     private SharedPreferences FirstRun;
     private String email;
     private String senha;
@@ -41,14 +51,19 @@ public class ScreenLoadingActivity extends AppCompatActivity {
         Loading loading = new Loading(email,senha);
         loading.execute();
 
+        Loading loding = new Loading(email, senha);
+        loading.execute();
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent act = new Intent(ScreenLoadingActivity.this,MainActivity.class);
+
+                Intent act = new Intent(ScreenLoadingActivity.this, MainActivity.class);
+
                 startActivity(act);
                 finish();
             }
-        },TIME_OUT);
+        }, TIME_OUT);
     }
 
     private class Loading extends AsyncTask<Void, Void, Void>{
@@ -70,18 +85,17 @@ public class ScreenLoadingActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            String query = "username="+_email+"&password="+_password+"&grant_type=password";
-            String result = HttpConnection.POST("token", query);
-            String access_token = JsonUtil.jsonValue(result, "access_token");
+                String query = "username=" + _email + "&password=" + _password + "&grant_type=password";
+                String result = HttpConnection.SETDATAS("token", "POST", query);
+                String access_token = JsonUtil.jsonValue(result, "access_token");
 
-            userListResult = JsonUtil.jsonToListUsers(HttpConnection.GET("user"));
-            leadListResult = JsonUtil.jsonToListLeads(HttpConnection.GET("lead",access_token));
-            commentListResult = JsonUtil.jsonToListComment(HttpConnection.GET("comment",access_token));
+                userListResult = JsonUtil.jsonToListUsers(HttpConnection.GET("user"));
+                leadListResult = JsonUtil.jsonToListLeads(HttpConnection.GET("lead", access_token));
+                commentListResult = JsonUtil.jsonToListComment(HttpConnection.GET("comment", access_token));
 
-            InsertUsersOnDb(userListResult);
-            InsertLeadsOnDb(leadListResult);
-            InsertCommentsOnDb(commentListResult);
-
+                InsertUsersOnDb(userListResult);
+                InsertLeadsOnDb(leadListResult);
+                InsertCommentsOnDb(commentListResult);
             return null;
         }
 

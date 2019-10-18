@@ -1,6 +1,5 @@
 package com.NTI.AppFVJ.Fragment;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,8 +24,10 @@ import com.NTI.AppFVJ.Activity.ProfileActivity;
 import com.NTI.AppFVJ.Adapter.CommentsAdapter;
 import com.NTI.AppFVJ.CurrentTime.CurrentTime;
 import com.NTI.AppFVJ.Data.DataHelper;
+import com.NTI.AppFVJ.Data.HttpConnection;
 import com.NTI.AppFVJ.Models.Comment;
 import com.NTI.AppFVJ.R;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -116,7 +117,7 @@ public class Fragment2 extends Fragment {
         }
     }
 
-    private void showComments(int id){
+    private void showComments(final int id){
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
         commentsList = datahelper.GetCommentsById(id);
         String mensagem = "";
@@ -134,17 +135,23 @@ public class Fragment2 extends Fragment {
 
             }
         });
-        builder.setNegativeButton("Deletar", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Excluir", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setTitle("Deletar comentário?");
-                builder.setMessage("Tem certeza que deseja deletar este comentário?");
+                builder.setTitle("Excluir comentário?");
+                builder.setMessage("Tem certeza que deseja excluir este comentário?");
 
                 builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        // Realize DELETE method
+                        Comment comment = datahelper.GetByIdComments(id).get(0);
+                        comment.setActive(0);
+
+                        Gson gson = new Gson();
+                        String jsonComment = gson.toJson(comment);
+
+                        String result = HttpConnection.SETDATAS("comment","DELETE", jsonComment);
                     }
                 });
                 builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {

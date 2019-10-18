@@ -200,6 +200,7 @@ public class UpdatePeopleActivity extends AppCompatActivity {
 
             Lead lead = new Lead();
             lead.setId(id);
+            lead.setExternId(lead_r.getExternId());
             lead.setUserId(lead_r.getUserId());
             lead.setName(name_upcase);
             lead.setEmail(et_email.getText().toString().trim());
