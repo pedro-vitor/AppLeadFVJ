@@ -508,8 +508,21 @@ public class DataHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(Query, null);
 
         if(cursor.moveToFirst()) {
-            while (cursor.moveToNext()) {
+            if(cursor.getCount() > 1) {
+                while (cursor.moveToNext()) {
+                    Comment comment = new Comment();
+                    comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
+                    comment.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_COMMENT)));
+                    comment.setLeadsId(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
+                    comment.setUsersId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
+                    comment.setText(cursor.getString(cursor.getColumnIndex(KEY_TEXT_COMMENT)));
+                    comment.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_COMMENT)));
+                    comment.setUpdated(cursor.getInt(cursor.getColumnIndex(KEY_UPDATED_COMMENT)));
+                    comment.setActive(cursor.getInt(cursor.getColumnIndex(KEY_ACTIVE_COMMENT)));
 
+                    comments.add(comment);
+                }
+            }else{
                 Comment comment = new Comment();
                 comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
                 comment.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_COMMENT)));
@@ -609,7 +622,22 @@ public class DataHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(Query, null);
 
         if(cursor.moveToFirst()){
-            while (cursor.moveToNext()) {
+            if(cursor.getCount() > 1) {
+                while (cursor.moveToNext()) {
+                    Comment comment = new Comment();
+                    comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
+                    comment.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_COMMENT)));
+                    comment.setLeadsId(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
+                    comment.setUsersId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
+                    comment.setText(cursor.getString(cursor.getColumnIndex(KEY_TEXT_COMMENT)));
+                    comment.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_COMMENT)));
+                    comment.setUpdated(cursor.getInt(cursor.getColumnIndex(KEY_UPDATED_COMMENT)));
+                    comment.setActive(cursor.getInt(cursor.getColumnIndex(KEY_ACTIVE_COMMENT)));
+
+                    comments.add(comment);
+                }
+            }else{
+
                 Comment comment = new Comment();
                 comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
                 comment.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_COMMENT)));

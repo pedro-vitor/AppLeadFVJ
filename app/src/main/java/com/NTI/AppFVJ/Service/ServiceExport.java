@@ -1,7 +1,6 @@
 package com.NTI.AppFVJ.Service;
 
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -31,6 +30,7 @@ public class ServiceExport extends Service{
     private String  _email;
     private String  _password;
     private SharedPreferences sharedpreferences;
+    private Connetion _connetion;
 
     @Override
     public void onCreate() {
@@ -39,16 +39,8 @@ public class ServiceExport extends Service{
 
         _email = sharedpreferences.getString("email","");
         _password = sharedpreferences.getString("senha","");
+        _connetion = new Connetion(ServiceExport.this);
     }
-
-    /*public void run(){
-        AsyncUpdateWS bb = new AsyncUpdateWS(_email,_password);
-        bb.execute();
-        AsyncInsertWS asyncInsertWS = new AsyncInsertWS (_email,_password);
-        asyncInsertWS.execute();
-        ServiceGets aa = new ServiceGets(_context,_email,_password);
-        aa.execute();
-    }*/
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -97,12 +89,9 @@ public class ServiceExport extends Service{
         @Override
         protected Void doInBackground(Void... voids) {
 
-            Type listTypeUser = new TypeToken<List<User>>() {
-            }.getType();
-            Type listTypeLead = new TypeToken<List<Lead>>() {
-            }.getType();
-            Type listTypeComment = new TypeToken<List<Comment>>() {
-            }.getType();
+            Type listTypeUser = new TypeToken<List<User>>() {}.getType();
+            Type listTypeLead = new TypeToken<List<Lead>>() {}.getType();
+            Type listTypeComment = new TypeToken<List<Comment>>() {}.getType();
 
             String query = "username=" + _email + "&password=" + _password + "&grant_type=password";
             String result = HttpConnection.SETDATAS("token", "POST", query);
@@ -117,32 +106,33 @@ public class ServiceExport extends Service{
             String jsonLead = gson.toJson(leadList, listTypeLead);
             String jsonComment = gson.toJson(commentList, listTypeComment);
 
-            try {
-                userListResult = JsonUtil.jsonToListUsers(HttpConnection.SETDATAS("user", "POST", jsonUser));
-                leadListResult = JsonUtil.jsonToListLeads(HttpConnection.SETDATAS("lead", jsonLead, "POST", access_token));
-                commentListResult = JsonUtil.jsonToListComment(HttpConnection.SETDATAS("comment", jsonComment, "POST", access_token));
-            } catch (Exception e) {
-                Toast.makeText(ServiceExport.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG);
-            }
+            if(_connetion.isConnected()) {
+                try {
+                    userListResult = JsonUtil.jsonToListUsers(HttpConnection.SETDATAS("user", "POST", jsonUser));
+                    leadListResult = JsonUtil.jsonToListLeads(HttpConnection.SETDATAS("lead", jsonLead, "POST", access_token));
+                    commentListResult = JsonUtil.jsonToListComment(HttpConnection.SETDATAS("comment", jsonComment, "POST", access_token));
+                } catch (Exception e) {
+                    Toast.makeText(ServiceExport.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG);
+                }
 
-            if (userListResult != null) {
-                for (User user : userListResult) {
-                    dataHelper.updateUsers(user);
+                if (userListResult != null) {
+                    for (User user : userListResult) {
+                        dataHelper.updateUsers(user);
+                    }
+                }
+
+                if (leadListResult.size() > 0) {
+                    for (Lead lead : leadListResult) {
+                        dataHelper.updateLeads(lead);
+                    }
+                }
+
+                if (commentListResult != null) {
+                    for (Comment comment : commentListResult) {
+                        dataHelper.updateComments(comment);
+                    }
                 }
             }
-
-            if (leadListResult.size() > 0) {
-                for (Lead lead : leadListResult) {
-                    dataHelper.updateLeads(lead);
-                }
-            }
-
-            if (commentListResult != null) {
-                for (Comment comment : commentListResult) {
-                    dataHelper.updateComments(comment);
-                }
-            }
-
             return  null;
         }
     }
@@ -180,25 +170,27 @@ public class ServiceExport extends Service{
             String jsonLead = gson.toJson(leadList, listTypeLead);
             String jsonComment = gson.toJson(commentList, listTypeComment);
 
-            try {
-                userListResult = JsonUtil.jsonToListUsers(HttpConnection.SETDATAS("user","PUT", jsonUser));
-                leadListResult = JsonUtil.jsonToListLeads(HttpConnection.SETDATAS("lead", jsonLead,"PUT", access_token));
-                commentListResult = JsonUtil.jsonToListComment(HttpConnection.SETDATAS("comment", jsonComment,"PUT", access_token));
-            } catch (Exception e) {
-                Toast.makeText(ServiceExport.this, "Error Update: " + e.getMessage(), Toast.LENGTH_LONG);
-            }
+            if(_connetion.isConnected()) {
+                try {
+                    userListResult = JsonUtil.jsonToListUsers(HttpConnection.SETDATAS("user", "PUT", jsonUser));
+                    leadListResult = JsonUtil.jsonToListLeads(HttpConnection.SETDATAS("lead", jsonLead, "PUT", access_token));
+                    commentListResult = JsonUtil.jsonToListComment(HttpConnection.SETDATAS("comment", jsonComment, "PUT", access_token));
+                } catch (Exception e) {
+                    Toast.makeText(ServiceExport.this, "Error Update: " + e.getMessage(), Toast.LENGTH_LONG);
+                }
 
-            if (userListResult != null) {
-                for (User user : userListResult)
-                    dataHelper.updateUsers(user);
-            }
-            if (leadListResult != null) {
-                for (Lead lead : leadListResult)
-                    dataHelper.updateLeads(lead);
-            }
-            if (commentListResult != null) {
-                for (Comment comment : commentListResult) {
-                    dataHelper.updateComments(comment);
+                if (userListResult != null) {
+                    for (User user : userListResult)
+                        dataHelper.updateUsers(user);
+                }
+                if (leadListResult != null) {
+                    for (Lead lead : leadListResult)
+                        dataHelper.updateLeads(lead);
+                }
+                if (commentListResult != null) {
+                    for (Comment comment : commentListResult) {
+                        dataHelper.updateComments(comment);
+                    }
                 }
             }
             return  null;

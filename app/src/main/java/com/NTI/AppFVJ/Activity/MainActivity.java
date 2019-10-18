@@ -21,6 +21,7 @@ import com.NTI.AppFVJ.Data.DataHelper;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
 import com.NTI.AppFVJ.Service.ServiceExport;
+import com.NTI.AppFVJ.Service.teste;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;
+            /*case R.id.Syn:
+                new teste(this,email,senha).run();*/
         }
         return super.onOptionsItemSelected(item);
     }

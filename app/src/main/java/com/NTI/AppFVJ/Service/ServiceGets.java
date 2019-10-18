@@ -76,7 +76,7 @@ public class ServiceGets extends AsyncTask<Void, Void, Void> {
     }
 
     public void InsertLeadsOnDb(List<Lead> leadListResult){
-        boolean status = true;
+        boolean status;
         DataHelper dataHelper = new DataHelper(_context);
         List<Lead> leadList = dataHelper.GetAllLeads();
 
