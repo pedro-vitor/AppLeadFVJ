@@ -51,9 +51,6 @@ public class ScreenLoadingActivity extends AppCompatActivity {
         Loading loading = new Loading(email,senha);
         loading.execute();
 
-        Loading loding = new Loading(email, senha);
-        loading.execute();
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

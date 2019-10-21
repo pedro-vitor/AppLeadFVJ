@@ -76,6 +76,7 @@ public class Fragment2 extends Fragment {
                             comment.setUserId(MainActivity.getIduser());
                             comment.setText(et_comment.getText().toString().trim());
                             comment.setCreatedAt(CurrentTime.GetCurrentTime("yyyy-MM-dd HH:mm:ss"));
+                            comment.setActive(1);
 
                             if(datahelper.insertComments(comment) > 0){
                                 Toast.makeText(getContext(),"Comentário adicionado com sucesso", Toast.LENGTH_SHORT).show();
