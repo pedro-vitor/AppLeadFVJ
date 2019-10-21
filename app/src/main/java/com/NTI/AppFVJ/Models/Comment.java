@@ -3,8 +3,8 @@ package com.NTI.AppFVJ.Models;
 public class Comment {
     private int Id;
     private int ExternId;
-    private int LeadsId;
-    private int UsersId;
+    private int LeadId;
+    private int UserId;
     private String Text;
     private String CreatedAt;
     private int Active;
@@ -27,20 +27,20 @@ public class Comment {
         this.ExternId = ExternId;
     }
 
-    public int getLeadsId() {
-        return this.LeadsId;
+    public int getLeadId() {
+        return this.LeadId;
     }
 
-    public void setLeadsId(int LeadsId) {
-        this.LeadsId = LeadsId;
+    public void setLeadId(int LeadsId) {
+        this.LeadId = LeadsId;
     }
 
-    public int getUsersId() {
-        return this.UsersId;
+    public int getUserId() {
+        return this.UserId;
     }
 
-    public void setUsersId(int UsersId) {
-        this.UsersId = UsersId;
+    public void setUserId(int UsersId) {
+        this.UserId = UsersId;
     }
 
     public String getText() {

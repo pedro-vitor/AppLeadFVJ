@@ -108,8 +108,8 @@ public class JsonUtil {
 
                 comment.setId(jsonObject.getInt("Id"));
                 comment.setExternId(jsonObject.getInt("ExternId"));
-                comment.setLeadsId(jsonObject.getInt("LeadId"));
-                comment.setUsersId(jsonObject.getInt("UserId"));
+                comment.setLeadId(jsonObject.getInt("LeadId"));
+                comment.setUserId(jsonObject.getInt("UserId"));
                 comment.setText(jsonObject.getString("text"));
                 comment.setActive(jsonObject.getInt("active"));
 

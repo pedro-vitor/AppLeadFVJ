@@ -72,8 +72,8 @@ public class Fragment2 extends Fragment {
                             Toast.makeText(getContext(),"Preencha o campo de comentário", Toast.LENGTH_SHORT).show();
                         }else{
                             Comment comment = new Comment();
-                            comment.setLeadsId(id);
-                            comment.setUsersId(MainActivity.getIduser());
+                            comment.setLeadId(id);
+                            comment.setUserId(MainActivity.getIduser());
                             comment.setText(et_comment.getText().toString().trim());
                             comment.setCreatedAt(CurrentTime.GetCurrentTime("yyyy-MM-dd HH:mm:ss"));
 
