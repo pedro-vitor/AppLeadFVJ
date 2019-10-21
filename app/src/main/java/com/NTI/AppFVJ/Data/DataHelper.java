@@ -123,7 +123,7 @@ public class DataHelper extends SQLiteOpenHelper {
     //TODO GetAll
     public List<User> GetAllUsers(){
         List<User> users = new ArrayList<User>();
-        String Query = "SELECT * FROM " + TABLE_USERS;
+        String Query = "SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_ACTIVE_USERS + " <> 0";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
@@ -146,7 +146,7 @@ public class DataHelper extends SQLiteOpenHelper {
 
     public List<Lead> GetAllLeads(){
         List<Lead> leads = new ArrayList<Lead>();
-        String Query = "SELECT * FROM " + TABLE_LEADS;
+        String Query = "SELECT * FROM " + TABLE_LEADS + " WHERE " + KEY_ACTIVE_LEADS + " <> 0";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
@@ -177,7 +177,7 @@ public class DataHelper extends SQLiteOpenHelper {
 
     public List<Comment> GetAllComments(){
         List<Comment> comments = new ArrayList<Comment>();
-        String Query = "SELECT * FROM " + TABLE_COMMENTS;
+        String Query = "SELECT * FROM " + TABLE_COMMENTS + " WHERE " + KEY_ACTIVE_COMMENT + " <> 0";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
@@ -186,8 +186,8 @@ public class DataHelper extends SQLiteOpenHelper {
                 Comment comment = new Comment();
                 comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
                 comment.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_COMMENT)));
-                comment.setLeadsId(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
-                comment.setUsersId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
+                comment.setLeadId(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
+                comment.setUserId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
                 comment.setText(cursor.getString(cursor.getColumnIndex(KEY_TEXT_COMMENT)));
                 comment.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_COMMENT)));
                 comment.setUpdated(cursor.getInt(cursor.getColumnIndex(KEY_UPDATED_COMMENT)));
@@ -202,7 +202,7 @@ public class DataHelper extends SQLiteOpenHelper {
 
     public List<User> GetByIdUsers(int id){
         List<User> users = new ArrayList<User>();
-        String Query = "SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_ID_USERS + " = " + id;
+        String Query = "SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_ACTIVE_USERS + " <> 0 AND " + KEY_ID_USERS + " = " + id;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
@@ -227,7 +227,7 @@ public class DataHelper extends SQLiteOpenHelper {
 
     public List<Lead> GetByIdLeads(int id){
         List<Lead> leads = new ArrayList<Lead>();
-        String Query = "SELECT * FROM " + TABLE_LEADS + " WHERE " + KEY_ID_LEADS + " =" + id;
+        String Query = "SELECT * FROM " + TABLE_LEADS + " WHERE " + KEY_ACTIVE_LEADS + " <> 0 AND " + KEY_ID_LEADS + " =" + id;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
@@ -255,7 +255,7 @@ public class DataHelper extends SQLiteOpenHelper {
 
     public List<Comment> GetByIdComments(int Lead_id){
         List<Comment> comments = new ArrayList<Comment>();
-        String Query = "SELECT * FROM " + TABLE_COMMENTS + " WHERE " + KEY_LEADS_ID_COMMENT + " = " + Lead_id;
+        String Query = "SELECT * FROM " + TABLE_COMMENTS + " WHERE " + KEY_ACTIVE_COMMENT + " <> 0 AND " + KEY_LEADS_ID_COMMENT + " = " + Lead_id;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
@@ -265,8 +265,8 @@ public class DataHelper extends SQLiteOpenHelper {
                 Comment comment = new Comment();
                 comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
                 comment.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_COMMENT)));
-                comment.setLeadsId(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
-                comment.setUsersId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
+                comment.setLeadId(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
+                comment.setUserId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
                 comment.setText(cursor.getString(cursor.getColumnIndex(KEY_TEXT_COMMENT)));
                 comment.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_COMMENT)));
                 comment.setActive(cursor.getInt(cursor.getColumnIndex(KEY_ACTIVE_COMMENT)));
@@ -281,7 +281,7 @@ public class DataHelper extends SQLiteOpenHelper {
     /*TODO GET BY ID*/
     public List<Comment> GetCommentsById(int Comment_id){
         List<Comment> comments = new ArrayList<Comment>();
-        String Query = "SELECT * FROM " + TABLE_COMMENTS + " WHERE " + KEY_ID_COMMENT + " = " + Comment_id;
+        String Query = "SELECT * FROM " + TABLE_COMMENTS + " WHERE " + KEY_ACTIVE_COMMENT + " <> 0 AND " + KEY_ID_COMMENT + " = " + Comment_id;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
@@ -292,8 +292,8 @@ public class DataHelper extends SQLiteOpenHelper {
         Comment comment = new Comment();
         comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
         comment.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_COMMENT)));
-        comment.setLeadsId(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
-        comment.setUsersId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
+        comment.setLeadId(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
+        comment.setUserId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
         comment.setText(cursor.getString(cursor.getColumnIndex(KEY_TEXT_COMMENT)));
         comment.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_COMMENT)));
         comment.setUpdated(cursor.getInt(cursor.getColumnIndex(KEY_UPDATED_COMMENT)));
@@ -349,8 +349,8 @@ public class DataHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(KEY_EXTERN_ID_COMMENT, comment.getExternId());
-        values.put(KEY_LEADS_ID_COMMENT, comment.getLeadsId());
-        values.put(KEY_USERS_ID_COMMENT, comment.getUsersId());
+        values.put(KEY_LEADS_ID_COMMENT, comment.getLeadId());
+        values.put(KEY_USERS_ID_COMMENT, comment.getUserId());
         values.put(KEY_TEXT_COMMENT, comment.getText());
         values.put(KEY_CREATEDAT_COMMENT, comment.getCreatedAt());
         values.put(KEY_ACTIVE_COMMENT, comment.getActive());
@@ -402,8 +402,8 @@ public class DataHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(KEY_EXTERN_ID_COMMENT, comment.getExternId());
-        values.put(KEY_LEADS_ID_COMMENT, comment.getLeadsId());
-        values.put(KEY_USERS_ID_COMMENT, comment.getUsersId());
+        values.put(KEY_LEADS_ID_COMMENT, comment.getLeadId());
+        values.put(KEY_USERS_ID_COMMENT, comment.getUserId());
         values.put(KEY_TEXT_COMMENT, comment.getText());
         values.put(KEY_CREATEDAT_COMMENT, comment.getCreatedAt());
         values.put(KEY_UPDATED_COMMENT, comment.getUpdated());
@@ -445,7 +445,6 @@ public class DataHelper extends SQLiteOpenHelper {
                 user.setActive(cursor.getInt(cursor.getColumnIndex(KEY_ACTIVE_USERS)));
                 user.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_USERS)));
                 user.setUpdated(cursor.getColumnIndex(KEY_UPDATED_USERS));
-
                 users.add(user);
             }
         }
@@ -513,8 +512,8 @@ public class DataHelper extends SQLiteOpenHelper {
                     Comment comment = new Comment();
                     comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
                     comment.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_COMMENT)));
-                    comment.setLeadsId(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
-                    comment.setUsersId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
+                    comment.setLeadId(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
+                    comment.setUserId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
                     comment.setText(cursor.getString(cursor.getColumnIndex(KEY_TEXT_COMMENT)));
                     comment.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_COMMENT)));
                     comment.setUpdated(cursor.getInt(cursor.getColumnIndex(KEY_UPDATED_COMMENT)));
@@ -526,8 +525,8 @@ public class DataHelper extends SQLiteOpenHelper {
                 Comment comment = new Comment();
                 comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
                 comment.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_COMMENT)));
-                comment.setLeadsId(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
-                comment.setUsersId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
+                comment.setLeadId(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
+                comment.setUserId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
                 comment.setText(cursor.getString(cursor.getColumnIndex(KEY_TEXT_COMMENT)));
                 comment.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_COMMENT)));
                 comment.setUpdated(cursor.getInt(cursor.getColumnIndex(KEY_UPDATED_COMMENT)));
@@ -627,8 +626,8 @@ public class DataHelper extends SQLiteOpenHelper {
                     Comment comment = new Comment();
                     comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
                     comment.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_COMMENT)));
-                    comment.setLeadsId(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
-                    comment.setUsersId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
+                    comment.setLeadId(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
+                    comment.setUserId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
                     comment.setText(cursor.getString(cursor.getColumnIndex(KEY_TEXT_COMMENT)));
                     comment.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_COMMENT)));
                     comment.setUpdated(cursor.getInt(cursor.getColumnIndex(KEY_UPDATED_COMMENT)));
@@ -641,8 +640,8 @@ public class DataHelper extends SQLiteOpenHelper {
                 Comment comment = new Comment();
                 comment.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_COMMENT)));
                 comment.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_COMMENT)));
-                comment.setLeadsId(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
-                comment.setUsersId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
+                comment.setLeadId(cursor.getInt(cursor.getColumnIndex(KEY_LEADS_ID_COMMENT)));
+                comment.setUserId(cursor.getInt(cursor.getColumnIndex(KEY_USERS_ID_COMMENT)));
                 comment.setText(cursor.getString(cursor.getColumnIndex(KEY_TEXT_COMMENT)));
                 comment.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_COMMENT)));
                 comment.setUpdated(cursor.getInt(cursor.getColumnIndex(KEY_UPDATED_COMMENT)));
