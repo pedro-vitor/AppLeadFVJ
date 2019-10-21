@@ -82,8 +82,8 @@ public class ProfileActivity extends AppCompatActivity {
                 String jsonLead = gson.toJson(lead);
 
                 String result = HttpConnection.SETDATAS("lead", "DELETE", jsonLead);
-
                 startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+                finish();
             }
         });
         thread.start();

@@ -255,7 +255,7 @@ public class DataHelper extends SQLiteOpenHelper {
 
     public List<Comment> GetByIdComments(int Lead_id){
         List<Comment> comments = new ArrayList<Comment>();
-        String Query = "SELECT * FROM " + TABLE_COMMENTS + " WHERE " + KEY_ACTIVE_COMMENT + " <> 0 AND " + KEY_LEADS_ID_COMMENT + " = " + Lead_id;
+        String Query = "SELECT * FROM " + TABLE_COMMENTS + " WHERE " + KEY_LEADS_ID_COMMENT + " = " + Lead_id + " AND " + KEY_ACTIVE_COMMENT + " <> 0";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
@@ -281,7 +281,7 @@ public class DataHelper extends SQLiteOpenHelper {
     /*TODO GET BY ID*/
     public List<Comment> GetCommentsById(int Comment_id){
         List<Comment> comments = new ArrayList<Comment>();
-        String Query = "SELECT * FROM " + TABLE_COMMENTS + " WHERE " + KEY_ACTIVE_COMMENT + " <> 0 AND " + KEY_ID_COMMENT + " = " + Comment_id;
+        String Query = "SELECT * FROM " + TABLE_COMMENTS + " WHERE " + KEY_ID_COMMENT + " = " + Comment_id + " AND " + KEY_ACTIVE_COMMENT + " <> 0";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);

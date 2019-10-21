@@ -118,9 +118,9 @@ public class Fragment2 extends Fragment {
         }
     }
 
-    private void showComments(final int id){
+    private void showComments(final int commentid){
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-        commentsList = datahelper.GetCommentsById(id);
+        commentsList = datahelper.GetCommentsById(commentid);
         String mensagem = "";
 
         builder.setTitle("Comentário");
@@ -146,13 +146,22 @@ public class Fragment2 extends Fragment {
                 builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Comment comment = datahelper.GetByIdComments(id).get(0);
-                        comment.setActive(0);
+                        Thread thread = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                commentsList.get(0).setActive(0);
+                                datahelper.updateComments(commentsList.get(0));
 
-                        Gson gson = new Gson();
-                        String jsonComment = gson.toJson(comment);
+                                Gson gson = new Gson();
+                                String jsonComment = gson.toJson(commentsList.get(0));
 
-                        String result = HttpConnection.SETDATAS("comment","DELETE", jsonComment);
+                                String result = HttpConnection.SETDATAS("comment","DELETE", jsonComment);
+
+                                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                ft.detach(Fragment2.this).attach(Fragment2.this).commit();
+                            }
+                        });
+                        thread.start();
                     }
                 });
                 builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
