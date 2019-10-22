@@ -21,7 +21,6 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.NTI.AppFVJ.ui.main.SectionsPagerAdapter;
-import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -78,10 +77,8 @@ public class ProfileActivity extends AppCompatActivity {
                 Lead lead = dataHelper.GetByIdLeads(id).get(0);
                 lead.setActive(0);
 
-                Gson gson = new Gson();
-                String jsonLead = gson.toJson(lead);
+                dataHelper.updateLeads(lead);
 
-                String result = HttpConnection.SETDATAS("lead", "DELETE", jsonLead);
                 startActivity(new Intent(ProfileActivity.this, MainActivity.class));
                 finish();
             }

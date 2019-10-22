@@ -73,9 +73,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+/*
         Intent intent = new Intent(MainActivity.this, ServiceExport.class);
-        startService(intent);
+        startService(intent);*/
     }
 
     public static int getIduser(){
@@ -99,8 +99,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;
-            /*case R.id.Syn:
-                new teste(this,email,senha).run();*/
+            case R.id.Syn:
+                new teste(this,email,senha).run();
         }
         return super.onOptionsItemSelected(item);
     }

@@ -1,6 +1,7 @@
 package com.NTI.AppFVJ.Fragment;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -24,12 +25,13 @@ import com.NTI.AppFVJ.Activity.ProfileActivity;
 import com.NTI.AppFVJ.Adapter.CommentsAdapter;
 import com.NTI.AppFVJ.CurrentTime.CurrentTime;
 import com.NTI.AppFVJ.Data.DataHelper;
-import com.NTI.AppFVJ.Data.HttpConnection;
 import com.NTI.AppFVJ.Models.Comment;
+import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
-import com.google.gson.Gson;
 
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class Fragment2 extends Fragment {
     private View view;
@@ -44,6 +46,8 @@ public class Fragment2 extends Fragment {
 
     private AlertDialog alert;
 
+    private SharedPreferences sharedpreferences;
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,6 +59,8 @@ public class Fragment2 extends Fragment {
         datahelper = new DataHelper(view.getContext());
 
         id = Integer.parseInt(ProfileActivity.getId());
+
+        sharedpreferences = getContext().getSharedPreferences("user_preference", MODE_PRIVATE);
 
         DataComments();
 
@@ -71,8 +77,10 @@ public class Fragment2 extends Fragment {
                         if(et_comment.getText().toString().trim().isEmpty()){
                             Toast.makeText(getContext(),"Preencha o campo de comentário", Toast.LENGTH_SHORT).show();
                         }else{
+                            Lead lead = datahelper.GetByIdLeads(id).get(0);
+
                             Comment comment = new Comment();
-                            comment.setLeadId(id);
+                            comment.setLeadId(lead.getExternId());
                             comment.setUserId(MainActivity.getIduser());
                             comment.setText(et_comment.getText().toString().trim());
                             comment.setCreatedAt(CurrentTime.GetCurrentTime("yyyy-MM-dd HH:mm:ss"));
@@ -82,11 +90,11 @@ public class Fragment2 extends Fragment {
                                 Toast.makeText(getContext(),"Comentário adicionado com sucesso", Toast.LENGTH_SHORT).show();
                                 et_comment.setText("");
 
-                                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                ft.detach(Fragment2.this).attach(Fragment2.this).commit();
-
                                 et_comment.setEnabled(true);
                                 et_comment.setFocusable(true);
+
+                                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                ft.detach(Fragment2.this).attach(Fragment2.this).commit();
                             }else{
                                 Toast.makeText(getContext(),"Erro ao adicionar comentário", Toast.LENGTH_SHORT).show();
                             }
@@ -146,22 +154,11 @@ public class Fragment2 extends Fragment {
                 builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Thread thread = new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                commentsList.get(0).setActive(0);
-                                datahelper.updateComments(commentsList.get(0));
+                        commentsList.get(0).setActive(0);
+                        datahelper.updateComments(commentsList.get(0));
 
-                                Gson gson = new Gson();
-                                String jsonComment = gson.toJson(commentsList.get(0));
-
-                                String result = HttpConnection.SETDATAS("comment","DELETE", jsonComment);
-
-                                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                ft.detach(Fragment2.this).attach(Fragment2.this).commit();
-                            }
-                        });
-                        thread.start();
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.detach(Fragment2.this).attach(Fragment2.this).commit();
                     }
                 });
                 builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
