@@ -73,9 +73,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-/*
+
         Intent intent = new Intent(MainActivity.this, ServiceExport.class);
-        startService(intent);*/
+        startService(intent);
     }
 
     public static int getIduser(){

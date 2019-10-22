@@ -111,6 +111,7 @@ public class JsonUtil {
                 comment.setLeadId(jsonObject.getInt("LeadId"));
                 comment.setUserId(jsonObject.getInt("UserId"));
                 comment.setText(jsonObject.getString("text"));
+                comment.setCreatedAt(jsonObject.getString("createdat"));
                 comment.setActive(jsonObject.getInt("active"));
 
                 comments.add(comment);

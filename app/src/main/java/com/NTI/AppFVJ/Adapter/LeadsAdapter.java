@@ -37,7 +37,7 @@ public class LeadsAdapter extends ArrayAdapter<Lead> {
 
         Lead Leads = getItem(position);
 
-        tv_id.setText(Leads.getId()+"");
+        tv_id.setText(Leads.getExternId()+"");
         tv_name.setText(Leads.getName());
         tv_town.setText(Leads.getTown());
         tv_address.setText(Leads.getAddress());

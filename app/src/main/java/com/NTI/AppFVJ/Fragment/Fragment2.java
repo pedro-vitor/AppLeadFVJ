@@ -2,6 +2,7 @@ package com.NTI.AppFVJ.Fragment;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -25,10 +26,17 @@ import com.NTI.AppFVJ.Activity.ProfileActivity;
 import com.NTI.AppFVJ.Adapter.CommentsAdapter;
 import com.NTI.AppFVJ.CurrentTime.CurrentTime;
 import com.NTI.AppFVJ.Data.DataHelper;
+import com.NTI.AppFVJ.Data.HttpConnection;
+import com.NTI.AppFVJ.Data.JsonUtil;
 import com.NTI.AppFVJ.Models.Comment;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
+import com.NTI.AppFVJ.Service.Connetion;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -47,13 +55,22 @@ public class Fragment2 extends Fragment {
     private AlertDialog alert;
 
     private SharedPreferences sharedpreferences;
+    private String _email;
+    private String _password;
+
+    private Connetion connetion;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_fragment2, container, false);
 
         id = Integer.parseInt(ProfileActivity.getId());
+
+        sharedpreferences = getContext().getSharedPreferences("user_preference", MODE_PRIVATE);
+
+        _email = sharedpreferences.getString("email","");
+        _password = sharedpreferences.getString("senha","");
 
         lv_comentarios = view.findViewById(R.id.lv_comentarios);
         datahelper = new DataHelper(view.getContext());
@@ -68,6 +85,8 @@ public class Fragment2 extends Fragment {
         et_comment = view.findViewById(R.id.et_comment);
         et_comment.setElevation(150);
 
+        connetion = new Connetion(view.getContext());
+
         et_comment.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -77,10 +96,10 @@ public class Fragment2 extends Fragment {
                         if(et_comment.getText().toString().trim().isEmpty()){
                             Toast.makeText(getContext(),"Preencha o campo de comentário", Toast.LENGTH_SHORT).show();
                         }else{
-                            Lead lead = datahelper.GetByIdLeads(id).get(0);
+                            /*Lead lead = datahelper.GetByIdLeads(id).get(0);
 
                             Comment comment = new Comment();
-                            comment.setLeadId(lead.getExternId());
+                            comment.setLeadId(id);
                             comment.setUserId(MainActivity.getIduser());
                             comment.setText(et_comment.getText().toString().trim());
                             comment.setCreatedAt(CurrentTime.GetCurrentTime("yyyy-MM-dd HH:mm:ss"));
@@ -97,7 +116,9 @@ public class Fragment2 extends Fragment {
                                 ft.detach(Fragment2.this).attach(Fragment2.this).commit();
                             }else{
                                 Toast.makeText(getContext(),"Erro ao adicionar comentário", Toast.LENGTH_SHORT).show();
-                            }
+                            }*/
+                            new AsyncInsertComment(et_comment.getText().toString()).execute();
+                            et_comment.setText("");
                         }
                         return true;
                     }
@@ -154,11 +175,12 @@ public class Fragment2 extends Fragment {
                 builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        commentsList.get(0).setActive(0);
+                        /*commentsList.get(0).setActive(0);
                         datahelper.updateComments(commentsList.get(0));
 
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.detach(Fragment2.this).attach(Fragment2.this).commit();
+                        ft.detach(Fragment2.this).attach(Fragment2.this).commit();*/
+                        new AsyncDeleteComment().execute();
                     }
                 });
                 builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -174,5 +196,111 @@ public class Fragment2 extends Fragment {
 
         alert =  builder.create();
         alert.show();
+    }
+
+    private class AsyncInsertComment extends AsyncTask<Void, Void, Void>{
+        private String _text;
+        private boolean _connected = true;
+
+        public AsyncInsertComment(String txt){
+            _text = txt;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Type listTypeComment = new TypeToken<List<Comment>>() {}.getType();
+            List<Comment> cmmList = new ArrayList<>();
+            Lead lead = datahelper.GetByIdLeads(id).get(0);
+
+            Comment comment = new Comment();
+            comment.setLeadId(lead.getExternId());
+            comment.setUserId(MainActivity.getIduser());
+            comment.setText(_text);
+            comment.setCreatedAt(CurrentTime.GetCurrentTime("yyyy-MM-dd HH:mm:ss"));
+            comment.setActive(1);
+            cmmList.add(comment);
+
+            Gson gson = new Gson();
+            String jsonComment = gson.toJson(cmmList, listTypeComment);
+
+            if(connetion.isConnected()) {
+                try {
+                    String query = "username=" + _email + "&password=" + _password + "&grant_type=password";
+                    String result = HttpConnection.SETDATAS("token", "POST", query);
+                    String access_token = JsonUtil.jsonValue(result, "access_token");
+
+                    cmmList.clear();
+                    cmmList = JsonUtil.jsonToListComment(HttpConnection.SETDATAS("comment", jsonComment, "POST", access_token));
+
+                    if(cmmList != null){
+                        for (Comment cmm : cmmList) {
+                            datahelper.insertComments(cmm);
+                        }
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.detach(Fragment2.this).attach(Fragment2.this).commit();
+                    }
+                }catch (Exception e){}
+            }else{
+                _connected = false;
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            if(!_connected)
+                Toast.makeText(getContext(),"Conecte-se a internet", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(getContext(),"Comentário adicionado com sucesso", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private class AsyncDeleteComment extends AsyncTask<Void, Void, Void>{
+        private boolean _connected = true;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Type listTypeComment = new TypeToken<List<Comment>>() {}.getType();
+            List<Comment> cmmList = new ArrayList<>();
+
+            commentsList.get(0).setActive(0);
+            cmmList.add(commentsList.get(0));
+
+            Gson gson = new Gson();
+            String jsonComment = gson.toJson(cmmList, listTypeComment);
+
+            if(connetion.isConnected()) {
+                try {
+                    String query = "username=" + _email + "&password=" + _password + "&grant_type=password";
+                    String result = HttpConnection.SETDATAS("token", "POST", query);
+                    String access_token = JsonUtil.jsonValue(result, "access_token");
+
+                    cmmList.clear();
+                    cmmList = JsonUtil.jsonToListComment(HttpConnection.SETDATAS("comment", jsonComment, "PUT", access_token));
+
+                    if(cmmList != null){
+                        for (Comment cmm : cmmList) {
+                            datahelper.updateComments(cmm);
+                        }
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.detach(Fragment2.this).attach(Fragment2.this).commit();
+                    }
+                }catch (Exception e){}
+            }else{
+                _connected = false;
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            if(!_connected)
+                Toast.makeText(getContext(),"Conecte-se a internet", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(getContext(),"Comentário deletado com sucesso", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

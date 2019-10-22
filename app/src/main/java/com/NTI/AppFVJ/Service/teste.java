@@ -35,7 +35,8 @@ public class teste {
     }
 
     public void run(){
-        new AsyncInsertWS(_email,_password).execute();
+        //new AsyncInsertWS(_email,_password).execute();
+        new AsyncUpdateWS(_email,_password).execute();
     }
 
 
@@ -114,6 +115,59 @@ public class teste {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             Toast.makeText(_context, "All right", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private class AsyncUpdateWS extends AsyncTask<Void, Void, Void>{
+
+        private List<User> userListResult = new ArrayList<>();
+        private List<Lead> leadListResult = new ArrayList<>();
+        private DataHelper dataHelper;
+        private String _email;
+        private String _password;
+        private Type listTypeUser = new TypeToken<List<User>>() {}.getType();
+        private Type listTypeLead = new TypeToken<List<Lead>>() {}.getType();
+        private Connetion _connetion;
+
+        public AsyncUpdateWS(String email, String password){
+            _email = email;
+            _password = password;
+            dataHelper = new DataHelper(_context);
+            _connetion = new Connetion(_context);
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            String query = "username=" + _email + "&password=" + _password + "&grant_type=password";
+            String result = HttpConnection.SETDATAS("token","PUT", query);
+            String access_token = JsonUtil.jsonValue(result, "access_token");
+
+            List<User> userList = dataHelper.GetByUpdatedUsers();
+            List<Lead> leadList = dataHelper.GetByUpdatedLeads();
+
+            Gson gson = new Gson();
+            String jsonUser = gson.toJson(userList, listTypeUser);
+            String jsonLead = gson.toJson(leadList, listTypeLead);
+
+            if(_connetion.isConnected()) {
+                try {
+                    userListResult = JsonUtil.jsonToListUsers(HttpConnection.SETDATAS("user", "PUT", jsonUser));
+                    leadListResult = JsonUtil.jsonToListLeads(HttpConnection.SETDATAS("lead", jsonLead, "PUT", access_token));
+                } catch (Exception e) {
+                    Toast.makeText(_context, "Error Update: " + e.getMessage(), Toast.LENGTH_LONG);
+                }
+
+                if (userListResult != null) {
+                    for (User user : userListResult)
+                        dataHelper.updateUsers(user);
+                }
+                if (leadListResult != null) {
+                    for (Lead lead : leadListResult)
+                        dataHelper.updateLeads(lead);
+                }
+            }
+            return  null;
         }
     }
 }

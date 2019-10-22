@@ -2,6 +2,7 @@ package com.NTI.AppFVJ.Activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -69,21 +70,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void DeleteLead() {
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                int id;
-                id = Integer.parseInt(intent.getStringExtra("id"));
-                Lead lead = dataHelper.GetByIdLeads(id).get(0);
-                lead.setActive(0);
-
-                dataHelper.updateLeads(lead);
-
-                startActivity(new Intent(ProfileActivity.this, MainActivity.class));
-                finish();
-            }
-        });
-        thread.start();
+        new AsyncDeleteLead().execute();
     }
 
     @Override
@@ -129,5 +116,28 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         setTitle(name[0]);
+    }
+
+    private class AsyncDeleteLead extends AsyncTask<Void, Void, Void>{
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            int id;
+            id = Integer.parseInt(intent.getStringExtra("id"));
+            Lead lead = dataHelper.GetByIdLeads(id).get(0);
+            lead.setActive(0);
+            lead.setUpdated(1);
+
+            dataHelper.updateLeads(lead);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+            finish();
+        }
     }
 }

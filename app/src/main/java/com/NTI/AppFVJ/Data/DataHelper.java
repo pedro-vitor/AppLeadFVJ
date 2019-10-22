@@ -227,7 +227,7 @@ public class DataHelper extends SQLiteOpenHelper {
 
     public List<Lead> GetByIdLeads(int id){
         List<Lead> leads = new ArrayList<Lead>();
-        String Query = "SELECT * FROM " + TABLE_LEADS + " WHERE " + KEY_ACTIVE_LEADS + " <> 0 AND " + KEY_ID_LEADS + " =" + id;
+        String Query = "SELECT * FROM " + TABLE_LEADS + " WHERE " + KEY_ACTIVE_LEADS + " <> 0 AND " + KEY_EXTERN_ID_LEADS + " =" + id;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
