@@ -434,8 +434,21 @@ public class DataHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(Query, null);
 
         if(cursor.moveToFirst()) {
-            while (cursor.moveToNext()) {
+            if(cursor.getCount() > 1) {
+                while (cursor.moveToNext()) {
 
+                    User user = new User();
+                    user.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_USERS)));
+                    user.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_USERS)));
+                    user.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME_USERS)));
+                    user.setEmail(cursor.getString(cursor.getColumnIndex(KEY_EMAIL_USERS)));
+                    user.setPassword(cursor.getString(cursor.getColumnIndex(KEY_PASSWORD_USERS)));
+                    user.setActive(cursor.getInt(cursor.getColumnIndex(KEY_ACTIVE_USERS)));
+                    user.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_USERS)));
+                    user.setUpdated(cursor.getColumnIndex(KEY_UPDATED_USERS));
+                    users.add(user);
+                }
+            }else {
                 User user = new User();
                 user.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_USERS)));
                 user.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_USERS)));
@@ -444,7 +457,7 @@ public class DataHelper extends SQLiteOpenHelper {
                 user.setPassword(cursor.getString(cursor.getColumnIndex(KEY_PASSWORD_USERS)));
                 user.setActive(cursor.getInt(cursor.getColumnIndex(KEY_ACTIVE_USERS)));
                 user.setCreatedAt(cursor.getString(cursor.getColumnIndex(KEY_CREATEDAT_USERS)));
-                user.setUpdated(cursor.getColumnIndex(KEY_UPDATED_USERS));
+                user.setUpdated(cursor.getInt(cursor.getColumnIndex(KEY_UPDATED_USERS)));
                 users.add(user);
             }
         }

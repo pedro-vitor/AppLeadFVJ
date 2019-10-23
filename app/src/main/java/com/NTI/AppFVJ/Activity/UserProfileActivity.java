@@ -135,6 +135,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
             user.setName(et_nome.getText().toString());
             user.setEmail(et_email.getText().toString());
+            user.setUpdated(1);
 
             datahelper.updateUsers(user);
 
