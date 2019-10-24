@@ -36,7 +36,8 @@ public class teste {
 
     public void run(){
         //new AsyncInsertWS(_email,_password).execute();
-        new AsyncUpdateWS(_email,_password).execute();
+        //new AsyncUpdateWS(_email,_password).execute();
+        new ServiceGets(_context,_email,_password).execute();
     }
 
 
@@ -168,6 +169,118 @@ public class teste {
                 }
             }
             return  null;
+        }
+    }
+
+    public class ServiceGets extends AsyncTask<Void, Void, Void> {
+
+        private Context _context;
+        private DataHelper dataHelper;
+
+        private String _email;
+        private String _password;
+        private Connetion _connetion;
+
+        public ServiceGets(Context context, String email, String password) {
+            _context = context;
+            dataHelper = new DataHelper(_context);
+            _email = email;
+            _password = password;
+            _connetion = new Connetion(_context);
+        }
+
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            if (_connetion.isConnected()) {
+                String query = "username=" + _email + "&password=" + _password + "&grant_type=password";
+                String result = HttpConnection.SETDATAS("token", "POST", query);
+                String access_token = JsonUtil.jsonValue(result, "access_token");
+
+                userListResult = JsonUtil.jsonToListUsers(JsonUtil.jsonValue(HttpConnection.GET("user"),"Result"));
+                leadListResult = JsonUtil.jsonToListLeads(JsonUtil.jsonValue(HttpConnection.GET("lead", access_token),"Result"));
+                commentListResult = JsonUtil.jsonToListComment(JsonUtil.jsonValue(HttpConnection.GET("comment", access_token),"Result"));
+
+                InsertUsersOnDb(userListResult);
+                InsertLeadsOnDb(leadListResult);
+                InsertCommentsOnDb(commentListResult);
+            }
+            return null;
+        }
+
+        public void InsertUsersOnDb(List<User> userListResult) {
+            boolean status;
+            DataHelper dataHelper = new DataHelper(_context);
+            List<User> userList = dataHelper.GetAllUsers();
+
+            if (userListResult != null || userListResult.size() != 0) {
+                if (userList.size() > 0) {
+                    for (User us : userListResult) {
+                        status = true;
+                        for (User user : userList) {
+                            if (us.getExternId() == user.getExternId()) {
+                                status = false;
+                            }
+                        }
+                        if (status)
+                            dataHelper.insertUsers(us);
+                    }
+                } else {
+                    for (User us : userListResult) {
+                        dataHelper.insertUsers(us);
+                    }
+                }
+            }
+        }
+
+        public void InsertLeadsOnDb(List<Lead> leadListResult) {
+            boolean status;
+            DataHelper dataHelper = new DataHelper(_context);
+            List<Lead> leadList = dataHelper.GetAllLeads();
+
+            if (leadListResult != null || leadListResult.size() != 0) {
+                if (leadList.size() > 0) {
+                    for (Lead ld : leadListResult) {
+                        status = true;
+                        for (Lead lead : leadList) {
+                            if (lead.getExternId() == ld.getExternId()) {
+                                status = false;
+                            }
+                        }
+                        if (status)
+                            dataHelper.insertLeads(ld);
+                    }
+                } else {
+                    for (Lead ld : leadListResult) {
+                        dataHelper.insertLeads(ld);
+                    }
+                }
+            }
+        }
+
+        public void InsertCommentsOnDb(List<Comment> commentListResult) {
+            boolean status = true;
+            DataHelper dataHelper = new DataHelper(_context);
+            List<Comment> commentList = dataHelper.GetAllComments();
+
+            if (commentListResult != null || commentListResult.size() != 0) {
+                if (commentList.size() > 0) {
+                    for (Comment cmm : commentListResult) {
+                        status = true;
+                        for (Comment comment : commentList) {
+                            if (comment.getExternId() == cmm.getExternId()) {
+                                status = false;
+                            }
+                        }
+                        if (status)
+                            dataHelper.insertComments(cmm);
+                    }
+                } else {
+                    for (Comment cmm : commentListResult) {
+                        dataHelper.insertComments(cmm);
+                    }
+                }
+            }
         }
     }
 }
