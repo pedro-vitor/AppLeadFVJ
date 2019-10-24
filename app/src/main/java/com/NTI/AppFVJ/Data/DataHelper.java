@@ -366,6 +366,7 @@ public class DataHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(KEY_ID_USERS, user.getId());
         values.put(KEY_EXTERN_ID_USERS, user.getExternId());
         values.put(KEY_NAME_USERS, user.getName());
         values.put(KEY_EMAIL_USERS, user.getEmail());
@@ -373,7 +374,7 @@ public class DataHelper extends SQLiteOpenHelper {
         values.put(KEY_ACTIVE_USERS, user.getActive());
         values.put(KEY_CREATEDAT_USERS, user.getCreatedAt());
         values.put(KEY_UPDATED_USERS, user.getUpdated());
-        values.put(KEY_ACTIVE_USERS, user.getUpdated());
+        values.put(KEY_ACTIVE_USERS, user.getActive());
 
         return db.update(TABLE_USERS,values,KEY_ID_USERS + " = ?", new String[]{String.valueOf(user.getId())});
     }
@@ -413,6 +414,18 @@ public class DataHelper extends SQLiteOpenHelper {
     }
 
     /*TODO LOGIN*/
+
+    public int internallogin(String email, String password) {
+        String query = "SELECT * FROM "+ TABLE_USERS +" WHERE " + KEY_EMAIL_USERS + " = '" + email + "' " + " AND " + KEY_PASSWORD_USERS + " = '" + password + "'";
+        int id;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        if(cursor.getCount() > 0)
+            cursor.moveToFirst();
+        id = cursor.getInt(cursor.getColumnIndex(KEY_ID_USERS));
+        return id;
+    }
 
     public int login(String email, String password){
         String query = "SELECT * FROM "+ TABLE_USERS +" WHERE " + KEY_EMAIL_USERS + " = '" + email + "' " + " AND " + KEY_PASSWORD_USERS + " = '" + password + "'";

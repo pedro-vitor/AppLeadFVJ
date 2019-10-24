@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private String email;
     private String senha;
     private static int id;
+    private static int internalid;
 
 
     @Override
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         email = sharedpreferences.getString("email","");
         senha = sharedpreferences.getString("senha","");
         id = datahelper.login(email,senha);
+        internalid = datahelper.internallogin(email, senha);
 
         List = findViewById(R.id.lv_listleads);
         listLeads = datahelper.GetAllLeads();
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
     public static int getIduser(){
         return  id;
     }
+    public static int getinternaluserid() { return internalid; }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -99,8 +102,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;
+            /*
             case R.id.Syn:
-                new teste(this,email,senha).run();
+                new teste(this,email,senha).run();*/
         }
         return super.onOptionsItemSelected(item);
     }

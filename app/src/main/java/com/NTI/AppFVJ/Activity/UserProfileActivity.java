@@ -46,7 +46,7 @@ public class UserProfileActivity extends AppCompatActivity {
         et_email.setEnabled(edit_pressed);
 
         datahelper = new DataHelper(this);
-        id = MainActivity.getIduser();
+        id = MainActivity.getinternaluserid();
 
         user = datahelper.GetByIdUsers(id).get(0);
 
@@ -132,7 +132,6 @@ public class UserProfileActivity extends AppCompatActivity {
         if (!MaskEditUtil.validEmail(et_email.getText().toString().trim()))
             Toast.makeText(this, "Informe um Email valido", Toast.LENGTH_SHORT).show();
         else {
-
             user.setName(et_nome.getText().toString());
             user.setEmail(et_email.getText().toString());
             user.setUpdated(1);
@@ -140,6 +139,7 @@ public class UserProfileActivity extends AppCompatActivity {
             datahelper.updateUsers(user);
 
             startActivity(new Intent(this, MainActivity.class));
+            finish();
         }
     }
 }
