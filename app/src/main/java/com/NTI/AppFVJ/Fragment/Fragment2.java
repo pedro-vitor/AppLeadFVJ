@@ -301,6 +301,5 @@ public class Fragment2 extends Fragment {
             else
                 Toast.makeText(getContext(),"Comentário deletado com sucesso", Toast.LENGTH_SHORT).show();
         }
-
     }
 }

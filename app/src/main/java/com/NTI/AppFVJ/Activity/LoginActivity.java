@@ -10,11 +10,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.NTI.AppFVJ.Data.DataHelper;
@@ -24,8 +26,6 @@ import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.R;
 
 import com.NTI.AppFVJ.Service.Connetion;
-
-import java.security.AccessController;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -41,6 +41,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private String email;
     private String senha;
+
+    private boolean clicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,9 +120,13 @@ public class LoginActivity extends AppCompatActivity {
             if(!_connetion.isConnected()) {
                 dialogAlert();
                 et_senha.setText("");
-            }else
-                //LoginRequest("username=" + et_email.getText().toString() + "&password=" + et_senha.getText().toString() + "&grant_type=password", et_email.getText().toString(), et_senha.getText().toString());
-                new AsyncLogin(this,et_email.getText().toString(),et_senha.getText().toString(),"username=" + et_email.getText().toString() + "&password=" + et_senha.getText().toString() + "&grant_type=password", this).execute();
+            }else {
+                if (clicked == false) {
+                    //LoginRequest("username=" + et_email.getText().toString() + "&password=" + et_senha.getText().toString() + "&grant_type=password", et_email.getText().toString(), et_senha.getText().toString());
+                    clicked = true;
+                    new AsyncLogin(this, et_email.getText().toString(), et_senha.getText().toString(), "username=" + et_email.getText().toString() + "&password=" + et_senha.getText().toString() + "&grant_type=password", this).execute();
+                }
+            }
         }
     }
 
@@ -160,10 +166,23 @@ public class LoginActivity extends AppCompatActivity {
             _activity = activity;
         }
 
+        private PopupWindow popupWindow;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
 
+            LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+            View popupView = inflater.inflate(R.layout.animation_loader, null);
+
+            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+            boolean focusable = false;
+
+            popupWindow = new PopupWindow(popupView, width, height, focusable);
+            View view = (LinearLayout)findViewById(R.id.Login);
+            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         }
 
         @Override
@@ -185,18 +204,27 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            if(!"Erro de autenticação.".equals(_result)) {
-                if (FirstRun.getBoolean("firstRun", true)) {
-                    FirstRun.edit().putBoolean("firstRun", false).apply();
-                    _intent = new Intent(LoginActivity.this, ScreenLoadingActivity.class);
-                }else {
-                    _intent = new Intent(LoginActivity.this, MainActivity.class);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    clicked = false;
+                    popupWindow.dismiss();
+
+                    if(!"Erro de autenticação.".equals(_result)) {
+                        if (FirstRun.getBoolean("firstRun", true)) {
+                            FirstRun.edit().putBoolean("firstRun", false).apply();
+                            _intent = new Intent(LoginActivity.this, ScreenLoadingActivity.class);
+                        }else {
+                            _intent = new Intent(LoginActivity.this, MainActivity.class);
+                        }
+                        startActivity(_intent);
+                        _activity.finish();
+                    }else{
+                        Toast.makeText(_context,"Dados invalidos",Toast.LENGTH_SHORT).show();
+                    }
                 }
-                startActivity(_intent);
-                _activity.finish();
-            }else{
-                Toast.makeText(_context,"Dados invalidos",Toast.LENGTH_SHORT).show();
-            }
+            }, 5000);
         }
     }
 }
