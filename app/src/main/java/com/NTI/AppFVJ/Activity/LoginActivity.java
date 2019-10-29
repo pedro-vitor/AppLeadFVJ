@@ -3,6 +3,7 @@ package com.NTI.AppFVJ.Activity;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -119,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                 et_senha.setText("");
             }else
                 //LoginRequest("username=" + et_email.getText().toString() + "&password=" + et_senha.getText().toString() + "&grant_type=password", et_email.getText().toString(), et_senha.getText().toString());
-                new AsyncLogin(this,email,senha,"username=" + et_email.getText().toString() + "&password=" + et_senha.getText().toString() + "&grant_type=password").execute();
+                new AsyncLogin(this,et_email.getText().toString(),et_senha.getText().toString(),"username=" + et_email.getText().toString() + "&password=" + et_senha.getText().toString() + "&grant_type=password", this).execute();
         }
     }
 
@@ -148,13 +149,21 @@ public class LoginActivity extends AppCompatActivity {
         private String _result;
 
         private Intent _intent;
+        private Activity _activity;
 
-        public AsyncLogin(Context context, String email, String password, String query){
+        public AsyncLogin(Context context, String email, String password, String query, Activity activity){
             _context = context;
             _intent = new Intent();
             _email = email;
             _password = password;
             _query = query;
+            _activity = activity;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
         }
 
         @Override
@@ -169,16 +178,6 @@ public class LoginActivity extends AppCompatActivity {
                 editor.putString("email", _email);
                 editor.putString("senha", _password);
                 editor.commit();
-
-                if (FirstRun.getBoolean("firstRun", true)) {
-                    FirstRun.edit().putBoolean("firstRun", false).apply();
-                    _intent = new Intent(LoginActivity.this, ScreenLoadingActivity.class);
-                }else {
-                    _intent = new Intent(LoginActivity.this, MainActivity.class);
-                }
-
-                startActivity(_intent);
-                finish();
             }
             return null;
         }
@@ -186,8 +185,16 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-
             if(!"Erro de autenticação.".equals(_result)) {
+                if (FirstRun.getBoolean("firstRun", true)) {
+                    FirstRun.edit().putBoolean("firstRun", false).apply();
+                    _intent = new Intent(LoginActivity.this, ScreenLoadingActivity.class);
+                }else {
+                    _intent = new Intent(LoginActivity.this, MainActivity.class);
+                }
+                startActivity(_intent);
+                _activity.finish();
+            }else{
                 Toast.makeText(_context,"Dados invalidos",Toast.LENGTH_SHORT).show();
             }
         }
