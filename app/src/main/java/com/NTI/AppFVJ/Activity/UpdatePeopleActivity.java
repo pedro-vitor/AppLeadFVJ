@@ -199,7 +199,7 @@ public class UpdatePeopleActivity extends AppCompatActivity {
             Lead lead_r = dataHelper.GetByIdLeads(id).get(0);
 
             Lead lead = new Lead();
-            lead.setId(id);
+            lead.setId(lead_r.getId());
             lead.setExternId(lead_r.getExternId());
             lead.setUserId(lead_r.getUserId());
             lead.setName(name_upcase);

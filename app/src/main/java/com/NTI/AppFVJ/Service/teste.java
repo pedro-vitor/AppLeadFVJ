@@ -181,6 +181,10 @@ public class teste {
         private String _password;
         private Connetion _connetion;
 
+        private List<Integer> deletedUser = new ArrayList<>();
+        private List<Integer> deletedLead = new ArrayList<>();
+        private List<Integer> deletedComment = new ArrayList<>();
+
         public ServiceGets(Context context, String email, String password) {
             _context = context;
             dataHelper = new DataHelper(_context);
@@ -197,13 +201,25 @@ public class teste {
                 String result = HttpConnection.SETDATAS("token", "POST", query);
                 String access_token = JsonUtil.jsonValue(result, "access_token");
 
-                userListResult = JsonUtil.jsonToListUsers(JsonUtil.jsonValue(HttpConnection.GET("user"),"Result"));
-                leadListResult = JsonUtil.jsonToListLeads(JsonUtil.jsonValue(HttpConnection.GET("lead", access_token),"Result"));
-                commentListResult = JsonUtil.jsonToListComment(JsonUtil.jsonValue(HttpConnection.GET("comment", access_token),"Result"));
+                String usersQuery = HttpConnection.GET("user");
+                String leadQuery = HttpConnection.GET("lead", access_token);
+                String commentQuery = HttpConnection.GET("comment", access_token);
+
+                userListResult = JsonUtil.jsonToListUsers(JsonUtil.jsonValue(usersQuery,"Result"));
+                leadListResult = JsonUtil.jsonToListLeads(JsonUtil.jsonValue(leadQuery,"Result"));
+                commentListResult = JsonUtil.jsonToListComment(JsonUtil.jsonValue(commentQuery,"Result"));
+
+                deletedUser = JsonUtil.jsonToListIds(JsonUtil.jsonValue(usersQuery, "Deleted"));
+                deletedLead = JsonUtil.jsonToListIds(JsonUtil.jsonValue(leadQuery, "Deleted"));
+                deletedComment = JsonUtil.jsonToListIds(JsonUtil.jsonValue(commentQuery,"Deleted"));
 
                 InsertUsersOnDb(userListResult);
                 InsertLeadsOnDb(leadListResult);
                 InsertCommentsOnDb(commentListResult);
+
+                deleteUsers(deletedUser);
+                deleteLead(deletedLead);
+                deleteComment(deletedComment);
             }
             return null;
         }
@@ -278,6 +294,60 @@ public class teste {
                 } else {
                     for (Comment cmm : commentListResult) {
                         dataHelper.insertComments(cmm);
+                    }
+                }
+            }
+        }
+
+        public void deleteUsers(List<Integer> deletedUser){
+            DataHelper dataHelper = new DataHelper(_context);
+            List<User> userList = dataHelper.GetAllUsers();
+
+            if(deletedUser.size() != 0 ){
+                if(userList.size() != 0){
+                    for (int i : deletedUser) {
+                        for (User user : userList) {
+                            if(user.getExternId() == i){
+                                user.setActive(0);
+                                dataHelper.updateUsers(user);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void deleteLead(List<Integer> deletedLead){
+            DataHelper dataHelper = new DataHelper(_context);
+            List<Lead> leadList = dataHelper.GetAllLeads();
+
+            if(deletedLead.size() != 0 ){
+                if(leadList.size() != 0){
+                    for (int i : deletedLead) {
+                        for (Lead lead : leadList) {
+                            if(lead.getExternId() == i){
+                                lead.setActive(0);
+                                dataHelper.updateLeads(lead);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void deleteComment(List<Integer> deletedComment){
+            DataHelper dataHelper = new DataHelper(_context);
+            List<Comment> commentList = dataHelper.GetAllComments();
+
+            if(deletedComment.size() != 0 ){
+                if(commentList.size() != 0){
+                    for (int i : deletedComment) {
+                        for (Comment comment : commentList) {
+                            if(comment.getExternId() == i){
+                                comment.setActive(0);
+                                dataHelper.updateComments(comment);
+                            }
+                        }
                     }
                 }
             }

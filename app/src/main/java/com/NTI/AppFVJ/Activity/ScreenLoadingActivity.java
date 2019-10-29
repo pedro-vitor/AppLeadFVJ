@@ -82,24 +82,28 @@ public class ScreenLoadingActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-                String query = "username=" + _email + "&password=" + _password + "&grant_type=password";
-                String result = HttpConnection.SETDATAS("token", "POST", query);
-                String access_token = JsonUtil.jsonValue(result, "access_token");
+            String query = "username=" + _email + "&password=" + _password + "&grant_type=password";
+            String result = HttpConnection.SETDATAS("token", "POST", query);
+            String access_token = JsonUtil.jsonValue(result, "access_token");
 
-                userListResult = JsonUtil.jsonToListUsers(HttpConnection.GET("user"));
-                leadListResult = JsonUtil.jsonToListLeads(HttpConnection.GET("lead", access_token));
-                commentListResult = JsonUtil.jsonToListComment(HttpConnection.GET("comment", access_token));
+            String usersQuery = HttpConnection.GET("user");
+            String leadQuery = HttpConnection.GET("lead", access_token);
+            String commentQuery = HttpConnection.GET("comment", access_token);
 
-                InsertUsersOnDb(userListResult);
-                InsertLeadsOnDb(leadListResult);
-                InsertCommentsOnDb(commentListResult);
+            userListResult = JsonUtil.jsonToListUsers(JsonUtil.jsonValue(usersQuery,"Result"));
+            leadListResult = JsonUtil.jsonToListLeads(JsonUtil.jsonValue(leadQuery,"Result"));
+            commentListResult = JsonUtil.jsonToListComment(JsonUtil.jsonValue(commentQuery,"Result"));
+
+            InsertUsersOnDb(userListResult);
+            InsertLeadsOnDb(leadListResult);
+            InsertCommentsOnDb(commentListResult);
             return null;
         }
 
         public void  InsertUsersOnDb(List<User> userListResult){
             List<User> userList = dataHelper.GetAllUsers();
 
-            if(userListResult != null || userListResult.size() != 0) {
+            if(userListResult != null  || userListResult.size() != 0) {
                 if (userList.size() > 0) {
                     for (User user : userList) {
                         for (User us : userListResult) {

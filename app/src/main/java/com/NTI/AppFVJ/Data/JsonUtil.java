@@ -124,4 +124,21 @@ public class JsonUtil {
             return null;
         }
     }
+
+    public static List<Integer> jsonToListIds(String json) {
+        try {
+            JSONArray jsonArray = new JSONArray(json);
+            List<Integer> ids = new ArrayList<>();
+            for (int i = 0; i < jsonArray.length(); i++) {
+                int jsonObject = jsonArray.getInt(i);
+                ids.add(jsonObject);
+            }
+
+            return ids;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

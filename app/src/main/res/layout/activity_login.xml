@@ -96,7 +96,6 @@
             android:text="Não tem uma conta? Cadastre-se"
             android:onClick="RegisterView"
             android:layout_gravity="center_horizontal"/>
-
     </LinearLayout>
     </ScrollView>
 </LinearLayout>

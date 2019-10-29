@@ -62,9 +62,17 @@ public class ServiceExport extends Service{
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            new AsyncInsertWS(_email, _password).execute();
-                            new AsyncUpdateWS(_email, _password).execute();
-                            new ServiceGets(ServiceExport.this, _email, _password).execute();
+                            AsyncInsertWS insertWS = new AsyncInsertWS(_email, _password);
+                            insertWS.execute();
+                            //insertWS.cancel(true) ;
+
+                            AsyncUpdateWS updateWS = new AsyncUpdateWS(_email, _password);
+                            updateWS.execute();
+                            //updateWS.cancel(true);
+
+                            ServiceGets serviceGets = new ServiceGets(ServiceExport.this, _email, _password);
+                            serviceGets.execute();
+                            //serviceGets.cancel(true);
                         }
                     });
                 }
@@ -125,6 +133,12 @@ public class ServiceExport extends Service{
             }
             return  null;
         }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            this.cancel(true);
+        }
     }
 
     private class AsyncUpdateWS extends AsyncTask<Void, Void, Void>{
@@ -146,7 +160,7 @@ public class ServiceExport extends Service{
         protected Void doInBackground(Void... voids) {
 
             String query = "username=" + _email + "&password=" + _password + "&grant_type=password";
-            String result = HttpConnection.SETDATAS("token","PUT", query);
+            String result = HttpConnection.SETDATAS("token","POST", query);
             String access_token = JsonUtil.jsonValue(result, "access_token");
 
             List<User> userList = dataHelper.GetByUpdatedUsers();
@@ -174,6 +188,12 @@ public class ServiceExport extends Service{
                 }
             }
             return  null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            this.cancel(true);
         }
     }
 }

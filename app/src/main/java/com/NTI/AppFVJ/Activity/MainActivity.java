@@ -102,9 +102,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;
-            /*
+
             case R.id.Syn:
-                new teste(this,email,senha).run();*/
+                new teste(this,email,senha).run();
         }
         return super.onOptionsItemSelected(item);
     }

@@ -29,7 +29,7 @@ public class ProfileActivity extends AppCompatActivity {
     private static Intent intent;
     private DataHelper dataHelper;
 
-    private AlertDialog alert;
+        private AlertDialog alert;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,18 +59,11 @@ public class ProfileActivity extends AppCompatActivity {
                 intent2.putExtra("Id", intent.getStringExtra("id"));
                 startActivity(intent2);
                 break;
-            case R.id.delete:
-                DeleteLead();
-                break;
             case R.id.more:
                 dialogAlert();
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void DeleteLead() {
-        new AsyncDeleteLead().execute();
     }
 
     @Override
@@ -116,28 +109,5 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         setTitle(name[0]);
-    }
-
-    private class AsyncDeleteLead extends AsyncTask<Void, Void, Void>{
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            int id;
-            id = Integer.parseInt(intent.getStringExtra("id"));
-            Lead lead = dataHelper.GetByIdLeads(id).get(0);
-            lead.setActive(0);
-            lead.setUpdated(1);
-
-            dataHelper.updateLeads(lead);
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-
-            startActivity(new Intent(ProfileActivity.this, MainActivity.class));
-            finish();
-        }
     }
 }
