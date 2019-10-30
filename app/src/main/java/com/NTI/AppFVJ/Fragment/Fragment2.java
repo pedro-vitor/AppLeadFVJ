@@ -96,27 +96,7 @@ public class Fragment2 extends Fragment {
                         if(et_comment.getText().toString().trim().isEmpty()){
                             Toast.makeText(getContext(),"Preencha o campo de comentário", Toast.LENGTH_SHORT).show();
                         }else{
-                            /*Lead lead = datahelper.GetByIdLeads(id).get(0);
-
-                            Comment comment = new Comment();
-                            comment.setLeadId(id);
-                            comment.setUserId(MainActivity.getIduser());
-                            comment.setText(et_comment.getText().toString().trim());
-                            comment.setCreatedAt(CurrentTime.GetCurrentTime("yyyy-MM-dd HH:mm:ss"));
-                            comment.setActive(1);
-
-                            if(datahelper.insertComments(comment) > 0){
-                                Toast.makeText(getContext(),"Comentário adicionado com sucesso", Toast.LENGTH_SHORT).show();
-                                et_comment.setText("");
-
-                                et_comment.setEnabled(true);
-                                et_comment.setFocusable(true);
-
-                                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                ft.detach(Fragment2.this).attach(Fragment2.this).commit();
-                            }else{
-                                Toast.makeText(getContext(),"Erro ao adicionar comentário", Toast.LENGTH_SHORT).show();
-                            }*/
+                            //comments inserts
                             new AsyncInsertComment(et_comment.getText().toString()).execute();
                             et_comment.setText("");
                         }
@@ -175,12 +155,8 @@ public class Fragment2 extends Fragment {
                 builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        /*commentsList.get(0).setActive(0);
-                        datahelper.updateComments(commentsList.get(0));
-
-                        FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.detach(Fragment2.this).attach(Fragment2.this).commit();*/
-                        new AsyncDeleteComment().execute();
+                    //Comments Deletes
+                    new AsyncDeleteComment().execute();
                     }
                 });
                 builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -253,6 +229,7 @@ public class Fragment2 extends Fragment {
                 Toast.makeText(getContext(),"Conecte-se a internet", Toast.LENGTH_SHORT).show();
             else
                 Toast.makeText(getContext(),"Comentário adicionado com sucesso", Toast.LENGTH_SHORT).show();
+            this.cancel(true);
         }
     }
 
@@ -300,6 +277,7 @@ public class Fragment2 extends Fragment {
                 Toast.makeText(getContext(),"Conecte-se a internet", Toast.LENGTH_SHORT).show();
             else
                 Toast.makeText(getContext(),"Comentário deletado com sucesso", Toast.LENGTH_SHORT).show();
+            this.cancel(true);
         }
     }
 }
