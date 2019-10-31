@@ -1,18 +1,14 @@
 package com.NTI.AppFVJ.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
-import com.NTI.AppFVJ.Activity.MainActivity;
 import com.NTI.AppFVJ.Activity.ProfileActivity;
 
 import com.NTI.AppFVJ.Data.DataHelper;

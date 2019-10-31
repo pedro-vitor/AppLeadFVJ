@@ -79,9 +79,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         List<Lead> leads = dataHelper.GetByIdLeads(Integer.parseInt(getId()));
         List<User> user = dataHelper.GetByIdUsers(leads.get(0).getUserId());
-        /*for (Lead ld : leads) {
-            user
-        }*/
 
         builder.setTitle("Mais Informações");
         builder.setMessage("Criado em: "+MaskEditUtil.setDateFormat(leads.get(0).getCreatedAt())+"\r\n\n"+

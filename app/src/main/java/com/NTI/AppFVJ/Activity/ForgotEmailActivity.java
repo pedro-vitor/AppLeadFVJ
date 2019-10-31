@@ -16,12 +16,6 @@ public class ForgotEmailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_email);
-
-        /*if(is){
-            et_email = findViewById(R.id.et_email);
-            String email = getIntent().getStringExtra("Email");
-            et_email.setText(email);
-        }*/
     }
 
     public void InformEmail(View view){
