@@ -27,8 +27,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:layout_centerHorizontal="true"
-            android:indeterminateTint="#FFFFFF"/>
+            android:indeterminateTint="@color/BackgroundColorLight"/>
     </LinearLayout>
-
-
 </LinearLayout>

@@ -120,7 +120,8 @@ public class LoginActivity extends AppCompatActivity {
             if(!_connetion.isConnected()) {
                 dialogAlert();
                 et_senha.setText("");
-            }else {
+            }
+            else {
                 if (clicked == false) {
                     //LoginRequest("username=" + et_email.getText().toString() + "&password=" + et_senha.getText().toString() + "&grant_type=password", et_email.getText().toString(), et_senha.getText().toString());
                     clicked = true;

@@ -165,34 +165,37 @@ public class Fragment2 extends Fragment {
 
             }
         });
-        builder.setNegativeButton("Excluir", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setTitle("Excluir comentário?");
-                builder.setMessage("Tem certeza que deseja excluir este comentário?");
 
-                builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+        if (commentsList.get(0).getUserId() == MainActivity.getinternaluserid()) {
+            builder.setNegativeButton("Excluir", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                    builder.setTitle("Excluir comentário?");
+                    builder.setMessage("Tem certeza que deseja excluir este comentário?");
+
+                    builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
                         /*commentsList.get(0).setActive(0);
                         datahelper.updateComments(commentsList.get(0));
 
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
                         ft.detach(Fragment2.this).attach(Fragment2.this).commit();*/
-                        new AsyncDeleteComment().execute();
-                    }
-                });
-                builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        // Cancelar delete
-                    }
-                });
-                alert = builder.create();
-                alert.show();
-            }
-        });
+                            new AsyncDeleteComment().execute();
+                        }
+                    });
+                    builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            // Cancelar delete
+                        }
+                    });
+                    alert = builder.create();
+                    alert.show();
+                }
+            });
+        }
 
         alert =  builder.create();
         alert.show();
