@@ -71,10 +71,6 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void RegisterView(View view) {
-        startActivity(new Intent(this, RegisterActivity.class));
-    }
-
     private String access_token = null;
 
     private void LoginRequest(final String query, final String email, final String password) {
