@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.NTI.AppFVJ.Data.DataHelper;
 import com.NTI.AppFVJ.Data.HttpConnection;
 import com.NTI.AppFVJ.Data.JsonUtil;
+import com.NTI.AppFVJ.Models.Comment;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.Models.User;
 import com.google.gson.Gson;
@@ -72,10 +73,6 @@ public class ServiceExport extends Service{
                             ServiceGets serviceGets = new ServiceGets(ServiceExport.this, _email, _password);
                             serviceGets.execute();
                             //serviceGets.cancel(true);
-
-                            insertWS.cancel(true);
-                            updateWS.cancel(true);
-                            serviceGets.cancel(true);
                         }
                     });
                 }
@@ -87,6 +84,7 @@ public class ServiceExport extends Service{
 
         private List<User> userListResult = new ArrayList<>();
         private List<Lead> leadListResult = new ArrayList<>();
+        private List<Comment> commentListResult = new ArrayList<>();
         private DataHelper dataHelper = new DataHelper(ServiceExport.this);
         private String _email;
         private String _password;
@@ -101,6 +99,7 @@ public class ServiceExport extends Service{
 
             Type listTypeUser = new TypeToken<List<User>>() {}.getType();
             Type listTypeLead = new TypeToken<List<Lead>>() {}.getType();
+            Type listTypeComment = new TypeToken<List<Comment>>() {}.getType();
 
             String query = "username=" + _email + "&password=" + _password + "&grant_type=password";
             String result = HttpConnection.SETDATAS("token", "POST", query);
@@ -108,15 +107,18 @@ public class ServiceExport extends Service{
 
             List<User> userList = dataHelper.GetByCreatedUsers();
             List<Lead> leadList = dataHelper.GetByCreatedLeads();
+            List<Comment> commentList = dataHelper.GetByCreatedComments();
 
             Gson gson = new Gson();
             String jsonUser = gson.toJson(userList, listTypeUser);
             String jsonLead = gson.toJson(leadList, listTypeLead);
+            String jsonComment = gson.toJson(commentList, listTypeComment);
 
             if(_connetion.isConnected()) {
                 try {
                     userListResult = JsonUtil.jsonToListUsers(HttpConnection.SETDATAS("user", "POST", jsonUser));
                     leadListResult = JsonUtil.jsonToListLeads(HttpConnection.SETDATAS("lead", jsonLead, "POST", access_token));
+                    commentListResult = JsonUtil.jsonToListComment(HttpConnection.SETDATAS("comment", jsonComment, "POST", access_token));
                 } catch (Exception e) {
                     Toast.makeText(ServiceExport.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG);
                 }
@@ -130,6 +132,12 @@ public class ServiceExport extends Service{
                 if (leadListResult.size() > 0) {
                     for (Lead lead : leadListResult) {
                         dataHelper.updateLeads(lead);
+                    }
+                }
+
+                if (commentListResult.size() > 0) {
+                    for (Comment comment : commentListResult) {
+                        dataHelper.updateComments(comment);
                     }
                 }
 
@@ -148,11 +156,13 @@ public class ServiceExport extends Service{
 
         private List<User> userListResult = new ArrayList<>();
         private List<Lead> leadListResult = new ArrayList<>();
+        private List<Comment> commentListResult = new ArrayList<>();
         private DataHelper dataHelper = new DataHelper(ServiceExport.this);
         private String _email;
         private String _password;
         private Type listTypeUser = new TypeToken<List<User>>() {}.getType();
         private Type listTypeLead = new TypeToken<List<Lead>>() {}.getType();
+        private Type listTypeComment = new TypeToken<List<Comment>>() {}.getType();
 
         public AsyncUpdateWS(String email, String password){
             _email = email;
@@ -168,15 +178,18 @@ public class ServiceExport extends Service{
 
             List<User> userList = dataHelper.GetByUpdatedUsers();
             List<Lead> leadList = dataHelper.GetByUpdatedLeads();
+            List<Comment> commentList = dataHelper.GetByUpdatedComments();
 
             Gson gson = new Gson();
             String jsonUser = gson.toJson(userList, listTypeUser);
             String jsonLead = gson.toJson(leadList, listTypeLead);
+            String jsonComment = gson.toJson(commentList, listTypeComment);
 
             if(_connetion.isConnected()) {
                 try {
                     userListResult = JsonUtil.jsonToListUsers(HttpConnection.SETDATAS("user", "PUT", jsonUser));
                     leadListResult = JsonUtil.jsonToListLeads(HttpConnection.SETDATAS("lead", jsonLead, "PUT", access_token));
+                    commentListResult = JsonUtil.jsonToListComment(HttpConnection.SETDATAS("comment", jsonComment, "PUT", access_token));
                 } catch (Exception e) {
                     Toast.makeText(ServiceExport.this, "Error Update: " + e.getMessage(), Toast.LENGTH_LONG);
                 }
@@ -188,6 +201,10 @@ public class ServiceExport extends Service{
                 if (leadListResult != null) {
                     for (Lead lead : leadListResult)
                         dataHelper.updateLeads(lead);
+                }
+                if (commentListResult != null) {
+                    for (Comment comment : commentListResult)
+                        dataHelper.updateComments(comment);
                 }
             }
             return  null;

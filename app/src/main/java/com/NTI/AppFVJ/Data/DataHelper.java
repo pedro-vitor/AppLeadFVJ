@@ -202,7 +202,7 @@ public class DataHelper extends SQLiteOpenHelper {
 
     public List<User> GetByIdUsers(int id){
         List<User> users = new ArrayList<User>();
-        String Query = "SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_ACTIVE_USERS + " <> 0 AND " + KEY_EXTERN_ID_USERS + " = " + id;
+        String Query = "SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_EXTERN_ID_USERS + " = " + id;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
