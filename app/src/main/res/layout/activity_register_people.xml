@@ -18,24 +18,10 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Registro"
-                android:textSize="28sp"
-                android:textColor="@color/TextColor"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:shadowDy="1"
-                android:shadowDx="1"
-                android:shadowRadius="2"
-                android:shadowColor="@color/InputFieldColor"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="60dp">
 
                 <ImageView
@@ -61,7 +47,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp">
 
                 <ImageView
@@ -88,7 +73,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp">
 
                 <ImageView
@@ -116,7 +100,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp">
 
                 <ImageView
@@ -138,7 +121,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="12dp">
 
                 <ImageView
@@ -166,7 +148,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp">
 
                 <ImageView

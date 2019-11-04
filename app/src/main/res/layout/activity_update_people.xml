@@ -19,19 +19,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Atualizar"
-                android:textSize="28sp"
-                android:textColor="@color/TextColor"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:shadowDy="1"
-                android:shadowDx="1"
-                android:shadowRadius="2"
-                android:shadowColor="@color/InputFieldColor" />
-
-            <TextView
                 android:id="@+id/tv_id"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -48,7 +35,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="20dp">
 
                 <ImageView
@@ -74,7 +60,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp">
 
                 <ImageView
@@ -100,7 +85,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp">
 
                 <ImageView
@@ -128,7 +112,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp">
 
                 <ImageView
@@ -150,7 +133,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="12dp">
 
                 <ImageView
@@ -178,7 +160,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp">
 
                 <ImageView
@@ -208,8 +189,6 @@
                 android:text="Atualizar"
                 android:textSize="16dp"
                 android:background="@drawable/input_submit_style"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="35dp"
                 android:padding="10dp"
                 android:onClick="UpdatePeople"/>
