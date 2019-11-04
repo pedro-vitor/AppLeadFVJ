@@ -72,6 +72,10 @@ public class ServiceExport extends Service{
                             ServiceGets serviceGets = new ServiceGets(ServiceExport.this, _email, _password);
                             serviceGets.execute();
                             //serviceGets.cancel(true);
+
+                            insertWS.cancel(true);
+                            updateWS.cancel(true);
+                            serviceGets.cancel(true);
                         }
                     });
                 }

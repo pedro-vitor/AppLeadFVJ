@@ -77,8 +77,6 @@ public class Fragment2 extends Fragment {
 
         id = Integer.parseInt(ProfileActivity.getId());
 
-        sharedpreferences = getContext().getSharedPreferences("user_preference", MODE_PRIVATE);
-
         DataComments();
 
         final EditText et_comment;
