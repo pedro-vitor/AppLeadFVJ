@@ -8,9 +8,9 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="collapseActionView|always" />
     <item
-        android:id="@+id/Syn"
+        android:id="@+id/Refresh"
         android:title="Sincronizar"
-        android:icon="@drawable/user_3"
+        android:icon="@drawable/refresh"
         app:showAsAction="collapseActionView|always"/>
     <item
         android:id="@+id/Register"

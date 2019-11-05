@@ -12,7 +12,6 @@ import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.R;
 
 public class ForgotPassActivity extends AppCompatActivity {
-
     private TextView et_email;
 
     @Override
