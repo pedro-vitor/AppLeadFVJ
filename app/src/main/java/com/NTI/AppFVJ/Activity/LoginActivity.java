@@ -62,13 +62,11 @@ public class LoginActivity extends AppCompatActivity {
         et_email = findViewById(R.id.et_email);
         et_senha = findViewById(R.id.et_senha);
 
-
         dataHelper = new DataHelper(this);
     }
 
     public void ForgotPasswordView(View view) {
-        Intent intent = new Intent(this, ForgotEmailActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, ForgotEmailActivity.class));
     }
 
     private String access_token = null;

@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private static int id;
     private static int internalid;
 
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +82,27 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(MainActivity.this, ServiceExport.class);
         startService(intent);
+/*
+        swipeRefreshLayout = findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+
+                final Intent intent = getIntent();
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+            }
+        });
+        swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#01A276"));
+        */
     }
 
     public static int getIduser(){
-        return  id;
+        return id;
     }
     public static int getinternaluserid() { return internalid; }
 
@@ -95,6 +116,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.Register:
                 startActivity(new Intent(this, RegisterPeopleActivity.class));
                 break;
+            case R.id.Refresh:
+                final Intent intent = getIntent();
+                finish();
+                startActivity(intent,
+                        ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                break;
             case R.id.Logout:
                 editor = sharedpreferences.edit();
                 editor.clear();
@@ -102,9 +129,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;
-
-            case R.id.Syn:
-                new teste(this,email,senha).run();
         }
         return super.onOptionsItemSelected(item);
     }
