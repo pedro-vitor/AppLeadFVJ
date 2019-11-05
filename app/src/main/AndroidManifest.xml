@@ -33,7 +33,7 @@
         <activity android:name=".Activity.ForgotEmailActivity" />
         <activity
             android:name=".Activity.MainActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeNoAnimation" />
         <activity android:name=".Activity.ForgotPassActivity" />
         <activity
             android:name=".Activity.ProfileActivity"

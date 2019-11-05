@@ -72,7 +72,7 @@ public class UpdatePeopleActivity extends AppCompatActivity {
         final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, listCursos) {
             @Override
             public boolean isEnabled(int position) {
-                if (position == 0)
+                if(position == 0)
                     return false;
                 else
                     return true;
@@ -83,8 +83,10 @@ public class UpdatePeopleActivity extends AppCompatActivity {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView textview = (TextView) view;
 
-                if (position == 0)
+                if(cursos[position].equals("Cursos"))
                     textview.setTextColor(Color.GRAY);
+                else
+                    textview.setTextColor(Color.BLACK);
 
                 return view;
             }
@@ -98,11 +100,6 @@ public class UpdatePeopleActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
                 ((TextView) parent.getChildAt(0)).setTextColor(0xFFFFFFFF);
-
-                if (position > 0) {
-                    // Ação realizada quando um elemento diferente
-                    // do hint é selecionado
-                }
             }
 
             @Override

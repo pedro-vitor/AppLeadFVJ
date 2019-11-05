@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.NTI.AppFVJ.Adapter.LeadsAdapter;
 import com.NTI.AppFVJ.Data.DataHelper;
@@ -82,23 +83,20 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(MainActivity.this, ServiceExport.class);
         startService(intent);
-/*
+
         swipeRefreshLayout = findViewById(R.id.swiperefresh);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 swipeRefreshLayout.setRefreshing(false);
 
+                Toast.makeText(MainActivity.this, "Sincronizando...", Toast.LENGTH_SHORT).show();
                 final Intent intent = getIntent();
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 finish();
-                overridePendingTransition(0, 0);
                 startActivity(intent);
-                overridePendingTransition(0, 0);
             }
         });
         swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#01A276"));
-        */
     }
 
     public static int getIduser(){
@@ -115,12 +113,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.Register:
                 startActivity(new Intent(this, RegisterPeopleActivity.class));
-                break;
-            case R.id.Refresh:
-                final Intent intent = getIntent();
-                finish();
-                startActivity(intent,
-                        ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
             case R.id.Logout:
                 editor = sharedpreferences.edit();

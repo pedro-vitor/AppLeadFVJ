@@ -84,8 +84,10 @@ public class RegisterPeopleActivity extends AppCompatActivity {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView textview = (TextView)view;
 
-                if(position == 0)
+                if(cursos[position].equals("Cursos"))
                     textview.setTextColor(Color.GRAY);
+                else
+                    textview.setTextColor(Color.BLACK);
 
                 return view;
             }
