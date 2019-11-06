@@ -47,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="20dp"
+                android:padding="10dp"
                 android:layout_marginTop="40dp">
 
                 <EditText
@@ -56,6 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Senha Atual"
+                    android:padding="10dp"
                     android:textSize="18dp"
                     android:textColorHint="@color/TextColorDark"
                     android:textColor="@color/TextColorDark"
@@ -68,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="20dp"
+                android:padding="10dp"
                 android:layout_marginTop="10dp">
 
                 <EditText
@@ -90,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="12dp">
+                android:padding="10dp">
 
                 <EditText
                     android:id="@+id/et_confirmSenha"
@@ -98,7 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Confirme sua senha"
-                    android:paddingLeft="10dp"
+                    android:padding="10dp"
                     android:textSize="18dp"
                     android:textColorHint="@color/TextColorDark"
                     android:textColor="@color/TextColorDark"
@@ -109,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp"
+                android:padding="10dp"
                 android:layout_marginTop="12dp">
 
                 <Button

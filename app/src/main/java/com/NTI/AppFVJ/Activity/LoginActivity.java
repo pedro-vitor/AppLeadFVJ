@@ -176,7 +176,7 @@ public class LoginActivity extends AppCompatActivity {
             boolean focusable = false;
 
             popupWindow = new PopupWindow(popupView, width, height, focusable);
-            View view = (LinearLayout)findViewById(R.id.Login);
+            View view = findViewById(R.id.Login);
             popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         }
 
@@ -219,7 +219,7 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(_context,"Dados invalidos",Toast.LENGTH_SHORT).show();
                     }
                 }
-            }, 5000);
+            }, 3000);
         }
     }
 }

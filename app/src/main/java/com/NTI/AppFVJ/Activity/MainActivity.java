@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
             public void onRefresh() {
                 swipeRefreshLayout.setRefreshing(false);
 
-                Toast.makeText(MainActivity.this, "Sincronizando...", Toast.LENGTH_SHORT).show();
                 final Intent intent = getIntent();
                 finish();
                 startActivity(intent);

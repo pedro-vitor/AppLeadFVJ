@@ -174,10 +174,6 @@ public class UpdatePeopleActivity extends AppCompatActivity {
     }
 
     public void UpdatePeople(View View) {
-        if (et_nome.getText().toString().trim().isEmpty() || et_email.getText().toString().trim().isEmpty() || et_telefone.getText().toString().trim().isEmpty() || et_endereco.getText().toString().trim().isEmpty() || et_cidade.getText().toString().trim().isEmpty() || sp_curso.getSelectedItem().toString().equals("Cursos")) {
-            Toast.makeText(this, "Todos os campos devem ser preenchidos", Toast.LENGTH_SHORT).show();
-        }
-        else
         if (!Filter.Nome(et_nome.getText().toString()))
             Toast.makeText(this, "O nome do lead deve conter no mínimo 3 caracteres e no máximo 50", Toast.LENGTH_SHORT).show();
         else
@@ -189,6 +185,14 @@ public class UpdatePeopleActivity extends AppCompatActivity {
         else
         if (!Filter.Cidade(et_cidade.getText().toString()))
             Toast.makeText(this, "Verifique o nome da cidade", Toast.LENGTH_SHORT).show();
+        else
+        if (et_nome.getText().toString().trim().isEmpty() ||
+            et_email.getText().toString().trim().isEmpty() ||
+            et_telefone.getText().toString().trim().isEmpty() ||
+            et_endereco.getText().toString().trim().isEmpty() ||
+            et_cidade.getText().toString().trim().isEmpty() ||
+            sp_curso.getSelectedItem().toString().equals("Cursos"))
+            Toast.makeText(this, "Todos os campos devem ser preenchidos", Toast.LENGTH_SHORT).show();
         else {
             String name_upcase = et_nome.getText().toString().trim().substring(0, 1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));
             String town = et_cidade.getText().toString().trim().substring(0, 1).toUpperCase().concat(et_cidade.getText().toString().trim().substring(1));
