@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -122,10 +123,18 @@ public class Fragment2 extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                swipeRefreshLayout.setRefreshing(false);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (swipeRefreshLayout.isRefreshing()) {
+                            swipeRefreshLayout.setRefreshing(false);
 
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.detach(Fragment2.this).attach(Fragment2.this).commit();
+                            FragmentTransaction ft = getFragmentManager().beginTransaction();
+                            ft.detach(Fragment2.this).attach(Fragment2.this).commit();
+                        }
+                    }
+                }, 2000);
             }
         });
         swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#01A276"));

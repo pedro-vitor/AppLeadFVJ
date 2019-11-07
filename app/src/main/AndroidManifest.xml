@@ -30,7 +30,6 @@
         <activity android:name=".Activity.RegisterPeopleActivity"
                   android:theme="@style/AppTheme"
                   android:label="Registrar"/>
-        <activity android:name=".Activity.ForgotEmailActivity" />
         <activity
             android:name=".Activity.MainActivity"
             android:theme="@style/AppThemeNoAnimation" />

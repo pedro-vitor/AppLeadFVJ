@@ -47,8 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp"
-                android:layout_marginTop="40dp">
+                android:padding="10dp">
 
                 <EditText
                     android:inputType="textPassword"
@@ -69,8 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp"
-                android:layout_marginTop="10dp">
+                android:padding="10dp">
 
                 <EditText
                     android:inputType="textPassword"
@@ -78,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:hint="Senha"
+                    android:hint="Nova senha"
                     android:textSize="18dp"
                     android:textColorHint="@color/TextColorDark"
                     android:textColor="@color/TextColorDark"
