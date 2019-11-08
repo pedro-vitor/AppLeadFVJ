@@ -6,7 +6,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.app.ActivityOptions;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -19,14 +19,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.NTI.AppFVJ.Adapter.LeadsAdapter;
 import com.NTI.AppFVJ.Data.DataHelper;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.R;
 import com.NTI.AppFVJ.Service.ServiceExport;
-import com.NTI.AppFVJ.Service.teste;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.Profile:
                 startActivity(new Intent(this, UserProfileActivity.class));
-                finish();
+
                 break;
             case R.id.Register:
                 startActivity(new Intent(this, RegisterPeopleActivity.class));
