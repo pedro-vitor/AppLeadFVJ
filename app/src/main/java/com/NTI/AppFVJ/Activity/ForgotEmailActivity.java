@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.NTI.AppFVJ.Activity.LoginActivity;
 import com.NTI.AppFVJ.R;
 
 public class ForgotEmailActivity extends AppCompatActivity {

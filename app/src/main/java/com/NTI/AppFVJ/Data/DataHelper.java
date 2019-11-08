@@ -376,7 +376,7 @@ public class DataHelper extends SQLiteOpenHelper {
         values.put(KEY_UPDATED_USERS, user.getUpdated());
         values.put(KEY_ACTIVE_USERS, user.getActive());
 
-        return db.update(TABLE_USERS,values,KEY_ID_USERS + " = ?", new String[]{String.valueOf(user.getId())});
+        return db.update(TABLE_USERS, values,KEY_ID_USERS + " = ?", new String[]{String.valueOf(user.getId())});
     }
 
     public int updateLeads(Lead lead){

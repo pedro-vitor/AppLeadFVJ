@@ -72,7 +72,7 @@ public class UpdatePeopleActivity extends AppCompatActivity {
         final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, listCursos) {
             @Override
             public boolean isEnabled(int position) {
-                if (position == 0)
+                if(position == 0)
                     return false;
                 else
                     return true;
@@ -83,8 +83,10 @@ public class UpdatePeopleActivity extends AppCompatActivity {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView textview = (TextView) view;
 
-                if (position == 0)
+                if(cursos[position].equals("Cursos"))
                     textview.setTextColor(Color.GRAY);
+                else
+                    textview.setTextColor(Color.BLACK);
 
                 return view;
             }
@@ -98,11 +100,6 @@ public class UpdatePeopleActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
                 ((TextView) parent.getChildAt(0)).setTextColor(0xFFFFFFFF);
-
-                if (position > 0) {
-                    // Ação realizada quando um elemento diferente
-                    // do hint é selecionado
-                }
             }
 
             @Override
@@ -177,10 +174,6 @@ public class UpdatePeopleActivity extends AppCompatActivity {
     }
 
     public void UpdatePeople(View View) {
-        if (et_nome.getText().toString().trim().isEmpty() || et_email.getText().toString().trim().isEmpty() || et_telefone.getText().toString().trim().isEmpty() || et_endereco.getText().toString().trim().isEmpty() || et_cidade.getText().toString().trim().isEmpty() || sp_curso.getSelectedItem().toString().equals("Cursos")) {
-            Toast.makeText(this, "Todos os campos devem ser preenchidos", Toast.LENGTH_SHORT).show();
-        }
-        else
         if (!Filter.Nome(et_nome.getText().toString()))
             Toast.makeText(this, "O nome do lead deve conter no mínimo 3 caracteres e no máximo 50", Toast.LENGTH_SHORT).show();
         else
@@ -192,6 +185,14 @@ public class UpdatePeopleActivity extends AppCompatActivity {
         else
         if (!Filter.Cidade(et_cidade.getText().toString()))
             Toast.makeText(this, "Verifique o nome da cidade", Toast.LENGTH_SHORT).show();
+        else
+        if (et_nome.getText().toString().trim().isEmpty() ||
+            et_email.getText().toString().trim().isEmpty() ||
+            et_telefone.getText().toString().trim().isEmpty() ||
+            et_endereco.getText().toString().trim().isEmpty() ||
+            et_cidade.getText().toString().trim().isEmpty() ||
+            sp_curso.getSelectedItem().toString().equals("Cursos"))
+            Toast.makeText(this, "Todos os campos devem ser preenchidos", Toast.LENGTH_SHORT).show();
         else {
             String name_upcase = et_nome.getText().toString().trim().substring(0, 1).toUpperCase().concat(et_nome.getText().toString().trim().substring(1));
             String town = et_cidade.getText().toString().trim().substring(0, 1).toUpperCase().concat(et_cidade.getText().toString().trim().substring(1));

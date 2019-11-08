@@ -2,7 +2,7 @@ package com.NTI.AppFVJ.Fragment;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.database.CursorIndexOutOfBoundsException;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,7 +11,9 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -45,15 +47,12 @@ import static com.NTI.AppFVJ.CurrentTime.CurrentTime.GetCurrentTime;
 
 public class Fragment2 extends Fragment {
     private View view;
-
     private List<Comment> commentsList;
-
     private DataHelper datahelper;
 
     private int id;
 
     private ListView lv_comentarios;
-
     private AlertDialog alert;
 
     private SharedPreferences sharedpreferences;
@@ -61,6 +60,8 @@ public class Fragment2 extends Fragment {
     private String _password;
 
     private Connetion connetion;
+
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -129,6 +130,27 @@ public class Fragment2 extends Fragment {
                 showComments(Integer.parseInt(tv_id.getText().toString()));
             }
         });
+
+        swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (swipeRefreshLayout.isRefreshing()) {
+                            swipeRefreshLayout.setRefreshing(false);
+
+                            FragmentTransaction ft = getFragmentManager().beginTransaction();
+                            ft.detach(Fragment2.this).attach(Fragment2.this).commit();
+                        }
+                    }
+                }, 2000);
+            }
+        });
+        swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#01A276"));
+
         return view;
     }
 
