@@ -1,0 +1,6 @@
+stub location for driverKIT if driverKIT is included please place 
+
+included in the top of the driverKIT directory
+
+file explanation:
+the included file file tells the toolKIT that an its supplies the ADB driver.

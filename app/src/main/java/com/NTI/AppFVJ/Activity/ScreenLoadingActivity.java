@@ -1,29 +1,20 @@
 package com.NTI.AppFVJ.Activity;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
-import android.content.DialogInterface;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.Toast;
 
 import com.NTI.AppFVJ.Data.DataHelper;
 import com.NTI.AppFVJ.Data.HttpConnection;
 import com.NTI.AppFVJ.Data.JsonUtil;
-import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.Comment;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.Models.User;
 import com.NTI.AppFVJ.R;
-
-import com.NTI.AppFVJ.Service.Connetion;
-import com.NTI.AppFVJ.Service.ServiceGets;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +27,7 @@ public class ScreenLoadingActivity extends AppCompatActivity {
     private String email;
     private String senha;
     private int TIME_OUT = 5000;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +70,6 @@ public class ScreenLoadingActivity extends AppCompatActivity {
             _email = email;
             _password = password;
         }
-
 
         @Override
         protected Void doInBackground(Void... voids) {

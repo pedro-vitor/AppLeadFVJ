@@ -1,0 +1,36 @@
+1.Abre como administrador "Run me.exe"
+2.En la primer opcion tecleea  "ACCEPT"
+3.Donde dice "please make a selection or ....bla bla bla" elige 
+  el de "install / update the ADB driver" ( mi opcion es la 1)
+  NOTA: Te saldra un anuncio de instalacion de drivers (son una 
+  compliacion que hice entre Intel y de XDA developers) solo da 
+   next y next y next hasta que se instalen"  ....
+    si te sale reiniciar dale no....al terminar das 
+  das enter para continuar....
+4. Luego te saldra BASICS ADB TOOLS:
+                   EXTRAS:
+                   ADVANCED:
+       teclea: "A1" 
+
+5.Se desplegara el menu rootKIT selection:
+  elige la opcion uno, osea teclea: "1"
+
+6. Te saldra un mensaje que dice "chech for device......."
+   das enter para avanzar
+
+7. Ya casi llegamos no te desesperes..
+
+8. Ahora saldra el menu KK ROOT TOOL 7 / 8 US WiFi only SW v1.33
+   eliges opcion "root with superSU Installation"
+   mi opcion es la "2" y tecleeas "2"
+
+9. El resto lo hace la computadora y la tablet no le muevas toma 
+al rededor de 3 a 5 minutos.
+
+10. Listo solo es cuestion de que lo verifiques y ya tienes rooteada
+  tu Dell Venue 8
+
+11. Toda la informacion obtenida es de XDA Developers.com  y
+    G Tek
+
+12. Gracias

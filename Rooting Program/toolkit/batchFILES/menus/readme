@@ -1,0 +1,7 @@
+this folder should contain batch files 
+
+that are load different menus.
+
+note:
+menus should have minimal functions out side of the menu launching its self
+they should call on toolKITs to execute the desired function.

@@ -81,6 +81,7 @@
                     android:src="@drawable/envelope_1"
                     android:layout_marginTop="8dp"/>
 
+
                 <EditText
                     android:id="@+id/et_email"
                     android:layout_width="match_parent"

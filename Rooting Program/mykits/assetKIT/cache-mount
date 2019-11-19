@@ -1,0 +1,31 @@
+#!/system/bin/sh
+
+CACHE=/cache
+FOLDER=/cache/recovery
+
+if grep -qs $CACHE /proc/mounts; then
+    echo "/cache is already mounted."
+        if [ ! -d "$FOLDER" ]; then
+            mkdir -p "$FOLDER"
+        fi
+else
+    echo "/cache is not mounted."
+        if [ ! -d "$CACHE" ]; then
+            mkdir -p "$CACHE"
+        fi
+
+        if [ ! -d "$FOLDER" ]; then
+            mkdir -p "$FOLDER"
+        fi
+
+    mount -t ext4 -o rw /dev/block/mmcblk0p6 $CACHE;
+
+    if grep -qs $CACHE /proc/mounts; then
+        echo "/cache successfully mounted"
+    else
+        echo "/cache could not be mounted"
+    fi
+
+fi
+
+exit 0

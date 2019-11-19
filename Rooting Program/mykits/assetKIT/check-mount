@@ -1,0 +1,40 @@
+#!/system/bin/sh
+
+CACHE=/cache
+DATA=/data
+SYSTEM=/system
+
+if grep -qs $CACHE /proc/mounts; then
+    echo "/cache is already mounted."
+else
+    echo "/cache is not mounted."
+        if [ ! -d "$CACHE" ]; then
+            mkdir -p "$CACHE"
+        fi
+    echo "mounting /cache partition"
+    mount -t ext4 -o rw /dev/block/mmcblk0p6 $CACHE;
+fi
+
+if grep -qs $DATA /proc/mounts; then
+    echo "/data is already mounted."
+else
+    echo "/data is not mounted."
+        if [ ! -d "$DATA" ]; then
+            mkdir -p "$DATA"
+        fi
+    echo "mounting /data partition"
+    mount -t ext4 -o rw /dev/block/mmcblk0p9 $DATA;
+fi
+
+if grep -qs $SYSTEM /proc/mounts; then
+    echo "/system is already mounted."
+else
+    echo "/system is not mounted."
+        if [ ! -d "$SYSTEM" ]; then
+            mkdir -p "$SYSTEM"
+        fi
+    echo "mounting /system partition"
+    mount -t ext4 -o rw /dev/block/mmcblk0p8 $SYSTEM;
+fi
+
+exit 0
