@@ -152,7 +152,7 @@ public class DataHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(Query, null);
 
         if(cursor.moveToFirst()) {
-            while (cursor.moveToNext()) {
+            do {
                 Lead lead = new Lead();
                 lead.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_LEADS)));
                 lead.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_LEADS)));
@@ -168,7 +168,7 @@ public class DataHelper extends SQLiteOpenHelper {
                 lead.setUpdated(cursor.getInt(cursor.getColumnIndex(KEY_UPDATED_LEADS)));
 
                 leads.add(lead);
-            }
+            } while (cursor.moveToNext());
         }
         return leads;
     }
@@ -393,7 +393,7 @@ public class DataHelper extends SQLiteOpenHelper {
         values.put(KEY_ACTIVE_LEADS, lead.getActive());
         values.put(KEY_UPDATED_LEADS, lead.getUpdated());
 
-        return db.update(TABLE_LEADS,values,KEY_ID_LEADS + " = ?", new String[]{String.valueOf(lead.getId())});
+        return db.update(TABLE_LEADS,values,KEY_EXTERN_ID_LEADS + " = ?", new String[]{String.valueOf(lead.getExternId())});
     }
 
     public int updateComments(Comment comment){

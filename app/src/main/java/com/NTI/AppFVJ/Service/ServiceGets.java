@@ -112,6 +112,14 @@ public class ServiceGets extends AsyncTask<Void, Void, Void> {
                     for (Lead lead : leadList) {
                         if (lead.getExternId() == ld.getExternId()) {
                             status = false;
+
+                            if (!lead.getName().equals(ld.getName()) ||
+                                !lead.getEmail().equals(ld.getEmail()) ||
+                                !lead.getNumberPhone().equals(ld.getNumberPhone()) ||
+                                !lead.getDesiredCourse().equals(ld.getDesiredCourse()) ||
+                                !lead.getAddress().equals(ld.getAddress()) ||
+                                !lead.getTown().equals(ld.getTown()))
+                                dataHelper.updateLeads(ld);
                         }
                     }
                     if(status)
