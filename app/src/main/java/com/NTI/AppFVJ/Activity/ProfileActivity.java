@@ -2,14 +2,12 @@ package com.NTI.AppFVJ.Activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.NTI.AppFVJ.Data.DataHelper;
-import com.NTI.AppFVJ.Data.HttpConnection;
 import com.NTI.AppFVJ.MaskEditUtil.MaskEditUtil;
 import com.NTI.AppFVJ.Models.Lead;
 import com.NTI.AppFVJ.Models.User;

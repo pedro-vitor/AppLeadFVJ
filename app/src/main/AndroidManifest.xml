@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".Activity.ScreenLoadingActivity"></activity>
+
         <activity
             android:name=".Activity.SplashScreenNActivity"
             android:screenOrientation="portrait">
@@ -19,24 +20,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.AlterarSenhaActivity" />
+
+        <activity android:name=".Activity.AlterarSenhaActivity"/>
         <activity
             android:name=".Activity.UserProfileActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:label="Perfil"
+            android:parentActivityName=".Activity.MainActivity"/>
+
         <activity android:name=".Activity.ForgotEmailActivity$UserProfileActivity" />
+
         <activity android:name=".Activity.UpdatePeopleActivity"
                   android:theme="@style/AppTheme"
-                  android:label="Atualizar"/>
+                  android:label="Atualizar Lead"
+                  android:parentActivityName=".Activity.UpdatePeopleActivity"/>
+
         <activity android:name=".Activity.RegisterPeopleActivity"
                   android:theme="@style/AppTheme"
-                  android:label="Registrar"/>
+                  android:label="Registrar Lead"
+                  android:parentActivityName=".Activity.MainActivity"/>
         <activity
             android:name=".Activity.MainActivity"
-            android:theme="@style/AppThemeNoAnimation" />
+            android:theme="@style/AppThemeNoAnimation"/>
+
         <activity android:name=".Activity.ForgotPassActivity" />
         <activity
             android:name=".Activity.ProfileActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".Activity.MainActivity"/>
         <activity
             android:name=".Activity.LoginActivity"
             android:screenOrientation="portrait" />

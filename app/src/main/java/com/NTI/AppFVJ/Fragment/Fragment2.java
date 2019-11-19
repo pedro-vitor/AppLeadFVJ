@@ -43,6 +43,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.NTI.AppFVJ.CurrentTime.CurrentTime.GetCurrentTime;
 
 public class Fragment2 extends Fragment {
     private View view;
@@ -79,8 +80,6 @@ public class Fragment2 extends Fragment {
 
         id = Integer.parseInt(ProfileActivity.getId());
 
-        sharedpreferences = getContext().getSharedPreferences("user_preference", MODE_PRIVATE);
-
         DataComments();
 
         final EditText et_comment;
@@ -98,9 +97,22 @@ public class Fragment2 extends Fragment {
                         if(et_comment.getText().toString().trim().isEmpty()){
                             Toast.makeText(getContext(),"Preencha o campo de comentário", Toast.LENGTH_SHORT).show();
                         }else{
-                            //comments inserts
-                            new AsyncInsertComment(et_comment.getText().toString()).execute();
-                            et_comment.setText("");
+                            /*new AsyncInsertComment(et_comment.getText().toString()).execute();
+                            et_comment.setText("");*/
+                            Comment newComment  = new Comment();
+                            newComment.setExternId(0);
+                            newComment.setLeadId(id);
+                            newComment.setUserId(MainActivity.getIduser());
+                            newComment.setText(et_comment.getText().toString());
+                            newComment.setCreatedAt(GetCurrentTime("yyyy-MM-dd") + "T" + GetCurrentTime("HH:mm:ss"));
+                            newComment.setActive(1);
+                            newComment.setUpdated(0);
+                            if(datahelper.insertComments(newComment) > 0){
+                                Toast.makeText(getContext(),"Comentário adicionado com sucesso", Toast.LENGTH_SHORT).show();
+                                et_comment.setText("");
+                                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                ft.detach(Fragment2.this).attach(Fragment2.this).commit();
+                            }
                         }
                         return true;
                     }
@@ -180,12 +192,14 @@ public class Fragment2 extends Fragment {
                     builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                        /*commentsList.get(0).setActive(0);
-                        datahelper.updateComments(commentsList.get(0));
+                        commentsList.get(0).setActive(0);
+                        commentsList.get(0).setUpdated(1);
 
-                        FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.detach(Fragment2.this).attach(Fragment2.this).commit();*/
-                            new AsyncDeleteComment().execute();
+                        if(datahelper.updateComments(commentsList.get(0)) > 0) {
+                            FragmentTransaction ft = getFragmentManager().beginTransaction();
+                            ft.detach(Fragment2.this).attach(Fragment2.this).commit();
+                        }
+                           // new AsyncDeleteComment().execute();
                         }
                     });
                     builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {

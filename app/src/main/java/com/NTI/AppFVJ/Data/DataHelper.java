@@ -146,14 +146,13 @@ public class DataHelper extends SQLiteOpenHelper {
 
     public List<Lead> GetAllLeads(){
         List<Lead> leads = new ArrayList<Lead>();
-        String Query = "SELECT * FROM " + TABLE_LEADS + " WHERE " + KEY_ACTIVE_LEADS + " <> 0";
+        String Query = "SELECT * FROM " + TABLE_LEADS + " WHERE " + KEY_ACTIVE_LEADS + " <> 0"+" ORDER BY "+ KEY_NAME_LEADS;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
 
-        int i = cursor.getCount()-1;
-
-        while(cursor.moveToPosition(i)) {
+        if(cursor.moveToFirst()) {
+            while (cursor.moveToNext()) {
                 Lead lead = new Lead();
                 lead.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID_LEADS)));
                 lead.setExternId(cursor.getInt(cursor.getColumnIndex(KEY_EXTERN_ID_LEADS)));
@@ -169,9 +168,8 @@ public class DataHelper extends SQLiteOpenHelper {
                 lead.setUpdated(cursor.getInt(cursor.getColumnIndex(KEY_UPDATED_LEADS)));
 
                 leads.add(lead);
-
-                i--;
             }
+        }
         return leads;
     }
 
@@ -202,7 +200,7 @@ public class DataHelper extends SQLiteOpenHelper {
 
     public List<User> GetByIdUsers(int id){
         List<User> users = new ArrayList<User>();
-        String Query = "SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_ACTIVE_USERS + " <> 0 AND " + KEY_EXTERN_ID_USERS + " = " + id;
+        String Query = "SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_EXTERN_ID_USERS + " = " + id;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
